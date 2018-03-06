@@ -16360,7 +16360,7 @@ var _user$project$Common_sequent$axiomRule = {
 		_0: {
 			priority: _user$project$Common_sequent$initN,
 			category: _user$project$Common_sequent$Rule4Other,
-			rulename: 'top',
+			rulename: 'Top',
 			rule: function (seq) {
 				return A2(
 					_user$project$Util$exists,
@@ -16381,7 +16381,7 @@ var _user$project$Common_sequent$axiomRule = {
 			_0: {
 				priority: _user$project$Common_sequent$initN,
 				category: _user$project$Common_sequent$Rule4Other,
-				rulename: 'bot',
+				rulename: 'Bot',
 				rule: function (seq) {
 					return A2(
 						_user$project$Util$exists,
