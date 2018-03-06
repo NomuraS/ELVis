@@ -1,0 +1,2976 @@
+var _user$project$DEL_sequent$substVar = function (_p0) {
+	var _p1 = _p0;
+	var _p2 = _p1._0;
+	return _elm_lang$core$Native_Utils.eq(_p1._1._0, _p2) ? _p1._1._1 : _p2;
+};
+var _user$project$DEL_sequent$substAM = function (_p3) {
+	var _p4 = _p3;
+	var _p7 = _p4._1._1;
+	var _p6 = _p4._1._0;
+	var _p5 = _p4._0;
+	switch (_p5.ctor) {
+		case 'PointAModel':
+			return A2(
+				_user$project$Common_syntax$PointAModel,
+				_p5._0,
+				_user$project$DEL_sequent$substVar(
+					{
+						ctor: '_Tuple2',
+						_0: _p5._1,
+						_1: {ctor: '_Tuple2', _0: _p6, _1: _p7}
+					}));
+		case 'Cup':
+			return A2(
+				_user$project$Common_syntax$Cup,
+				_user$project$DEL_sequent$substAM(
+					{
+						ctor: '_Tuple2',
+						_0: _p5._0,
+						_1: {ctor: '_Tuple2', _0: _p6, _1: _p7}
+					}),
+				_user$project$DEL_sequent$substAM(
+					{
+						ctor: '_Tuple2',
+						_0: _p5._1,
+						_1: {ctor: '_Tuple2', _0: _p6, _1: _p7}
+					}));
+		default:
+			return A2(
+				_user$project$Common_syntax$ComposePoAM,
+				_user$project$DEL_sequent$substAM(
+					{
+						ctor: '_Tuple2',
+						_0: _p5._0,
+						_1: {ctor: '_Tuple2', _0: _p6, _1: _p7}
+					}),
+				_user$project$DEL_sequent$substAM(
+					{
+						ctor: '_Tuple2',
+						_0: _p5._1,
+						_1: {ctor: '_Tuple2', _0: _p6, _1: _p7}
+					}));
+	}
+};
+var _user$project$DEL_sequent$substF = function (_p8) {
+	var _p9 = _p8;
+	var _p16 = _p9._1;
+	var _p10 = _p9._0;
+	_v4_14:
+	do {
+		switch (_p10.ctor) {
+			case 'Atom':
+				return _user$project$Common_syntax$Atom(_p10._0);
+			case 'AnyFormula':
+				return _user$project$Common_syntax$AnyFormula(_p10._0);
+			case 'Not':
+				return _user$project$Common_syntax$Not(
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._0, _1: _p16}));
+			case 'And':
+				return A2(
+					_user$project$Common_syntax$And,
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._0, _1: _p16}),
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Or':
+				return A2(
+					_user$project$Common_syntax$Or,
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._0, _1: _p16}),
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Iff':
+				return A2(
+					_user$project$Common_syntax$Iff,
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._0, _1: _p16}),
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Imply':
+				return A2(
+					_user$project$Common_syntax$Imply,
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._0, _1: _p16}),
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Imply2':
+				return A2(
+					_user$project$Common_syntax$Imply2,
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._0, _1: _p16}),
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Box':
+				return A2(
+					_user$project$Common_syntax$Box,
+					_p10._0,
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Dia':
+				return A2(
+					_user$project$Common_syntax$Dia,
+					_p10._0,
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Bigwedge':
+				if ((_p10._1.ctor === '_Tuple2') && (_p10._1._1.ctor === '_Tuple3')) {
+					var _p12 = _p10._1._1._2;
+					var _p11 = _p10._1._1._1;
+					return A3(
+						_user$project$Common_syntax$Bigwedge,
+						_p10._0,
+						{
+							ctor: '_Tuple2',
+							_0: _p10._1._0,
+							_1: {ctor: '_Tuple3', _0: _p10._1._1._0, _1: _p11, _2: _p12}
+						},
+						_user$project$DEL_sequent$substF(
+							{
+								ctor: '_Tuple2',
+								_0: _p10._2,
+								_1: {ctor: '_Tuple2', _0: _p11, _1: _p12}
+							}));
+				} else {
+					break _v4_14;
+				}
+			case 'Bigvee':
+				if ((_p10._1.ctor === '_Tuple2') && (_p10._1._1.ctor === '_Tuple3')) {
+					var _p14 = _p10._1._1._2;
+					var _p13 = _p10._1._1._1;
+					return A3(
+						_user$project$Common_syntax$Bigvee,
+						_p10._0,
+						{
+							ctor: '_Tuple2',
+							_0: _p10._1._0,
+							_1: {ctor: '_Tuple3', _0: _p10._1._1._0, _1: _p13, _2: _p14}
+						},
+						_user$project$DEL_sequent$substF(
+							{
+								ctor: '_Tuple2',
+								_0: _p10._2,
+								_1: {ctor: '_Tuple2', _0: _p13, _1: _p14}
+							}));
+				} else {
+					break _v4_14;
+				}
+			case 'BoxAction':
+				return A2(
+					_user$project$Common_syntax$BoxAction,
+					_user$project$DEL_sequent$substAM(
+						{ctor: '_Tuple2', _0: _p10._0, _1: _p16}),
+					_user$project$DEL_sequent$substF(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			case 'Precon':
+				return A2(
+					_user$project$Common_syntax$Precon,
+					_p10._0,
+					_user$project$DEL_sequent$substVar(
+						{ctor: '_Tuple2', _0: _p10._1, _1: _p16}));
+			default:
+				break _v4_14;
+		}
+	} while(false);
+	return _elm_lang$core$Native_Utils.crashCase(
+		'DEL_sequent',
+		{
+			start: {line: 771, column: 17},
+			end: {line: 787, column: 51}
+		},
+		_p10)('error in substF');
+};
+var _user$project$DEL_sequent$substLabel = function (_p17) {
+	var _p18 = _p17;
+	return _user$project$Common_sequent$LabelForm(
+		{
+			ctor: '_Tuple4',
+			_0: _p18._0._0._0,
+			_1: _p18._0._0._1,
+			_2: _p18._0._0._2,
+			_3: _user$project$DEL_sequent$substF(
+				{ctor: '_Tuple2', _0: _p18._0._0._3, _1: _p18._1})
+		});
+};
+var _user$project$DEL_sequent$substRel = function (xx) {
+	var _p19 = xx;
+	if (_p19._0.ctor === 'RelAtom') {
+		var ff = function (x) {
+			var _p20 = x;
+			switch (_p20.ctor) {
+				case 'PointAModel':
+					return A2(
+						_user$project$Common_syntax$PointAModel,
+						_p20._0,
+						_user$project$DEL_sequent$substVar(
+							{ctor: '_Tuple2', _0: _p20._1, _1: _p19._1}));
+				case 'Cup':
+					var _p21 = _p20._0;
+					return A2(
+						_user$project$Common_syntax$Cup,
+						ff(_p21),
+						ff(_p21));
+				default:
+					var _p22 = _p20._0;
+					return A2(
+						_user$project$Common_syntax$ComposePoAM,
+						ff(_p22),
+						ff(_p22));
+			}
+		};
+		var gg = function (_p23) {
+			var _p24 = _p23;
+			return {
+				ctor: '_Tuple2',
+				_0: _p24._0,
+				_1: A2(_elm_lang$core$List$map, ff, _p24._1)
+			};
+		};
+		return _user$project$Common_sequent$RelAtom(
+			{
+				ctor: '_Tuple4',
+				_0: _p19._0._0._0,
+				_1: _p19._0._0._1,
+				_2: gg(_p19._0._0._2),
+				_3: gg(_p19._0._0._3)
+			});
+	} else {
+		return _user$project$Common_sequent$RelAtom_int(
+			{ctor: '_Tuple2', _0: _p19._0._0._0, _1: _p19._0._0._1});
+	}
+};
+var _user$project$DEL_sequent$substForDEL = function (_p25) {
+	var _p26 = _p25;
+	var _p29 = _p26._1;
+	var ff = function (_p27) {
+		var _p28 = _p27;
+		return {
+			ctor: '_Tuple4',
+			_0: _p28._0,
+			_1: _p28._1,
+			_2: _user$project$DEL_sequent$substVar(
+				{ctor: '_Tuple2', _0: _p28._2, _1: _p29}),
+			_3: _user$project$DEL_sequent$substVar(
+				{ctor: '_Tuple2', _0: _p28._3, _1: _p29})
+		};
+	};
+	return A2(_elm_lang$core$List$map, ff, _p26._0);
+};
+var _user$project$DEL_sequent$substSeq = F2(
+	function (seq, sp) {
+		var forDEL2 = _user$project$DEL_sequent$substForDEL(
+			{ctor: '_Tuple2', _0: seq.forDEL, _1: sp});
+		var right2 = A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return _user$project$DEL_sequent$substLabel(
+					{ctor: '_Tuple2', _0: x, _1: sp});
+			},
+			seq.rightForm);
+		var left2 = A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return _user$project$DEL_sequent$substLabel(
+					{ctor: '_Tuple2', _0: x, _1: sp});
+			},
+			seq.leftForm);
+		var ri2 = A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return _user$project$DEL_sequent$substRel(
+					{ctor: '_Tuple2', _0: x, _1: sp});
+			},
+			seq.rightRel);
+		var le2 = A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return _user$project$DEL_sequent$substRel(
+					{ctor: '_Tuple2', _0: x, _1: sp});
+			},
+			seq.leftRel);
+		return {leftRel: le2, leftForm: left2, rightRel: ri2, rightForm: right2, forDEL: forDEL2};
+	});
+var _user$project$DEL_sequent$ruleAModel = {
+	ctor: '::',
+	_0: {
+		priority: _user$project$Common_sequent$amodelDefN_DEL,
+		category: _user$project$Common_sequent$Rule4RightFormula,
+		rulename: 'R.Definition of AModel_pre',
+		rule: function (seq) {
+			var _p30 = seq.rightForm;
+			if (((_p30.ctor === '::') && (_p30._0._0.ctor === '_Tuple4')) && (_p30._0._0._3.ctor === 'Precon')) {
+				return A2(
+					_elm_lang$core$Maybe$map,
+					function (add1) {
+						return {
+							ctor: '::',
+							_0: _elm_lang$core$Native_Utils.update(
+								seq,
+								{
+									rightForm: A2(
+										_elm_lang$core$Basics_ops['++'],
+										{
+											ctor: '::',
+											_0: add1,
+											_1: {ctor: '[]'}
+										},
+										_p30._1)
+								}),
+							_1: {ctor: '[]'}
+						};
+					},
+					A2(
+						_elm_lang$core$Maybe$map,
+						function (a) {
+							return _user$project$Common_sequent$LabelForm(
+								{ctor: '_Tuple4', _0: _p30._0._0._0, _1: _p30._0._0._1, _2: _p30._0._0._2, _3: a});
+						},
+						A2(
+							_elm_lang$core$Debug$log,
+							'DEL_seq',
+							A2(_user$project$Common_syntax$lookPre, _p30._0._0._3._0.am_pre, _p30._0._0._3._1))));
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		}
+	},
+	_1: {
+		ctor: '::',
+		_0: {
+			priority: _user$project$Common_sequent$amodelDefN_DEL,
+			category: _user$project$Common_sequent$Rule4LeftFormula,
+			rulename: 'L.Definition of AModel_pre',
+			rule: function (seq) {
+				var _p31 = seq.leftForm;
+				if (((_p31.ctor === '::') && (_p31._0._0.ctor === '_Tuple4')) && (_p31._0._0._3.ctor === 'Precon')) {
+					return A2(
+						_elm_lang$core$Maybe$map,
+						function (add1) {
+							return {
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									seq,
+									{
+										leftForm: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: add1,
+												_1: {ctor: '[]'}
+											},
+											_p31._1)
+									}),
+								_1: {ctor: '[]'}
+							};
+						},
+						A2(
+							_elm_lang$core$Maybe$map,
+							function (f) {
+								return _user$project$Common_sequent$LabelForm(
+									{ctor: '_Tuple4', _0: _p31._0._0._0, _1: _p31._0._0._1, _2: _p31._0._0._2, _3: f});
+							},
+							A2(_user$project$Common_syntax$lookPre, _p31._0._0._3._0.am_pre, _p31._0._0._3._1)));
+				} else {
+					return _elm_lang$core$Maybe$Nothing;
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				priority: _user$project$Common_sequent$amodelDefN_DEL,
+				category: _user$project$Common_sequent$Rule4DEL,
+				rulename: 'Definition of AModel_Rel',
+				rule: function (seq) {
+					var _p32 = seq.forDEL;
+					if (((_p32.ctor === '::') && (_p32._0.ctor === '_Tuple4')) && (_p32._0._1.ctor === '::')) {
+						var _p37 = _p32._0._3;
+						if (A2(_elm_lang$core$String$contains, 'x', _p37)) {
+							var listOfStatesFrom_s1 = A2(
+								_user$project$Util_ops['$>>='],
+								_p32._0._1._0.am_relation,
+								function (_p33) {
+									var _p34 = _p33;
+									return (_elm_lang$core$Native_Utils.eq(_p34._1, _p32._0._2) && _elm_lang$core$Native_Utils.eq(_p34._0, _p32._0._0)) ? {
+										ctor: '::',
+										_0: _p34._2,
+										_1: {ctor: '[]'}
+									} : {ctor: '[]'};
+								});
+							var from_s2 = function (_p35) {
+								var _p36 = _p35;
+								return A2(
+									_user$project$Util_ops['$>>='],
+									_user$project$Util$nub(listOfStatesFrom_s1),
+									function (t) {
+										return {
+											ctor: '::',
+											_0: A2(
+												_user$project$DEL_sequent$substSeq,
+												_elm_lang$core$Native_Utils.update(
+													seq,
+													{forDEL: _p32._1}),
+												{ctor: '_Tuple2', _0: _p37, _1: t}),
+											_1: {ctor: '[]'}
+										};
+									});
+							};
+							return function (y) {
+								return function (x) {
+									return _elm_lang$core$List$isEmpty(x) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(x);
+								}(
+									_elm_lang$core$List$concat(y));
+							}(
+								A2(_elm_lang$core$List$map, from_s2, seq.forDEL));
+						} else {
+							return _elm_lang$core$Maybe$Nothing;
+						}
+					} else {
+						return _elm_lang$core$Maybe$Nothing;
+					}
+				}
+			},
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$DEL_sequent$state2freevar = F2(
+	function (listBoundVar, s) {
+		return (!A2(_elm_lang$core$List$member, s, listBoundVar)) ? {
+			ctor: '::',
+			_0: s,
+			_1: {ctor: '[]'}
+		} : {ctor: '[]'};
+	});
+var _user$project$DEL_sequent$action2freevar = F2(
+	function (listBoundVar, a) {
+		var _p38 = a;
+		switch (_p38.ctor) {
+			case 'PointAModel':
+				return A2(_user$project$DEL_sequent$state2freevar, listBoundVar, _p38._1);
+			case 'Cup':
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					A2(_user$project$DEL_sequent$action2freevar, listBoundVar, _p38._0),
+					A2(_user$project$DEL_sequent$action2freevar, listBoundVar, _p38._1));
+			default:
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					A2(_user$project$DEL_sequent$action2freevar, listBoundVar, _p38._0),
+					A2(_user$project$DEL_sequent$action2freevar, listBoundVar, _p38._1));
+		}
+	});
+var _user$project$DEL_sequent$form2freevar = F2(
+	function (listBoundVar, f) {
+		form2freevar:
+		while (true) {
+			var _p39 = f;
+			_v17_13:
+			do {
+				switch (_p39.ctor) {
+					case 'Not':
+						var _v18 = listBoundVar,
+							_v19 = _p39._0;
+						listBoundVar = _v18;
+						f = _v19;
+						continue form2freevar;
+					case 'And':
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._0),
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._1));
+					case 'Or':
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._0),
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._1));
+					case 'Iff':
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._0),
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._1));
+					case 'Imply':
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._0),
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._1));
+					case 'Imply2':
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._0),
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._1));
+					case 'Box':
+						var _v20 = listBoundVar,
+							_v21 = _p39._1;
+						listBoundVar = _v20;
+						f = _v21;
+						continue form2freevar;
+					case 'Dia':
+						var _v22 = listBoundVar,
+							_v23 = _p39._1;
+						listBoundVar = _v22;
+						f = _v23;
+						continue form2freevar;
+					case 'Bigwedge':
+						if ((_p39._1.ctor === '_Tuple2') && (_p39._1._1.ctor === '_Tuple3')) {
+							var _p42 = _p39._2;
+							var _p41 = _p39._1._1._2;
+							var _p40 = _p39._1._1._1;
+							if (!A2(_elm_lang$core$List$member, _p40, listBoundVar)) {
+								return {
+									ctor: '::',
+									_0: _p40,
+									_1: A2(
+										_user$project$DEL_sequent$form2freevar,
+										{ctor: '::', _0: _p41, _1: listBoundVar},
+										_p42)
+								};
+							} else {
+								var _v24 = {ctor: '::', _0: _p41, _1: listBoundVar},
+									_v25 = _p42;
+								listBoundVar = _v24;
+								f = _v25;
+								continue form2freevar;
+							}
+						} else {
+							break _v17_13;
+						}
+					case 'Bigvee':
+						if ((_p39._1.ctor === '_Tuple2') && (_p39._1._1.ctor === '_Tuple3')) {
+							var _p45 = _p39._2;
+							var _p44 = _p39._1._1._2;
+							var _p43 = _p39._1._1._1;
+							if (!A2(_elm_lang$core$List$member, _p43, listBoundVar)) {
+								return {
+									ctor: '::',
+									_0: _p43,
+									_1: A2(
+										_user$project$DEL_sequent$form2freevar,
+										{ctor: '::', _0: _p44, _1: listBoundVar},
+										_p45)
+								};
+							} else {
+								var _v26 = {ctor: '::', _0: _p44, _1: listBoundVar},
+									_v27 = _p45;
+								listBoundVar = _v26;
+								f = _v27;
+								continue form2freevar;
+							}
+						} else {
+							break _v17_13;
+						}
+					case 'BoxAction':
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$DEL_sequent$action2freevar, listBoundVar, _p39._0),
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._1));
+					case 'DiaAction':
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$DEL_sequent$action2freevar, listBoundVar, _p39._0),
+							A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p39._1));
+					case 'Precon':
+						return A2(_user$project$DEL_sequent$state2freevar, listBoundVar, _p39._1);
+					default:
+						break _v17_13;
+				}
+			} while(false);
+			return {ctor: '[]'};
+		}
+	});
+var _user$project$DEL_sequent$labelExp2freevar = F2(
+	function (listBoundVar, a) {
+		var _p46 = a;
+		if (_p46.ctor === 'Left') {
+			return function (x) {
+				return function (y) {
+					return A2(_elm_lang$core$Basics_ops['++'], x, y);
+				}(
+					A2(_user$project$DEL_sequent$form2freevar, listBoundVar, _p46._0._0._3));
+			}(
+				A2(
+					_elm_lang$core$List$concatMap,
+					function (a) {
+						return A2(_user$project$DEL_sequent$action2freevar, listBoundVar, a);
+					},
+					_toastal$either$Either$rights(_p46._0._0._2)));
+		} else {
+			if (_p46._0.ctor === 'RelAtom') {
+				return _user$project$Util$nub(
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						A2(
+							_elm_lang$core$List$concatMap,
+							function (a) {
+								return A2(_user$project$DEL_sequent$action2freevar, listBoundVar, a);
+							},
+							A2(_elm_lang$core$Basics_ops['++'], _p46._0._0._2._1, _p46._0._0._3._1)),
+						A2(
+							_elm_lang$core$List$concatMap,
+							function (f) {
+								return A2(_user$project$DEL_sequent$form2freevar, listBoundVar, f);
+							},
+							_p46._0._0._1)));
+			} else {
+				return {ctor: '[]'};
+			}
+		}
+	});
+var _user$project$DEL_sequent$sequent2freevar = F2(
+	function (listBoundVar, seq) {
+		var labelforms = A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return _toastal$either$Either$Left(x);
+			},
+			A2(_elm_lang$core$Basics_ops['++'], seq.leftForm, seq.rightForm));
+		var relatoms = A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return _toastal$either$Either$Right(x);
+			},
+			A2(_elm_lang$core$Basics_ops['++'], seq.leftRel, seq.rightRel));
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			A2(
+				_elm_lang$core$List$concatMap,
+				function (x) {
+					return A2(_user$project$DEL_sequent$labelExp2freevar, listBoundVar, x);
+				},
+				relatoms),
+			A2(
+				_elm_lang$core$List$concatMap,
+				function (x) {
+					return A2(_user$project$DEL_sequent$labelExp2freevar, listBoundVar, x);
+				},
+				labelforms));
+	});
+var _user$project$DEL_sequent$ruleDEL = {
+	ctor: '::',
+	_0: {
+		priority: _user$project$Common_sequent$atLN_DEL,
+		category: _user$project$Common_sequent$Rule4LeftFormula,
+		rulename: 'Lat',
+		rule: function (seq) {
+			var _p47 = seq.leftForm;
+			if (((_p47.ctor === '::') && (_p47._0._0.ctor === '_Tuple4')) && (_p47._0._0._3.ctor === 'Atom')) {
+				var add1 = function (ini) {
+					return _user$project$Common_sequent$LabelForm(
+						{
+							ctor: '_Tuple4',
+							_0: _p47._0._0._0,
+							_1: _p47._0._0._1,
+							_2: ini,
+							_3: _user$project$Common_syntax$Atom(_p47._0._0._3._0)
+						});
+				};
+				return A2(
+					_user$project$Applicative_ops['?>'],
+					_elm_community$list_extra$List_Extra$init(_p47._0._0._2),
+					function (ini) {
+						return {
+							ctor: '::',
+							_0: _elm_lang$core$Native_Utils.update(
+								seq,
+								{
+									leftForm: A2(
+										_elm_lang$core$Basics_ops['++'],
+										{
+											ctor: '::',
+											_0: add1(ini),
+											_1: {ctor: '[]'}
+										},
+										_p47._1)
+								}),
+							_1: {ctor: '[]'}
+						};
+					});
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		}
+	},
+	_1: {
+		ctor: '::',
+		_0: {
+			priority: _user$project$Common_sequent$atRN_DEL,
+			category: _user$project$Common_sequent$Rule4RightFormula,
+			rulename: 'Rat',
+			rule: function (seq) {
+				var _p48 = seq.rightForm;
+				if (((_p48.ctor === '::') && (_p48._0._0.ctor === '_Tuple4')) && (_p48._0._0._3.ctor === 'Atom')) {
+					var add1 = function (ini) {
+						return _user$project$Common_sequent$LabelForm(
+							{
+								ctor: '_Tuple4',
+								_0: _p48._0._0._0,
+								_1: _p48._0._0._1,
+								_2: ini,
+								_3: _user$project$Common_syntax$Atom(_p48._0._0._3._0)
+							});
+					};
+					return A2(
+						_user$project$Applicative_ops['?>'],
+						_elm_community$list_extra$List_Extra$init(_p48._0._0._2),
+						function (ini) {
+							return {
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									seq,
+									{
+										rightForm: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: add1(ini),
+												_1: {ctor: '[]'}
+											},
+											_p48._1)
+									}),
+								_1: {ctor: '[]'}
+							};
+						});
+				} else {
+					return _elm_lang$core$Maybe$Nothing;
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				priority: _user$project$Common_sequent$actionLN_DEL,
+				category: _user$project$Common_sequent$Rule4LeftFormula,
+				rulename: 'L[.]',
+				rule: function (seq) {
+					var _p49 = seq.leftForm;
+					if ((((_p49.ctor === '::') && (_p49._0._0.ctor === '_Tuple4')) && (_p49._0._0._3.ctor === 'BoxAction')) && (_p49._0._0._3._0.ctor === 'PointAModel')) {
+						var _p55 = _p49._0._0._3._0._1;
+						var _p54 = _p49._1;
+						var _p53 = _p49._0._0._1;
+						var _p52 = _p49._0._0._0;
+						var _p51 = _p49._0._0._3._0._0;
+						var _p50 = _p49._0._0._2;
+						var add2 = _user$project$Common_sequent$LabelForm(
+							{
+								ctor: '_Tuple4',
+								_0: _p52,
+								_1: _p53,
+								_2: A2(
+									_elm_lang$core$Basics_ops['++'],
+									{
+										ctor: '::',
+										_0: _toastal$either$Either$Right(
+											A2(_user$project$Common_syntax$PointAModel, _p51, _p55)),
+										_1: {ctor: '[]'}
+									},
+									_p50),
+								_3: _p49._0._0._3._1
+							});
+						var add1 = _user$project$Common_sequent$LabelForm(
+							{
+								ctor: '_Tuple4',
+								_0: _p52,
+								_1: _p53,
+								_2: _p50,
+								_3: A2(_user$project$Common_syntax$Precon, _p51, _p55)
+							});
+						return _elm_lang$core$Maybe$Just(
+							{
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									seq,
+									{
+										leftForm: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: add2,
+												_1: {ctor: '[]'}
+											},
+											_p54)
+									}),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$core$Native_Utils.update(
+										seq,
+										{
+											leftForm: _p54,
+											rightForm: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: add1,
+													_1: {ctor: '[]'}
+												},
+												seq.rightForm)
+										}),
+									_1: {ctor: '[]'}
+								}
+							});
+					} else {
+						return _elm_lang$core$Maybe$Nothing;
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					priority: _user$project$Common_sequent$actionRN_DEL,
+					category: _user$project$Common_sequent$Rule4RightFormula,
+					rulename: 'R[.]',
+					rule: function (seq) {
+						var _p56 = seq.rightForm;
+						if ((((_p56.ctor === '::') && (_p56._0._0.ctor === '_Tuple4')) && (_p56._0._0._3.ctor === 'BoxAction')) && (_p56._0._0._3._0.ctor === 'PointAModel')) {
+							var _p61 = _p56._0._0._3._0._1;
+							var _p60 = _p56._0._0._1;
+							var _p59 = _p56._0._0._0;
+							var _p58 = _p56._0._0._3._0._0;
+							var _p57 = _p56._0._0._2;
+							var add2 = _user$project$Common_sequent$LabelForm(
+								{
+									ctor: '_Tuple4',
+									_0: _p59,
+									_1: _p60,
+									_2: A2(
+										_elm_lang$core$Basics_ops['++'],
+										{
+											ctor: '::',
+											_0: _toastal$either$Either$Right(
+												A2(_user$project$Common_syntax$PointAModel, _p58, _p61)),
+											_1: {ctor: '[]'}
+										},
+										_p57),
+									_3: _p56._0._0._3._1
+								});
+							var add1 = _user$project$Common_sequent$LabelForm(
+								{
+									ctor: '_Tuple4',
+									_0: _p59,
+									_1: _p60,
+									_2: _p57,
+									_3: A2(_user$project$Common_syntax$Precon, _p58, _p61)
+								});
+							return _elm_lang$core$Maybe$Just(
+								{
+									ctor: '::',
+									_0: _elm_lang$core$Native_Utils.update(
+										seq,
+										{
+											leftForm: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: add1,
+													_1: {ctor: '[]'}
+												},
+												seq.leftForm),
+											rightForm: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: add2,
+													_1: {ctor: '[]'}
+												},
+												_p56._1)
+										}),
+									_1: {ctor: '[]'}
+								});
+						} else {
+							return _elm_lang$core$Maybe$Nothing;
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						priority: _user$project$Common_sequent$action2LN_DEL,
+						category: _user$project$Common_sequent$Rule4LeftFormula,
+						rulename: 'L<.>',
+						rule: function (seq) {
+							var _p62 = seq.leftForm;
+							if ((((_p62.ctor === '::') && (_p62._0._0.ctor === '_Tuple4')) && (_p62._0._0._3.ctor === 'DiaAction')) && (_p62._0._0._3._0.ctor === 'PointAModel')) {
+								var _p67 = _p62._0._0._3._0._1;
+								var _p66 = _p62._0._0._1;
+								var _p65 = _p62._0._0._0;
+								var _p64 = _p62._0._0._3._0._0;
+								var _p63 = _p62._0._0._2;
+								var add2 = _user$project$Common_sequent$LabelForm(
+									{
+										ctor: '_Tuple4',
+										_0: _p65,
+										_1: _p66,
+										_2: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: _toastal$either$Either$Right(
+													A2(_user$project$Common_syntax$PointAModel, _p64, _p67)),
+												_1: {ctor: '[]'}
+											},
+											_p63),
+										_3: _p62._0._0._3._1
+									});
+								var add1 = _user$project$Common_sequent$LabelForm(
+									{
+										ctor: '_Tuple4',
+										_0: _p65,
+										_1: _p66,
+										_2: _p63,
+										_3: A2(_user$project$Common_syntax$Precon, _p64, _p67)
+									});
+								return _elm_lang$core$Maybe$Just(
+									{
+										ctor: '::',
+										_0: _elm_lang$core$Native_Utils.update(
+											seq,
+											{
+												leftForm: A2(
+													_elm_lang$core$Basics_ops['++'],
+													{
+														ctor: '::',
+														_0: add1,
+														_1: {
+															ctor: '::',
+															_0: add2,
+															_1: {ctor: '[]'}
+														}
+													},
+													_p62._1)
+											}),
+										_1: {ctor: '[]'}
+									});
+							} else {
+								return _elm_lang$core$Maybe$Nothing;
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							priority: _user$project$Common_sequent$action2RN_DEL,
+							category: _user$project$Common_sequent$Rule4RightFormula,
+							rulename: 'R<.>',
+							rule: function (seq) {
+								var _p68 = seq.rightForm;
+								if ((((_p68.ctor === '::') && (_p68._0._0.ctor === '_Tuple4')) && (_p68._0._0._3.ctor === 'DiaAction')) && (_p68._0._0._3._0.ctor === 'PointAModel')) {
+									var _p74 = _p68._0._0._3._0._1;
+									var _p73 = _p68._1;
+									var _p72 = _p68._0._0._1;
+									var _p71 = _p68._0._0._0;
+									var _p70 = _p68._0._0._3._0._0;
+									var _p69 = _p68._0._0._2;
+									var add2 = _user$project$Common_sequent$LabelForm(
+										{
+											ctor: '_Tuple4',
+											_0: _p71,
+											_1: _p72,
+											_2: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: _toastal$either$Either$Right(
+														A2(_user$project$Common_syntax$PointAModel, _p70, _p74)),
+													_1: {ctor: '[]'}
+												},
+												_p69),
+											_3: _p68._0._0._3._1
+										});
+									var add1 = _user$project$Common_sequent$LabelForm(
+										{
+											ctor: '_Tuple4',
+											_0: _p71,
+											_1: _p72,
+											_2: _p69,
+											_3: A2(_user$project$Common_syntax$Precon, _p70, _p74)
+										});
+									return _elm_lang$core$Maybe$Just(
+										{
+											ctor: '::',
+											_0: _elm_lang$core$Native_Utils.update(
+												seq,
+												{
+													rightForm: A2(
+														_elm_lang$core$Basics_ops['++'],
+														{
+															ctor: '::',
+															_0: add1,
+															_1: {ctor: '[]'}
+														},
+														_p73)
+												}),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$core$Native_Utils.update(
+													seq,
+													{
+														rightForm: A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: add2,
+																_1: {ctor: '[]'}
+															},
+															_p73)
+													}),
+												_1: {ctor: '[]'}
+											}
+										});
+								} else {
+									return _elm_lang$core$Maybe$Nothing;
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								priority: _user$project$Common_sequent$cupLN_DEL,
+								category: _user$project$Common_sequent$Rule4LeftFormula,
+								rulename: 'LU',
+								rule: function (seq) {
+									var _p75 = seq.leftForm;
+									if ((((_p75.ctor === '::') && (_p75._0._0.ctor === '_Tuple4')) && (_p75._0._0._3.ctor === 'BoxAction')) && (_p75._0._0._3._0.ctor === 'Cup')) {
+										var _p79 = _p75._0._0._1;
+										var _p78 = _p75._0._0._3._1;
+										var _p77 = _p75._0._0._0;
+										var _p76 = _p75._0._0._2;
+										var add2 = _user$project$Common_sequent$LabelForm(
+											{
+												ctor: '_Tuple4',
+												_0: _p77,
+												_1: _p79,
+												_2: _p76,
+												_3: A2(_user$project$Common_syntax$BoxAction, _p75._0._0._3._0._1, _p78)
+											});
+										var add1 = _user$project$Common_sequent$LabelForm(
+											{
+												ctor: '_Tuple4',
+												_0: _p77,
+												_1: _p79,
+												_2: _p76,
+												_3: A2(_user$project$Common_syntax$BoxAction, _p75._0._0._3._0._0, _p78)
+											});
+										return _elm_lang$core$Maybe$Just(
+											{
+												ctor: '::',
+												_0: _elm_lang$core$Native_Utils.update(
+													seq,
+													{
+														leftForm: A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: add1,
+																_1: {
+																	ctor: '::',
+																	_0: add2,
+																	_1: {ctor: '[]'}
+																}
+															},
+															_p75._1)
+													}),
+												_1: {ctor: '[]'}
+											});
+									} else {
+										return _elm_lang$core$Maybe$Nothing;
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									priority: _user$project$Common_sequent$cupRN_DEL,
+									category: _user$project$Common_sequent$Rule4RightFormula,
+									rulename: 'RU',
+									rule: function (seq) {
+										var _p80 = seq.rightForm;
+										if ((((_p80.ctor === '::') && (_p80._0._0.ctor === '_Tuple4')) && (_p80._0._0._3.ctor === 'BoxAction')) && (_p80._0._0._3._0.ctor === 'Cup')) {
+											var _p85 = _p80._1;
+											var _p84 = _p80._0._0._1;
+											var _p83 = _p80._0._0._3._1;
+											var _p82 = _p80._0._0._0;
+											var _p81 = _p80._0._0._2;
+											var add2 = _user$project$Common_sequent$LabelForm(
+												{
+													ctor: '_Tuple4',
+													_0: _p82,
+													_1: _p84,
+													_2: _p81,
+													_3: A2(_user$project$Common_syntax$BoxAction, _p80._0._0._3._0._1, _p83)
+												});
+											var add1 = _user$project$Common_sequent$LabelForm(
+												{
+													ctor: '_Tuple4',
+													_0: _p82,
+													_1: _p84,
+													_2: _p81,
+													_3: A2(_user$project$Common_syntax$BoxAction, _p80._0._0._3._0._0, _p83)
+												});
+											return _elm_lang$core$Maybe$Just(
+												{
+													ctor: '::',
+													_0: _elm_lang$core$Native_Utils.update(
+														seq,
+														{
+															rightForm: A2(
+																_elm_lang$core$Basics_ops['++'],
+																{
+																	ctor: '::',
+																	_0: add1,
+																	_1: {ctor: '[]'}
+																},
+																_p85)
+														}),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$core$Native_Utils.update(
+															seq,
+															{
+																rightForm: A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	{
+																		ctor: '::',
+																		_0: add2,
+																		_1: {ctor: '[]'}
+																	},
+																	_p85)
+															}),
+														_1: {ctor: '[]'}
+													}
+												});
+										} else {
+											return _elm_lang$core$Maybe$Nothing;
+										}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										priority: _user$project$Common_sequent$cupLN_DEL,
+										category: _user$project$Common_sequent$Rule4LeftFormula,
+										rulename: 'L;',
+										rule: function (seq) {
+											var _p86 = seq.leftForm;
+											if ((((_p86.ctor === '::') && (_p86._0._0.ctor === '_Tuple4')) && (_p86._0._0._3.ctor === 'BoxAction')) && (_p86._0._0._3._0.ctor === 'ComposePoAM')) {
+												var add1 = _user$project$Common_sequent$LabelForm(
+													{
+														ctor: '_Tuple4',
+														_0: _p86._0._0._0,
+														_1: _p86._0._0._1,
+														_2: _p86._0._0._2,
+														_3: A2(
+															_user$project$Common_syntax$BoxAction,
+															A2(_user$project$Common_syntax$composeAction, _p86._0._0._3._0._0, _p86._0._0._3._0._1),
+															_p86._0._0._3._1)
+													});
+												return _elm_lang$core$Maybe$Just(
+													{
+														ctor: '::',
+														_0: _elm_lang$core$Native_Utils.update(
+															seq,
+															{
+																leftForm: A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	{
+																		ctor: '::',
+																		_0: add1,
+																		_1: {ctor: '[]'}
+																	},
+																	_p86._1)
+															}),
+														_1: {ctor: '[]'}
+													});
+											} else {
+												return _elm_lang$core$Maybe$Nothing;
+											}
+										}
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											priority: _user$project$Common_sequent$cupRN_DEL,
+											category: _user$project$Common_sequent$Rule4RightFormula,
+											rulename: 'R;',
+											rule: function (seq) {
+												var _p87 = seq.rightForm;
+												if ((((_p87.ctor === '::') && (_p87._0._0.ctor === '_Tuple4')) && (_p87._0._0._3.ctor === 'BoxAction')) && (_p87._0._0._3._0.ctor === 'ComposePoAM')) {
+													var add1 = _user$project$Common_sequent$LabelForm(
+														{
+															ctor: '_Tuple4',
+															_0: _p87._0._0._0,
+															_1: _p87._0._0._1,
+															_2: _p87._0._0._2,
+															_3: A2(
+																_user$project$Common_syntax$BoxAction,
+																A2(_user$project$Common_syntax$composeAction, _p87._0._0._3._0._0, _p87._0._0._3._0._1),
+																_p87._0._0._3._1)
+														});
+													return _elm_lang$core$Maybe$Just(
+														{
+															ctor: '::',
+															_0: _elm_lang$core$Native_Utils.update(
+																seq,
+																{
+																	rightForm: A2(
+																		_elm_lang$core$Basics_ops['++'],
+																		{
+																			ctor: '::',
+																			_0: add1,
+																			_1: {ctor: '[]'}
+																		},
+																		_p87._1)
+																}),
+															_1: {ctor: '[]'}
+														});
+												} else {
+													return _elm_lang$core$Maybe$Nothing;
+												}
+											}
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												priority: _user$project$Common_sequent$relLN_DEL,
+												category: _user$project$Common_sequent$Rule4LeftRel,
+												rulename: 'Lrel',
+												rule: function (seq) {
+													var _p88 = seq.leftRel;
+													if ((((_p88.ctor === '::') && (_p88._0.ctor === 'RelAtom')) && (_p88._0._0.ctor === '_Tuple4')) && (_p88._0._0._1.ctor === '[]')) {
+														var _p89 = {ctor: '_Tuple2', _0: _p88._0._0._2, _1: _p88._0._0._3};
+														if (((((((_p89.ctor === '_Tuple2') && (_p89._0.ctor === '_Tuple2')) && (_p89._0._1.ctor === '::')) && (_p89._0._1._0.ctor === 'PointAModel')) && (_p89._1.ctor === '_Tuple2')) && (_p89._1._1.ctor === '::')) && (_p89._1._1._0.ctor === 'PointAModel')) {
+															var _p93 = _p89._1._0;
+															var _p92 = _p89._0._0;
+															var _p91 = _p89._1._1._1;
+															var _p90 = _p89._0._1._1;
+															var add3 = _user$project$Common_sequent$LabelForm(
+																{
+																	ctor: '_Tuple4',
+																	_0: {ctor: '[]'},
+																	_1: _p93,
+																	_2: A2(
+																		_elm_lang$core$List$map,
+																		function (x) {
+																			return _toastal$either$Either$Right(x);
+																		},
+																		_p91),
+																	_3: A2(_user$project$Common_syntax$Precon, _p89._1._1._0._0, _p89._1._1._0._1)
+																});
+															var add2 = _user$project$Common_sequent$LabelForm(
+																{
+																	ctor: '_Tuple4',
+																	_0: {ctor: '[]'},
+																	_1: _p92,
+																	_2: A2(
+																		_elm_lang$core$List$map,
+																		function (x) {
+																			return _toastal$either$Either$Right(x);
+																		},
+																		_p90),
+																	_3: A2(_user$project$Common_syntax$Precon, _p89._0._1._0._0, _p89._0._1._0._1)
+																});
+															var add1 = _user$project$Common_sequent$RelAtom(
+																{
+																	ctor: '_Tuple4',
+																	_0: _p88._0._0._0,
+																	_1: {ctor: '[]'},
+																	_2: {ctor: '_Tuple2', _0: _p92, _1: _p90},
+																	_3: {ctor: '_Tuple2', _0: _p93, _1: _p91}
+																});
+															return _elm_lang$core$Maybe$Just(
+																{
+																	ctor: '::',
+																	_0: _elm_lang$core$Native_Utils.update(
+																		seq,
+																		{
+																			leftRel: A2(
+																				_elm_lang$core$Basics_ops['++'],
+																				{
+																					ctor: '::',
+																					_0: add1,
+																					_1: {ctor: '[]'}
+																				},
+																				_p88._1),
+																			leftForm: A2(
+																				_elm_lang$core$Basics_ops['++'],
+																				{
+																					ctor: '::',
+																					_0: add2,
+																					_1: {
+																						ctor: '::',
+																						_0: add3,
+																						_1: {ctor: '[]'}
+																					}
+																				},
+																				seq.leftForm)
+																		}),
+																	_1: {ctor: '[]'}
+																});
+														} else {
+															return _elm_lang$core$Maybe$Nothing;
+														}
+													} else {
+														return _elm_lang$core$Maybe$Nothing;
+													}
+												}
+											},
+											_1: {
+												ctor: '::',
+												_0: {
+													priority: _user$project$Common_sequent$relRN_DEL,
+													category: _user$project$Common_sequent$Rule4RightRel,
+													rulename: 'Rrel',
+													rule: function (seq) {
+														var _p94 = seq.rightRel;
+														if ((((_p94.ctor === '::') && (_p94._0.ctor === 'RelAtom')) && (_p94._0._0.ctor === '_Tuple4')) && (_p94._0._0._1.ctor === '[]')) {
+															var _p95 = {ctor: '_Tuple2', _0: _p94._0._0._2, _1: _p94._0._0._3};
+															if (((((((_p95.ctor === '_Tuple2') && (_p95._0.ctor === '_Tuple2')) && (_p95._0._1.ctor === '::')) && (_p95._0._1._0.ctor === 'PointAModel')) && (_p95._1.ctor === '_Tuple2')) && (_p95._1._1.ctor === '::')) && (_p95._1._1._0.ctor === 'PointAModel')) {
+																var _p99 = _p95._1._0;
+																var _p98 = _p95._0._0;
+																var _p97 = _p95._1._1._1;
+																var _p96 = _p95._0._1._1;
+																var add3 = _user$project$Common_sequent$LabelForm(
+																	{
+																		ctor: '_Tuple4',
+																		_0: {ctor: '[]'},
+																		_1: _p99,
+																		_2: A2(
+																			_elm_lang$core$List$map,
+																			function (x) {
+																				return _toastal$either$Either$Right(x);
+																			},
+																			_p97),
+																		_3: A2(_user$project$Common_syntax$Precon, _p95._1._1._0._0, _p95._1._1._0._1)
+																	});
+																var add2 = _user$project$Common_sequent$LabelForm(
+																	{
+																		ctor: '_Tuple4',
+																		_0: {ctor: '[]'},
+																		_1: _p98,
+																		_2: A2(
+																			_elm_lang$core$List$map,
+																			function (x) {
+																				return _toastal$either$Either$Right(x);
+																			},
+																			_p96),
+																		_3: A2(_user$project$Common_syntax$Precon, _p95._0._1._0._0, _p95._0._1._0._1)
+																	});
+																var add1 = _user$project$Common_sequent$RelAtom(
+																	{
+																		ctor: '_Tuple4',
+																		_0: _p94._0._0._0,
+																		_1: {ctor: '[]'},
+																		_2: {ctor: '_Tuple2', _0: _p98, _1: _p96},
+																		_3: {ctor: '_Tuple2', _0: _p99, _1: _p97}
+																	});
+																return _elm_lang$core$Maybe$Just(
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$core$Native_Utils.update(
+																			seq,
+																			{
+																				rightRel: A2(
+																					_elm_lang$core$Basics_ops['++'],
+																					{
+																						ctor: '::',
+																						_0: add1,
+																						_1: {ctor: '[]'}
+																					},
+																					_p94._1)
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$core$Native_Utils.update(
+																				seq,
+																				{
+																					rightForm: A2(
+																						_elm_lang$core$Basics_ops['++'],
+																						{
+																							ctor: '::',
+																							_0: add2,
+																							_1: {ctor: '[]'}
+																						},
+																						seq.rightForm)
+																				}),
+																			_1: {
+																				ctor: '::',
+																				_0: _elm_lang$core$Native_Utils.update(
+																					seq,
+																					{
+																						rightForm: A2(
+																							_elm_lang$core$Basics_ops['++'],
+																							{
+																								ctor: '::',
+																								_0: add3,
+																								_1: {ctor: '[]'}
+																							},
+																							seq.rightForm)
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	});
+															} else {
+																return _elm_lang$core$Maybe$Nothing;
+															}
+														} else {
+															return _elm_lang$core$Maybe$Nothing;
+														}
+													}
+												},
+												_1: {
+													ctor: '::',
+													_0: {
+														priority: _user$project$Common_sequent$bigAndRN_DEL,
+														category: _user$project$Common_sequent$Rule4RightFormula,
+														rulename: 'R&&',
+														rule: function (seq) {
+															var _p100 = seq.rightForm;
+															if (((((_p100.ctor === '::') && (_p100._0._0.ctor === '_Tuple4')) && (_p100._0._0._3.ctor === 'Bigwedge')) && (_p100._0._0._3._1.ctor === '_Tuple2')) && (_p100._0._0._3._1._1.ctor === '_Tuple3')) {
+																var $new = function (n) {
+																	return A2(_elm_lang$core$Basics_ops['++'], 'x', n);
+																}(
+																	_user$project$Util$show(
+																		_user$project$Common_sequent$freshLabel(seq)));
+																var add1 = _user$project$Common_sequent$LabelForm(
+																	{
+																		ctor: '_Tuple4',
+																		_0: _p100._0._0._0,
+																		_1: _p100._0._0._1,
+																		_2: _p100._0._0._2,
+																		_3: _user$project$DEL_sequent$substF(
+																			{
+																				ctor: '_Tuple2',
+																				_0: _p100._0._0._3._2,
+																				_1: {ctor: '_Tuple2', _0: _p100._0._0._3._1._1._2, _1: $new}
+																			})
+																	});
+																var add2 = {
+																	ctor: '_Tuple4',
+																	_0: _p100._0._0._3._1._1._0,
+																	_1: {
+																		ctor: '::',
+																		_0: _p100._0._0._3._1._0,
+																		_1: {ctor: '[]'}
+																	},
+																	_2: _p100._0._0._3._1._1._1,
+																	_3: $new
+																};
+																return _elm_lang$core$Maybe$Just(
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$core$Native_Utils.update(
+																			seq,
+																			{
+																				rightForm: A2(
+																					_elm_lang$core$Basics_ops['++'],
+																					{
+																						ctor: '::',
+																						_0: add1,
+																						_1: {ctor: '[]'}
+																					},
+																					_p100._1),
+																				forDEL: A2(
+																					_elm_lang$core$Basics_ops['++'],
+																					{
+																						ctor: '::',
+																						_0: add2,
+																						_1: {ctor: '[]'}
+																					},
+																					seq.forDEL)
+																			}),
+																		_1: {ctor: '[]'}
+																	});
+															} else {
+																return _elm_lang$core$Maybe$Nothing;
+															}
+														}
+													},
+													_1: {
+														ctor: '::',
+														_0: {
+															priority: _user$project$Common_sequent$bigAndLN_DEL,
+															category: _user$project$Common_sequent$Rule4LeftFormula,
+															rulename: 'L&&',
+															rule: function (seq) {
+																var _p101 = seq.leftForm;
+																if (((((_p101.ctor === '::') && (_p101._0._0.ctor === '_Tuple4')) && (_p101._0._0._3.ctor === 'Bigwedge')) && (_p101._0._0._3._1.ctor === '_Tuple2')) && (_p101._0._0._3._1._1.ctor === '_Tuple3')) {
+																	var _p107 = _p101._0._0._1;
+																	var _p106 = _p101._0._0._3._2;
+																	var _p105 = _p101._0._0._3._0;
+																	var _p104 = _p101._0._0._2;
+																	var _p103 = _p101._0._0._3._1._1._2;
+																	var _p102 = _p101._0._0._0;
+																	var orig = function (z) {
+																		return _user$project$Common_sequent$LabelForm(
+																			{
+																				ctor: '_Tuple4',
+																				_0: _p102,
+																				_1: _p107,
+																				_2: _p104,
+																				_3: A3(
+																					_user$project$Common_syntax$Bigwedge,
+																					{ctor: '::', _0: z, _1: _p105},
+																					{
+																						ctor: '_Tuple2',
+																						_0: _p101._0._0._3._1._0,
+																						_1: {ctor: '_Tuple3', _0: _p101._0._0._3._1._1._0, _1: _p101._0._0._3._1._1._1, _2: _p103}
+																					},
+																					_p106)
+																			});
+																	};
+																	var add1 = function (sel) {
+																		return _user$project$Common_sequent$LabelForm(
+																			{
+																				ctor: '_Tuple4',
+																				_0: _p102,
+																				_1: _p107,
+																				_2: _p104,
+																				_3: _user$project$DEL_sequent$substF(
+																					{
+																						ctor: '_Tuple2',
+																						_0: _p106,
+																						_1: {ctor: '_Tuple2', _0: _p103, _1: sel}
+																					})
+																			});
+																	};
+																	var wholeVar = A2(
+																		_user$project$DEL_sequent$sequent2freevar,
+																		{ctor: '[]'},
+																		seq);
+																	var justLabel = _elm_lang$core$List$head(
+																		_elm_lang$core$List$reverse(
+																			A2(_user$project$Util$difference, wholeVar, _p105)));
+																	return A2(
+																		_user$project$Applicative_ops['?>'],
+																		justLabel,
+																		function (x) {
+																			return {
+																				ctor: '::',
+																				_0: _elm_lang$core$Native_Utils.update(
+																					seq,
+																					{
+																						leftForm: A2(
+																							_elm_lang$core$Basics_ops['++'],
+																							{
+																								ctor: '::',
+																								_0: add1(x),
+																								_1: {ctor: '[]'}
+																							},
+																							A2(
+																								_elm_lang$core$Basics_ops['++'],
+																								{
+																									ctor: '::',
+																									_0: orig(x),
+																									_1: {ctor: '[]'}
+																								},
+																								_p101._1))
+																					}),
+																				_1: {ctor: '[]'}
+																			};
+																		});
+																} else {
+																	return _elm_lang$core$Maybe$Nothing;
+																}
+															}
+														},
+														_1: {
+															ctor: '::',
+															_0: {
+																priority: _user$project$Common_sequent$bigAndRN_DEL,
+																category: _user$project$Common_sequent$Rule4RightFormula,
+																rulename: 'Rpre',
+																rule: function (seq) {
+																	var _p108 = seq.rightForm;
+																	if (((_p108.ctor === '::') && (_p108._0._0.ctor === '_Tuple4')) && (_p108._0._0._3.ctor === 'Precon')) {
+																		var _p109 = _p108._0._0._3._1;
+																		if (A2(_elm_lang$core$String$contains, ',', _p109)) {
+																			var add1 = A2(
+																				_elm_lang$core$Maybe$map,
+																				function (x) {
+																					return _user$project$Common_sequent$LabelForm(
+																						{ctor: '_Tuple4', _0: _p108._0._0._0, _1: _p108._0._0._1, _2: _p108._0._0._2, _3: x});
+																				},
+																				A2(_user$project$Common_syntax$lookPre, _p108._0._0._3._0.am_pre, _p109));
+																			return A2(
+																				_elm_lang$core$Maybe$map,
+																				function (x) {
+																					return {
+																						ctor: '::',
+																						_0: _elm_lang$core$Native_Utils.update(
+																							seq,
+																							{
+																								rightForm: A2(
+																									_elm_lang$core$Basics_ops['++'],
+																									{
+																										ctor: '::',
+																										_0: x,
+																										_1: {ctor: '[]'}
+																									},
+																									_p108._1)
+																							}),
+																						_1: {ctor: '[]'}
+																					};
+																				},
+																				add1);
+																		} else {
+																			return _elm_lang$core$Maybe$Nothing;
+																		}
+																	} else {
+																		return _elm_lang$core$Maybe$Nothing;
+																	}
+																}
+															},
+															_1: {
+																ctor: '::',
+																_0: {
+																	priority: _user$project$Common_sequent$bigAndLN_DEL,
+																	category: _user$project$Common_sequent$Rule4LeftFormula,
+																	rulename: 'Lpre',
+																	rule: function (seq) {
+																		var _p110 = seq.leftForm;
+																		if (((_p110.ctor === '::') && (_p110._0._0.ctor === '_Tuple4')) && (_p110._0._0._3.ctor === 'Precon')) {
+																			var add1 = A2(
+																				_elm_lang$core$Maybe$map,
+																				function (x) {
+																					return _user$project$Common_sequent$LabelForm(
+																						{ctor: '_Tuple4', _0: _p110._0._0._0, _1: _p110._0._0._1, _2: _p110._0._0._2, _3: x});
+																				},
+																				A2(_user$project$Common_syntax$lookPre, _p110._0._0._3._0.am_pre, _p110._0._0._3._1));
+																			return A2(
+																				_elm_lang$core$Maybe$map,
+																				function (x) {
+																					return {
+																						ctor: '::',
+																						_0: _elm_lang$core$Native_Utils.update(
+																							seq,
+																							{
+																								leftForm: A2(
+																									_elm_lang$core$Basics_ops['++'],
+																									{
+																										ctor: '::',
+																										_0: x,
+																										_1: {ctor: '[]'}
+																									},
+																									_p110._1)
+																							}),
+																						_1: {ctor: '[]'}
+																					};
+																				},
+																				add1);
+																		} else {
+																			return _elm_lang$core$Maybe$Nothing;
+																		}
+																	}
+																},
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$DEL_sequent$actionCombi = function (list) {
+	var ff = F2(
+		function (xs, ys) {
+			return A2(
+				_user$project$Util_ops['$>>='],
+				A2(_elm_lang$core$List$map, _elm_lang$core$List$singleton, xs),
+				function (x) {
+					return A2(
+						_user$project$Util_ops['$>>='],
+						ys,
+						function (y) {
+							return {
+								ctor: '::',
+								_0: A2(_elm_lang$core$Basics_ops['++'], x, y),
+								_1: {ctor: '[]'}
+							};
+						});
+				});
+		});
+	return A3(
+		_elm_lang$core$List$foldr,
+		ff,
+		{
+			ctor: '::',
+			_0: {ctor: '[]'},
+			_1: {ctor: '[]'}
+		},
+		list);
+};
+var _user$project$DEL_sequent$wholeActions = F3(
+	function (acts, ag, seq) {
+		var gg = F2(
+			function (_p111, k0) {
+				var _p112 = _p111;
+				var _p119 = _p112._1;
+				var _p113 = k0;
+				if ((_p113.ctor === 'Right') && (_p113._0.ctor === 'PointAModel')) {
+					return A2(
+						_user$project$Util_ops['$>>='],
+						A2(
+							_elm_lang$core$List$map,
+							function (_p114) {
+								var _p115 = _p114;
+								return {ctor: '_Tuple2', _0: _p115._1, _1: _p115._3};
+							},
+							_p119),
+						function (_p116) {
+							var _p117 = _p116;
+							var _p118 = _p117._1;
+							return A2(
+								_elm_lang$core$List$member,
+								{ctor: '_Tuple4', _0: _p112._0, _1: _p117._0, _2: _p113._0._1, _3: _p118},
+								_p119) ? {
+								ctor: '::',
+								_0: A2(_user$project$Common_syntax$PointAModel, _p113._0._0, _p118),
+								_1: {ctor: '[]'}
+							} : {ctor: '[]'};
+						});
+				} else {
+					return {ctor: '[]'};
+				}
+			});
+		var _p120 = A2(
+			_elm_lang$core$List$map,
+			gg(
+				{ctor: '_Tuple2', _0: ag, _1: seq.forDEL}),
+			acts);
+		if (_p120.ctor === '[]') {
+			return {ctor: '[]'};
+		} else {
+			return _user$project$DEL_sequent$actionCombi(_p120);
+		}
+	});
+var _user$project$DEL_sequent$substitution4Action = F2(
+	function (act, _p121) {
+		var _p122 = _p121;
+		var _p124 = _p122;
+		var gg = function (am) {
+			return _elm_lang$core$Native_Utils.eq(am.am_name, _p124.am_name) ? _p124 : am;
+		};
+		var _p123 = act;
+		switch (_p123.ctor) {
+			case 'PointAModel':
+				return A2(
+					_user$project$Common_syntax$PointAModel,
+					gg(_p123._0),
+					_p123._1);
+			case 'Cup':
+				return A2(
+					_user$project$Common_syntax$Cup,
+					A2(_user$project$DEL_sequent$substitution4Action, _p123._0, _p124),
+					A2(_user$project$DEL_sequent$substitution4Action, _p123._1, _p124));
+			default:
+				return A2(
+					_user$project$Common_syntax$ComposePoAM,
+					A2(_user$project$DEL_sequent$substitution4Action, _p123._0, _p124),
+					A2(_user$project$DEL_sequent$substitution4Action, _p123._1, _p124));
+		}
+	});
+var _user$project$DEL_sequent$substitution4AModel = F2(
+	function (f, amWith) {
+		var gg = function (am) {
+			return _elm_lang$core$Native_Utils.eq(am.am_name, amWith.am_name) ? amWith : am;
+		};
+		var _p125 = f;
+		_v54_13:
+		do {
+			switch (_p125.ctor) {
+				case 'Bigwedge':
+					if ((_p125._1.ctor === '_Tuple2') && (_p125._1._1.ctor === '_Tuple3')) {
+						var _p131 = _p125._1._1._2;
+						var _p130 = _p125._1._1._1;
+						var _p129 = _p125._0;
+						var _p128 = _p125._2;
+						var _p127 = _p125._1._0;
+						var _p126 = _p125._1._1._0;
+						return _elm_lang$core$Native_Utils.eq(_p127.am_name, amWith.am_name) ? A3(
+							_user$project$Common_syntax$Bigwedge,
+							_p129,
+							{
+								ctor: '_Tuple2',
+								_0: amWith,
+								_1: {ctor: '_Tuple3', _0: _p126, _1: _p130, _2: _p131}
+							},
+							A2(_user$project$DEL_sequent$substitution4AModel, _p128, amWith)) : A3(
+							_user$project$Common_syntax$Bigwedge,
+							_p129,
+							{
+								ctor: '_Tuple2',
+								_0: _p127,
+								_1: {ctor: '_Tuple3', _0: _p126, _1: _p130, _2: _p131}
+							},
+							A2(_user$project$DEL_sequent$substitution4AModel, _p128, amWith));
+					} else {
+						break _v54_13;
+					}
+				case 'Bigvee':
+					if ((_p125._1.ctor === '_Tuple2') && (_p125._1._1.ctor === '_Tuple3')) {
+						var _p137 = _p125._1._1._2;
+						var _p136 = _p125._1._1._1;
+						var _p135 = _p125._0;
+						var _p134 = _p125._2;
+						var _p133 = _p125._1._0;
+						var _p132 = _p125._1._1._0;
+						return _elm_lang$core$Native_Utils.eq(_p133.am_name, amWith.am_name) ? A3(
+							_user$project$Common_syntax$Bigvee,
+							_p135,
+							{
+								ctor: '_Tuple2',
+								_0: amWith,
+								_1: {ctor: '_Tuple3', _0: _p132, _1: _p136, _2: _p137}
+							},
+							A2(_user$project$DEL_sequent$substitution4AModel, _p134, amWith)) : A3(
+							_user$project$Common_syntax$Bigvee,
+							_p135,
+							{
+								ctor: '_Tuple2',
+								_0: _p133,
+								_1: {ctor: '_Tuple3', _0: _p132, _1: _p136, _2: _p137}
+							},
+							A2(_user$project$DEL_sequent$substitution4AModel, _p134, amWith));
+					} else {
+						break _v54_13;
+					}
+				case 'Precon':
+					var _p139 = _p125._1;
+					var _p138 = _p125._0;
+					return _elm_lang$core$Native_Utils.eq(_p138.am_name, amWith.am_name) ? A2(_user$project$Common_syntax$Precon, amWith, _p139) : A2(_user$project$Common_syntax$Precon, _p138, _p139);
+				case 'And':
+					return A2(
+						_user$project$Common_syntax$And,
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._0, amWith),
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'Or':
+					return A2(
+						_user$project$Common_syntax$Or,
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._0, amWith),
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'Iff':
+					return A2(
+						_user$project$Common_syntax$Iff,
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._0, amWith),
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'Imply':
+					return A2(
+						_user$project$Common_syntax$Imply,
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._0, amWith),
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'Imply2':
+					return A2(
+						_user$project$Common_syntax$Imply2,
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._0, amWith),
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'Not':
+					return _user$project$Common_syntax$Not(
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._0, amWith));
+				case 'Box':
+					return A2(
+						_user$project$Common_syntax$Box,
+						_p125._0,
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'Dia':
+					return A2(
+						_user$project$Common_syntax$Dia,
+						_p125._0,
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'BoxAction':
+					return A2(
+						_user$project$Common_syntax$BoxAction,
+						A2(_user$project$DEL_sequent$substitution4Action, _p125._0, amWith),
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				case 'DiaAction':
+					return A2(
+						_user$project$Common_syntax$DiaAction,
+						A2(_user$project$DEL_sequent$substitution4Action, _p125._0, amWith),
+						A2(_user$project$DEL_sequent$substitution4AModel, _p125._1, amWith));
+				default:
+					break _v54_13;
+			}
+		} while(false);
+		return f;
+	});
+var _user$project$DEL_sequent$substitution4AModel4list = F2(
+	function (f, listOfAM) {
+		substitution4AModel4list:
+		while (true) {
+			var _p140 = listOfAM;
+			if (_p140.ctor === '[]') {
+				return f;
+			} else {
+				var changed = A2(_user$project$DEL_sequent$substitution4AModel, f, _p140._0);
+				var _v56 = changed,
+					_v57 = _p140._1;
+				f = _v56;
+				listOfAM = _v57;
+				continue substitution4AModel4list;
+			}
+		}
+	});
+var _user$project$DEL_sequent$amNub = function (xs) {
+	return A3(
+		_elm_lang$core$List$foldr,
+		F2(
+			function (a, xss) {
+				return A2(
+					_elm_lang$core$List$member,
+					a.am_name,
+					A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return x.am_name;
+						},
+						xss)) ? xss : {ctor: '::', _0: a, _1: xss};
+			}),
+		{ctor: '[]'},
+		xs);
+};
+var _user$project$DEL_sequent$substPrecondition = F2(
+	function (amWith, amNothing) {
+		return _elm_lang$core$Native_Utils.update(
+			amNothing,
+			{
+				am_pre: A2(
+					_elm_lang$core$List$map,
+					function (_p141) {
+						var _p142 = _p141;
+						return {
+							ctor: '_Tuple2',
+							_0: _p142._0,
+							_1: A2(_user$project$DEL_sequent$substitution4AModel, _p142._1, amWith)
+						};
+					},
+					amNothing.am_pre)
+			});
+	});
+var _user$project$DEL_sequent$substitution4AModel4list_AModels = F2(
+	function (listOfAM, result) {
+		substitution4AModel4list_AModels:
+		while (true) {
+			var _p143 = listOfAM;
+			if (_p143.ctor === '[]') {
+				return result;
+			} else {
+				var subst = A2(
+					_elm_lang$core$List$map,
+					_user$project$DEL_sequent$substPrecondition(_p143._0),
+					_p143._1);
+				var _v60 = subst,
+					_v61 = A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$DEL_sequent$amNub(result),
+					subst);
+				listOfAM = _v60;
+				result = _v61;
+				continue substitution4AModel4list_AModels;
+			}
+		}
+	});
+var _user$project$DEL_sequent$am_relation_f = F3(
+	function (rel, ag, s) {
+		return A2(
+			_elm_lang$core$List$concatMap,
+			function (_p144) {
+				var _p145 = _p144;
+				return (_elm_lang$core$Native_Utils.eq(s, _p145._1) && _elm_lang$core$Native_Utils.eq(ag, _p145._0)) ? {
+					ctor: '::',
+					_0: _p145._2,
+					_1: {ctor: '[]'}
+				} : {ctor: '[]'};
+			},
+			rel);
+	});
+var _user$project$DEL_sequent$forPAL = {ctor: '[]'};
+var _user$project$DEL_sequent$ruleK_DEL = {
+	ctor: '::',
+	_0: {
+		priority: _user$project$Common_sequent$boxLN,
+		category: _user$project$Common_sequent$Rule4LeftFormula,
+		rulename: 'L#1',
+		rule: function (seq) {
+			var _p146 = seq.leftForm;
+			if ((((_p146.ctor === '::') && (_p146._0._0.ctor === '_Tuple4')) && (_p146._0._0._2.ctor === '[]')) && (_p146._0._0._3.ctor === 'Box')) {
+				var _p157 = _p146._1;
+				var _p156 = _p146._0._0._1;
+				var _p155 = _p146._0._0._3._1;
+				var _p154 = _p146._0._0._0;
+				var _p153 = _p146._0._0._3._0;
+				var add2 = function (_p147) {
+					var _p148 = _p147;
+					return _user$project$Common_sequent$LabelForm(
+						{
+							ctor: '_Tuple4',
+							_0: {ctor: '[]'},
+							_1: _p148._0,
+							_2: {ctor: '[]'},
+							_3: _p155
+						});
+				};
+				var add1 = function (_p149) {
+					var _p150 = _p149;
+					return _user$project$Common_sequent$RelAtom(
+						{
+							ctor: '_Tuple4',
+							_0: _p153,
+							_1: {ctor: '[]'},
+							_2: {
+								ctor: '_Tuple2',
+								_0: _p156,
+								_1: {ctor: '[]'}
+							},
+							_3: {
+								ctor: '_Tuple2',
+								_0: _p150._0,
+								_1: {ctor: '[]'}
+							}
+						});
+				};
+				var orig = function (_p151) {
+					var _p152 = _p151;
+					return _user$project$Common_sequent$LabelForm(
+						{
+							ctor: '_Tuple4',
+							_0: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: _p152._0, _1: _p152._1},
+								_1: _p154
+							},
+							_1: _p156,
+							_2: {ctor: '[]'},
+							_3: A2(_user$project$Common_syntax$Box, _p153, _p155)
+						});
+				};
+				var justlabel = function (wholeLabel2) {
+					return _elm_community$list_extra$List_Extra$last(
+						A2(_user$project$Util$difference, wholeLabel2, _p154));
+				}(
+					A2(
+						_elm_lang$core$List$map,
+						function (n) {
+							return {
+								ctor: '_Tuple2',
+								_0: n,
+								_1: {ctor: '[]'}
+							};
+						},
+						_user$project$Common_sequent$wholeLabel(seq)));
+				return A2(
+					_user$project$Applicative_ops['?>'],
+					justlabel,
+					function ($new) {
+						return {
+							ctor: '::',
+							_0: _elm_lang$core$Native_Utils.update(
+								seq,
+								{
+									leftForm: A2(
+										_elm_lang$core$Basics_ops['++'],
+										{
+											ctor: '::',
+											_0: add2($new),
+											_1: {ctor: '[]'}
+										},
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: orig($new),
+												_1: {ctor: '[]'}
+											},
+											_p157))
+								}),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									seq,
+									{
+										leftForm: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: orig($new),
+												_1: {ctor: '[]'}
+											},
+											_p157),
+										rightRel: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: add1($new),
+												_1: {ctor: '[]'}
+											},
+											seq.rightRel)
+									}),
+								_1: {ctor: '[]'}
+							}
+						};
+					});
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		}
+	},
+	_1: {
+		ctor: '::',
+		_0: {
+			priority: _user$project$Common_sequent$boxLN2_DEL,
+			category: _user$project$Common_sequent$Rule4LeftFormula,
+			rulename: 'L#2',
+			rule: function (seq) {
+				var _p158 = seq.leftForm;
+				if ((((_p158.ctor === '::') && (_p158._0._0.ctor === '_Tuple4')) && (_p158._0._0._2.ctor === '::')) && (_p158._0._0._3.ctor === 'Box')) {
+					var _p173 = _p158._1;
+					var _p172 = _p158._0._0._1;
+					var _p171 = _p158._0._0._3._1;
+					var _p170 = _p158._0._0._0;
+					var _p169 = _p158._0._0._3._0;
+					var add2 = function (_p159) {
+						var _p160 = _p159;
+						return _user$project$Common_sequent$LabelForm(
+							{
+								ctor: '_Tuple4',
+								_0: _p170,
+								_1: _p160._0,
+								_2: A2(
+									_elm_lang$core$List$map,
+									function (x) {
+										return _toastal$either$Either$Right(x);
+									},
+									_p160._1),
+								_3: _p171
+							});
+					};
+					var acts = {ctor: '::', _0: _p158._0._0._2._0, _1: _p158._0._0._2._1};
+					var original = function (_p161) {
+						var _p162 = _p161;
+						return _user$project$Common_sequent$LabelForm(
+							{
+								ctor: '_Tuple4',
+								_0: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: _p162._0, _1: _p162._1},
+									_1: _p170
+								},
+								_1: _p172,
+								_2: acts,
+								_3: A2(_user$project$Common_syntax$Box, _p169, _p171)
+							});
+					};
+					var wholeLabel2 = _user$project$Util$nub(
+						A2(
+							_user$project$Util$cartesian,
+							_user$project$Common_sequent$wholeLabel(seq),
+							A3(_user$project$DEL_sequent$wholeActions, acts, _p169, seq)));
+					var justLabel = _elm_lang$core$List$head(
+						A2(_user$project$Util$difference, wholeLabel2, _p170));
+					var add1 = function (_p163) {
+						var _p164 = _p163;
+						return _user$project$Common_sequent$RelAtom(
+							{
+								ctor: '_Tuple4',
+								_0: _p169,
+								_1: _user$project$DEL_sequent$forPAL,
+								_2: {
+									ctor: '_Tuple2',
+									_0: _p172,
+									_1: _toastal$either$Either$rights(acts)
+								},
+								_3: {ctor: '_Tuple2', _0: _p164._0, _1: _p164._1}
+							});
+					};
+					return A2(
+						_user$project$Applicative_ops['?>'],
+						justLabel,
+						function (_p165) {
+							var _p166 = _p165;
+							var _p168 = _p166._0;
+							var _p167 = _p166._1;
+							return {
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									seq,
+									{
+										leftForm: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: original(
+													{ctor: '_Tuple2', _0: _p168, _1: _p167}),
+												_1: {ctor: '[]'}
+											},
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: add2(
+														{ctor: '_Tuple2', _0: _p168, _1: _p167}),
+													_1: {ctor: '[]'}
+												},
+												_p173))
+									}),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$core$Native_Utils.update(
+										seq,
+										{
+											leftForm: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: original(
+														{ctor: '_Tuple2', _0: _p168, _1: _p167}),
+													_1: {ctor: '[]'}
+												},
+												_p173),
+											rightRel: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: add1(
+														{ctor: '_Tuple2', _0: _p168, _1: _p167}),
+													_1: {ctor: '[]'}
+												},
+												seq.rightRel)
+										}),
+									_1: {ctor: '[]'}
+								}
+							};
+						});
+				} else {
+					return _elm_lang$core$Maybe$Nothing;
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				priority: _user$project$Common_sequent$boxRN,
+				category: _user$project$Common_sequent$Rule4RightFormula,
+				rulename: 'R#1',
+				rule: function (seq) {
+					var _p174 = seq.rightForm;
+					if ((((_p174.ctor === '::') && (_p174._0._0.ctor === '_Tuple4')) && (_p174._0._0._2.ctor === '[]')) && (_p174._0._0._3.ctor === 'Box')) {
+						var $new = _user$project$Common_sequent$freshLabel(seq);
+						var add1 = _user$project$Common_sequent$RelAtom(
+							{
+								ctor: '_Tuple4',
+								_0: _p174._0._0._3._0,
+								_1: _user$project$DEL_sequent$forPAL,
+								_2: {
+									ctor: '_Tuple2',
+									_0: _p174._0._0._1,
+									_1: {ctor: '[]'}
+								},
+								_3: {
+									ctor: '_Tuple2',
+									_0: $new,
+									_1: {ctor: '[]'}
+								}
+							});
+						var add2 = _user$project$Common_sequent$LabelForm(
+							{
+								ctor: '_Tuple4',
+								_0: _p174._0._0._0,
+								_1: $new,
+								_2: {ctor: '[]'},
+								_3: _p174._0._0._3._1
+							});
+						return _elm_lang$core$Maybe$Just(
+							{
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									seq,
+									{
+										leftRel: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: add1,
+												_1: {ctor: '[]'}
+											},
+											seq.leftRel),
+										rightForm: A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: add2,
+												_1: {ctor: '[]'}
+											},
+											_p174._1)
+									}),
+								_1: {ctor: '[]'}
+							});
+					} else {
+						return _elm_lang$core$Maybe$Nothing;
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					priority: _user$project$Common_sequent$boxRN2_DEL,
+					category: _user$project$Common_sequent$Rule4RightFormula,
+					rulename: 'R#2',
+					rule: function (seq) {
+						var _p175 = seq.rightForm;
+						if ((((((_p175.ctor === '::') && (_p175._0._0.ctor === '_Tuple4')) && (_p175._0._0._2.ctor === '::')) && (_p175._0._0._2._0.ctor === 'Right')) && (_p175._0._0._2._0._0.ctor === 'PointAModel')) && (_p175._0._0._3.ctor === 'Box')) {
+							var _p184 = _p175._0._0._2._0._0._1;
+							var _p183 = _p175._0._0._2._0._0._0;
+							var _p182 = _p175._0._0._3._0;
+							var $new = _user$project$Common_sequent$freshLabel(seq);
+							var acts = {
+								ctor: '::',
+								_0: _toastal$either$Either$Right(
+									A2(_user$project$Common_syntax$PointAModel, _p183, _p184)),
+								_1: _p175._0._0._2._1
+							};
+							var ooo = function (newVar) {
+								return A2(
+									_elm_lang$core$List$map,
+									function (_p176) {
+										var _p177 = _p176;
+										var _p178 = _p177._0;
+										if ((_p178.ctor === 'Right') && (_p178._0.ctor === 'PointAModel')) {
+											return A2(
+												_user$project$Common_syntax$PointAModel,
+												_p178._0._0,
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													'x',
+													_user$project$Util$show(_p177._1)));
+										} else {
+											return _elm_lang$core$Native_Utils.crashCase(
+												'DEL_sequent',
+												{
+													start: {line: 254, column: 49},
+													end: {line: 256, column: 76}
+												},
+												_p178)('error in R#2 (1)');
+										}
+									},
+									A2(
+										_elm_community$list_extra$List_Extra$zip,
+										acts,
+										A2(
+											_elm_lang$core$List$range,
+											newVar,
+											newVar + _elm_lang$core$List$length(acts))));
+							}($new);
+							var add2 = _user$project$Common_sequent$LabelForm(
+								{
+									ctor: '_Tuple4',
+									_0: {ctor: '[]'},
+									_1: $new,
+									_2: A2(
+										_elm_lang$core$List$map,
+										function (x) {
+											return _toastal$either$Either$Right(x);
+										},
+										ooo),
+									_3: _p175._0._0._3._1
+								});
+							var add3 = A2(
+								_elm_lang$core$List$map,
+								function (state2) {
+									return {
+										ctor: '_Tuple4',
+										_0: _p182,
+										_1: {
+											ctor: '::',
+											_0: _p183,
+											_1: {ctor: '[]'}
+										},
+										_2: _p184,
+										_3: state2
+									};
+								},
+								A2(
+									_elm_lang$core$List$map,
+									function (act) {
+										var _p180 = act;
+										if (_p180.ctor === 'PointAModel') {
+											return _p180._1;
+										} else {
+											return _elm_lang$core$Native_Utils.crashCase(
+												'DEL_sequent',
+												{
+													start: {line: 260, column: 46},
+													end: {line: 262, column: 80}
+												},
+												_p180)('error in R#2 (2)');
+										}
+									},
+									ooo));
+							var add1 = _user$project$Common_sequent$RelAtom(
+								{
+									ctor: '_Tuple4',
+									_0: _p182,
+									_1: _user$project$DEL_sequent$forPAL,
+									_2: {
+										ctor: '_Tuple2',
+										_0: _p175._0._0._1,
+										_1: _toastal$either$Either$rights(acts)
+									},
+									_3: {ctor: '_Tuple2', _0: $new, _1: ooo}
+								});
+							return _elm_lang$core$Maybe$Just(
+								{
+									ctor: '::',
+									_0: _elm_lang$core$Native_Utils.update(
+										seq,
+										{
+											leftRel: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: add1,
+													_1: {ctor: '[]'}
+												},
+												seq.leftRel),
+											rightForm: A2(
+												_elm_lang$core$Basics_ops['++'],
+												{
+													ctor: '::',
+													_0: add2,
+													_1: {ctor: '[]'}
+												},
+												_p175._1),
+											forDEL: A2(_elm_lang$core$Basics_ops['++'], add3, seq.forDEL)
+										}),
+									_1: {ctor: '[]'}
+								});
+						} else {
+							return _elm_lang$core$Maybe$Nothing;
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						priority: _user$project$Common_sequent$diaRN,
+						category: _user$project$Common_sequent$Rule4RightFormula,
+						rulename: 'R$1',
+						rule: function (seq) {
+							var _p185 = seq.rightForm;
+							if ((((_p185.ctor === '::') && (_p185._0._0.ctor === '_Tuple4')) && (_p185._0._0._2.ctor === '[]')) && (_p185._0._0._3.ctor === 'Dia')) {
+								var _p196 = _p185._1;
+								var _p195 = _p185._0._0._1;
+								var _p194 = _p185._0._0._3._1;
+								var _p193 = _p185._0._0._0;
+								var _p192 = _p185._0._0._3._0;
+								var add2 = function (_p186) {
+									var _p187 = _p186;
+									return _user$project$Common_sequent$LabelForm(
+										{
+											ctor: '_Tuple4',
+											_0: {ctor: '[]'},
+											_1: _p187._0,
+											_2: {ctor: '[]'},
+											_3: _p194
+										});
+								};
+								var add1 = function (_p188) {
+									var _p189 = _p188;
+									return _user$project$Common_sequent$RelAtom(
+										{
+											ctor: '_Tuple4',
+											_0: _p192,
+											_1: {ctor: '[]'},
+											_2: {
+												ctor: '_Tuple2',
+												_0: _p195,
+												_1: {ctor: '[]'}
+											},
+											_3: {
+												ctor: '_Tuple2',
+												_0: _p189._0,
+												_1: {ctor: '[]'}
+											}
+										});
+								};
+								var orig = function (_p190) {
+									var _p191 = _p190;
+									return _user$project$Common_sequent$LabelForm(
+										{
+											ctor: '_Tuple4',
+											_0: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: _p191._0, _1: _p191._1},
+												_1: _p193
+											},
+											_1: _p195,
+											_2: {ctor: '[]'},
+											_3: A2(_user$project$Common_syntax$Dia, _p192, _p194)
+										});
+								};
+								var justlabel = function (wholeLabel2) {
+									return _elm_lang$core$List$head(
+										A2(_user$project$Util$difference, wholeLabel2, _p193));
+								}(
+									A2(
+										_elm_lang$core$List$map,
+										function (n) {
+											return {
+												ctor: '_Tuple2',
+												_0: n,
+												_1: {ctor: '[]'}
+											};
+										},
+										_user$project$Common_sequent$wholeLabel(seq)));
+								return A2(
+									_user$project$Applicative_ops['?>'],
+									justlabel,
+									function ($new) {
+										return {
+											ctor: '::',
+											_0: _elm_lang$core$Native_Utils.update(
+												seq,
+												{
+													rightForm: A2(
+														_elm_lang$core$Basics_ops['++'],
+														{
+															ctor: '::',
+															_0: add2($new),
+															_1: {ctor: '[]'}
+														},
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: orig($new),
+																_1: {ctor: '[]'}
+															},
+															_p196))
+												}),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$core$Native_Utils.update(
+													seq,
+													{
+														rightForm: A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: orig($new),
+																_1: {ctor: '[]'}
+															},
+															_p196),
+														rightRel: A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: add1($new),
+																_1: {ctor: '[]'}
+															},
+															seq.rightRel)
+													}),
+												_1: {ctor: '[]'}
+											}
+										};
+									});
+							} else {
+								return _elm_lang$core$Maybe$Nothing;
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							priority: _user$project$Common_sequent$boxLN2_DEL,
+							category: _user$project$Common_sequent$Rule4RightFormula,
+							rulename: 'R$2',
+							rule: function (seq) {
+								var _p197 = seq.rightForm;
+								if ((((_p197.ctor === '::') && (_p197._0._0.ctor === '_Tuple4')) && (_p197._0._0._2.ctor === '::')) && (_p197._0._0._3.ctor === 'Dia')) {
+									var _p212 = _p197._1;
+									var _p211 = _p197._0._0._1;
+									var _p210 = _p197._0._0._3._1;
+									var _p209 = _p197._0._0._0;
+									var _p208 = _p197._0._0._3._0;
+									var add2 = function (_p198) {
+										var _p199 = _p198;
+										return _user$project$Common_sequent$LabelForm(
+											{
+												ctor: '_Tuple4',
+												_0: _p209,
+												_1: _p199._0,
+												_2: A2(
+													_elm_lang$core$List$map,
+													function (x) {
+														return _toastal$either$Either$Right(x);
+													},
+													_p199._1),
+												_3: _p210
+											});
+									};
+									var acts = {ctor: '::', _0: _p197._0._0._2._0, _1: _p197._0._0._2._1};
+									var original = function (_p200) {
+										var _p201 = _p200;
+										return _user$project$Common_sequent$LabelForm(
+											{
+												ctor: '_Tuple4',
+												_0: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: _p201._0, _1: _p201._1},
+													_1: _p209
+												},
+												_1: _p211,
+												_2: acts,
+												_3: A2(_user$project$Common_syntax$Dia, _p208, _p210)
+											});
+									};
+									var wholeLabel2 = _user$project$Util$nub(
+										A2(
+											_user$project$Util$cartesian,
+											_user$project$Common_sequent$wholeLabel(seq),
+											A3(_user$project$DEL_sequent$wholeActions, acts, _p208, seq)));
+									var justLabel = _elm_lang$core$List$head(
+										A2(_user$project$Util$difference, wholeLabel2, _p209));
+									var add1 = function (_p202) {
+										var _p203 = _p202;
+										return _user$project$Common_sequent$RelAtom(
+											{
+												ctor: '_Tuple4',
+												_0: _p208,
+												_1: _user$project$DEL_sequent$forPAL,
+												_2: {
+													ctor: '_Tuple2',
+													_0: _p211,
+													_1: _toastal$either$Either$rights(acts)
+												},
+												_3: {ctor: '_Tuple2', _0: _p203._0, _1: _p203._1}
+											});
+									};
+									return A2(
+										_user$project$Applicative_ops['?>'],
+										justLabel,
+										function (_p204) {
+											var _p205 = _p204;
+											var _p207 = _p205._0;
+											var _p206 = _p205._1;
+											return {
+												ctor: '::',
+												_0: _elm_lang$core$Native_Utils.update(
+													seq,
+													{
+														rightForm: A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: original(
+																	{ctor: '_Tuple2', _0: _p207, _1: _p206}),
+																_1: {ctor: '[]'}
+															},
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																{
+																	ctor: '::',
+																	_0: add2(
+																		{ctor: '_Tuple2', _0: _p207, _1: _p206}),
+																	_1: {ctor: '[]'}
+																},
+																_p212))
+													}),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$core$Native_Utils.update(
+														seq,
+														{
+															rightForm: A2(
+																_elm_lang$core$Basics_ops['++'],
+																{
+																	ctor: '::',
+																	_0: original(
+																		{ctor: '_Tuple2', _0: _p207, _1: _p206}),
+																	_1: {ctor: '[]'}
+																},
+																_p212),
+															rightRel: A2(
+																_elm_lang$core$Basics_ops['++'],
+																{
+																	ctor: '::',
+																	_0: add1(
+																		{ctor: '_Tuple2', _0: _p207, _1: _p206}),
+																	_1: {ctor: '[]'}
+																},
+																seq.rightRel)
+														}),
+													_1: {ctor: '[]'}
+												}
+											};
+										});
+								} else {
+									return _elm_lang$core$Maybe$Nothing;
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								priority: _user$project$Common_sequent$diaLN,
+								category: _user$project$Common_sequent$Rule4LeftFormula,
+								rulename: 'L$1',
+								rule: function (seq) {
+									var _p213 = seq.leftForm;
+									if ((((_p213.ctor === '::') && (_p213._0._0.ctor === '_Tuple4')) && (_p213._0._0._2.ctor === '[]')) && (_p213._0._0._3.ctor === 'Dia')) {
+										var $new = _user$project$Common_sequent$freshLabel(seq);
+										var add1 = _user$project$Common_sequent$RelAtom(
+											{
+												ctor: '_Tuple4',
+												_0: _p213._0._0._3._0,
+												_1: _user$project$DEL_sequent$forPAL,
+												_2: {
+													ctor: '_Tuple2',
+													_0: _p213._0._0._1,
+													_1: {ctor: '[]'}
+												},
+												_3: {
+													ctor: '_Tuple2',
+													_0: $new,
+													_1: {ctor: '[]'}
+												}
+											});
+										var add2 = _user$project$Common_sequent$LabelForm(
+											{
+												ctor: '_Tuple4',
+												_0: _p213._0._0._0,
+												_1: $new,
+												_2: {ctor: '[]'},
+												_3: _p213._0._0._3._1
+											});
+										return _elm_lang$core$Maybe$Just(
+											{
+												ctor: '::',
+												_0: _elm_lang$core$Native_Utils.update(
+													seq,
+													{
+														leftRel: A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: add1,
+																_1: {ctor: '[]'}
+															},
+															seq.leftRel),
+														leftForm: A2(
+															_elm_lang$core$Basics_ops['++'],
+															{
+																ctor: '::',
+																_0: add2,
+																_1: {ctor: '[]'}
+															},
+															_p213._1)
+													}),
+												_1: {ctor: '[]'}
+											});
+									} else {
+										return _elm_lang$core$Maybe$Nothing;
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									priority: _user$project$Common_sequent$boxRN2_DEL,
+									category: _user$project$Common_sequent$Rule4LeftFormula,
+									rulename: 'L$2',
+									rule: function (seq) {
+										var _p214 = seq.leftForm;
+										if ((((((_p214.ctor === '::') && (_p214._0._0.ctor === '_Tuple4')) && (_p214._0._0._2.ctor === '::')) && (_p214._0._0._2._0.ctor === 'Right')) && (_p214._0._0._2._0._0.ctor === 'PointAModel')) && (_p214._0._0._3.ctor === 'Dia')) {
+											var _p223 = _p214._0._0._2._0._0._1;
+											var _p222 = _p214._0._0._2._0._0._0;
+											var _p221 = _p214._0._0._3._0;
+											var $new = _user$project$Common_sequent$freshLabel(seq);
+											var acts = {
+												ctor: '::',
+												_0: _toastal$either$Either$Right(
+													A2(_user$project$Common_syntax$PointAModel, _p222, _p223)),
+												_1: _p214._0._0._2._1
+											};
+											var ooo = function (newVar) {
+												return A2(
+													_elm_lang$core$List$map,
+													function (_p215) {
+														var _p216 = _p215;
+														var _p217 = _p216._0;
+														if ((_p217.ctor === 'Right') && (_p217._0.ctor === 'PointAModel')) {
+															return A2(
+																_user$project$Common_syntax$PointAModel,
+																_p217._0._0,
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	'x',
+																	_user$project$Util$show(_p216._1)));
+														} else {
+															return _elm_lang$core$Native_Utils.crashCase(
+																'DEL_sequent',
+																{
+																	start: {line: 342, column: 49},
+																	end: {line: 344, column: 76}
+																},
+																_p217)('error in R#2 (1)');
+														}
+													},
+													A2(
+														_elm_community$list_extra$List_Extra$zip,
+														acts,
+														A2(
+															_elm_lang$core$List$range,
+															newVar,
+															newVar + _elm_lang$core$List$length(acts))));
+											}($new);
+											var add2 = _user$project$Common_sequent$LabelForm(
+												{
+													ctor: '_Tuple4',
+													_0: {ctor: '[]'},
+													_1: $new,
+													_2: A2(
+														_elm_lang$core$List$map,
+														function (x) {
+															return _toastal$either$Either$Right(x);
+														},
+														ooo),
+													_3: _p214._0._0._3._1
+												});
+											var add3 = A2(
+												_elm_lang$core$List$map,
+												function (state2) {
+													return {
+														ctor: '_Tuple4',
+														_0: _p221,
+														_1: {
+															ctor: '::',
+															_0: _p222,
+															_1: {ctor: '[]'}
+														},
+														_2: _p223,
+														_3: state2
+													};
+												},
+												A2(
+													_elm_lang$core$List$map,
+													function (act) {
+														var _p219 = act;
+														if (_p219.ctor === 'PointAModel') {
+															return _p219._1;
+														} else {
+															return _elm_lang$core$Native_Utils.crashCase(
+																'DEL_sequent',
+																{
+																	start: {line: 348, column: 46},
+																	end: {line: 350, column: 80}
+																},
+																_p219)('error in R#2 (2)');
+														}
+													},
+													ooo));
+											var add1 = _user$project$Common_sequent$RelAtom(
+												{
+													ctor: '_Tuple4',
+													_0: _p221,
+													_1: _user$project$DEL_sequent$forPAL,
+													_2: {
+														ctor: '_Tuple2',
+														_0: _p214._0._0._1,
+														_1: _toastal$either$Either$rights(acts)
+													},
+													_3: {ctor: '_Tuple2', _0: $new, _1: ooo}
+												});
+											return _elm_lang$core$Maybe$Just(
+												{
+													ctor: '::',
+													_0: _elm_lang$core$Native_Utils.update(
+														seq,
+														{
+															leftRel: A2(
+																_elm_lang$core$Basics_ops['++'],
+																{
+																	ctor: '::',
+																	_0: add1,
+																	_1: {ctor: '[]'}
+																},
+																seq.leftRel),
+															leftForm: A2(
+																_elm_lang$core$Basics_ops['++'],
+																{
+																	ctor: '::',
+																	_0: add2,
+																	_1: {ctor: '[]'}
+																},
+																_p214._1),
+															forDEL: A2(_elm_lang$core$Basics_ops['++'], add3, seq.forDEL)
+														}),
+													_1: {ctor: '[]'}
+												});
+										} else {
+											return _elm_lang$core$Maybe$Nothing;
+										}
+									}
+								},
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$DEL_sequent$ra6 = A2(
+	_user$project$Common_syntax$Iff,
+	A2(
+		_user$project$Common_syntax$BoxAction,
+		A2(_user$project$Common_syntax$Cup, _user$project$Common_syntax$skip_point, _user$project$Common_syntax$reada_po),
+		_user$project$Common_syntax$AnyFormula('A')),
+	A2(
+		_user$project$Common_syntax$And,
+		A2(
+			_user$project$Common_syntax$BoxAction,
+			_user$project$Common_syntax$skip_point,
+			_user$project$Common_syntax$AnyFormula('A')),
+		A2(
+			_user$project$Common_syntax$BoxAction,
+			_user$project$Common_syntax$reada_po,
+			_user$project$Common_syntax$AnyFormula('A'))));
+var _user$project$DEL_sequent$dd = _user$project$Common_syntax$AnyFormula('D');
+var _user$project$DEL_sequent$cc = _user$project$Common_syntax$AnyFormula('C');
+var _user$project$DEL_sequent$bb = _user$project$Common_syntax$AnyFormula('B');
+var _user$project$DEL_sequent$aa = _user$project$Common_syntax$AnyFormula('A');
+var _user$project$DEL_sequent$p3 = _user$project$Common_syntax$Atom('p3');
+var _user$project$DEL_sequent$p2 = _user$project$Common_syntax$Atom('p2');
+var _user$project$DEL_sequent$p1 = _user$project$Common_syntax$Atom('p1');
+var _user$project$DEL_sequent$ex638 = A2(
+	_user$project$Common_syntax$BoxAction,
+	_user$project$Common_syntax$reada_po,
+	A2(_user$project$Common_syntax$Box, 'a', _user$project$DEL_sequent$p1));
+var _user$project$DEL_sequent$ex639a = A2(
+	_user$project$Common_syntax$BoxAction,
+	_user$project$Common_syntax$reada_po,
+	A2(
+		_user$project$Common_syntax$Box,
+		'b',
+		A2(
+			_user$project$Common_syntax$Or,
+			A2(_user$project$Common_syntax$Box, 'a', _user$project$DEL_sequent$p1),
+			A2(
+				_user$project$Common_syntax$Box,
+				'a',
+				_user$project$Common_syntax$Not(_user$project$DEL_sequent$p1)))));
+var _user$project$DEL_sequent$ex639b = A2(
+	_user$project$Common_syntax$BoxAction,
+	_user$project$Common_syntax$reada_po,
+	A2(
+		_user$project$Common_syntax$Or,
+		A2(_user$project$Common_syntax$Box, 'a', _user$project$DEL_sequent$p1),
+		_user$project$Common_syntax$Not(
+			A2(_user$project$Common_syntax$Box, 'a', _user$project$DEL_sequent$p1))));

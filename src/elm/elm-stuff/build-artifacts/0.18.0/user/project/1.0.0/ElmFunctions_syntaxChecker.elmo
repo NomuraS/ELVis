@@ -1,0 +1,211 @@
+var _user$project$ElmFunctions_syntaxChecker$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
+var _user$project$ElmFunctions_syntaxChecker$checkDEL = function (fr) {
+	checkDEL:
+	while (true) {
+		var _p0 = fr;
+		switch (_p0.ctor) {
+			case 'Top':
+				return true;
+			case 'Bot':
+				return true;
+			case 'Atom':
+				return true;
+			case 'AnyFormula':
+				return true;
+			case 'Not':
+				var _v1 = _p0._0;
+				fr = _v1;
+				continue checkDEL;
+			case 'And':
+				return _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._0) && _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._1);
+			case 'Or':
+				return _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._0) && _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._1);
+			case 'Imply':
+				return _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._0) && _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._1);
+			case 'Imply2':
+				return _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._0) && _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._1);
+			case 'Iff':
+				return _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._0) && _user$project$ElmFunctions_syntaxChecker$checkDEL(_p0._1);
+			case 'Dia':
+				var _v2 = _p0._1;
+				fr = _v2;
+				continue checkDEL;
+			case 'Box':
+				var _v3 = _p0._1;
+				fr = _v3;
+				continue checkDEL;
+			case 'Announce':
+				return false;
+			case 'Announce2':
+				return false;
+			case 'Bigwedge':
+				var _v4 = _p0._2;
+				fr = _v4;
+				continue checkDEL;
+			case 'Bigvee':
+				var _v5 = _p0._2;
+				fr = _v5;
+				continue checkDEL;
+			case 'BoxAction':
+				var _v6 = _p0._1;
+				fr = _v6;
+				continue checkDEL;
+			case 'DiaAction':
+				var _v7 = _p0._1;
+				fr = _v7;
+				continue checkDEL;
+			default:
+				return true;
+		}
+	}
+};
+var _user$project$ElmFunctions_syntaxChecker$checkPAL = function (fr) {
+	checkPAL:
+	while (true) {
+		var _p1 = fr;
+		switch (_p1.ctor) {
+			case 'Top':
+				return true;
+			case 'Bot':
+				return true;
+			case 'Atom':
+				return true;
+			case 'AnyFormula':
+				return true;
+			case 'Not':
+				var _v9 = _p1._0;
+				fr = _v9;
+				continue checkPAL;
+			case 'And':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._0) && _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._1);
+			case 'Or':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._0) && _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._1);
+			case 'Imply':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._0) && _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._1);
+			case 'Imply2':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._0) && _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._1);
+			case 'Iff':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._0) && _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._1);
+			case 'Dia':
+				var _v10 = _p1._1;
+				fr = _v10;
+				continue checkPAL;
+			case 'Box':
+				var _v11 = _p1._1;
+				fr = _v11;
+				continue checkPAL;
+			case 'Announce':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._0) && _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._1);
+			case 'Announce2':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._0) && _user$project$ElmFunctions_syntaxChecker$checkPAL(_p1._1);
+			case 'Bigwedge':
+				return false;
+			case 'Bigvee':
+				return false;
+			case 'BoxAction':
+				return false;
+			case 'DiaAction':
+				return false;
+			default:
+				return false;
+		}
+	}
+};
+var _user$project$ElmFunctions_syntaxChecker$syntaxCheck = F2(
+	function (fr, st) {
+		var aaa = A2(_elm_lang$core$Debug$log, '03aaa', fr);
+		var bbb = A2(_elm_lang$core$Debug$log, '02bbb', st);
+		var _p2 = st;
+		switch (_p2) {
+			case 'EL':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(fr) && _user$project$ElmFunctions_syntaxChecker$checkDEL(fr);
+			case 'PAL':
+				return _user$project$ElmFunctions_syntaxChecker$checkPAL(fr);
+			case 'DEL':
+				return _user$project$ElmFunctions_syntaxChecker$checkDEL(fr);
+			default:
+				return false;
+		}
+	});
+var _user$project$ElmFunctions_syntaxChecker$input1 = _elm_lang$core$Native_Platform.incomingPort('input1', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_syntaxChecker$input2 = _elm_lang$core$Native_Platform.incomingPort('input2', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_syntaxChecker$output1 = _elm_lang$core$Native_Platform.outgoingPort(
+	'output1',
+	function (v) {
+		return {result: v.result};
+	});
+var _user$project$ElmFunctions_syntaxChecker$JSON = F2(
+	function (a, b) {
+		return {system: a, formula: b};
+	});
+var _user$project$ElmFunctions_syntaxChecker$decodeJSON = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$ElmFunctions_syntaxChecker$JSON,
+	A2(_elm_lang$core$Json_Decode$field, 'system', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'formula', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_syntaxChecker$update = F2(
+	function (msg, model) {
+		var _p3 = msg;
+		var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_syntaxChecker$decodeJSON, _p3._0);
+		var resultOfCheck = function (x) {
+			return A2(_elm_lang$core$Maybe$withDefault, 'parseError', x);
+		}(
+			A2(
+				_user$project$Util_ops['?>>='],
+				A2(
+					_user$project$Util_ops['?>>='],
+					_elm_lang$core$Result$toMaybe(decodedJSON),
+					function (x) {
+						var _p4 = _user$project$Parser_Formula$parseFormula(x.formula);
+						if (_p4.ctor === 'Ok') {
+							return _elm_lang$core$Maybe$Just(
+								{ctor: '_Tuple2', _0: _p4._0, _1: x.system});
+						} else {
+							return _elm_lang$core$Maybe$Nothing;
+						}
+					}),
+				function (_p5) {
+					var _p6 = _p5;
+					var _p7 = _p6._0;
+					return A2(
+						_elm_lang$core$Debug$log,
+						'0ElmFunctions_syntax1ccc',
+						A2(_user$project$ElmFunctions_syntaxChecker$syntaxCheck, _p7, _p6._1)) ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$Common_syntax$outputForm, 0, _p7)) : _elm_lang$core$Maybe$Nothing;
+				}));
+		return A2(
+			_elm_lang$core$Platform_Cmd_ops['!'],
+			{result: resultOfCheck},
+			{
+				ctor: '::',
+				_0: _user$project$ElmFunctions_syntaxChecker$output1(
+					{result: resultOfCheck}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$ElmFunctions_syntaxChecker$Model = function (a) {
+	return {result: a};
+};
+var _user$project$ElmFunctions_syntaxChecker$initModel = {
+	ctor: '_Tuple2',
+	_0: _user$project$ElmFunctions_syntaxChecker$Model(''),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ElmFunctions_syntaxChecker$JsonFromJS1 = function (a) {
+	return {ctor: 'JsonFromJS1', _0: a};
+};
+var _user$project$ElmFunctions_syntaxChecker$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _user$project$ElmFunctions_syntaxChecker$input1(_user$project$ElmFunctions_syntaxChecker$JsonFromJS1),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$ElmFunctions_syntaxChecker$main = _elm_lang$html$Html$program(
+	{init: _user$project$ElmFunctions_syntaxChecker$initModel, view: _user$project$ElmFunctions_syntaxChecker$view, update: _user$project$ElmFunctions_syntaxChecker$update, subscriptions: _user$project$ElmFunctions_syntaxChecker$subscriptions})();

@@ -1,0 +1,98 @@
+var _user$project$ElmFunctions_reduction$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
+var _user$project$ElmFunctions_reduction$input1 = _elm_lang$core$Native_Platform.incomingPort('input1', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_reduction$input2 = _elm_lang$core$Native_Platform.incomingPort('input2', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_reduction$output1 = _elm_lang$core$Native_Platform.outgoingPort(
+	'output1',
+	function (v) {
+		return {result: v.result};
+	});
+var _user$project$ElmFunctions_reduction$JSON = F2(
+	function (a, b) {
+		return {system: a, formula: b};
+	});
+var _user$project$ElmFunctions_reduction$decodeJSON = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$ElmFunctions_reduction$JSON,
+	A2(_elm_lang$core$Json_Decode$field, 'system', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'formula', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_reduction$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_reduction$decodeJSON, _p0._0);
+		var decodedJSON2 = function () {
+			var _p1 = decodedJSON;
+			if (_p1.ctor === 'Ok') {
+				return _p1._0;
+			} else {
+				return _elm_lang$core$Native_Utils.crashCase(
+					'ElmFunctions_reduction',
+					{
+						start: {line: 48, column: 36},
+						end: {line: 50, column: 87}
+					},
+					_p1)(
+					A2(_elm_lang$core$Basics_ops['++'], 'error in update(1):', _p1._0));
+			}
+		}();
+		var resultOfCheck2 = decodedJSON2;
+		var aaa = A2(
+			_elm_lang$core$Debug$log,
+			'log: ElmFunctions_syntaxChecker.elm(0)',
+			_user$project$Parser_Formula$parseFormula(decodedJSON2.formula));
+		var formula = function () {
+			var _p3 = _user$project$Parser_Formula$parseFormula(decodedJSON2.formula);
+			if (_p3.ctor === 'Ok') {
+				return A2(_user$project$Common_syntax$outputForm, 0, _p3._0);
+			} else {
+				return 'parseError';
+			}
+		}();
+		var resultOfCheck = function () {
+			var _p4 = decodedJSON2.system;
+			switch (_p4) {
+				case 'EL':
+					return A2(_elm_lang$core$String$contains, '[', formula) ? 'parseError' : formula;
+				case 'PAL':
+					return A2(_elm_lang$core$String$contains, '[(', formula) ? 'parseError' : formula;
+				case 'DEL':
+					return formula;
+				default:
+					return 'parseError';
+			}
+		}();
+		return A2(
+			_elm_lang$core$Platform_Cmd_ops['!'],
+			{result: resultOfCheck},
+			{
+				ctor: '::',
+				_0: _user$project$ElmFunctions_reduction$output1(
+					{result: resultOfCheck}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$ElmFunctions_reduction$Model = function (a) {
+	return {result: a};
+};
+var _user$project$ElmFunctions_reduction$initModel = {
+	ctor: '_Tuple2',
+	_0: _user$project$ElmFunctions_reduction$Model(''),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ElmFunctions_reduction$JsonFromJS1 = function (a) {
+	return {ctor: 'JsonFromJS1', _0: a};
+};
+var _user$project$ElmFunctions_reduction$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _user$project$ElmFunctions_reduction$input1(_user$project$ElmFunctions_reduction$JsonFromJS1),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$ElmFunctions_reduction$main = _elm_lang$html$Html$program(
+	{init: _user$project$ElmFunctions_reduction$initModel, view: _user$project$ElmFunctions_reduction$view, update: _user$project$ElmFunctions_reduction$update, subscriptions: _user$project$ElmFunctions_reduction$subscriptions})();

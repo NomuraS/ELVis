@@ -1,0 +1,237 @@
+\documentclass{paper}
+
+\usepackage{wrapfig}
+\usepackage{amsmath, amssymb}\usepackage{latexsym}
+\usepackage{proof}
+\usepackage{multicol}
+\usepackage[dvipdfmx]{graphicx,xcolor}
+\usepackage[all]{xy}
+%\usepackage[framemethod=tikz]{mdframed}
+\usepackage{array}
+%\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{pifont}
+\usepackage{url}
+%\usepackage{times}
+\usepackage[varg]{txfonts}
+\usepackage{enumitem}\setenumerate{topsep=1pt}
+%\usepackage{stmaryrd}
+
+\newtheorem{fact}{Fact}
+%\setlength{\textheight}{22cm}
+%\setlength{\textwidth}{15cm}
+%\setlength{\oddsidemargin}{0.59cm}
+%\setlength{\evensidemargin}{0.59cm}
+
+\newcommand{\redd}[1]{{\color{red} #1}}
+\newcommand{\orangee}[1]{{\color{orange} #1}}
+\newcommand{\bluee}[1]{{\color{blue} #1}}
+\newcommand{\greenn}[1]{{\color{green} #1}}
+%\vspace{-9Q}
+
+
+
+\begin{document}
+\title{Revising a Labelled Sequent Calculus\\ for  Public Announcement Logic}
+\author{Shoshin Nomura, Katsuhiko Sano and Satoshi Tojo}
+
+
+%\date{->day}
+% 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono"
+
+\begin{table}[t]
+\caption{G3PAL'}
+\label{tb:table2}
+\noindent (Initial Sequent)
+\[
+  x{:} A, \Gamma ==> \Delta, x{:} A
+\]
+
+\noindent (Rules for propositional connectives)
+\[
+  \infer[(L\sim )]{
+    x(\alpha){:} \sim A,\Gamma ==> \Delta
+  }{
+    \Gamma ==> \Delta,x(\alpha){:} A
+  }
+\quad
+  \infer[(R\sim)]{
+    \Gamma ==> \Delta,x(\alpha){:} \sim A
+  }{
+    x(\alpha){:} A,\Gamma ==> \Delta
+  }
+\]
+
+\[
+  \infer[(L->)]{
+    x(\alpha){:} A\ ->\ B,\Gamma ==> \Delta
+  }{
+    \Gamma ==> \Delta,x(\alpha){:} A
+    &
+    x(\alpha){:} B,\Gamma ==> \Delta
+  }
+\quad
+  \infer[(R->)]{
+    \Gamma ==> \Delta,x(\alpha){:} A\ ->\ B
+  }{
+    x(\alpha){:} A,\Gamma ==> \Delta, x(\alpha){:} B
+  }
+\]
+
+\noindent (Rules for knowledge operators)
+\[
+  \infer[(L\#a)$\dag$]{
+    x(\alpha){:} \#a(\beta)A,\Gamma ==> \Delta
+  }{
+     x(\alpha){:} \#a(\beta,y)A,\Gamma ==> \Delta,x\mathsf{R}_a(\alpha)y,
+    &
+    y(\alpha){:} A,   x(\alpha){:} \#a(\beta,y)A,\Gamma ==> \Delta
+  }
+\]
+\[  \infer[(R\#a)$\ddag$]{
+    \Gamma ==> \Delta,x(\alpha){:} \#a(\beta)A
+  }{
+    x\mathsf{R}_a(\alpha)y,\Gamma ==> \Delta,y(\alpha){:} A
+  }
+\]
+\begin{center}
+ $\dag\ y$ does not appear in $\beta$. 
+
+ $\ddag\ y$ does not appear in the lower sequent. 
+\end{center}
+
+\noindent (Rules for PAL)
+\[
+  \infer[(Lat)]{
+    x(\alpha,A){:} p,\Gamma ==> \Delta
+  }{
+    x(\alpha){:} A ,x(\alpha){:} p ,\Gamma ==> \Delta
+  }
+\quad
+  \infer[(Rat)]{
+    \Gamma ==> \Delta,x(\alpha,A){:} p
+  }{
+    \Gamma ==> \Delta,x(\alpha){:} A
+    &
+    \Gamma ==> \Delta,x(\alpha){:} p
+  }
+\]
+
+\[
+  \infer[\mbox{(L[. ])}]{
+    x(\alpha){:} [A]B,\Gamma ==> \Delta
+  }{
+    \Gamma ==> \Delta,x(\alpha){:} A
+    &
+    x(\alpha,A){:} B,\Gamma ==> \Delta
+  }
+\quad
+  \infer[\mbox{(R[. ])}]{
+    \Gamma ==> \Delta,x(\alpha){:} [A]B
+  }{
+    x(\alpha){:} A,\Gamma ==> \Delta,x(\alpha,A){:} B
+  }
+\]
+\[
+  \infer[(Lrel)]{
+    x\mathsf{R}_a(\alpha,A)y,\Gamma ==> \Delta
+  }{
+    x{:}A,y{:}A,x\mathsf{R}_a(\alpha)y,\Gamma ==> \Delta
+  }
+\]
+\[
+  \infer[(Rrel)]{
+    \Gamma ==> \Delta,x\mathsf{R}_a(\alpha,A)y
+  }{
+    \Gamma ==> \Delta,x{:}A
+    &
+    \Gamma ==> \Delta,y{:}A
+    &
+    \Gamma ==> \Delta,x\mathsf{R}_a(\alpha)y
+  }
+\]
+\hrule
+\noindent (Rules for propositional connectives)
+
+\[
+  \infer[(Lbot)]{
+    x(\alpha){:} bot,\Gamma ==> \Delta
+  }{
+  }
+\quad
+  \infer[(Rtop)]{
+    \Gamma ==> \Delta,x(\alpha){:} top
+  }{
+  }
+\]
+\[
+  \infer[(L \&)]{
+    x(\alpha){:} A\ \&\ B,\Gamma ==> \Delta
+  }{
+    x(\alpha){:} A, x(\alpha){:} B,\Gamma ==> \Delta
+  }
+\quad
+  \infer[(R \&)]{
+    \Gamma ==> \Delta,x(\alpha){:} A\ \&\ B
+  }{
+    \Gamma ==> \Delta,x(\alpha){:} A
+    &
+    \Gamma ==> \Delta,x(\alpha){:} B
+  }
+\]
+
+\[
+  \infer[(L v)]{
+    x(\alpha){:} A\ v\ B,\Gamma ==> \Delta
+  }{
+    x(\alpha){:} A,\Gamma ==> \Delta
+    &
+    x(\alpha){:} B,\Gamma ==> \Delta
+  }
+\quad
+  \infer[(R v)]{
+    \Gamma ==> \Delta,x(\alpha){:} A\ v\ B
+  }{
+    \Gamma ==> \Delta,x(\alpha){:} A, x(\alpha){:} B
+  }
+\]
+
+\noindent (Rules for knowledge operators)
+\[
+  \infer[(Lcmp)]{
+    x(\alpha,A\ \&\ [A]B){:} C,\Gamma ==> \Delta
+  }{
+    x(\alpha,A, B){:} C,\Gamma ==> \Delta
+  }
+\quad
+  \infer[(Rcmp)]{
+    \Gamma ==> \Delta,x(\alpha,A\ \&\ [A]B){:} C
+  }{
+    \Gamma ==> \Delta,x(\alpha,A, B){:} C
+  }
+\]
+
+other
+\[
+  \infer[(L<->)]{
+    x(\alpha){:} A\ <->\ B,\Gamma ==> \Delta
+  }{
+    x(\alpha){:} A\ ->\ B,x(\alpha){:} B\ ->\ A,\Gamma ==> \Delta
+  }
+\quad
+  \infer[(R<->)]{
+    \Gamma ==> \Delta,x(\alpha){:} A\ <->\ B
+  }{
+    \Gamma ==> \Delta,x(\alpha){:} A\ ->\ B
+    &
+    \Gamma ==> \Delta,x(\alpha){:} B\ ->\ A
+  }
+\]
+\end{table}
+
+%-- table2 ------------------------------------------------------------------------------------------------------------
+\hrule
+\end{document}

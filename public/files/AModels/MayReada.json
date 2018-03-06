@@ -1,0 +1,166 @@
+[{
+	"name": "Skip2",
+	"domain": [
+		"e1"
+	],
+	"relation": [
+		{
+			"agent": "a",
+			"from": "e1",
+			"to": "e1"
+		}
+	],
+	"precondition": [
+		{
+			"from": "e1",
+			"to": "top"
+		}
+	],
+	"comment": "top"
+},{
+	"name": "Crash",
+	"domain": [
+		"e0"
+	],
+	"relation": [
+		{
+			"agent": "a",
+			"from": "e0",
+			"to": "e0"
+		}
+	],
+	"precondition": [
+		{
+			"from": "e0",
+			"to": "bot"
+		}
+	],
+	"comment": "bot"
+},{
+	"name": "Reada2",
+	"domain": [
+		"e0",
+		"e1"
+	],
+	"relation": [
+		{
+			"agent": "a",
+			"from": "e0",
+			"to": "e0"
+		},
+		{
+			"agent": "a",
+			"from": "e1",
+			"to": "e1"
+		},
+		{
+			"agent": "b",
+			"from": "e0",
+			"to": "e0"
+		},
+		{
+			"agent": "b",
+			"from": "e1",
+			"to": "e1"
+		},
+		{
+			"agent": "b",
+			"from": "e0",
+			"to": "e1"
+		},
+		{
+			"agent": "b",
+			"from": "e1",
+			"to": "e0"
+		}
+	],
+	"precondition": [
+		{
+			"from": "e0",
+			"to": "~p"
+		},
+		{
+			"from": "e1",
+			"to": "p"
+		}
+	],
+	"comment": "Ann (agent a) reads the letter containing information of p in the presence of Bill (agent b). [Dit, p142]"
+},{
+	"name": "Newaction2",
+	"domain": [
+		"e0",
+		"e1",
+		"e2"
+	],
+	"relation": [
+		{
+			"agent": "a",
+			"from": "e1",
+			"to": "e1"
+		},
+		{
+			"agent": "a",
+			"from": "e0",
+			"to": "e1"
+		},
+		{
+			"agent": "b",
+			"from": "e0",
+			"to": "e2"
+		}
+	],
+	"precondition": [
+		{
+			"from": "e0",
+			"to": "top"
+		},
+		{
+			"from": "e1",
+			"to": "top"
+		},
+		{
+			"from": "e2",
+			"to": "top"
+		}
+	],
+	"comment": ""
+},{
+	"name": "Newactiona2",
+	"domain": [
+		"e0",
+		"e1",
+		"e2"
+	],
+	"relation": [
+		{
+			"agent": "a",
+			"from": "e1",
+			"to": "e1"
+		},
+		{
+			"agent": "a",
+			"from": "e0",
+			"to": "e1"
+		},
+		{
+			"agent": "b",
+			"from": "e0",
+			"to": "e2"
+		}
+	],
+	"precondition": [
+		{
+			"from": "e0",
+			"to": "top"
+		},
+		{
+			"from": "e1",
+			"to": "top"
+		},
+		{
+			"from": "e2",
+			"to": "top"
+		}
+	],
+	"comment": ""
+}]

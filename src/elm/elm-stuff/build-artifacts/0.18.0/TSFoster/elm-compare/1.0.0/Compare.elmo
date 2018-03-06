@@ -1,0 +1,63 @@
+var _TSFoster$elm_compare$Compare$comp = F3(
+	function (fn, x, y) {
+		return A2(
+			_elm_lang$core$Basics$compare,
+			fn(x),
+			fn(y));
+	});
+var _TSFoster$elm_compare$Compare$descending = F3(
+	function (fn, a, b) {
+		return A2(fn, b, a);
+	});
+var _TSFoster$elm_compare$Compare$ascending = F3(
+	function (fn, a, b) {
+		return A2(fn, a, b);
+	});
+var _TSFoster$elm_compare$Compare$thenWithReverse = F3(
+	function (ord, fn, next) {
+		return next(
+			F2(
+				function (x, y) {
+					var _p0 = A2(ord, x, y);
+					if (_p0.ctor === 'EQ') {
+						return A2(fn, y, x);
+					} else {
+						return _p0;
+					}
+				}));
+	});
+var _TSFoster$elm_compare$Compare$thenByReverse = F2(
+	function (ord, fn) {
+		return A2(
+			_TSFoster$elm_compare$Compare$thenWithReverse,
+			ord,
+			_TSFoster$elm_compare$Compare$comp(fn));
+	});
+var _TSFoster$elm_compare$Compare$thenWith = F3(
+	function (ord, fn, next) {
+		return next(
+			F2(
+				function (x, y) {
+					var _p1 = A2(ord, x, y);
+					if (_p1.ctor === 'EQ') {
+						return A2(fn, x, y);
+					} else {
+						return _p1;
+					}
+				}));
+	});
+var _TSFoster$elm_compare$Compare$thenBy = F2(
+	function (ord, fn) {
+		return A2(
+			_TSFoster$elm_compare$Compare$thenWith,
+			ord,
+			_TSFoster$elm_compare$Compare$comp(fn));
+	});
+var _TSFoster$elm_compare$Compare$with = F2(
+	function (fn, next) {
+		return next(fn);
+	});
+var _TSFoster$elm_compare$Compare$by = function (fn) {
+	return _TSFoster$elm_compare$Compare$with(
+		_TSFoster$elm_compare$Compare$comp(fn));
+};

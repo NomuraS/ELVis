@@ -1,0 +1,184 @@
+var _user$project$ElmFunctions_action$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
+var _user$project$ElmFunctions_action$action2json = function (a) {
+	var pre2json = function (_p0) {
+		var _p1 = _p0;
+		return {
+			from: _p1._0,
+			to: A2(_user$project$Common_syntax$outputForm, 0, _p1._1)
+		};
+	};
+	var pair2json = function (_p2) {
+		var _p3 = _p2;
+		return {agent: _p3._0, from: _p3._1, to: _p3._2};
+	};
+	return {
+		name: a.am_name,
+		domain: a.am_domain,
+		relation: A2(_elm_lang$core$List$map, pair2json, a.am_relation),
+		precondition: A2(_elm_lang$core$List$map, pre2json, a.am_pre),
+		comment: ''
+	};
+};
+var _user$project$ElmFunctions_action$json2action = function (a) {
+	var json2pre = function (amRel) {
+		return {
+			ctor: '_Tuple2',
+			_0: amRel.from,
+			_1: A2(
+				_elm_lang$core$Result$withDefault,
+				_user$project$Common_syntax$Bot,
+				_user$project$Parser_Formula$parseFormula(amRel.to))
+		};
+	};
+	var json2pair = function (amRel) {
+		return {ctor: '_Tuple3', _0: amRel.agent, _1: amRel.from, _2: amRel.to};
+	};
+	return {
+		am_name: a.name,
+		am_domain: a.domain,
+		am_relation: A2(_elm_lang$core$List$map, json2pair, a.relation),
+		am_pre: A2(_elm_lang$core$List$map, json2pre, a.precondition)
+	};
+};
+var _user$project$ElmFunctions_action$input1 = _elm_lang$core$Native_Platform.incomingPort('input1', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_action$output1 = _elm_lang$core$Native_Platform.outgoingPort(
+	'output1',
+	function (v) {
+		return {
+			name: v.name,
+			domain: _elm_lang$core$Native_List.toArray(v.domain).map(
+				function (v) {
+					return v;
+				}),
+			relation: _elm_lang$core$Native_List.toArray(v.relation).map(
+				function (v) {
+					return {agent: v.agent, from: v.from, to: v.to};
+				}),
+			precondition: _elm_lang$core$Native_List.toArray(v.precondition).map(
+				function (v) {
+					return {from: v.from, to: v.to};
+				}),
+			comment: v.comment
+		};
+	});
+var _user$project$ElmFunctions_action$JSON = F2(
+	function (a, b) {
+		return {action1: a, action2: b};
+	});
+var _user$project$ElmFunctions_action$AModelJSON = F5(
+	function (a, b, c, d, e) {
+		return {name: a, domain: b, relation: c, precondition: d, comment: e};
+	});
+var _user$project$ElmFunctions_action$initModel = {
+	ctor: '_Tuple2',
+	_0: A5(
+		_user$project$ElmFunctions_action$AModelJSON,
+		'',
+		{ctor: '[]'},
+		{ctor: '[]'},
+		{ctor: '[]'},
+		''),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ElmFunctions_action$AModelJSON_rel = F3(
+	function (a, b, c) {
+		return {agent: a, from: b, to: c};
+	});
+var _user$project$ElmFunctions_action$decodeJSON4action_rel = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_user$project$ElmFunctions_action$AModelJSON_rel,
+	A2(_elm_lang$core$Json_Decode$field, 'agent', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'from', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'to', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_action$AModelJSON_pre = F2(
+	function (a, b) {
+		return {from: a, to: b};
+	});
+var _user$project$ElmFunctions_action$decodeJSON4action_pre = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$ElmFunctions_action$AModelJSON_pre,
+	A2(_elm_lang$core$Json_Decode$field, 'from', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'to', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_action$decodeJSON4action = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_user$project$ElmFunctions_action$AModelJSON,
+	A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'domain',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'relation',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_action$decodeJSON4action_rel)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'precondition',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_action$decodeJSON4action_pre)),
+	A2(_elm_lang$core$Json_Decode$field, 'comment', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_action$decodeJSON4actionList = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$ElmFunctions_action$JSON,
+	A2(_elm_lang$core$Json_Decode$field, 'action1', _user$project$ElmFunctions_action$decodeJSON4action),
+	A2(_elm_lang$core$Json_Decode$field, 'action2', _user$project$ElmFunctions_action$decodeJSON4action));
+var _user$project$ElmFunctions_action$update = F2(
+	function (msg, model) {
+		var _p4 = msg;
+		var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_action$decodeJSON4actionList, _p4._0);
+		var decodedJSON2 = function () {
+			var _p5 = decodedJSON;
+			if (_p5.ctor === 'Ok') {
+				return _p5._0;
+			} else {
+				return _elm_lang$core$Native_Utils.crashCase(
+					'ElmFunctions_action',
+					{
+						start: {line: 115, column: 36},
+						end: {line: 117, column: 87}
+					},
+					_p5)(
+					A2(_elm_lang$core$Basics_ops['++'], 'error in update(1):', _p5._0));
+			}
+		}();
+		var action1 = _user$project$ElmFunctions_action$json2action(decodedJSON2.action1);
+		var action2 = _user$project$ElmFunctions_action$json2action(decodedJSON2.action2);
+		var composedAModel = _user$project$ElmFunctions_action$action2json(
+			A2(_user$project$Common_syntax$composeAM, action1, action2));
+		var newModel = _elm_lang$core$Native_Utils.update(
+			composedAModel,
+			{
+				comment: A2(
+					_elm_lang$core$Basics_ops['++'],
+					'composition of ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						action1.am_name,
+						A2(_elm_lang$core$Basics_ops['++'], ' and ', action2.am_name)))
+			});
+		return A2(
+			_elm_lang$core$Platform_Cmd_ops['!'],
+			newModel,
+			{
+				ctor: '::',
+				_0: _user$project$ElmFunctions_action$output1(newModel),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$ElmFunctions_action$JsonFromJS1 = function (a) {
+	return {ctor: 'JsonFromJS1', _0: a};
+};
+var _user$project$ElmFunctions_action$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _user$project$ElmFunctions_action$input1(_user$project$ElmFunctions_action$JsonFromJS1),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$ElmFunctions_action$main = _elm_lang$html$Html$program(
+	{init: _user$project$ElmFunctions_action$initModel, view: _user$project$ElmFunctions_action$view, update: _user$project$ElmFunctions_action$update, subscriptions: _user$project$ElmFunctions_action$subscriptions})();

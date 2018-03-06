@@ -1,0 +1,221 @@
+var _user$project$ElmFunctions_frame$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
+var _user$project$ElmFunctions_frame$amrelation2relationJSON = function (r) {
+	var ff = function (_p0) {
+		var _p1 = _p0;
+		return {agent: _p1._0, from: _p1._1, to: _p1._2};
+	};
+	return A2(_elm_lang$core$List$map, ff, r);
+};
+var _user$project$ElmFunctions_frame$relationJSON2amrelation = function (r) {
+	var ff = function (r) {
+		return {ctor: '_Tuple3', _0: r.agent, _1: r.from, _2: r.to};
+	};
+	return A2(_elm_lang$core$List$map, ff, r);
+};
+var _user$project$ElmFunctions_frame$initModel = {
+	ctor: '_Tuple2',
+	_0: {
+		resultProperty: {
+			ctor: '::',
+			_0: {agent: '', from: '', to: ''},
+			_1: {ctor: '[]'}
+		},
+		checkRef: false,
+		checkSym: false,
+		checkTra: false,
+		checkEuc: false,
+		checkSer: false
+	},
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ElmFunctions_frame$timesDefinedInElm = F2(
+	function (x, y) {
+		return x * y;
+	});
+var _user$project$ElmFunctions_frame$plusDefinedInElm = F2(
+	function (x, y) {
+		return x + y;
+	});
+var _user$project$ElmFunctions_frame$input1 = _elm_lang$core$Native_Platform.incomingPort('input1', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_frame$input2 = _elm_lang$core$Native_Platform.incomingPort('input2', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_frame$output1 = _elm_lang$core$Native_Platform.outgoingPort(
+	'output1',
+	function (v) {
+		return {
+			resultProperty: _elm_lang$core$Native_List.toArray(v.resultProperty).map(
+				function (v) {
+					return {agent: v.agent, from: v.from, to: v.to};
+				}),
+			checkRef: v.checkRef,
+			checkSym: v.checkSym,
+			checkTra: v.checkTra,
+			checkEuc: v.checkEuc,
+			checkSer: v.checkSer
+		};
+	});
+var _user$project$ElmFunctions_frame$output2 = _elm_lang$core$Native_Platform.outgoingPort(
+	'output2',
+	function (v) {
+		return {
+			resultProperty: _elm_lang$core$Native_List.toArray(v.resultProperty).map(
+				function (v) {
+					return {agent: v.agent, from: v.from, to: v.to};
+				}),
+			checkRef: v.checkRef,
+			checkSym: v.checkSym,
+			checkTra: v.checkTra,
+			checkEuc: v.checkEuc,
+			checkSer: v.checkSer
+		};
+	});
+var _user$project$ElmFunctions_frame$RelationJSON = F3(
+	function (a, b, c) {
+		return {agent: a, from: b, to: c};
+	});
+var _user$project$ElmFunctions_frame$decodeJSON4relation = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_user$project$ElmFunctions_frame$RelationJSON,
+	A2(_elm_lang$core$Json_Decode$field, 'agent', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'from', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'to', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_frame$JSON = F4(
+	function (a, b, c, d) {
+		return {frame: a, property: b, agents: c, domain: d};
+	});
+var _user$project$ElmFunctions_frame$decodeJSON = A5(
+	_elm_lang$core$Json_Decode$map4,
+	_user$project$ElmFunctions_frame$JSON,
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'frame',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_frame$decodeJSON4relation)),
+	A2(_elm_lang$core$Json_Decode$field, 'property', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'agents',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'domain',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)));
+var _user$project$ElmFunctions_frame$update = F2(
+	function (msg, model) {
+		var _p2 = msg;
+		if (_p2.ctor === 'MakeItProperty') {
+			var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_frame$decodeJSON, _p2._0);
+			var decodedJSON2 = function () {
+				var _p3 = decodedJSON;
+				if (_p3.ctor === 'Ok') {
+					return _p3._0;
+				} else {
+					return _elm_lang$core$Native_Utils.crashCase(
+						'ElmFunctions_frame',
+						{
+							start: {line: 103, column: 36},
+							end: {line: 105, column: 87}
+						},
+						_p3)(
+						A2(_elm_lang$core$Basics_ops['++'], 'error in update(1):', _p3._0));
+				}
+			}();
+			var amRelation = _user$project$ElmFunctions_frame$relationJSON2amrelation(decodedJSON2.frame);
+			var agents = decodedJSON2.agents;
+			var domain = decodedJSON2.domain;
+			var sendingFrame = function () {
+				var _p5 = decodedJSON2.property;
+				switch (_p5) {
+					case 'T':
+						return A2(_user$project$FrameProperties$makeItReflexive, agents, domain);
+					case 'B':
+						return _user$project$FrameProperties$makeItSymmetric(amRelation);
+					case '4':
+						return _user$project$FrameProperties$makeItTransitive(amRelation);
+					case '5':
+						return _user$project$FrameProperties$makeItEucleadian(amRelation);
+					default:
+						return {ctor: '[]'};
+				}
+			}();
+			var newModel = {
+				resultProperty: _user$project$ElmFunctions_frame$amrelation2relationJSON(sendingFrame),
+				checkRef: false,
+				checkSym: false,
+				checkTra: false,
+				checkEuc: false,
+				checkSer: false
+			};
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				newModel,
+				{
+					ctor: '::',
+					_0: _user$project$ElmFunctions_frame$output1(newModel),
+					_1: {ctor: '[]'}
+				});
+		} else {
+			var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_frame$decodeJSON, _p2._0);
+			var decodedJSON2 = function () {
+				var _p6 = decodedJSON;
+				if (_p6.ctor === 'Ok') {
+					return _p6._0;
+				} else {
+					return _elm_lang$core$Native_Utils.crashCase(
+						'ElmFunctions_frame',
+						{
+							start: {line: 129, column: 36},
+							end: {line: 131, column: 88}
+						},
+						_p6)(
+						A2(_elm_lang$core$Basics_ops['++'], 'error in update (2):', _p6._0));
+				}
+			}();
+			var amRelation = _user$project$ElmFunctions_frame$relationJSON2amrelation(decodedJSON2.frame);
+			var agents = decodedJSON2.agents;
+			var domain = decodedJSON2.domain;
+			var newModel = {
+				resultProperty: {ctor: '[]'},
+				checkRef: A3(_user$project$FrameProperties$isReflexive, agents, domain, amRelation),
+				checkSym: _user$project$FrameProperties$isSymmetric(amRelation),
+				checkTra: _user$project$FrameProperties$isTransitive(amRelation),
+				checkEuc: _user$project$FrameProperties$isEucleadian(amRelation),
+				checkSer: A3(_user$project$FrameProperties$isSerial, agents, domain, amRelation)
+			};
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				newModel,
+				{
+					ctor: '::',
+					_0: _user$project$ElmFunctions_frame$output2(newModel),
+					_1: {ctor: '[]'}
+				});
+		}
+	});
+var _user$project$ElmFunctions_frame$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {resultProperty: a, checkRef: b, checkSym: c, checkTra: d, checkEuc: e, checkSer: f};
+	});
+var _user$project$ElmFunctions_frame$CheckProperty = function (a) {
+	return {ctor: 'CheckProperty', _0: a};
+};
+var _user$project$ElmFunctions_frame$MakeItProperty = function (a) {
+	return {ctor: 'MakeItProperty', _0: a};
+};
+var _user$project$ElmFunctions_frame$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _user$project$ElmFunctions_frame$input1(_user$project$ElmFunctions_frame$MakeItProperty),
+			_1: {
+				ctor: '::',
+				_0: _user$project$ElmFunctions_frame$input2(_user$project$ElmFunctions_frame$CheckProperty),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$ElmFunctions_frame$main = _elm_lang$html$Html$program(
+	{init: _user$project$ElmFunctions_frame$initModel, view: _user$project$ElmFunctions_frame$view, update: _user$project$ElmFunctions_frame$update, subscriptions: _user$project$ElmFunctions_frame$subscriptions})();

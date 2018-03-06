@@ -1,0 +1,6 @@
+var _toastal$either$Either_Prism$rightp = {getOption: _toastal$either$Either$rightToMaybe, reverseGet: _toastal$either$Either$Right};
+var _toastal$either$Either_Prism$leftp = {getOption: _toastal$either$Either$leftToMaybe, reverseGet: _toastal$either$Either$Left};
+var _toastal$either$Either_Prism$Prism = F2(
+	function (a, b) {
+		return {getOption: a, reverseGet: b};
+	});

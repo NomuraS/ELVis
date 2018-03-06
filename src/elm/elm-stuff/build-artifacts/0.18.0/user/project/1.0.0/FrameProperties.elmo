@@ -1,0 +1,318 @@
+var _user$project$FrameProperties$eucl = F2(
+	function (exp1, exp2) {
+		var _p0 = {ctor: '_Tuple2', _0: exp1, _1: exp2};
+		var _p3 = _p0._1._2;
+		var _p2 = _p0._0._2;
+		var _p1 = _p0._0._0;
+		return (_elm_lang$core$Native_Utils.eq(_p0._0._1, _p0._1._1) && _elm_lang$core$Native_Utils.eq(_p1, _p0._1._0)) ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: exp1,
+				_1: {
+					ctor: '::',
+					_0: exp2,
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: _p1, _1: _p2, _2: _p3},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: _p1, _1: _p3, _2: _p2},
+					_1: {ctor: '[]'}
+				}
+			}) : {
+			ctor: '::',
+			_0: exp1,
+			_1: {
+				ctor: '::',
+				_0: exp2,
+				_1: {ctor: '[]'}
+			}
+		};
+	});
+var _user$project$FrameProperties$makeItEucleadian = function (rel) {
+	var rels = _user$project$Util$rotate(rel);
+	var gg = F2(
+		function (_p5, _p4) {
+			var _p6 = _p5;
+			var _p7 = _p4;
+			return A2(
+				_user$project$FrameProperties$eucl,
+				{ctor: '_Tuple3', _0: _p6._0, _1: _p6._1, _2: _p6._2},
+				{ctor: '_Tuple3', _0: _p7._0, _1: _p7._1, _2: _p7._2});
+		});
+	return _user$project$Util$nub(
+		A2(
+			_user$project$Util_ops['$>>='],
+			rels,
+			function (rel1) {
+				var _p8 = rel1;
+				if (_p8.ctor === '[]') {
+					return {ctor: '[]'};
+				} else {
+					return A2(
+						_elm_lang$core$List$concatMap,
+						gg(
+							{ctor: '_Tuple3', _0: _p8._0._0, _1: _p8._0._1, _2: _p8._0._2}),
+						rel1);
+				}
+			}));
+};
+var _user$project$FrameProperties$tran = F2(
+	function (exp1, exp2) {
+		var _p9 = {ctor: '_Tuple2', _0: exp1, _1: exp2};
+		var _p10 = _p9._0._0;
+		return (_elm_lang$core$Native_Utils.eq(_p9._0._2, _p9._1._1) && _elm_lang$core$Native_Utils.eq(_p10, _p9._1._0)) ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: exp1,
+				_1: {
+					ctor: '::',
+					_0: exp2,
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: _p10, _1: _p9._0._1, _2: _p9._1._2},
+				_1: {ctor: '[]'}
+			}) : {
+			ctor: '::',
+			_0: exp1,
+			_1: {
+				ctor: '::',
+				_0: exp2,
+				_1: {ctor: '[]'}
+			}
+		};
+	});
+var _user$project$FrameProperties$makeItTransitive = function (rel) {
+	var rels = _user$project$Util$rotate(rel);
+	var gg = F2(
+		function (_p12, _p11) {
+			var _p13 = _p12;
+			var _p14 = _p11;
+			return A2(
+				_user$project$FrameProperties$tran,
+				{ctor: '_Tuple3', _0: _p13._0, _1: _p13._1, _2: _p13._2},
+				{ctor: '_Tuple3', _0: _p14._0, _1: _p14._1, _2: _p14._2});
+		});
+	return _user$project$Util$nub(
+		A2(
+			_user$project$Util_ops['$>>='],
+			rels,
+			function (rel1) {
+				var _p15 = rel1;
+				if (_p15.ctor === '[]') {
+					return {ctor: '[]'};
+				} else {
+					return A2(
+						_elm_lang$core$List$concatMap,
+						gg(
+							{ctor: '_Tuple3', _0: _p15._0._0, _1: _p15._0._1, _2: _p15._0._2}),
+						rel1);
+				}
+			}));
+};
+var _user$project$FrameProperties$makeItSymmetric = function (rel) {
+	var gg = function (_p16) {
+		var _p17 = _p16;
+		var _p20 = _p17._2;
+		var _p19 = _p17._1;
+		var _p18 = _p17._0;
+		return {
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: _p18, _1: _p19, _2: _p20},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: _p18, _1: _p20, _2: _p19},
+				_1: {ctor: '[]'}
+			}
+		};
+	};
+	return _user$project$Util$nub(
+		A2(_elm_lang$core$List$concatMap, gg, rel));
+};
+var _user$project$FrameProperties$makeItReflexive = F2(
+	function (agts, dom) {
+		return A2(
+			_user$project$Util_ops['$>>='],
+			agts,
+			function (ag) {
+				return A2(
+					_user$project$Util_ops['$>>='],
+					dom,
+					function (x) {
+						return {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: ag, _1: x, _2: x},
+							_1: {ctor: '[]'}
+						};
+					});
+			});
+	});
+var _user$project$FrameProperties$isSerial = F3(
+	function (ags, dom, rels) {
+		return A2(
+			_user$project$Util$forall,
+			dom,
+			function (s) {
+				return A2(
+					_user$project$Util$forall,
+					ags,
+					function (a) {
+						return A2(
+							_user$project$Util$exists,
+							dom,
+							function (x) {
+								return A2(
+									_elm_lang$core$List$member,
+									{ctor: '_Tuple3', _0: a, _1: s, _2: x},
+									rels);
+							});
+					});
+			});
+	});
+var _user$project$FrameProperties$isReflexive = F3(
+	function (ags, dom, rels) {
+		return A2(
+			_user$project$Util$forall,
+			dom,
+			function (s) {
+				return A2(
+					_user$project$Util$forall,
+					ags,
+					function (a) {
+						return A2(
+							_elm_lang$core$List$member,
+							{ctor: '_Tuple3', _0: a, _1: s, _2: s},
+							rels);
+					});
+			});
+	});
+var _user$project$FrameProperties$wholeAgentFromRel = function (rels) {
+	var gg = function (_p21) {
+		var _p22 = _p21;
+		return {
+			ctor: '::',
+			_0: _p22._0,
+			_1: {ctor: '[]'}
+		};
+	};
+	return _user$project$Util$nub(
+		A2(_elm_lang$core$List$concatMap, gg, rels));
+};
+var _user$project$FrameProperties$isSymmetric = function (rels) {
+	var gg = F2(
+		function (arel, _p23) {
+			var _p24 = _p23;
+			return A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p24._0, _1: _p24._2, _2: _p24._1},
+				arel);
+		});
+	var wholeA = _user$project$FrameProperties$wholeAgentFromRel(rels);
+	var rotateS = _user$project$Util$rotate(rels);
+	return A2(
+		_user$project$Util$forall,
+		rels,
+		function (_p25) {
+			var _p26 = _p25;
+			return A2(
+				gg,
+				rels,
+				{ctor: '_Tuple3', _0: _p26._0, _1: _p26._1, _2: _p26._2});
+		});
+};
+var _user$project$FrameProperties$isTransitive = function (rels) {
+	var gg = F3(
+		function (arel, _p28, _p27) {
+			var _p29 = _p28;
+			var _p31 = _p29._0;
+			var _p30 = _p27;
+			return (_elm_lang$core$Native_Utils.eq(_p31, _p30._0) && _elm_lang$core$Native_Utils.eq(_p29._2, _p30._1)) ? A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p31, _1: _p29._1, _2: _p30._2},
+				arel) : true;
+		});
+	var wholeA = _user$project$FrameProperties$wholeAgentFromRel(rels);
+	var rotateS = _user$project$Util$rotate(rels);
+	return A2(
+		_user$project$Util$forall,
+		rotateS,
+		function (rel) {
+			var _p32 = rel;
+			if (_p32.ctor === '[]') {
+				return true;
+			} else {
+				return _user$project$Util$and(
+					A2(
+						_elm_lang$core$List$map,
+						A2(
+							gg,
+							rel,
+							{ctor: '_Tuple3', _0: _p32._0._0, _1: _p32._0._1, _2: _p32._0._2}),
+						rel));
+			}
+		});
+};
+var _user$project$FrameProperties$isEucleadian = function (rels) {
+	var gg = F3(
+		function (arel, _p34, _p33) {
+			var _p35 = _p34;
+			var _p39 = _p35._2;
+			var _p38 = _p35._0;
+			var _p36 = _p33;
+			var _p37 = _p36._2;
+			return (_elm_lang$core$Native_Utils.eq(_p38, _p36._0) && _elm_lang$core$Native_Utils.eq(_p35._1, _p36._1)) ? (A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p38, _1: _p39, _2: _p37},
+				arel) && (A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p38, _1: _p37, _2: _p39},
+				arel) && A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p38, _1: _p37, _2: _p37},
+				arel))) : true;
+		});
+	var wholeA = _user$project$FrameProperties$wholeAgentFromRel(rels);
+	var rotateS = _user$project$Util$rotate(rels);
+	return A2(
+		_user$project$Util$forall,
+		rotateS,
+		function (rel) {
+			var _p40 = rel;
+			if (_p40.ctor === '[]') {
+				return true;
+			} else {
+				return _user$project$Util$and(
+					A2(
+						_elm_lang$core$List$map,
+						A2(
+							gg,
+							rel,
+							{ctor: '_Tuple3', _0: _p40._0._0, _1: _p40._0._1, _2: _p40._0._2}),
+						rel));
+			}
+		});
+};
+var _user$project$FrameProperties$wholeString = function (rels) {
+	var gg = function (_p41) {
+		var _p42 = _p41;
+		return {
+			ctor: '::',
+			_0: _p42._1,
+			_1: {
+				ctor: '::',
+				_0: _p42._2,
+				_1: {ctor: '[]'}
+			}
+		};
+	};
+	return _user$project$Util$nub(
+		A2(_elm_lang$core$List$concatMap, gg, rels));
+};

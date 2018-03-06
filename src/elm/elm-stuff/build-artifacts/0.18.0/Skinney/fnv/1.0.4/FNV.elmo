@@ -1,0 +1,8 @@
+var _Skinney$fnv$FNV$fnvPrime = (Math.pow(2, 24) + Math.pow(2, 8)) + 147;
+var _Skinney$fnv$FNV$hashHelp = F2(
+	function (c, hash) {
+		return ((hash ^ _elm_lang$core$Char$toCode(c)) * _Skinney$fnv$FNV$fnvPrime) >>> 0;
+	});
+var _Skinney$fnv$FNV$hashString = function (str) {
+	return A3(_elm_lang$core$String$foldl, _Skinney$fnv$FNV$hashHelp, 0, str);
+};

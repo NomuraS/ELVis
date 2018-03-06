@@ -1,0 +1,613 @@
+var _user$project$ElmFunctions_sequent$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
+var _user$project$ElmFunctions_sequent$testAModels = {
+	ctor: '::',
+	_0: _user$project$Common_syntax$reada,
+	_1: {
+		ctor: '::',
+		_0: _user$project$Common_syntax$skip,
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$ElmFunctions_sequent$decodeJSON4action_pre = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$Parser_Formula$AModelJSON_pre,
+	A2(_elm_lang$core$Json_Decode$field, 'from', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'to', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_sequent$decodeJSON4action_rel = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_user$project$Parser_Formula$AModelJSON_rel,
+	A2(_elm_lang$core$Json_Decode$field, 'agent', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'from', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'to', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_sequent$decodeJSON4action = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_user$project$Parser_Formula$AModelJSON,
+	A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'domain',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'relation',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_sequent$decodeJSON4action_rel)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'precondition',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_sequent$decodeJSON4action_pre)),
+	A2(_elm_lang$core$Json_Decode$field, 'comment', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_sequent$modal_system = function (json) {
+	var modal_system = function (x) {
+		var _p0 = x;
+		switch (_p0.valueOf()) {
+			case 'T':
+				return _user$project$Common_sequent$ruleT;
+			case 'D':
+				return _user$project$Common_sequent$ruleD;
+			case 'B':
+				return _user$project$Common_sequent$ruleB;
+			case '4':
+				return _user$project$Common_sequent$rule4;
+			case '5':
+				return _user$project$Common_sequent$rule5;
+			default:
+				return {ctor: '[]'};
+		}
+	};
+	var modalSystemString = _elm_lang$core$String$toList(json.modalSystem);
+	return _user$project$Util$nub(
+		A2(_elm_lang$core$List$concatMap, modal_system, modalSystemString));
+};
+var _user$project$ElmFunctions_sequent$checkIncludingConnective = F2(
+	function (json, f) {
+		var gg = function (json) {
+			var _p1 = json.elSystem;
+			switch (_p1) {
+				case 'EL':
+					return '#';
+				case 'PAL':
+					return '[';
+				case 'IntPAL':
+					return '<';
+				case 'DEL':
+					return '[';
+				default:
+					return '';
+			}
+		};
+		return A2(
+			_elm_lang$core$String$contains,
+			gg(json),
+			A2(_user$project$Common_syntax$outputForm, 0, f)) ? _elm_lang$core$Maybe$Just(f) : _elm_lang$core$Maybe$Nothing;
+	});
+var _user$project$ElmFunctions_sequent$json2formula = function (json) {
+	var num4act = json.randomSeed.maxNumberOfActions;
+	var num4agent = json.randomSeed.maxNumberOfAgents;
+	var gg = function (json) {
+		var _p2 = json.elSystem;
+		switch (_p2) {
+			case 'EL':
+				return _user$project$Random_formula$connectiveList4EL(num4agent);
+			case 'PAL':
+				return _user$project$Random_formula$connectiveList4PAL(num4agent);
+			case 'DEL':
+				return A2(_user$project$Random_formula$connectiveList4DEL, num4act, num4agent);
+			default:
+				return _user$project$Random_formula$connectiveList4EL(num4agent);
+		}
+	};
+	return _user$project$Util$fst(
+		A3(
+			_user$project$Random_formula$createRandomFormula,
+			json.randomSeed.maxLengthOfRandomFormula,
+			gg(json),
+			_elm_lang$core$Random$initialSeed(json.randomSeed.randomNumber)));
+};
+var _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON = function (json) {
+	return A2(
+		_user$project$ElmFunctions_sequent$retryForConnective,
+		json,
+		A2(
+			_user$project$ElmFunctions_sequent$checkIncludingConnective,
+			json,
+			_user$project$ElmFunctions_sequent$json2formula(json)));
+};
+var _user$project$ElmFunctions_sequent$retryForConnective = F2(
+	function (json, mf) {
+		var json2 = _elm_lang$core$Native_Utils.update(
+			json,
+			{
+				randomSeed: {randomNumber: json.randomSeed.randomNumber + 1, maxLengthOfRandomFormula: json.randomSeed.maxLengthOfRandomFormula, maxNumberOfAgents: json.randomSeed.maxNumberOfAgents, maxNumberOfActions: json.randomSeed.maxNumberOfActions}
+			});
+		var _p3 = mf;
+		if (_p3.ctor === 'Just') {
+			return _elm_lang$core$Maybe$Just(_p3._0);
+		} else {
+			return _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON(json2);
+		}
+	});
+var _user$project$ElmFunctions_sequent$basicRules_int = A2(_elm_lang$core$Basics_ops['++'], _user$project$Common_sequent$axiomRule, _user$project$Int_sequent_BiRel$ruleInt2);
+var _user$project$ElmFunctions_sequent$basicRules = A2(_elm_lang$core$Basics_ops['++'], _user$project$Common_sequent$axiomRule, _user$project$Common_sequent$ruleClassic);
+var _user$project$ElmFunctions_sequent$proofSystemfromJSON = function (json) {
+	var maxNum = json.maxNumberOfExpressionsAppearingInANode;
+	var _p4 = json.elSystem;
+	switch (_p4) {
+		case 'EL':
+			return A2(_elm_lang$core$Basics_ops['++'], _user$project$ElmFunctions_sequent$basicRules, _user$project$Common_sequent$ruleK);
+		case 'PAL':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$ElmFunctions_sequent$basicRules,
+				A2(_elm_lang$core$Basics_ops['++'], _user$project$Common_sequent$ruleK, _user$project$PAL_sequent$ruleGPAL));
+		case 'IntPAL':
+			return _user$project$ElmFunctions_sequent$basicRules_int;
+		case 'DEL':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$ElmFunctions_sequent$basicRules,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$Common_sequent$ruleK,
+					A2(_elm_lang$core$Basics_ops['++'], _user$project$DEL_sequent$ruleK_DEL, _user$project$DEL_sequent$ruleDEL)));
+		default:
+			return A2(_elm_lang$core$Basics_ops['++'], _user$project$ElmFunctions_sequent$basicRules, _user$project$Common_sequent$ruleK);
+	}
+};
+var _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON_provable = function (json) {
+	var json2 = _elm_lang$core$Native_Utils.update(
+		json,
+		{
+			randomSeed: {randomNumber: json.randomSeed.randomNumber + 1, maxLengthOfRandomFormula: json.randomSeed.maxLengthOfRandomFormula, maxNumberOfAgents: json.randomSeed.maxNumberOfAgents, maxNumberOfActions: json.randomSeed.maxNumberOfActions}
+		});
+	return function (p) {
+		return function (sy) {
+			return function (pr) {
+				return _elm_lang$core$Native_Utils.eq(
+					_user$project$Common_sequent$isProvable(pr),
+					1) ? _elm_lang$core$Maybe$Just(p) : _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON_provable(json2);
+			}(
+				A3(
+					_user$project$Common_sequent$makeProofTree,
+					15,
+					sy,
+					_user$project$Common_sequent$formula2seq(p)));
+		}(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$ElmFunctions_sequent$modal_system(json),
+				_user$project$ElmFunctions_sequent$proofSystemfromJSON(json)));
+	}(
+		A2(
+			_elm_lang$core$Maybe$withDefault,
+			_user$project$Common_syntax$Top,
+			_user$project$ElmFunctions_sequent$createRandomFormulaFromJSON(json)));
+};
+var _user$project$ElmFunctions_sequent$loadMap = _elm_lang$core$Native_Platform.outgoingPort(
+	'loadMap',
+	function (v) {
+		return null;
+	});
+var _user$project$ElmFunctions_sequent$input4prove = _elm_lang$core$Native_Platform.incomingPort('input4prove', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_sequent$input4randomFormula = _elm_lang$core$Native_Platform.incomingPort('input4randomFormula', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_sequent$input4randomFormula_provable = _elm_lang$core$Native_Platform.incomingPort('input4randomFormula_provable', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_sequent$input4syntaxCheck = _elm_lang$core$Native_Platform.incomingPort('input4syntaxCheck', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_sequent$output4prove = _elm_lang$core$Native_Platform.outgoingPort(
+	'output4prove',
+	function (v) {
+		return {
+			formula: v.formula,
+			nodes: _elm_lang$core$Native_List.toArray(v.nodes).map(
+				function (v) {
+					return {id: v.id, label: v.label, color: v.color};
+				}),
+			edges: _elm_lang$core$Native_List.toArray(v.edges).map(
+				function (v) {
+					return {id: v.id, from: v.from, to: v.to, label: v.label};
+				}),
+			provable: v.provable,
+			system: v.system
+		};
+	});
+var _user$project$ElmFunctions_sequent$output4randomFormula = _elm_lang$core$Native_Platform.outgoingPort(
+	'output4randomFormula',
+	function (v) {
+		return {
+			formula: v.formula,
+			nodes: _elm_lang$core$Native_List.toArray(v.nodes).map(
+				function (v) {
+					return {id: v.id, label: v.label, color: v.color};
+				}),
+			edges: _elm_lang$core$Native_List.toArray(v.edges).map(
+				function (v) {
+					return {id: v.id, from: v.from, to: v.to, label: v.label};
+				}),
+			provable: v.provable,
+			system: v.system
+		};
+	});
+var _user$project$ElmFunctions_sequent$output4randomFormula_provable = _elm_lang$core$Native_Platform.outgoingPort(
+	'output4randomFormula_provable',
+	function (v) {
+		return {
+			formula: v.formula,
+			nodes: _elm_lang$core$Native_List.toArray(v.nodes).map(
+				function (v) {
+					return {id: v.id, label: v.label, color: v.color};
+				}),
+			edges: _elm_lang$core$Native_List.toArray(v.edges).map(
+				function (v) {
+					return {id: v.id, from: v.from, to: v.to, label: v.label};
+				}),
+			provable: v.provable,
+			system: v.system
+		};
+	});
+var _user$project$ElmFunctions_sequent$output4syntaxCheck = _elm_lang$core$Native_Platform.outgoingPort(
+	'output4syntaxCheck',
+	function (v) {
+		return {
+			formula: v.formula,
+			nodes: _elm_lang$core$Native_List.toArray(v.nodes).map(
+				function (v) {
+					return {id: v.id, label: v.label, color: v.color};
+				}),
+			edges: _elm_lang$core$Native_List.toArray(v.edges).map(
+				function (v) {
+					return {id: v.id, from: v.from, to: v.to, label: v.label};
+				}),
+			provable: v.provable,
+			system: v.system
+		};
+	});
+var _user$project$ElmFunctions_sequent$JSON = F6(
+	function (a, b, c, d, e, f) {
+		return {formula: a, action: b, modalSystem: c, elSystem: d, maxNumberOfExpressionsAppearingInANode: e, randomSeed: f};
+	});
+var _user$project$ElmFunctions_sequent$RandomSeed = F4(
+	function (a, b, c, d) {
+		return {randomNumber: a, maxLengthOfRandomFormula: b, maxNumberOfAgents: c, maxNumberOfActions: d};
+	});
+var _user$project$ElmFunctions_sequent$decodeJSON4randomFormula = A5(
+	_elm_lang$core$Json_Decode$map4,
+	_user$project$ElmFunctions_sequent$RandomSeed,
+	A2(_elm_lang$core$Json_Decode$field, 'randomNumber', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'maxLengthOfRandomFormula', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'maxNumberOfAgents', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'maxNumberOfActions', _elm_lang$core$Json_Decode$int));
+var _user$project$ElmFunctions_sequent$decodeJSON4prove = A7(
+	_elm_lang$core$Json_Decode$map6,
+	_user$project$ElmFunctions_sequent$JSON,
+	A2(_elm_lang$core$Json_Decode$field, 'formula', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'action',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_sequent$decodeJSON4action)),
+	A2(_elm_lang$core$Json_Decode$field, 'modalSystem', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'elSystem', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'maxNumberOfExpressionsAppearingInANode', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'randomSeed', _user$project$ElmFunctions_sequent$decodeJSON4randomFormula));
+var _user$project$ElmFunctions_sequent$update = F2(
+	function (message, model) {
+		var _p5 = message;
+		switch (_p5.ctor) {
+			case 'JsonFromJS_prove':
+				var object = function () {
+					var _p6 = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p5._0);
+					if (_p6.ctor === 'Ok') {
+						return _p6._0;
+					} else {
+						return _elm_lang$core$Native_Utils.crashCase(
+							'ElmFunctions_sequent',
+							{
+								start: {line: 263, column: 26},
+								end: {line: 265, column: 107}
+							},
+							_p6)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error (1) in ElmFunctions_sequent.elm: ', _p6._0));
+					}
+				}();
+				var modal_system = _user$project$Common_sequent$proofSystem(object.modalSystem);
+				var limitNum = object.maxNumberOfExpressionsAppearingInANode;
+				var el_system = function () {
+					var _p8 = object.elSystem;
+					switch (_p8) {
+						case 'EL':
+							return A2(_elm_lang$core$Basics_ops['++'], _user$project$ElmFunctions_sequent$basicRules, _user$project$Common_sequent$ruleK);
+						case 'PAL':
+							return A2(
+								_elm_lang$core$Basics_ops['++'],
+								_user$project$ElmFunctions_sequent$basicRules,
+								A2(_elm_lang$core$Basics_ops['++'], _user$project$Common_sequent$ruleK, _user$project$PAL_sequent$ruleGPAL));
+						case 'IntPAL':
+							return A2(
+								_elm_lang$core$Basics_ops['++'],
+								_user$project$ElmFunctions_sequent$basicRules_int,
+								A2(_elm_lang$core$Basics_ops['++'], _user$project$Int_sequent$ruleK_int, _user$project$IntPAL_sequent$ruleGIntPAL));
+						case 'DEL':
+							return A2(
+								_elm_lang$core$Basics_ops['++'],
+								_user$project$ElmFunctions_sequent$basicRules,
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$DEL_sequent$ruleK_DEL,
+									A2(_elm_lang$core$Basics_ops['++'], _user$project$DEL_sequent$ruleDEL, _user$project$DEL_sequent$ruleAModel)));
+						default:
+							return {ctor: '[]'};
+					}
+				}();
+				var maybeFormula_parsed = _user$project$Parser_Formula$parseFormula(object.formula);
+				var maybeFormula2_syntaxChecked = function () {
+					var _p9 = maybeFormula_parsed;
+					if (_p9.ctor === 'Err') {
+						return _elm_lang$core$Maybe$Nothing;
+					} else {
+						var _p12 = _p9._0;
+						var _p10 = object.elSystem;
+						switch (_p10) {
+							case 'EL':
+								return _user$project$Common_syntax$isELformula(_p12) ? _elm_lang$core$Maybe$Just(_p12) : _elm_lang$core$Maybe$Nothing;
+							case 'PAL':
+								return _user$project$Common_syntax$isPALformula(_p12) ? _elm_lang$core$Maybe$Just(_p12) : _elm_lang$core$Maybe$Nothing;
+							case 'IntPAL':
+								return _user$project$Common_syntax$isPALformula(_p12) ? _elm_lang$core$Maybe$Just(_p12) : _elm_lang$core$Maybe$Nothing;
+							case 'DEL':
+								return _user$project$Common_syntax$isDELformula(_p12) ? _elm_lang$core$Maybe$Just(_p12) : _elm_lang$core$Maybe$Nothing;
+							default:
+								return _elm_lang$core$Native_Utils.crashCase(
+									'ElmFunctions_sequent',
+									{
+										start: {line: 278, column: 27},
+										end: {line: 283, column: 87}
+									},
+									_p10)('error (3) in ElmFunctions_sequent.elm: ');
+						}
+					}
+				}();
+				var actionList = A2(_elm_lang$core$List$map, _user$project$Parser_Formula$object2listOfActions, object.action);
+				var maybeFormula3_AModelChanged = function (listOfAM) {
+					return function (func) {
+						return A2(_elm_lang$core$Maybe$map, func, maybeFormula2_syntaxChecked);
+					}(
+						function (x) {
+							return A2(_user$project$DEL_sequent$substitution4AModel4list, x, listOfAM);
+						});
+				}(actionList);
+				var newModel = function () {
+					var _p13 = maybeFormula3_AModelChanged;
+					if (_p13.ctor === 'Nothing') {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								nodes: {ctor: '[]'},
+								edges: {ctor: '[]'}
+							});
+					} else {
+						var _p14 = _p13._0;
+						var bottom_sequent = _user$project$Common_sequent$formula2seq(_p14);
+						var graph = A3(
+							_user$project$Common_sequent$drawProof,
+							limitNum,
+							A2(_elm_lang$core$Basics_ops['++'], modal_system, el_system),
+							bottom_sequent);
+						return {
+							formula: A2(_user$project$Common_syntax$outputForm, 0, _p14),
+							nodes: graph.nodes,
+							edges: graph.edges,
+							provable: graph.provable,
+							system: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'  (',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									object.elSystem,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										', ',
+										A2(_elm_lang$core$Basics_ops['++'], object.modalSystem, ')'))))
+						};
+					}
+				}();
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					newModel,
+					{
+						ctor: '::',
+						_0: _user$project$ElmFunctions_sequent$output4prove(newModel),
+						_1: {ctor: '[]'}
+					});
+			case 'JsonFromJS2_randomFormula':
+				var _p18 = _p5._0;
+				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p18);
+				var decodedJSON2 = function () {
+					var _p15 = decodedJSON;
+					if (_p15.ctor === 'Ok') {
+						return _p15._0;
+					} else {
+						return _elm_lang$core$Native_Utils.crashCase(
+							'ElmFunctions_sequent',
+							{
+								start: {line: 309, column: 28},
+								end: {line: 311, column: 88}
+							},
+							_p15)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update (2):', _p15._0));
+					}
+				}();
+				var maybeFormula = _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON(decodedJSON2);
+				var newModel = function () {
+					var _p17 = A2(_elm_lang$core$Debug$log, 'Main-2:', maybeFormula);
+					if (_p17.ctor === 'Nothing') {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								nodes: {ctor: '[]'},
+								edges: {ctor: '[]'}
+							});
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								formula: A2(_user$project$Common_syntax$outputForm, 0, _p17._0)
+							});
+					}
+				}();
+				var aaa = A2(_elm_lang$core$Debug$log, 'check(3)', _p18);
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					newModel,
+					{
+						ctor: '::',
+						_0: _user$project$ElmFunctions_sequent$output4randomFormula(newModel),
+						_1: {ctor: '[]'}
+					});
+			case 'JsonFromJS3_randomFormulaProvable':
+				var _p22 = _p5._0;
+				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p22);
+				var decodedJSON2 = function () {
+					var _p19 = decodedJSON;
+					if (_p19.ctor === 'Ok') {
+						return _p19._0;
+					} else {
+						return _elm_lang$core$Native_Utils.crashCase(
+							'ElmFunctions_sequent',
+							{
+								start: {line: 324, column: 28},
+								end: {line: 326, column: 88}
+							},
+							_p19)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update (3):', _p19._0));
+					}
+				}();
+				var maybeFormula = _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON_provable(decodedJSON2);
+				var newModel = function () {
+					var _p21 = maybeFormula;
+					if (_p21.ctor === 'Nothing') {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								nodes: {ctor: '[]'},
+								edges: {ctor: '[]'}
+							});
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								formula: A2(_user$project$Common_syntax$outputForm, 0, _p21._0)
+							});
+					}
+				}();
+				var aaa = A2(_elm_lang$core$Debug$log, 'check(4)', _p22);
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					newModel,
+					{
+						ctor: '::',
+						_0: _user$project$ElmFunctions_sequent$output4randomFormula_provable(newModel),
+						_1: {ctor: '[]'}
+					});
+			default:
+				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p5._0);
+				var decodedJSON2 = function () {
+					var _p23 = decodedJSON;
+					if (_p23.ctor === 'Ok') {
+						return _p23._0;
+					} else {
+						return _elm_lang$core$Native_Utils.crashCase(
+							'ElmFunctions_sequent',
+							{
+								start: {line: 338, column: 28},
+								end: {line: 340, column: 88}
+							},
+							_p23)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update (4):', _p23._0));
+					}
+				}();
+				var maybeFormula = _user$project$Parser_Formula$parseFormula(decodedJSON2.formula);
+				var newModel = function () {
+					var _p25 = A2(_elm_lang$core$Debug$log, 'Main-input-string:', maybeFormula);
+					if (_p25.ctor === 'Ok') {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								formula: A2(_user$project$Common_syntax$outputForm, 0, _p25._0)
+							});
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								formula: A2(_elm_lang$core$Basics_ops['++'], 'parseError in ', _p25._0)
+							});
+					}
+				}();
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					newModel,
+					{
+						ctor: '::',
+						_0: _user$project$ElmFunctions_sequent$output4syntaxCheck(newModel),
+						_1: {ctor: '[]'}
+					});
+		}
+	});
+var _user$project$ElmFunctions_sequent$Node = F3(
+	function (a, b, c) {
+		return {id: a, label: b, color: c};
+	});
+var _user$project$ElmFunctions_sequent$Edge = F4(
+	function (a, b, c, d) {
+		return {id: a, from: b, to: c, label: d};
+	});
+var _user$project$ElmFunctions_sequent$Model = F5(
+	function (a, b, c, d, e) {
+		return {formula: a, nodes: b, edges: c, provable: d, system: e};
+	});
+var _user$project$ElmFunctions_sequent$initModel = {
+	ctor: '_Tuple2',
+	_0: A5(
+		_user$project$ElmFunctions_sequent$Model,
+		'',
+		{ctor: '[]'},
+		{ctor: '[]'},
+		0,
+		''),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ElmFunctions_sequent$JsonFromJS4_syntaxChecker = function (a) {
+	return {ctor: 'JsonFromJS4_syntaxChecker', _0: a};
+};
+var _user$project$ElmFunctions_sequent$JsonFromJS3_randomFormulaProvable = function (a) {
+	return {ctor: 'JsonFromJS3_randomFormulaProvable', _0: a};
+};
+var _user$project$ElmFunctions_sequent$JsonFromJS2_randomFormula = function (a) {
+	return {ctor: 'JsonFromJS2_randomFormula', _0: a};
+};
+var _user$project$ElmFunctions_sequent$JsonFromJS_prove = function (a) {
+	return {ctor: 'JsonFromJS_prove', _0: a};
+};
+var _user$project$ElmFunctions_sequent$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _user$project$ElmFunctions_sequent$input4prove(_user$project$ElmFunctions_sequent$JsonFromJS_prove),
+			_1: {
+				ctor: '::',
+				_0: _user$project$ElmFunctions_sequent$input4randomFormula(_user$project$ElmFunctions_sequent$JsonFromJS2_randomFormula),
+				_1: {
+					ctor: '::',
+					_0: _user$project$ElmFunctions_sequent$input4randomFormula_provable(_user$project$ElmFunctions_sequent$JsonFromJS3_randomFormulaProvable),
+					_1: {
+						ctor: '::',
+						_0: _user$project$ElmFunctions_sequent$input4syntaxCheck(_user$project$ElmFunctions_sequent$JsonFromJS4_syntaxChecker),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _user$project$ElmFunctions_sequent$main = _elm_lang$html$Html$program(
+	{init: _user$project$ElmFunctions_sequent$initModel, update: _user$project$ElmFunctions_sequent$update, view: _user$project$ElmFunctions_sequent$view, subscriptions: _user$project$ElmFunctions_sequent$subscriptions})();

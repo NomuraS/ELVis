@@ -1,0 +1,12 @@
+AgentAtom
+	│
+	├─Common_syntax───────────────────────┐
+	│		└─RandomFormula　    		  ├─RandomModel
+	├─EModel ─┬─PAL_semantics ────────────┼─FrameProperties
+	│         └─DEL_semantics ────────────┘
+	└─Common_sequent─┬─PAL_sequent
+				     └─DEL_sequent
+
+
+
+		├　┘　┐　┌　└　┼　├　┬　┘ けいせん　─ │

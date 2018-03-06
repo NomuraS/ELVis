@@ -1,0 +1,26 @@
+.btn-success-overwrite {
+    background-color: #168270;
+    border-color: #168270;
+    /* border-radius:0px; */
+}
+.btn-success-overwrite:hover {
+    background-color: #4e8279;
+    border-color: #4e8279;
+    /* border-radius:0px; */
+}
+.btn-info-overwrite {
+    background-color: #555;
+    border-color: #555;
+    /* border-radius:0px; */
+}
+.btn-info-overwrite:hover {
+    background-color: #97997f;
+    border-color: #97997f;
+    /* border-radius:0px; */
+}
+
+.btn-danger-overwrite {
+}
+.btn-danger-overwrite:hover {
+}
+

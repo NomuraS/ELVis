@@ -1,0 +1,247 @@
+var _user$project$ElmFunctions_randomAM$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
+var _user$project$ElmFunctions_randomAM$input1 = _elm_lang$core$Native_Platform.incomingPort('input1', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_randomAM$input2 = _elm_lang$core$Native_Platform.incomingPort('input2', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_randomAM$output1 = _elm_lang$core$Native_Platform.outgoingPort(
+	'output1',
+	function (v) {
+		return {
+			name: v.name,
+			domain: _elm_lang$core$Native_List.toArray(v.domain).map(
+				function (v) {
+					return v;
+				}),
+			relation: _elm_lang$core$Native_List.toArray(v.relation).map(
+				function (v) {
+					return {agent: v.agent, from: v.from, to: v.to};
+				}),
+			precondition: _elm_lang$core$Native_List.toArray(v.precondition).map(
+				function (v) {
+					return {from: v.from, to: v.to};
+				}),
+			valuation: _elm_lang$core$Native_List.toArray(v.valuation).map(
+				function (v) {
+					return {
+						prop: v.prop,
+						worlds: _elm_lang$core$Native_List.toArray(v.worlds).map(
+							function (v) {
+								return v;
+							})
+					};
+				})
+		};
+	});
+var _user$project$ElmFunctions_randomAM$output2 = _elm_lang$core$Native_Platform.outgoingPort(
+	'output2',
+	function (v) {
+		return {
+			name: v.name,
+			domain: _elm_lang$core$Native_List.toArray(v.domain).map(
+				function (v) {
+					return v;
+				}),
+			relation: _elm_lang$core$Native_List.toArray(v.relation).map(
+				function (v) {
+					return {agent: v.agent, from: v.from, to: v.to};
+				}),
+			precondition: _elm_lang$core$Native_List.toArray(v.precondition).map(
+				function (v) {
+					return {from: v.from, to: v.to};
+				}),
+			valuation: _elm_lang$core$Native_List.toArray(v.valuation).map(
+				function (v) {
+					return {
+						prop: v.prop,
+						worlds: _elm_lang$core$Native_List.toArray(v.worlds).map(
+							function (v) {
+								return v;
+							})
+					};
+				})
+		};
+	});
+var _user$project$ElmFunctions_randomAM$JSON = F3(
+	function (a, b, c) {
+		return {numOfAgt: a, numOfAct: b, randomSeed: c};
+	});
+var _user$project$ElmFunctions_randomAM$decodeJSON = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_user$project$ElmFunctions_randomAM$JSON,
+	A2(_elm_lang$core$Json_Decode$field, 'numOfAgt', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'numOfAct', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'randomSeed', _elm_lang$core$Json_Decode$int));
+var _user$project$ElmFunctions_randomAM$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'JsonFromJS1') {
+			var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_randomAM$decodeJSON, _p0._0);
+			var decodedJSON2 = function () {
+				var _p1 = decodedJSON;
+				if (_p1.ctor === 'Ok') {
+					return _p1._0;
+				} else {
+					return _elm_lang$core$Native_Utils.crashCase(
+						'ElmFunctions_randomAM',
+						{
+							start: {line: 73, column: 36},
+							end: {line: 75, column: 87}
+						},
+						_p1)(
+						A2(_elm_lang$core$Basics_ops['++'], 'error in update(1):', _p1._0));
+				}
+			}();
+			var randomModel = _user$project$Util$fst(
+				A4(
+					_user$project$Random_model$createRandomAModel,
+					decodedJSON2.numOfAgt,
+					decodedJSON2.numOfAct,
+					1,
+					_elm_lang$core$Random$initialSeed(decodedJSON2.randomSeed)));
+			var relationC = function () {
+				var ff = function (x) {
+					return {
+						agent: _user$project$Util$fst3(x),
+						from: _user$project$Util$snd3(x),
+						to: _user$project$Util$thd3(x)
+					};
+				};
+				return A2(_elm_lang$core$List$map, ff, randomModel.am_relation);
+			}();
+			var preconC = function () {
+				var ff = function (x) {
+					return {
+						from: _user$project$Util$fst(x),
+						to: A2(
+							_user$project$Common_syntax$outputForm,
+							0,
+							_user$project$Util$snd(x))
+					};
+				};
+				return A2(_elm_lang$core$List$map, ff, randomModel.am_pre);
+			}();
+			var newModel = {
+				name: randomModel.am_name,
+				domain: randomModel.am_domain,
+				relation: relationC,
+				precondition: preconC,
+				valuation: {ctor: '[]'}
+			};
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				newModel,
+				{
+					ctor: '::',
+					_0: _user$project$ElmFunctions_randomAM$output1(newModel),
+					_1: {ctor: '[]'}
+				});
+		} else {
+			var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_randomAM$decodeJSON, _p0._0);
+			var decodedJSON2 = function () {
+				var _p3 = decodedJSON;
+				if (_p3.ctor === 'Ok') {
+					return _p3._0;
+				} else {
+					return _elm_lang$core$Native_Utils.crashCase(
+						'ElmFunctions_randomAM',
+						{
+							start: {line: 109, column: 36},
+							end: {line: 111, column: 87}
+						},
+						_p3)(
+						A2(_elm_lang$core$Basics_ops['++'], 'error in update(2):', _p3._0));
+				}
+			}();
+			var randomModel = _user$project$Util$fst(
+				A4(
+					_user$project$Random_model$createRandomKModel,
+					decodedJSON2.numOfAgt,
+					decodedJSON2.numOfAct,
+					1,
+					_elm_lang$core$Random$initialSeed(decodedJSON2.randomSeed)));
+			var relationC = function () {
+				var ff = function (x) {
+					return {
+						agent: _user$project$Util$fst3(x),
+						from: _user$project$Util$snd3(x),
+						to: _user$project$Util$thd3(x)
+					};
+				};
+				return A2(_elm_lang$core$List$map, ff, randomModel.em_relation);
+			}();
+			var val = function () {
+				var ff = function (x) {
+					return {
+						prop: _user$project$Util$fst(x),
+						worlds: _user$project$Util$snd(x)
+					};
+				};
+				return A2(_elm_lang$core$List$map, ff, randomModel.em_value);
+			}();
+			var newModel = {
+				name: randomModel.em_name,
+				domain: randomModel.em_domain,
+				relation: relationC,
+				precondition: {ctor: '[]'},
+				valuation: val
+			};
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				newModel,
+				{
+					ctor: '::',
+					_0: _user$project$ElmFunctions_randomAM$output2(newModel),
+					_1: {ctor: '[]'}
+				});
+		}
+	});
+var _user$project$ElmFunctions_randomAM$Relation = F3(
+	function (a, b, c) {
+		return {agent: a, from: b, to: c};
+	});
+var _user$project$ElmFunctions_randomAM$Precondition = F2(
+	function (a, b) {
+		return {from: a, to: b};
+	});
+var _user$project$ElmFunctions_randomAM$Valuation = F2(
+	function (a, b) {
+		return {prop: a, worlds: b};
+	});
+var _user$project$ElmFunctions_randomAM$Model = F5(
+	function (a, b, c, d, e) {
+		return {name: a, domain: b, relation: c, precondition: d, valuation: e};
+	});
+var _user$project$ElmFunctions_randomAM$initModel = {
+	ctor: '_Tuple2',
+	_0: A5(
+		_user$project$ElmFunctions_randomAM$Model,
+		'',
+		{ctor: '[]'},
+		{ctor: '[]'},
+		{ctor: '[]'},
+		{ctor: '[]'}),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ElmFunctions_randomAM$JsonFromJS2 = function (a) {
+	return {ctor: 'JsonFromJS2', _0: a};
+};
+var _user$project$ElmFunctions_randomAM$JsonFromJS1 = function (a) {
+	return {ctor: 'JsonFromJS1', _0: a};
+};
+var _user$project$ElmFunctions_randomAM$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _user$project$ElmFunctions_randomAM$input1(_user$project$ElmFunctions_randomAM$JsonFromJS1),
+			_1: {
+				ctor: '::',
+				_0: _user$project$ElmFunctions_randomAM$input2(_user$project$ElmFunctions_randomAM$JsonFromJS2),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$ElmFunctions_randomAM$main = _elm_lang$html$Html$program(
+	{init: _user$project$ElmFunctions_randomAM$initModel, view: _user$project$ElmFunctions_randomAM$view, update: _user$project$ElmFunctions_randomAM$update, subscriptions: _user$project$ElmFunctions_randomAM$subscriptions})();

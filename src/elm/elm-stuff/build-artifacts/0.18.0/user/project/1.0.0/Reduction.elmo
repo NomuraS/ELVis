@@ -1,0 +1,217 @@
+var _user$project$Reduction$AtomBool = F2(
+	function (a, b) {
+		return {atom: a, maybeBool: b};
+	});
+var _user$project$Reduction$FormulaBool = F2(
+	function (a, b) {
+		return {formula: a, maybeBool: b};
+	});
+var _user$project$Reduction$Precon = F2(
+	function (a, b) {
+		return {ctor: 'Precon', _0: a, _1: b};
+	});
+var _user$project$Reduction$DiaAction = F2(
+	function (a, b) {
+		return {ctor: 'DiaAction', _0: a, _1: b};
+	});
+var _user$project$Reduction$BoxAction = F2(
+	function (a, b) {
+		return {ctor: 'BoxAction', _0: a, _1: b};
+	});
+var _user$project$Reduction$Bigvee = F3(
+	function (a, b, c) {
+		return {ctor: 'Bigvee', _0: a, _1: b, _2: c};
+	});
+var _user$project$Reduction$Bigwedge = F3(
+	function (a, b, c) {
+		return {ctor: 'Bigwedge', _0: a, _1: b, _2: c};
+	});
+var _user$project$Reduction$Announce2 = F2(
+	function (a, b) {
+		return {ctor: 'Announce2', _0: a, _1: b};
+	});
+var _user$project$Reduction$Announce = F2(
+	function (a, b) {
+		return {ctor: 'Announce', _0: a, _1: b};
+	});
+var _user$project$Reduction$Box = F2(
+	function (a, b) {
+		return {ctor: 'Box', _0: a, _1: b};
+	});
+var _user$project$Reduction$Dia = F2(
+	function (a, b) {
+		return {ctor: 'Dia', _0: a, _1: b};
+	});
+var _user$project$Reduction$Iff = F2(
+	function (a, b) {
+		return {ctor: 'Iff', _0: a, _1: b};
+	});
+var _user$project$Reduction$Imply2 = F2(
+	function (a, b) {
+		return {ctor: 'Imply2', _0: a, _1: b};
+	});
+var _user$project$Reduction$Imply = F2(
+	function (a, b) {
+		return {ctor: 'Imply', _0: a, _1: b};
+	});
+var _user$project$Reduction$Or = F2(
+	function (a, b) {
+		return {ctor: 'Or', _0: a, _1: b};
+	});
+var _user$project$Reduction$And = F2(
+	function (a, b) {
+		return {ctor: 'And', _0: a, _1: b};
+	});
+var _user$project$Reduction$Not = function (a) {
+	return {ctor: 'Not', _0: a};
+};
+var _user$project$Reduction$AnyFormula = function (a) {
+	return {ctor: 'AnyFormula', _0: a};
+};
+var _user$project$Reduction$Atom = function (a) {
+	return {ctor: 'Atom', _0: a};
+};
+var _user$project$Reduction$Bot = {ctor: 'Bot'};
+var _user$project$Reduction$Top = {ctor: 'Top'};
+var _user$project$Reduction$toELformula = function (f) {
+	toELformula:
+	while (true) {
+		var _p0 = f;
+		_v0_13:
+		do {
+			switch (_p0.ctor) {
+				case 'Not':
+					return _user$project$Reduction$Not(
+						_user$project$Reduction$toELformula(_p0._0));
+				case 'And':
+					return A2(
+						_user$project$Reduction$And,
+						_user$project$Reduction$toELformula(_p0._0),
+						_user$project$Reduction$toELformula(_p0._1));
+				case 'Imply':
+					return A2(
+						_user$project$Reduction$Imply,
+						_user$project$Reduction$toELformula(_p0._0),
+						_user$project$Reduction$toELformula(_p0._1));
+				case 'Imply2':
+					return A2(
+						_user$project$Reduction$Imply2,
+						_user$project$Reduction$toELformula(_p0._0),
+						_user$project$Reduction$toELformula(_p0._1));
+				case 'Iff':
+					return A2(
+						_user$project$Reduction$Iff,
+						_user$project$Reduction$toELformula(_p0._0),
+						_user$project$Reduction$toELformula(_p0._1));
+				case 'Dia':
+					return A2(
+						_user$project$Reduction$Dia,
+						_p0._0,
+						_user$project$Reduction$toELformula(_p0._1));
+				case 'Box':
+					return A2(
+						_user$project$Reduction$Box,
+						_p0._0,
+						_user$project$Reduction$toELformula(_p0._1));
+				case 'Announce2':
+					var _v1 = _user$project$Reduction$Not(
+						A2(
+							_user$project$Reduction$Announce,
+							_user$project$Reduction$Not(_p0._0),
+							_p0._1));
+					f = _v1;
+					continue toELformula;
+				case 'Announce':
+					var _p6 = _p0._1;
+					var _p5 = _p0._0;
+					var _p1 = _p6;
+					switch (_p1.ctor) {
+						case 'Atom':
+							return A2(
+								_user$project$Reduction$Imply,
+								_user$project$Reduction$toELformula(_p6),
+								_user$project$Reduction$Atom(_p1._0));
+						case 'Not':
+							var _p2 = _p1._0;
+							return A2(
+								_user$project$Reduction$Imply,
+								_user$project$Reduction$toELformula(_p2),
+								_user$project$Reduction$Not(
+									_user$project$Reduction$toELformula(
+										A2(_user$project$Reduction$Announce, _p6, _p2))));
+						case 'And':
+							return A2(
+								_user$project$Reduction$And,
+								A2(_user$project$Reduction$Announce, _p5, _p1._0),
+								A2(_user$project$Reduction$Announce, _p6, _p1._1));
+						case 'Imply':
+							return A2(
+								_user$project$Reduction$Imply,
+								A2(_user$project$Reduction$Announce, _p5, _p1._0),
+								A2(_user$project$Reduction$Announce, _p6, _p1._1));
+						case 'Imply2':
+							return A2(
+								_user$project$Reduction$Imply2,
+								A2(_user$project$Reduction$Announce, _p5, _p1._0),
+								A2(_user$project$Reduction$Announce, _p6, _p1._1));
+						case 'Iff':
+							return A2(
+								_user$project$Reduction$Iff,
+								A2(_user$project$Reduction$Announce, _p5, _p1._0),
+								A2(_user$project$Reduction$Announce, _p6, _p1._1));
+						case 'Dia':
+							var _p3 = _p1._1;
+							return A2(
+								_user$project$Reduction$And,
+								_user$project$Reduction$toELformula(_p3),
+								A2(
+									_user$project$Reduction$Dia,
+									_p1._0,
+									_user$project$Reduction$toELformula(
+										A2(_user$project$Reduction$Announce, _p6, _p3))));
+						case 'Box':
+							var _p4 = _p1._1;
+							return A2(
+								_user$project$Reduction$Imply,
+								_user$project$Reduction$toELformula(_p4),
+								A2(
+									_user$project$Reduction$Box,
+									_p1._0,
+									_user$project$Reduction$toELformula(
+										A2(_user$project$Reduction$Announce, _p6, _p4))));
+						case 'Announce':
+							var _v3 = A2(
+								_user$project$Reduction$Announce,
+								A2(
+									_user$project$Reduction$And,
+									_p5,
+									A2(_user$project$Reduction$Announce, _p5, _p1._0)),
+								_p1._1);
+							f = _v3;
+							continue toELformula;
+						default:
+							return _user$project$Reduction$Top;
+					}
+				case 'Bigwedge':
+					if ((_p0._1.ctor === '_Tuple2') && (_p0._1._1.ctor === '_Tuple3')) {
+						return _user$project$Reduction$Top;
+					} else {
+						break _v0_13;
+					}
+				case 'Bigvee':
+					if ((_p0._1.ctor === '_Tuple2') && (_p0._1._1.ctor === '_Tuple3')) {
+						return _user$project$Reduction$Top;
+					} else {
+						break _v0_13;
+					}
+				case 'BoxAction':
+					return _user$project$Reduction$Top;
+				case 'Precon':
+					return _user$project$Reduction$Top;
+				default:
+					break _v0_13;
+			}
+		} while(false);
+		return _user$project$Reduction$Top;
+	}
+};

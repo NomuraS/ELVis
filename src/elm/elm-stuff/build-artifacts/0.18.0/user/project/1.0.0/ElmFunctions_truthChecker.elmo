@@ -1,0 +1,605 @@
+var _user$project$ElmFunctions_truthChecker$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
+var _user$project$ElmFunctions_truthChecker$input1_truthCheck_PAL = _elm_lang$core$Native_Platform.incomingPort('input1_truthCheck_PAL', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_truthChecker$input2_modifyKM_PAL = _elm_lang$core$Native_Platform.incomingPort('input2_modifyKM_PAL', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_truthChecker$input3_modifyKM_DEL = _elm_lang$core$Native_Platform.incomingPort('input3_modifyKM_DEL', _elm_lang$core$Json_Decode$value);
+var _user$project$ElmFunctions_truthChecker$output1_truthCheck_PAL = _elm_lang$core$Native_Platform.outgoingPort(
+	'output1_truthCheck_PAL',
+	function (v) {
+		return {
+			modelName: v.modelName,
+			world: v.world,
+			atomBool: _elm_lang$core$Native_List.toArray(v.atomBool).map(
+				function (v) {
+					return {atom: v.atom, maybeBool: v.maybeBool};
+				}),
+			formulaBool: {formula: v.formulaBool.formula, maybeBool: v.formulaBool.maybeBool},
+			error: v.error,
+			modifiedKM: _elm_lang$core$Native_List.toArray(v.modifiedKM).map(
+				function (v) {
+					return {
+						name: v.name,
+						domain: _elm_lang$core$Native_List.toArray(v.domain).map(
+							function (v) {
+								return v;
+							}),
+						relation: _elm_lang$core$Native_List.toArray(v.relation).map(
+							function (v) {
+								return {agent: v.agent, from: v.from, to: v.to};
+							}),
+						valuation: _elm_lang$core$Native_List.toArray(v.valuation).map(
+							function (v) {
+								return {
+									prop: v.prop,
+									worlds: _elm_lang$core$Native_List.toArray(v.worlds).map(
+										function (v) {
+											return v;
+										})
+								};
+							}),
+						comment: v.comment
+					};
+				})
+		};
+	});
+var _user$project$ElmFunctions_truthChecker$output2_modifyKM_PAL = _elm_lang$core$Native_Platform.outgoingPort(
+	'output2_modifyKM_PAL',
+	function (v) {
+		return {
+			modelName: v.modelName,
+			world: v.world,
+			atomBool: _elm_lang$core$Native_List.toArray(v.atomBool).map(
+				function (v) {
+					return {atom: v.atom, maybeBool: v.maybeBool};
+				}),
+			formulaBool: {formula: v.formulaBool.formula, maybeBool: v.formulaBool.maybeBool},
+			error: v.error,
+			modifiedKM: _elm_lang$core$Native_List.toArray(v.modifiedKM).map(
+				function (v) {
+					return {
+						name: v.name,
+						domain: _elm_lang$core$Native_List.toArray(v.domain).map(
+							function (v) {
+								return v;
+							}),
+						relation: _elm_lang$core$Native_List.toArray(v.relation).map(
+							function (v) {
+								return {agent: v.agent, from: v.from, to: v.to};
+							}),
+						valuation: _elm_lang$core$Native_List.toArray(v.valuation).map(
+							function (v) {
+								return {
+									prop: v.prop,
+									worlds: _elm_lang$core$Native_List.toArray(v.worlds).map(
+										function (v) {
+											return v;
+										})
+								};
+							}),
+						comment: v.comment
+					};
+				})
+		};
+	});
+var _user$project$ElmFunctions_truthChecker$output3_modifyKM_DEL = _elm_lang$core$Native_Platform.outgoingPort(
+	'output3_modifyKM_DEL',
+	function (v) {
+		return {
+			modelName: v.modelName,
+			world: v.world,
+			atomBool: _elm_lang$core$Native_List.toArray(v.atomBool).map(
+				function (v) {
+					return {atom: v.atom, maybeBool: v.maybeBool};
+				}),
+			formulaBool: {formula: v.formulaBool.formula, maybeBool: v.formulaBool.maybeBool},
+			error: v.error,
+			modifiedKM: _elm_lang$core$Native_List.toArray(v.modifiedKM).map(
+				function (v) {
+					return {
+						name: v.name,
+						domain: _elm_lang$core$Native_List.toArray(v.domain).map(
+							function (v) {
+								return v;
+							}),
+						relation: _elm_lang$core$Native_List.toArray(v.relation).map(
+							function (v) {
+								return {agent: v.agent, from: v.from, to: v.to};
+							}),
+						valuation: _elm_lang$core$Native_List.toArray(v.valuation).map(
+							function (v) {
+								return {
+									prop: v.prop,
+									worlds: _elm_lang$core$Native_List.toArray(v.worlds).map(
+										function (v) {
+											return v;
+										})
+								};
+							}),
+						comment: v.comment
+					};
+				})
+		};
+	});
+var _user$project$ElmFunctions_truthChecker$JSON = F5(
+	function (a, b, c, d, e) {
+		return {kripkeModel: a, actionModel: b, world: c, formula: d, actionList: e};
+	});
+var _user$project$ElmFunctions_truthChecker$AModelJSON = F5(
+	function (a, b, c, d, e) {
+		return {name: a, domain: b, relation: c, precondition: d, comment: e};
+	});
+var _user$project$ElmFunctions_truthChecker$AModelJSON_pre = F2(
+	function (a, b) {
+		return {from: a, to: b};
+	});
+var _user$project$ElmFunctions_truthChecker$decodeJSON4action_pre = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$ElmFunctions_truthChecker$AModelJSON_pre,
+	A2(_elm_lang$core$Json_Decode$field, 'from', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'to', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_truthChecker$KModelJSON = F5(
+	function (a, b, c, d, e) {
+		return {name: a, domain: b, relation: c, valuation: d, comment: e};
+	});
+var _user$project$ElmFunctions_truthChecker$KModelJSON_rel = F3(
+	function (a, b, c) {
+		return {agent: a, from: b, to: c};
+	});
+var _user$project$ElmFunctions_truthChecker$decodeJSON4kripke_rel = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_user$project$ElmFunctions_truthChecker$KModelJSON_rel,
+	A2(_elm_lang$core$Json_Decode$field, 'agent', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'from', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'to', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_truthChecker$decodeJSON4action = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_user$project$ElmFunctions_truthChecker$AModelJSON,
+	A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'domain',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'relation',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_truthChecker$decodeJSON4kripke_rel)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'precondition',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_truthChecker$decodeJSON4action_pre)),
+	A2(_elm_lang$core$Json_Decode$field, 'comment', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_truthChecker$KModelJSON_val = F2(
+	function (a, b) {
+		return {prop: a, worlds: b};
+	});
+var _user$project$ElmFunctions_truthChecker$decodeJSON4kripke_val = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$ElmFunctions_truthChecker$KModelJSON_val,
+	A2(_elm_lang$core$Json_Decode$field, 'prop', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'worlds',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)));
+var _user$project$ElmFunctions_truthChecker$decodeJSON4kripke = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_user$project$ElmFunctions_truthChecker$KModelJSON,
+	A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'domain',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'relation',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_truthChecker$decodeJSON4kripke_rel)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'valuation',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_truthChecker$decodeJSON4kripke_val)),
+	A2(_elm_lang$core$Json_Decode$field, 'comment', _elm_lang$core$Json_Decode$string));
+var _user$project$ElmFunctions_truthChecker$decodeJSON = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_user$project$ElmFunctions_truthChecker$JSON,
+	A2(_elm_lang$core$Json_Decode$field, 'kripkeModel', _user$project$ElmFunctions_truthChecker$decodeJSON4kripke),
+	A2(_elm_lang$core$Json_Decode$field, 'actionModel', _user$project$ElmFunctions_truthChecker$decodeJSON4action),
+	A2(_elm_lang$core$Json_Decode$field, 'world', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'formula', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'actionList',
+		_elm_lang$core$Json_Decode$list(_user$project$ElmFunctions_truthChecker$decodeJSON4action)));
+var _user$project$ElmFunctions_truthChecker$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'JsonFromJS1':
+				var decodedJSON2 = function () {
+					var _p1 = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_truthChecker$decodeJSON, _p0._0);
+					if (_p1.ctor === 'Ok') {
+						return _p1._0;
+					} else {
+						return _elm_lang$core$Native_Utils.crashCase(
+							'ElmFunctions_truthChecker',
+							{
+								start: {line: 138, column: 36},
+								end: {line: 140, column: 114}
+							},
+							_p1)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update ElmFunctions_truthChecker (1):', _p1._0));
+					}
+				}();
+				var kmodel = {
+					em_name: decodedJSON2.kripkeModel.name,
+					em_domain: decodedJSON2.kripkeModel.domain,
+					em_relation: A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return {ctor: '_Tuple3', _0: x.agent, _1: x.from, _2: x.to};
+						},
+						decodedJSON2.kripkeModel.relation),
+					em_value: A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return {ctor: '_Tuple2', _0: x.prop, _1: x.worlds};
+						},
+						decodedJSON2.kripkeModel.valuation)
+				};
+				var wo = decodedJSON2.world;
+				var formula = _user$project$Parser_Formula$parseFormula(decodedJSON2.formula);
+				var formulaChecked_ = A2(
+					_user$project$Util_ops['@>>='],
+					formula,
+					function (f) {
+						return _elm_lang$core$Native_Utils.eq(wo, 'any') ? A2(_user$project$PAL_semantics$validInModel, kmodel, f) : A3(_user$project$PAL_semantics$valueF, kmodel, wo, f);
+					});
+				var atomsChecked_ = A2(
+					_elm_lang$core$Result$map,
+					function (f) {
+						return A3(_user$project$PAL_semantics$checkEachAtoms, kmodel, wo, f);
+					},
+					formula);
+				var newModel0 = {
+					formulaBool: {formula: '', maybeBool: ''},
+					modelName: decodedJSON2.kripkeModel.name,
+					world: decodedJSON2.world,
+					atomBool: {ctor: '[]'},
+					error: '',
+					modifiedKM: {ctor: '[]'}
+				};
+				var newModel = function () {
+					var _p3 = {ctor: '_Tuple2', _0: formulaChecked_, _1: atomsChecked_};
+					if (_p3._0.ctor === 'Ok') {
+						if (_p3._1.ctor === 'Ok') {
+							return _elm_lang$core$Native_Utils.update(
+								newModel0,
+								{
+									formulaBool: {
+										formula: decodedJSON2.formula,
+										maybeBool: _elm_lang$core$Native_Utils.eq(_p3._0._0, true) ? 'true' : 'false'
+									},
+									atomBool: _p3._1._0
+								});
+						} else {
+							return _elm_lang$core$Native_Utils.update(
+								newModel0,
+								{error: _p3._1._0});
+						}
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							newModel0,
+							{error: _p3._0._0});
+					}
+				}();
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					newModel,
+					{
+						ctor: '::',
+						_0: _user$project$ElmFunctions_truthChecker$output1_truthCheck_PAL(newModel),
+						_1: {ctor: '[]'}
+					});
+			case 'JsonFromJS2_modifyKM_PAL':
+				var newModel0 = {
+					formulaBool: {formula: '', maybeBool: ''},
+					modelName: '',
+					world: '',
+					atomBool: {ctor: '[]'},
+					error: '',
+					modifiedKM: {ctor: '[]'}
+				};
+				var decodedJSON2 = function () {
+					var _p4 = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_truthChecker$decodeJSON, _p0._0);
+					if (_p4.ctor === 'Ok') {
+						return _p4._0;
+					} else {
+						return _elm_lang$core$Native_Utils.crashCase(
+							'ElmFunctions_truthChecker',
+							{
+								start: {line: 174, column: 36},
+								end: {line: 176, column: 114}
+							},
+							_p4)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update ElmFunctions_truthChecker (2):', _p4._0));
+					}
+				}();
+				var kmodel = {
+					em_name: decodedJSON2.kripkeModel.name,
+					em_domain: decodedJSON2.kripkeModel.domain,
+					em_relation: A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return {ctor: '_Tuple3', _0: x.agent, _1: x.from, _2: x.to};
+						},
+						decodedJSON2.kripkeModel.relation),
+					em_value: A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return {ctor: '_Tuple2', _0: x.prop, _1: x.worlds};
+						},
+						decodedJSON2.kripkeModel.valuation)
+				};
+				var wo = decodedJSON2.world;
+				var formula = _user$project$Parser_Formula$parseFormula(decodedJSON2.formula);
+				var kmModified_ = A2(
+					_user$project$Util_ops['@>>='],
+					formula,
+					function (x) {
+						return A2(_user$project$PAL_semantics$modifyEModel, kmodel, x);
+					});
+				var newModel = function () {
+					var _p6 = kmModified_;
+					if (_p6.ctor === 'Ok') {
+						var _p11 = _p6._0;
+						var km_model = {
+							name: A2(
+								_elm_lang$core$Basics_ops['++'],
+								decodedJSON2.kripkeModel.name,
+								A2(_elm_lang$core$Basics_ops['++'], '|', decodedJSON2.formula)),
+							domain: _p11.em_domain,
+							relation: A2(
+								_elm_lang$core$List$map,
+								function (_p7) {
+									var _p8 = _p7;
+									return {agent: _p8._0, from: _p8._1, to: _p8._2};
+								},
+								_p11.em_relation),
+							valuation: A2(
+								_elm_lang$core$List$map,
+								function (_p9) {
+									var _p10 = _p9;
+									return {prop: _p10._0, worlds: _p10._1};
+								},
+								_p11.em_value),
+							comment: A2(_elm_lang$core$Basics_ops['++'], 'This is the KM restricted by formula ', decodedJSON2.formula)
+						};
+						return _elm_lang$core$Native_Utils.update(
+							newModel0,
+							{
+								modifiedKM: {
+									ctor: '::',
+									_0: km_model,
+									_1: {ctor: '[]'}
+								}
+							});
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							newModel0,
+							{error: _p6._0});
+					}
+				}();
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					newModel,
+					{
+						ctor: '::',
+						_0: _user$project$ElmFunctions_truthChecker$output2_modifyKM_PAL(newModel),
+						_1: {ctor: '[]'}
+					});
+			default:
+				var newModel0 = {
+					formulaBool: {formula: '', maybeBool: ''},
+					modelName: '',
+					world: '',
+					atomBool: {ctor: '[]'},
+					error: '',
+					modifiedKM: {ctor: '[]'}
+				};
+				var parse2 = function (x) {
+					var _p12 = _user$project$Parser_Formula$parseFormula(x.to);
+					if (_p12.ctor === 'Ok') {
+						return _elm_lang$core$Result$Ok(
+							{ctor: '_Tuple2', _0: x.from, _1: _p12._0});
+					} else {
+						return _elm_lang$core$Result$Err(
+							A2(_elm_lang$core$Basics_ops['++'], 'parseError:', _p12._0));
+					}
+				};
+				var decodedJSON2 = function () {
+					var _p13 = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_truthChecker$decodeJSON, _p0._0);
+					if (_p13.ctor === 'Ok') {
+						return _p13._0;
+					} else {
+						return _elm_lang$core$Native_Utils.crashCase(
+							'ElmFunctions_truthChecker',
+							{
+								start: {line: 211, column: 36},
+								end: {line: 213, column: 114}
+							},
+							_p13)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update ElmFunctions_truthChecker (2):', _p13._0));
+					}
+				}();
+				var kmName = decodedJSON2.kripkeModel.name;
+				var kmDomain = decodedJSON2.kripkeModel.domain;
+				var kmRelaton = decodedJSON2.kripkeModel.relation;
+				var kmValuation = decodedJSON2.kripkeModel.valuation;
+				var kmodel = {
+					em_name: kmName,
+					em_domain: kmDomain,
+					em_relation: A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return {ctor: '_Tuple3', _0: x.agent, _1: x.from, _2: x.to};
+						},
+						kmRelaton),
+					em_value: A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return {ctor: '_Tuple2', _0: x.prop, _1: x.worlds};
+						},
+						kmValuation)
+				};
+				var amName = decodedJSON2.actionModel.name;
+				var amDomain = decodedJSON2.actionModel.domain;
+				var amRelation = decodedJSON2.actionModel.relation;
+				var amPrecondition = decodedJSON2.actionModel.precondition;
+				var precon = _elm_community$result_extra$Result_Extra$combine(
+					A2(
+						_elm_lang$core$List$map,
+						function (x) {
+							return parse2(x);
+						},
+						amPrecondition));
+				var actionList = A2(_elm_lang$core$List$map, _user$project$Parser_Formula$object2listOfActions, decodedJSON2.actionList);
+				var actionList2 = A2(_user$project$DEL_sequent$substitution4AModel4list_AModels, actionList, actionList);
+				var preconSubst = function () {
+					var _p15 = precon;
+					if (_p15.ctor === 'Err') {
+						return _elm_lang$core$Result$Err(_p15._0);
+					} else {
+						var ff = function (x) {
+							return {
+								ctor: '_Tuple2',
+								_0: _user$project$Util$fst(x),
+								_1: A2(
+									_user$project$DEL_sequent$substitution4AModel4list,
+									_user$project$Util$snd(x),
+									actionList2)
+							};
+						};
+						return _elm_lang$core$Result$Ok(
+							A2(_elm_lang$core$List$map, ff, _p15._0));
+					}
+				}();
+				var amodel = A2(
+					_user$project$Applicative_ops['@>'],
+					preconSubst,
+					function (x) {
+						return {
+							am_name: amName,
+							am_domain: amDomain,
+							am_relation: A2(
+								_elm_lang$core$List$map,
+								function (x) {
+									return {ctor: '_Tuple3', _0: x.agent, _1: x.from, _2: x.to};
+								},
+								amRelation),
+							am_pre: x
+						};
+					});
+				var kmModified_ = A2(
+					_user$project$Applicative_ops['<@'],
+					_user$project$DEL_semantics$composeKM(kmodel),
+					amodel);
+				var newModel = function () {
+					var _p16 = kmModified_;
+					if (_p16.ctor === 'Ok') {
+						var _p21 = _p16._0;
+						var km_model = {
+							name: _p21.em_name,
+							domain: _p21.em_domain,
+							relation: A2(
+								_elm_lang$core$List$map,
+								function (_p17) {
+									var _p18 = _p17;
+									return {agent: _p18._0, from: _p18._1, to: _p18._2};
+								},
+								_p21.em_relation),
+							valuation: A2(
+								_elm_lang$core$List$map,
+								function (_p19) {
+									var _p20 = _p19;
+									return {prop: _p20._0, worlds: _p20._1};
+								},
+								_p21.em_value),
+							comment: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'This is the KM ',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									kmName,
+									A2(_elm_lang$core$Basics_ops['++'], ' restricted by AM ', amName)))
+						};
+						return _elm_lang$core$Native_Utils.update(
+							newModel0,
+							{
+								modifiedKM: {
+									ctor: '::',
+									_0: km_model,
+									_1: {ctor: '[]'}
+								}
+							});
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							newModel0,
+							{error: _p16._0});
+					}
+				}();
+				var wo = decodedJSON2.world;
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					newModel,
+					{
+						ctor: '::',
+						_0: _user$project$ElmFunctions_truthChecker$output3_modifyKM_DEL(newModel),
+						_1: {ctor: '[]'}
+					});
+		}
+	});
+var _user$project$ElmFunctions_truthChecker$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {modelName: a, world: b, atomBool: c, formulaBool: d, error: e, modifiedKM: f};
+	});
+var _user$project$ElmFunctions_truthChecker$initModel = {
+	ctor: '_Tuple2',
+	_0: A6(
+		_user$project$ElmFunctions_truthChecker$Model,
+		'',
+		'',
+		{ctor: '[]'},
+		{formula: '', maybeBool: ''},
+		'',
+		{ctor: '[]'}),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ElmFunctions_truthChecker$JsonFromJS3_modifyKM_DEL = function (a) {
+	return {ctor: 'JsonFromJS3_modifyKM_DEL', _0: a};
+};
+var _user$project$ElmFunctions_truthChecker$JsonFromJS2_modifyKM_PAL = function (a) {
+	return {ctor: 'JsonFromJS2_modifyKM_PAL', _0: a};
+};
+var _user$project$ElmFunctions_truthChecker$JsonFromJS1 = function (a) {
+	return {ctor: 'JsonFromJS1', _0: a};
+};
+var _user$project$ElmFunctions_truthChecker$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _user$project$ElmFunctions_truthChecker$input1_truthCheck_PAL(_user$project$ElmFunctions_truthChecker$JsonFromJS1),
+			_1: {
+				ctor: '::',
+				_0: _user$project$ElmFunctions_truthChecker$input2_modifyKM_PAL(_user$project$ElmFunctions_truthChecker$JsonFromJS2_modifyKM_PAL),
+				_1: {
+					ctor: '::',
+					_0: _user$project$ElmFunctions_truthChecker$input3_modifyKM_DEL(_user$project$ElmFunctions_truthChecker$JsonFromJS3_modifyKM_DEL),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$ElmFunctions_truthChecker$main = _elm_lang$html$Html$program(
+	{init: _user$project$ElmFunctions_truthChecker$initModel, view: _user$project$ElmFunctions_truthChecker$view, update: _user$project$ElmFunctions_truthChecker$update, subscriptions: _user$project$ElmFunctions_truthChecker$subscriptions})();

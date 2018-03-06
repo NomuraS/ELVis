@@ -1,0 +1,500 @@
+var _user$project$PAL_semantics$announceHexa3 = _user$project$Common_syntax$bigAnd(
+	{
+		ctor: '::',
+		_0: _user$project$Common_syntax$Atom('0a'),
+		_1: {
+			ctor: '::',
+			_0: _user$project$Common_syntax$Atom('1b'),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Common_syntax$Atom('2c'),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$PAL_semantics$announceHexa2 = _user$project$Common_syntax$bigOr(
+	{
+		ctor: '::',
+		_0: A2(
+			_user$project$Common_syntax$notknow,
+			'b',
+			_user$project$Common_syntax$Atom('0a')),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_user$project$Common_syntax$know,
+				'b',
+				_user$project$Common_syntax$Atom('1a')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$Common_syntax$know,
+					'b',
+					_user$project$Common_syntax$Atom('2a')),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$PAL_semantics$announceHexa1 = _user$project$Common_syntax$Not(
+	_user$project$Common_syntax$Atom('1a'));
+var _user$project$PAL_semantics$hexamodel0 = _elm_lang$core$Result$Ok(_user$project$EModel$hexaModel);
+var _user$project$PAL_semantics$announceMuddy3 = _user$project$Common_syntax$bigAnd(
+	{
+		ctor: '::',
+		_0: A2(
+			_user$project$Common_syntax$knowNeither,
+			'a',
+			_user$project$Common_syntax$Atom('0a')),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_user$project$Common_syntax$knowEither,
+				'b',
+				_user$project$Common_syntax$Atom('0b')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$Common_syntax$knowEither,
+					'c',
+					_user$project$Common_syntax$Atom('0c')),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$PAL_semantics$announceMuddy2 = _user$project$Common_syntax$bigAnd(
+	{
+		ctor: '::',
+		_0: A2(
+			_user$project$Common_syntax$knowNeither,
+			'a',
+			_user$project$Common_syntax$Atom('0a')),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_user$project$Common_syntax$knowNeither,
+				'b',
+				_user$project$Common_syntax$Atom('0b')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$Common_syntax$knowNeither,
+					'c',
+					_user$project$Common_syntax$Atom('0c')),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$PAL_semantics$announceMuddy1 = _user$project$Common_syntax$bigOr(
+	{
+		ctor: '::',
+		_0: _user$project$Common_syntax$Atom('0a'),
+		_1: {
+			ctor: '::',
+			_0: _user$project$Common_syntax$Atom('0b'),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Common_syntax$Atom('0c'),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$PAL_semantics$knowEither4muddy = function (x) {
+	return A2(
+		_user$project$Common_syntax$knowEither,
+		x,
+		_user$project$Common_syntax$Atom(
+			A2(_elm_lang$core$Basics_ops['++'], '0', x)));
+};
+var _user$project$PAL_semantics$knowNeither4muddy = function (ag) {
+	return _user$project$Common_syntax$Not(
+		_user$project$PAL_semantics$knowEither4muddy(ag));
+};
+var _user$project$PAL_semantics$muddymodel0 = _elm_lang$core$Result$Ok(_user$project$EModel$muddyModel);
+var _user$project$PAL_semantics$formula2atoms = function (f) {
+	var _p0 = f;
+	switch (_p0.ctor) {
+		case 'Top':
+			return {
+				ctor: '::',
+				_0: _user$project$Common_syntax$Top,
+				_1: {ctor: '[]'}
+			};
+		case 'Bot':
+			return {
+				ctor: '::',
+				_0: _user$project$Common_syntax$Bot,
+				_1: {ctor: '[]'}
+			};
+		case 'Atom':
+			return {
+				ctor: '::',
+				_0: _user$project$Common_syntax$Atom(_p0._0),
+				_1: {ctor: '[]'}
+			};
+		case 'AnyFormula':
+			return {
+				ctor: '::',
+				_0: _user$project$Common_syntax$AnyFormula(_p0._0),
+				_1: {ctor: '[]'}
+			};
+		case 'Not':
+			return _user$project$Util$nub(
+				_user$project$PAL_semantics$formula2atoms(_p0._0));
+		case 'And':
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$PAL_semantics$formula2atoms(_p0._0),
+					_user$project$PAL_semantics$formula2atoms(_p0._1)));
+		case 'Or':
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$PAL_semantics$formula2atoms(_p0._0),
+					_user$project$PAL_semantics$formula2atoms(_p0._1)));
+		case 'Imply':
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$PAL_semantics$formula2atoms(_p0._0),
+					_user$project$PAL_semantics$formula2atoms(_p0._1)));
+		case 'Imply2':
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$PAL_semantics$formula2atoms(_p0._0),
+					_user$project$PAL_semantics$formula2atoms(_p0._1)));
+		case 'Iff':
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$PAL_semantics$formula2atoms(_p0._0),
+					_user$project$PAL_semantics$formula2atoms(_p0._1)));
+		case 'Box':
+			return _user$project$Util$nub(
+				_user$project$PAL_semantics$formula2atoms(_p0._1));
+		case 'Dia':
+			return _user$project$Util$nub(
+				_user$project$PAL_semantics$formula2atoms(_p0._1));
+		case 'Announce':
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$PAL_semantics$formula2atoms(_p0._0),
+					_user$project$PAL_semantics$formula2atoms(_p0._1)));
+		case 'Announce2':
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$PAL_semantics$formula2atoms(_p0._0),
+					_user$project$PAL_semantics$formula2atoms(_p0._1)));
+		default:
+			return _elm_lang$core$Native_Utils.crashCase(
+				'PAL_semantics',
+				{
+					start: {line: 116, column: 19},
+					end: {line: 131, column: 48}
+				},
+				_p0)('undefined in valueF of PAL');
+	}
+};
+var _user$project$PAL_semantics$atom2string = function (atm) {
+	var _p2 = atm;
+	switch (_p2.ctor) {
+		case 'Top':
+			return 'top';
+		case 'Bot':
+			return 'bot';
+		case 'Atom':
+			return _p2._0;
+		case 'AnyFormula':
+			return _p2._0;
+		default:
+			return 'parse error';
+	}
+};
+var _user$project$PAL_semantics$truFalse2string = function (a) {
+	var _p3 = a;
+	if (_p3.ctor === 'Ok') {
+		if (_p3._0 === true) {
+			return 'true';
+		} else {
+			return 'false';
+		}
+	} else {
+		return _p3._0;
+	}
+};
+var _user$project$PAL_semantics$valueF = F3(
+	function (mo, w, f) {
+		valueF:
+		while (true) {
+			if (!A2(_elm_lang$core$List$member, w, mo.em_domain)) {
+				return _elm_lang$core$Result$Err(
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						w,
+						A2(_elm_lang$core$Basics_ops['++'], ' is not a member of the domain of ', mo.em_name)));
+			} else {
+				var _p4 = f;
+				switch (_p4.ctor) {
+					case 'Top':
+						return _elm_lang$core$Result$Ok(true);
+					case 'Bot':
+						return _elm_lang$core$Result$Ok(false);
+					case 'Atom':
+						return _elm_lang$core$Result$Ok(
+							A2(
+								_elm_lang$core$List$member,
+								w,
+								A2(_user$project$Util$lookVal, _p4._0, mo.em_value)));
+					case 'AnyFormula':
+						return _elm_lang$core$Result$Err(
+							A2(_elm_lang$core$Basics_ops['++'], 'not allowed to include any formula ', _p4._0));
+					case 'Not':
+						return A2(
+							_elm_lang$core$Result$map,
+							_elm_lang$core$Basics$not,
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._0));
+					case 'And':
+						return A3(
+							_elm_lang$core$Result$map2,
+							F2(
+								function (x, y) {
+									return x && y;
+								}),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._0),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._1));
+					case 'Or':
+						return A3(
+							_elm_lang$core$Result$map2,
+							F2(
+								function (x, y) {
+									return x || y;
+								}),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._0),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._1));
+					case 'Imply':
+						return A3(
+							_elm_lang$core$Result$map2,
+							F2(
+								function (x, y) {
+									return A2(_user$project$Util_ops['==>'], x, y);
+								}),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._0),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._1));
+					case 'Imply2':
+						return A3(
+							_elm_lang$core$Result$map2,
+							F2(
+								function (x, y) {
+									return A2(_user$project$Util_ops['==>'], x, y);
+								}),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._1),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._0));
+					case 'Iff':
+						return A3(
+							_elm_lang$core$Result$map2,
+							F2(
+								function (x, y) {
+									return _elm_lang$core$Native_Utils.eq(x, y);
+								}),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._1),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p4._0));
+					case 'Box':
+						return A2(
+							_user$project$Util$forallResult,
+							mo.em_domain,
+							function (z) {
+								return A3(
+									_elm_lang$core$Result$map2,
+									F2(
+										function (x, y) {
+											return A2(_user$project$Util_ops['==>'], x, y);
+										}),
+									_elm_lang$core$Result$Ok(
+										A2(
+											_elm_lang$core$List$member,
+											{ctor: '_Tuple2', _0: w, _1: z},
+											A2(_user$project$Util$lookRel, _p4._0, mo.em_relation))),
+									A3(_user$project$PAL_semantics$valueF, mo, z, _p4._1));
+							});
+					case 'Dia':
+						return A2(
+							_user$project$Util$existsResult,
+							mo.em_domain,
+							function (z) {
+								return A3(
+									_elm_lang$core$Result$map2,
+									F2(
+										function (x, y) {
+											return x && y;
+										}),
+									_elm_lang$core$Result$Ok(
+										A2(
+											_elm_lang$core$List$member,
+											{ctor: '_Tuple2', _0: w, _1: z},
+											A2(_user$project$Util$lookRel, _p4._0, mo.em_relation))),
+									A3(_user$project$PAL_semantics$valueF, mo, z, _p4._1));
+							});
+					case 'Announce':
+						var _p5 = _p4._0;
+						return A3(
+							_elm_lang$core$Result$map2,
+							F2(
+								function (x, y) {
+									return A2(_user$project$Util_ops['==>'], x, y);
+								}),
+							A3(_user$project$PAL_semantics$valueF, mo, w, _p5),
+							A2(
+								_user$project$Util_ops['@>>='],
+								A2(_user$project$PAL_semantics$modifyEModel, mo, _p5),
+								function (km) {
+									return A3(_user$project$PAL_semantics$valueF, km, w, _p4._1);
+								}));
+					case 'Announce2':
+						var _v4 = mo,
+							_v5 = w,
+							_v6 = _user$project$Common_syntax$Not(
+							A2(
+								_user$project$Common_syntax$Announce,
+								_p4._0,
+								_user$project$Common_syntax$Not(_p4._1)));
+						mo = _v4;
+						w = _v5;
+						f = _v6;
+						continue valueF;
+					default:
+						return _elm_lang$core$Result$Err('undefined in valueF of PAL');
+				}
+			}
+		}
+	});
+var _user$project$PAL_semantics$modifyEModel = F2(
+	function (mo, f) {
+		var mtrueR = A2(_user$project$PAL_semantics$trueEMRelation, mo, f);
+		var mtrueW = A2(_user$project$PAL_semantics$trueWorld, mo, f);
+		return A3(
+			_elm_lang$core$Result$map2,
+			F2(
+				function (x, y) {
+					return {
+						em_name: A2(
+							_elm_lang$core$Basics_ops['++'],
+							mo.em_name,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',',
+								A2(_user$project$Common_syntax$outputForm, 0, f))),
+						em_domain: x,
+						em_relation: y,
+						em_value: mo.em_value
+					};
+				}),
+			mtrueW,
+			mtrueR);
+	});
+var _user$project$PAL_semantics$trueEMRelation = F2(
+	function (mo, f) {
+		var _p6 = A2(_user$project$PAL_semantics$trueWorld, mo, f);
+		if (_p6.ctor === 'Err') {
+			return _elm_lang$core$Result$Err(_p6._0);
+		} else {
+			var _p12 = _p6._0;
+			var gg = function (_p7) {
+				var _p8 = _p7;
+				var _p11 = _p8._2;
+				var _p10 = _p8._1;
+				var _p9 = _p8._0;
+				return (A2(
+					_elm_lang$core$List$member,
+					{ctor: '_Tuple3', _0: _p9, _1: _p10, _2: _p11},
+					mo.em_relation) && (A2(_elm_lang$core$List$member, _p10, _p12) && A2(_elm_lang$core$List$member, _p11, _p12))) ? {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: _p9, _1: _p10, _2: _p11},
+					_1: {ctor: '[]'}
+				} : {ctor: '[]'};
+			};
+			return _elm_lang$core$Result$Ok(
+				A2(_elm_lang$core$List$concatMap, gg, mo.em_relation));
+		}
+	});
+var _user$project$PAL_semantics$trueWorld = F2(
+	function (mo, f) {
+		return A2(
+			_user$project$Util$filterR,
+			function (w) {
+				return A3(_user$project$PAL_semantics$valueF, mo, w, f);
+			},
+			mo.em_domain);
+	});
+var _user$project$PAL_semantics$validInModel = F2(
+	function (mo, f) {
+		return A2(
+			_user$project$Util$forallResult,
+			mo.em_domain,
+			function (x) {
+				return A3(_user$project$PAL_semantics$valueF, mo, x, f);
+			});
+	});
+var _user$project$PAL_semantics$muddymodel1 = A2(
+	_user$project$Util_ops['@>>='],
+	_user$project$PAL_semantics$muddymodel0,
+	function (em) {
+		return A2(_user$project$PAL_semantics$modifyEModel, em, _user$project$PAL_semantics$announceMuddy1);
+	});
+var _user$project$PAL_semantics$muddymodel2 = A2(
+	_user$project$Util_ops['@>>='],
+	_user$project$PAL_semantics$muddymodel1,
+	function (em) {
+		return A2(_user$project$PAL_semantics$modifyEModel, em, _user$project$PAL_semantics$announceMuddy2);
+	});
+var _user$project$PAL_semantics$muddymodel3 = A2(
+	_user$project$Util_ops['@>>='],
+	_user$project$PAL_semantics$muddymodel2,
+	function (em) {
+		return A2(_user$project$PAL_semantics$modifyEModel, em, _user$project$PAL_semantics$announceMuddy3);
+	});
+var _user$project$PAL_semantics$hexamodel1 = A2(
+	_user$project$Util_ops['@>>='],
+	_user$project$PAL_semantics$hexamodel0,
+	function (x) {
+		return A2(_user$project$PAL_semantics$modifyEModel, x, _user$project$PAL_semantics$announceHexa1);
+	});
+var _user$project$PAL_semantics$hexamodel2 = A2(
+	_user$project$Util_ops['@>>='],
+	_user$project$PAL_semantics$hexamodel1,
+	function (x) {
+		return A2(_user$project$PAL_semantics$modifyEModel, x, _user$project$PAL_semantics$announceHexa2);
+	});
+var _user$project$PAL_semantics$hexamodel3 = A2(
+	_user$project$Util_ops['@>>='],
+	_user$project$PAL_semantics$hexamodel2,
+	function (x) {
+		return A2(_user$project$PAL_semantics$modifyEModel, x, _user$project$PAL_semantics$announceHexa3);
+	});
+var _user$project$PAL_semantics$checkEachAtoms = F3(
+	function (em, w, f) {
+		var hoge = function (a) {
+			return _elm_lang$core$Native_Utils.eq(w, 'any') ? A2(_user$project$PAL_semantics$validInModel, em, a) : A3(_user$project$PAL_semantics$valueF, em, w, a);
+		};
+		var ff = function (a) {
+			var _p13 = hoge(a);
+			if (_p13.ctor === 'Ok') {
+				return {
+					atom: _user$project$PAL_semantics$atom2string(a),
+					maybeBool: _user$project$PAL_semantics$truFalse2string(
+						_elm_lang$core$Result$Ok(_p13._0))
+				};
+			} else {
+				return {
+					atom: _user$project$PAL_semantics$atom2string(a),
+					maybeBool: _p13._0
+				};
+			}
+		};
+		return A2(
+			_elm_lang$core$List$map,
+			ff,
+			_user$project$PAL_semantics$formula2atoms(f));
+	});

@@ -1,0 +1,120 @@
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['@@>'] = F2(
+	function (mx, mf) {
+		return A2(_elm_community$result_extra$Result_Extra$andMap, mx, mf);
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['<@@'] = F2(
+	function (mf, mx) {
+		return A2(_elm_community$result_extra$Result_Extra$andMap, mx, mf);
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['@>'] = F2(
+	function (mx, f) {
+		var _p0 = mx;
+		if (_p0.ctor === 'Ok') {
+			return _elm_lang$core$Result$Ok(
+				f(_p0._0));
+		} else {
+			return _elm_lang$core$Result$Err(_p0._0);
+		}
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['<@'] = F2(
+	function (f, mx) {
+		var _p1 = mx;
+		if (_p1.ctor === 'Ok') {
+			return _elm_lang$core$Result$Ok(
+				f(_p1._0));
+		} else {
+			return _elm_lang$core$Result$Err(_p1._0);
+		}
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['!>'] = F2(
+	function (mx, f) {
+		var _p2 = mx;
+		if (_p2.ctor === 'Right') {
+			return _toastal$either$Either$Right(
+				f(_p2._0));
+		} else {
+			return _toastal$either$Either$Left(_p2._0);
+		}
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['<!'] = F2(
+	function (f, mx) {
+		var _p3 = mx;
+		if (_p3.ctor === 'Right') {
+			return _toastal$either$Either$Right(
+				f(_p3._0));
+		} else {
+			return _toastal$either$Either$Left(_p3._0);
+		}
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['??>'] = F2(
+	function (mx, mf) {
+		return A2(_elm_community$maybe_extra$Maybe_Extra$andMap, mx, mf);
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['<??'] = F2(
+	function (mf, mx) {
+		return A2(_elm_community$maybe_extra$Maybe_Extra$andMap, mx, mf);
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['?>'] = F2(
+	function (mx, f) {
+		var _p4 = mx;
+		if (_p4.ctor === 'Just') {
+			return _elm_lang$core$Maybe$Just(
+				f(_p4._0));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['<?'] = F2(
+	function (f, mx) {
+		var _p5 = mx;
+		if (_p5.ctor === 'Just') {
+			return _elm_lang$core$Maybe$Just(
+				f(_p5._0));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['$$>'] = F2(
+	function (lx, lf) {
+		return A3(
+			_elm_lang$core$List$map2,
+			F2(
+				function (f, x) {
+					return f(x);
+				}),
+			lf,
+			lx);
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['<$$'] = F2(
+	function (lf, lx) {
+		return A3(
+			_elm_lang$core$List$map2,
+			F2(
+				function (f, x) {
+					return f(x);
+				}),
+			lf,
+			lx);
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['$>'] = F2(
+	function (lx, f) {
+		return A2(_elm_lang$core$List$map, f, lx);
+	});
+var _user$project$Applicative_ops = _user$project$Applicative_ops || {};
+_user$project$Applicative_ops['<$'] = F2(
+	function (f, lx) {
+		return A2(_elm_lang$core$List$map, f, lx);
+	});

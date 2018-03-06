@@ -1,0 +1,1014 @@
+var _user$project$EModel$letter = function () {
+	var name = 'letter';
+	var w1 = '1';
+	var letterV = {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 'p',
+			_1: {
+				ctor: '::',
+				_0: w1,
+				_1: {ctor: '[]'}
+			}
+		},
+		_1: {ctor: '[]'}
+	};
+	var w0 = '0';
+	var letterS = {
+		ctor: '::',
+		_0: w0,
+		_1: {
+			ctor: '::',
+			_0: w1,
+			_1: {ctor: '[]'}
+		}
+	};
+	var letterR = A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: 'a', _1: w0, _2: w0},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'a', _1: w1, _2: w1},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'a', _1: w0, _2: w1},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'a', _1: w1, _2: w0},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: 'b', _1: w0, _2: w0},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'b', _1: w1, _2: w1},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'b', _1: w0, _2: w1},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'b', _1: w1, _2: w0},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+	return {em_name: name, em_domain: letterS, em_relation: letterR, em_value: letterV};
+}();
+var _user$project$EModel$makeRefl = F2(
+	function (ag, dom) {
+		return A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return {ctor: '_Tuple3', _0: ag, _1: x, _2: x};
+			},
+			dom);
+	});
+var _user$project$EModel$hexaModel = function () {
+	var w120 = '120';
+	var w210 = '210';
+	var w201 = '201';
+	var w102 = '102';
+	var w021 = '021';
+	var w012 = '012';
+	var hexaW = {
+		ctor: '::',
+		_0: w012,
+		_1: {
+			ctor: '::',
+			_0: w021,
+			_1: {
+				ctor: '::',
+				_0: w102,
+				_1: {
+					ctor: '::',
+					_0: w201,
+					_1: {
+						ctor: '::',
+						_0: w210,
+						_1: {
+							ctor: '::',
+							_0: w120,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	};
+	var refl = function (ag) {
+		return A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return {ctor: '_Tuple3', _0: ag, _1: x, _2: x};
+			},
+			hexaW);
+	};
+	var hexaR = A2(
+		_elm_lang$core$Basics_ops['++'],
+		refl('a'),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			refl('b'),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				refl('c'),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'a', _1: w012, _2: w021},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'a', _1: w102, _2: w120},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple3', _0: 'a', _1: w201, _2: w210},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple3', _0: 'a', _1: w021, _2: w012},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple3', _0: 'a', _1: w120, _2: w102},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple3', _0: 'a', _1: w210, _2: w201},
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					},
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'b', _1: w021, _2: w120},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple3', _0: 'b', _1: w012, _2: w210},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple3', _0: 'b', _1: w102, _2: w201},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple3', _0: 'b', _1: w120, _2: w021},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple3', _0: 'b', _1: w210, _2: w012},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple3', _0: 'b', _1: w201, _2: w102},
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'c', _1: w012, _2: w102},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple3', _0: 'c', _1: w021, _2: w201},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple3', _0: 'c', _1: w120, _2: w210},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple3', _0: 'c', _1: w102, _2: w012},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple3', _0: 'c', _1: w201, _2: w021},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple3', _0: 'c', _1: w210, _2: w120},
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						})))));
+	var hexaV = {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: '0a',
+			_1: {
+				ctor: '::',
+				_0: w012,
+				_1: {
+					ctor: '::',
+					_0: w021,
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: '1a',
+				_1: {
+					ctor: '::',
+					_0: w102,
+					_1: {
+						ctor: '::',
+						_0: w120,
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: '2a',
+					_1: {
+						ctor: '::',
+						_0: w201,
+						_1: {
+							ctor: '::',
+							_0: w210,
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: '0b',
+						_1: {
+							ctor: '::',
+							_0: w102,
+							_1: {
+								ctor: '::',
+								_0: w201,
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: '1b',
+							_1: {
+								ctor: '::',
+								_0: w012,
+								_1: {
+									ctor: '::',
+									_0: w210,
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: '2b',
+								_1: {
+									ctor: '::',
+									_0: w021,
+									_1: {
+										ctor: '::',
+										_0: w120,
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: '0c',
+									_1: {
+										ctor: '::',
+										_0: w120,
+										_1: {
+											ctor: '::',
+											_0: w210,
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: '1c',
+										_1: {
+											ctor: '::',
+											_0: w021,
+											_1: {
+												ctor: '::',
+												_0: w201,
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: '2c',
+											_1: {
+												ctor: '::',
+												_0: w012,
+												_1: {
+													ctor: '::',
+													_0: w102,
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	};
+	return {em_name: 'hexa_model', em_domain: hexaW, em_relation: hexaR, em_value: hexaV};
+}();
+var _user$project$EModel$muddyModel = function () {
+	var w111 = '111';
+	var w101 = '101';
+	var w110 = '110';
+	var w011 = '011';
+	var w100 = '100';
+	var w010 = '010';
+	var w001 = '001';
+	var w000 = '000';
+	var muddyW = {
+		ctor: '::',
+		_0: w000,
+		_1: {
+			ctor: '::',
+			_0: w100,
+			_1: {
+				ctor: '::',
+				_0: w001,
+				_1: {
+					ctor: '::',
+					_0: w010,
+					_1: {
+						ctor: '::',
+						_0: w011,
+						_1: {
+							ctor: '::',
+							_0: w110,
+							_1: {
+								ctor: '::',
+								_0: w101,
+								_1: {
+									ctor: '::',
+									_0: w111,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	};
+	var refl = function (ag) {
+		return A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return {ctor: '_Tuple3', _0: ag, _1: x, _2: x};
+			},
+			muddyW);
+	};
+	var muddyR = A2(
+		_elm_lang$core$Basics_ops['++'],
+		refl('a'),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			refl('b'),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				refl('c'),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'a', _1: w000, _2: w100},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'a', _1: w100, _2: w000},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple3', _0: 'a', _1: w010, _2: w110},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple3', _0: 'a', _1: w110, _2: w010},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple3', _0: 'a', _1: w001, _2: w101},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple3', _0: 'a', _1: w101, _2: w001},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple3', _0: 'a', _1: w011, _2: w111},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple3', _0: 'a', _1: w111, _2: w011},
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'b', _1: w000, _2: w010},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple3', _0: 'b', _1: w010, _2: w000},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple3', _0: 'b', _1: w100, _2: w110},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple3', _0: 'b', _1: w110, _2: w100},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple3', _0: 'b', _1: w001, _2: w011},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple3', _0: 'b', _1: w011, _2: w001},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple3', _0: 'b', _1: w101, _2: w111},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple3', _0: 'b', _1: w111, _2: w101},
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'c', _1: w000, _2: w001},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple3', _0: 'c', _1: w001, _2: w000},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple3', _0: 'c', _1: w010, _2: w011},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple3', _0: 'c', _1: w011, _2: w010},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple3', _0: 'c', _1: w100, _2: w101},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple3', _0: 'c', _1: w101, _2: w100},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple3', _0: 'c', _1: w110, _2: w111},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple3', _0: 'c', _1: w111, _2: w110},
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						})))));
+	var muddyV = {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: '1a',
+			_1: {
+				ctor: '::',
+				_0: w111,
+				_1: {
+					ctor: '::',
+					_0: w101,
+					_1: {
+						ctor: '::',
+						_0: w100,
+						_1: {
+							ctor: '::',
+							_0: w110,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: '0a',
+				_1: {
+					ctor: '::',
+					_0: w011,
+					_1: {
+						ctor: '::',
+						_0: w001,
+						_1: {
+							ctor: '::',
+							_0: w000,
+							_1: {
+								ctor: '::',
+								_0: w010,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: '1b',
+					_1: {
+						ctor: '::',
+						_0: w010,
+						_1: {
+							ctor: '::',
+							_0: w111,
+							_1: {
+								ctor: '::',
+								_0: w110,
+								_1: {
+									ctor: '::',
+									_0: w011,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: '0b',
+						_1: {
+							ctor: '::',
+							_0: w000,
+							_1: {
+								ctor: '::',
+								_0: w101,
+								_1: {
+									ctor: '::',
+									_0: w100,
+									_1: {
+										ctor: '::',
+										_0: w001,
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: '1c',
+							_1: {
+								ctor: '::',
+								_0: w001,
+								_1: {
+									ctor: '::',
+									_0: w011,
+									_1: {
+										ctor: '::',
+										_0: w101,
+										_1: {
+											ctor: '::',
+											_0: w111,
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: '0c',
+								_1: {
+									ctor: '::',
+									_0: w000,
+									_1: {
+										ctor: '::',
+										_0: w100,
+										_1: {
+											ctor: '::',
+											_0: w010,
+											_1: {
+												ctor: '::',
+												_0: w110,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	};
+	return {em_name: 'muddy_children', em_domain: muddyW, em_relation: muddyR, em_value: muddyV};
+}();
+var _user$project$EModel$model2atomlist = function (mo) {
+	return _user$project$Util$nub(
+		A2(
+			_elm_lang$core$List$map,
+			function (_p0) {
+				var _p1 = _p0;
+				return _p1._0;
+			},
+			mo.em_value));
+};
+var _user$project$EModel$model2agentlist = function (mo) {
+	return _user$project$Util$nub2(
+		A2(
+			_elm_lang$core$List$map,
+			function (_p2) {
+				var _p3 = _p2;
+				return _p3._0;
+			},
+			mo.em_relation));
+};
+var _user$project$EModel$atoms2string = function (proplist) {
+	return A2(_elm_lang$core$String$join, ',', proplist);
+};
+var _user$project$EModel$world2atoms = F2(
+	function (mo, w) {
+		var gg = function (p) {
+			return {
+				ctor: '_Tuple2',
+				_0: p,
+				_1: A2(_user$project$Util$lookup, p, mo.em_value)
+			};
+		};
+		var pairPropW = A2(
+			_elm_lang$core$List$map,
+			gg,
+			_user$project$EModel$model2atomlist(mo));
+		var filterPairPropW = A2(
+			_elm_lang$core$List$filter,
+			function (_p4) {
+				var _p5 = _p4;
+				var _p6 = _p5._1;
+				if (_p6.ctor === 'Nothing') {
+					return false;
+				} else {
+					return A2(_elm_lang$core$List$member, w, _p6._0);
+				}
+			},
+			pairPropW);
+		return A2(
+			_elm_lang$core$List$map,
+			function (_p7) {
+				var _p8 = _p7;
+				return _p8._0;
+			},
+			filterPairPropW);
+	});
+var _user$project$EModel$singleAndDoubleArrow = F2(
+	function (rels, _p9) {
+		singleAndDoubleArrow:
+		while (true) {
+			var _p10 = _p9;
+			var _p17 = _p10._0;
+			var _p16 = _p10._1;
+			var _p11 = rels;
+			if (_p11.ctor === '::') {
+				var _p15 = _p11._0._2;
+				var _p14 = _p11._0._1;
+				var _p13 = _p11._1;
+				var _p12 = _p11._0._0;
+				if (A2(
+					_elm_lang$core$List$member,
+					{ctor: '_Tuple3', _0: _p12, _1: _p15, _2: _p14},
+					_p13)) {
+					var _v7 = A2(
+						_user$project$Util$delete,
+						{ctor: '_Tuple3', _0: _p12, _1: _p15, _2: _p14},
+						_p13),
+						_v8 = {
+						ctor: '_Tuple2',
+						_0: _p17,
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: _p12, _1: _p14, _2: _p15},
+							_1: _p16
+						}
+					};
+					rels = _v7;
+					_p9 = _v8;
+					continue singleAndDoubleArrow;
+				} else {
+					var _v9 = _p13,
+						_v10 = {
+						ctor: '_Tuple2',
+						_0: {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: _p12, _1: _p14, _2: _p15},
+							_1: _p17
+						},
+						_1: _p16
+					};
+					rels = _v9;
+					_p9 = _v10;
+					continue singleAndDoubleArrow;
+				}
+			} else {
+				return {ctor: '_Tuple2', _0: _p17, _1: _p16};
+			}
+		}
+	});
+var _user$project$EModel$combineAgt = F2(
+	function (rels, result) {
+		combineAgt:
+		while (true) {
+			var _p18 = rels;
+			if (_p18.ctor === '::') {
+				var _p22 = _p18._0._2;
+				var _p21 = _p18._0._1;
+				var list_ags = A2(
+					_elm_lang$core$List$filter,
+					function (_p19) {
+						var _p20 = _p19;
+						return _elm_lang$core$Native_Utils.eq(_p20._1, _p21) && _elm_lang$core$Native_Utils.eq(_p20._2, _p22);
+					},
+					rels);
+				var ags = A2(
+					_elm_lang$core$String$join,
+					',',
+					_user$project$Util$nsort(
+						A2(
+							_elm_lang$core$List$map,
+							function (a) {
+								return _user$project$Util$fst3(a);
+							},
+							list_ags)));
+				var _v13 = A2(_user$project$Util$difference, _p18._1, list_ags),
+					_v14 = {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: ags, _1: _p21, _2: _p22},
+					_1: result
+				};
+				rels = _v13;
+				result = _v14;
+				continue combineAgt;
+			} else {
+				return result;
+			}
+		}
+	});
+var _user$project$EModel$drawNode4model = F3(
+	function (mo, w, w2) {
+		return _elm_lang$core$Native_Utils.eq(w, w2) ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			'{id: \"',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				w,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\", label:\"',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						w,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'\", color: \'red\'',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',title:\"',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$EModel$atoms2string(
+										A2(_user$project$EModel$world2atoms, mo, w)),
+									'\"},'))))))) : A2(
+			_elm_lang$core$Basics_ops['++'],
+			'{id: \"',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				w,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\", label:\"',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						w,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'\", color: \'skyblue\'',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',title:\"',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$EModel$atoms2string(
+										A2(_user$project$EModel$world2atoms, mo, w)),
+									'\"},')))))));
+	});
+var _user$project$EModel$listOfAgentColor = {
+	ctor: '::',
+	_0: 'lime',
+	_1: {
+		ctor: '::',
+		_0: 'blue',
+		_1: {
+			ctor: '::',
+			_0: 'red',
+			_1: {
+				ctor: '::',
+				_0: 'green',
+				_1: {
+					ctor: '::',
+					_0: 'orange',
+					_1: {
+						ctor: '::',
+						_0: 'turquoise',
+						_1: {
+							ctor: '::',
+							_0: 'darkviolet',
+							_1: {
+								ctor: '::',
+								_0: 'olive',
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$EModel$agentColor = F2(
+	function (ag, ags) {
+		var _p23 = A2(_elm_community$list_extra$List_Extra$elemIndex, ag, ags);
+		if (_p23.ctor === 'Nothing') {
+			return 'black';
+		} else {
+			var _p24 = A2(_elm_community$list_extra$List_Extra_ops['!!'], _user$project$EModel$listOfAgentColor, _p23._0);
+			if (_p24.ctor === 'Nothing') {
+				return 'gray';
+			} else {
+				return _p24._0;
+			}
+		}
+	});
+var _user$project$EModel$drawEdge4model = function (mo) {
+	var rel = mo.em_relation;
+	var _p25 = A2(
+		_user$project$EModel$singleAndDoubleArrow,
+		rel,
+		{
+			ctor: '_Tuple2',
+			_0: {ctor: '[]'},
+			_1: {ctor: '[]'}
+		});
+	var single = _p25._0;
+	var $double = _p25._1;
+	var ags = _user$project$EModel$model2agentlist(mo);
+	var singleArrow = function (_p26) {
+		var _p27 = _p26;
+		var _p28 = _p27._0;
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'{from: \"',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_p27._1,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\", to:\"',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p27._2,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'\", color:\'',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								A2(_user$project$EModel$agentColor, _p28, ags),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'\'',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										', label:\"',
+										A2(_elm_lang$core$Basics_ops['++'], _p28, '\",arrows: { to:{type:\'arrow\'}}},')))))))));
+	};
+	var a = A2(
+		_user$project$Applicative_ops['<$'],
+		singleArrow,
+		A2(
+			_user$project$EModel$combineAgt,
+			single,
+			{ctor: '[]'}));
+	var doubleArrow = function (_p29) {
+		var _p30 = _p29;
+		var _p31 = _p30._0;
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'{from: \"',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_p30._1,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\", to:\"',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p30._2,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'\", color:\'',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								A2(_user$project$EModel$agentColor, _p31, ags),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'\'',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										', label:\"',
+										A2(_elm_lang$core$Basics_ops['++'], _p31, '\",arrows: { to:{type:\'arrow\'},from:{type:\'arrow\'} }},')))))))));
+	};
+	var b = A2(
+		_user$project$Applicative_ops['<$'],
+		doubleArrow,
+		A2(
+			_user$project$EModel$combineAgt,
+			$double,
+			{ctor: '[]'}));
+	return A2(_elm_lang$core$Basics_ops['++'], a, b);
+};
+var _user$project$EModel$point_emodel2vis = function (_p32) {
+	var _p33 = _p32;
+	var _p34 = _p33._0;
+	var b = _user$project$EModel$drawEdge4model(_p34);
+	var a = A2(
+		_elm_lang$core$List$map,
+		function (x) {
+			return A3(_user$project$EModel$drawNode4model, _p34, x, _p33._1);
+		},
+		_p34.em_domain);
+	return {ctor: '_Tuple2', _0: a, _1: b};
+};
+var _user$project$EModel$EModel = F4(
+	function (a, b, c, d) {
+		return {em_name: a, em_domain: b, em_relation: c, em_value: d};
+	});
+var _user$project$EModel$PointEModel = F2(
+	function (a, b) {
+		return {ctor: 'PointEModel', _0: a, _1: b};
+	});
+var _user$project$EModel$emodel2vis = function (mo) {
+	return _user$project$EModel$point_emodel2vis(
+		A2(_user$project$EModel$PointEModel, mo, ''));
+};
+var _user$project$EModel$muddyModel_w100 = A2(_user$project$EModel$PointEModel, _user$project$EModel$muddyModel, '100');
+var _user$project$EModel$hexaModel_w120 = A2(_user$project$EModel$PointEModel, _user$project$EModel$hexaModel, '120');
+var _user$project$EModel$letter_w1 = A2(_user$project$EModel$PointEModel, _user$project$EModel$letter, '1');

@@ -1,0 +1,978 @@
+var _user$project$DEL_semantics$agentList4hexa = {
+	ctor: '::',
+	_0: 'a',
+	_1: {
+		ctor: '::',
+		_0: 'b',
+		_1: {
+			ctor: '::',
+			_0: 'c',
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$DEL_semantics$hexamodel0 = _user$project$EModel$point_emodel2vis(_user$project$EModel$hexaModel_w120);
+var _user$project$DEL_semantics$agentList4muddy = {
+	ctor: '::',
+	_0: 'a',
+	_1: {
+		ctor: '::',
+		_0: 'b',
+		_1: {
+			ctor: '::',
+			_0: 'c',
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$DEL_semantics$muddyModel0 = _user$project$EModel$point_emodel2vis(_user$project$EModel$muddyModel_w100);
+var _user$project$DEL_semantics$publicAnnouncement = F2(
+	function (ags, x) {
+		var pubPre = {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'pub', _1: x},
+			_1: {ctor: '[]'}
+		};
+		var pubR = A2(
+			_elm_lang$core$List$map,
+			function (ag) {
+				return {ctor: '_Tuple3', _0: ag, _1: 'pub', _2: 'pub'};
+			},
+			ags);
+		var pubS = {
+			ctor: '::',
+			_0: 'pub',
+			_1: {ctor: '[]'}
+		};
+		var name = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'pub(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_user$project$Common_syntax$outputForm, 1, x),
+				')'));
+		return A2(
+			_user$project$Common_syntax$PointAModel,
+			{am_name: name, am_domain: pubS, am_relation: pubR, am_pre: pubPre},
+			'pub');
+	});
+var _user$project$DEL_semantics$muddyAnn1 = A2(
+	_user$project$DEL_semantics$publicAnnouncement,
+	_user$project$DEL_semantics$agentList4muddy,
+	_user$project$Common_syntax$bigOr(
+		{
+			ctor: '::',
+			_0: _user$project$Common_syntax$Atom('0a'),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Common_syntax$Atom('0b'),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Common_syntax$Atom('0c'),
+					_1: {ctor: '[]'}
+				}
+			}
+		}));
+var _user$project$DEL_semantics$muddyAnn2 = A2(
+	_user$project$DEL_semantics$publicAnnouncement,
+	_user$project$DEL_semantics$agentList4muddy,
+	_user$project$Common_syntax$bigAnd(
+		{
+			ctor: '::',
+			_0: A2(
+				_user$project$Common_syntax$knowNeither,
+				'a',
+				_user$project$Common_syntax$Atom('0a')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$Common_syntax$knowNeither,
+					'b',
+					_user$project$Common_syntax$Atom('0b')),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$Common_syntax$knowNeither,
+						'c',
+						_user$project$Common_syntax$Atom('0c')),
+					_1: {ctor: '[]'}
+				}
+			}
+		}));
+var _user$project$DEL_semantics$muddyAnn3 = A2(
+	_user$project$DEL_semantics$publicAnnouncement,
+	_user$project$DEL_semantics$agentList4muddy,
+	_user$project$Common_syntax$bigAnd(
+		{
+			ctor: '::',
+			_0: A2(
+				_user$project$Common_syntax$knowNeither,
+				'a',
+				_user$project$Common_syntax$Atom('0a')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$Common_syntax$knowEither,
+					'b',
+					_user$project$Common_syntax$Atom('0b')),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$Common_syntax$knowEither,
+						'c',
+						_user$project$Common_syntax$Atom('0c')),
+					_1: {ctor: '[]'}
+				}
+			}
+		}));
+var _user$project$DEL_semantics$announceHexa1 = A2(
+	_user$project$DEL_semantics$publicAnnouncement,
+	_user$project$DEL_semantics$agentList4hexa,
+	_user$project$Common_syntax$Not(
+		_user$project$Common_syntax$Atom('1a')));
+var _user$project$DEL_semantics$announceHexa2 = A2(
+	_user$project$DEL_semantics$publicAnnouncement,
+	_user$project$DEL_semantics$agentList4hexa,
+	_user$project$Common_syntax$bigOr(
+		{
+			ctor: '::',
+			_0: A2(
+				_user$project$Common_syntax$notknow,
+				'b',
+				_user$project$Common_syntax$Atom('0a')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$Common_syntax$know,
+					'b',
+					_user$project$Common_syntax$Atom('1a')),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$Common_syntax$know,
+						'b',
+						_user$project$Common_syntax$Atom('2a')),
+					_1: {ctor: '[]'}
+				}
+			}
+		}));
+var _user$project$DEL_semantics$announceHexa3 = A2(
+	_user$project$DEL_semantics$publicAnnouncement,
+	_user$project$DEL_semantics$agentList4hexa,
+	_user$project$Common_syntax$bigAnd(
+		{
+			ctor: '::',
+			_0: _user$project$Common_syntax$Atom('0a'),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Common_syntax$Atom('1b'),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Common_syntax$Atom('2c'),
+					_1: {ctor: '[]'}
+				}
+			}
+		}));
+var _user$project$DEL_semantics$emodel2agentlist = function (ac) {
+	return A2(
+		_elm_lang$core$List$map,
+		function (_p0) {
+			var _p1 = _p0;
+			return _p1._0;
+		},
+		ac.em_relation);
+};
+var _user$project$DEL_semantics$composeKM = F2(
+	function (mo1, am2) {
+		var ff = function (_p2) {
+			var _p3 = _p2;
+			var _p4 = _p3._0;
+			return A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p4, _1: _p3._1._0, _2: _p3._2._0},
+				mo1.em_relation) && A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p4, _1: _p3._1._1, _2: _p3._2._1},
+				am2.am_relation);
+		};
+		var pair2dom = _elm_lang$core$List$map(
+			function (_p5) {
+				var _p6 = _p5;
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'(',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p6._0,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							',',
+							A2(_elm_lang$core$Basics_ops['++'], _p6._1, ')'))));
+			});
+		var domain1 = A2(_user$project$Util$cartesian, mo1.em_domain, am2.am_domain);
+		var domain2 = function () {
+			var _p9 = A2(
+				_user$project$Util$filterR,
+				function (_p7) {
+					var _p8 = _p7;
+					return A2(
+						_user$project$DEL_semantics$valueF,
+						A2(_user$project$EModel$PointEModel, mo1, _p8._0),
+						A2(_user$project$Common_syntax$Precon, am2, _p8._1));
+				},
+				domain1);
+			if (_p9.ctor === 'Ok') {
+				return _p9._0;
+			} else {
+				return _elm_lang$core$Native_Utils.crashCase(
+					'DEL_semantics',
+					{
+						start: {line: 81, column: 21},
+						end: {line: 83, column: 37}
+					},
+					_p9)(_p9._0);
+			}
+		}();
+		var val2 = function () {
+			var ff = function (_p11) {
+				var _p12 = _p11;
+				return {
+					ctor: '_Tuple2',
+					_0: _p12._0,
+					_1: pair2dom(
+						A2(
+							_user$project$Util_ops['$>>='],
+							_p12._1,
+							function (w) {
+								return A2(
+									_elm_lang$core$List$filter,
+									function (_p13) {
+										var _p14 = _p13;
+										return _elm_lang$core$Native_Utils.eq(w, _p14._0);
+									},
+									domain2);
+							}))
+				};
+			};
+			return A2(_elm_lang$core$List$map, ff, mo1.em_value);
+		}();
+		var name2 = A2(
+			_elm_lang$core$Basics_ops['++'],
+			mo1.em_name,
+			A2(_elm_lang$core$Basics_ops['++'], '*', am2.am_name));
+		var agents = _user$project$Util$nub2(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$DEL_semantics$emodel2agentlist(mo1),
+				_user$project$Common_syntax$amodel2agentlist(am2)));
+		var relation1 = A3(_user$project$Util$cartesian2, agents, domain2, domain2);
+		var relation2 = A2(_elm_lang$core$List$filter, ff, relation1);
+		var relation3 = A2(
+			_elm_lang$core$List$map,
+			function (_p15) {
+				var _p16 = _p15;
+				return {
+					ctor: '_Tuple3',
+					_0: _p16._0,
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'(',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p16._1._0,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',',
+								A2(_elm_lang$core$Basics_ops['++'], _p16._1._1, ')')))),
+					_2: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'(',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p16._2._0,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',',
+								A2(_elm_lang$core$Basics_ops['++'], _p16._2._1, ')'))))
+				};
+			},
+			relation2);
+		return {
+			em_name: name2,
+			em_domain: pair2dom(domain2),
+			em_relation: relation3,
+			em_value: val2
+		};
+	});
+var _user$project$DEL_semantics$valueF = F2(
+	function (_p17, f) {
+		valueF:
+		while (true) {
+			var _p18 = _p17;
+			var _p27 = _p18._1;
+			var _p26 = _p18;
+			var _p25 = _p18._0;
+			var _p19 = f;
+			switch (_p19.ctor) {
+				case 'Top':
+					return _elm_lang$core$Result$Ok(true);
+				case 'Bot':
+					return _elm_lang$core$Result$Ok(false);
+				case 'Atom':
+					return _elm_lang$core$Result$Ok(
+						A2(
+							_elm_lang$core$List$member,
+							_p27,
+							A2(_user$project$Util$lookVal, _p19._0, _p25.em_value)));
+				case 'AnyFormula':
+					return _elm_lang$core$Result$Err(
+						A2(_elm_lang$core$Basics_ops['++'], 'not allowed to include any formula ', _p19._0));
+				case 'Not':
+					return A2(
+						_elm_lang$core$Result$map,
+						_elm_lang$core$Basics$not,
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._0));
+				case 'And':
+					return A3(
+						_elm_lang$core$Result$map2,
+						F2(
+							function (x, y) {
+								return x && y;
+							}),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._0),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._1));
+				case 'Or':
+					return A2(
+						_user$project$Applicative_ops['<@@'],
+						A2(
+							_user$project$Applicative_ops['<@'],
+							F2(
+								function (x, y) {
+									return x || y;
+								}),
+							A2(_user$project$DEL_semantics$valueF, _p26, _p19._0)),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._1));
+				case 'Imply':
+					return A3(
+						_elm_lang$core$Result$map2,
+						F2(
+							function (x, y) {
+								return A2(_user$project$Util_ops['==>'], x, y);
+							}),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._0),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._1));
+				case 'Imply2':
+					return A3(
+						_elm_lang$core$Result$map2,
+						F2(
+							function (x, y) {
+								return A2(_user$project$Util_ops['==>'], x, y);
+							}),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._1),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._0));
+				case 'Iff':
+					return A3(
+						_elm_lang$core$Result$map2,
+						F2(
+							function (x, y) {
+								return _elm_lang$core$Native_Utils.eq(x, y);
+							}),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._0),
+						A2(_user$project$DEL_semantics$valueF, _p26, _p19._1));
+				case 'Box':
+					return A2(
+						_user$project$Util$forallResult,
+						_p25.em_domain,
+						function (z) {
+							return A3(
+								_elm_lang$core$Result$map2,
+								F2(
+									function (x, y) {
+										return A2(_user$project$Util_ops['==>'], x, y);
+									}),
+								_elm_lang$core$Result$Ok(
+									A2(
+										_elm_lang$core$List$member,
+										{ctor: '_Tuple2', _0: _p27, _1: z},
+										A2(_user$project$Util$lookRel, _p19._0, _p25.em_relation))),
+								A2(
+									_user$project$DEL_semantics$valueF,
+									A2(_user$project$EModel$PointEModel, _p25, z),
+									_p19._1));
+						});
+				case 'Dia':
+					return A2(
+						_user$project$Util$existsResult,
+						_p25.em_domain,
+						function (z) {
+							return A3(
+								_elm_lang$core$Result$map2,
+								F2(
+									function (x, y) {
+										return x && y;
+									}),
+								_elm_lang$core$Result$Ok(
+									A2(
+										_elm_lang$core$List$member,
+										{ctor: '_Tuple2', _0: _p27, _1: z},
+										A2(_user$project$Util$lookRel, _p19._0, _p25.em_relation))),
+								A2(
+									_user$project$DEL_semantics$valueF,
+									A2(_user$project$EModel$PointEModel, _p25, z),
+									_p19._1));
+						});
+				case 'BoxAction':
+					var _p23 = _p19._1;
+					var _p20 = _p19._0;
+					switch (_p20.ctor) {
+						case 'PointAModel':
+							var _p22 = _p20._1;
+							var _p21 = _p20._0;
+							return A3(
+								_elm_lang$core$Result$map2,
+								F2(
+									function (x, y) {
+										return A2(_user$project$Util_ops['==>'], x, y);
+									}),
+								A2(
+									_user$project$DEL_semantics$valueF,
+									_p26,
+									A2(_user$project$Common_syntax$lookPre2, _p21.am_pre, _p22)),
+								A2(
+									_user$project$DEL_semantics$valueF,
+									A2(
+										_user$project$DEL_semantics$composePoKM,
+										_p26,
+										A2(_user$project$Common_syntax$PointAModel, _p21, _p22)),
+									_p23));
+						case 'Cup':
+							return A3(
+								_elm_lang$core$Result$map2,
+								F2(
+									function (x, y) {
+										return x && y;
+									}),
+								A2(
+									_user$project$DEL_semantics$valueF,
+									_p26,
+									A2(_user$project$Common_syntax$BoxAction, _p20._0, _p23)),
+								A2(
+									_user$project$DEL_semantics$valueF,
+									_p26,
+									A2(_user$project$Common_syntax$BoxAction, _p20._1, _p23)));
+						default:
+							var _v11 = _p26,
+								_v12 = A2(
+								_user$project$Common_syntax$BoxAction,
+								A2(_user$project$Common_syntax$composeAction, _p20._0, _p20._1),
+								_p23);
+							_p17 = _v11;
+							f = _v12;
+							continue valueF;
+					}
+				case 'DiaAction':
+					var _v13 = _p26,
+						_v14 = _user$project$Common_syntax$Not(
+						A2(
+							_user$project$Common_syntax$BoxAction,
+							_p19._0,
+							_user$project$Common_syntax$Not(_p19._1)));
+					_p17 = _v13;
+					f = _v14;
+					continue valueF;
+				case 'Precon':
+					var _v15 = _p26,
+						_v16 = A2(_user$project$Common_syntax$lookPre2, _p19._0.am_pre, _p19._1);
+					_p17 = _v15;
+					f = _v16;
+					continue valueF;
+				default:
+					return _elm_lang$core$Native_Utils.crashCase(
+						'DEL_semantics',
+						{
+							start: {line: 128, column: 3},
+							end: {line: 164, column: 50}
+						},
+						_p19)('undefined in valueF of DEL');
+			}
+		}
+	});
+var _user$project$DEL_semantics$composePoKM = F2(
+	function (a, b) {
+		var _p28 = {ctor: '_Tuple2', _0: a, _1: b};
+		if ((_p28.ctor === '_Tuple2') && (_p28._1.ctor === 'PointAModel')) {
+			return A2(
+				_user$project$EModel$PointEModel,
+				A2(_user$project$DEL_semantics$composeKM, _p28._0._0, _p28._1._0),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'(',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p28._0._1,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							',',
+							A2(_elm_lang$core$Basics_ops['++'], _p28._1._1, ')')))));
+		} else {
+			return _elm_lang$core$Native_Utils.crashCase(
+				'DEL_semantics',
+				{
+					start: {line: 106, column: 20},
+					end: {line: 114, column: 48}
+				},
+				_p28)('error in composePoKM');
+		}
+	});
+var _user$project$DEL_semantics_ops = _user$project$DEL_semantics_ops || {};
+_user$project$DEL_semantics_ops['**'] = _user$project$DEL_semantics$composePoKM;
+var _user$project$DEL_semantics$muddyModel1 = _user$project$EModel$point_emodel2vis(
+	A2(_user$project$DEL_semantics_ops['**'], _user$project$EModel$muddyModel_w100, _user$project$DEL_semantics$muddyAnn1));
+var _user$project$DEL_semantics$muddyModel2 = _user$project$EModel$point_emodel2vis(
+	A2(
+		_user$project$DEL_semantics_ops['**'],
+		A2(_user$project$DEL_semantics_ops['**'], _user$project$EModel$muddyModel_w100, _user$project$DEL_semantics$muddyAnn1),
+		_user$project$DEL_semantics$muddyAnn2));
+var _user$project$DEL_semantics$muddyModel3 = _user$project$EModel$point_emodel2vis(
+	A2(
+		_user$project$DEL_semantics_ops['**'],
+		A2(
+			_user$project$DEL_semantics_ops['**'],
+			A2(_user$project$DEL_semantics_ops['**'], _user$project$EModel$muddyModel_w100, _user$project$DEL_semantics$muddyAnn1),
+			_user$project$DEL_semantics$muddyAnn2),
+		_user$project$DEL_semantics$muddyAnn3));
+var _user$project$DEL_semantics$hexamodel1 = _user$project$EModel$point_emodel2vis(
+	A2(_user$project$DEL_semantics_ops['**'], _user$project$EModel$hexaModel_w120, _user$project$DEL_semantics$announceHexa1));
+var _user$project$DEL_semantics$hexamodel2 = _user$project$EModel$point_emodel2vis(
+	A2(
+		_user$project$DEL_semantics_ops['**'],
+		A2(_user$project$DEL_semantics_ops['**'], _user$project$EModel$hexaModel_w120, _user$project$DEL_semantics$announceHexa1),
+		_user$project$DEL_semantics$announceHexa2));
+var _user$project$DEL_semantics$hexamodel3 = _user$project$EModel$point_emodel2vis(
+	A2(
+		_user$project$DEL_semantics_ops['**'],
+		A2(
+			_user$project$DEL_semantics_ops['**'],
+			A2(_user$project$DEL_semantics_ops['**'], _user$project$EModel$hexaModel_w120, _user$project$DEL_semantics$announceHexa1),
+			_user$project$DEL_semantics$announceHexa2),
+		_user$project$DEL_semantics$announceHexa3));
+var _user$project$DEL_semantics$validInModel = F2(
+	function (mo, f) {
+		return A2(
+			_user$project$Util$forallResult,
+			mo.em_domain,
+			function (x) {
+				return A2(
+					_user$project$DEL_semantics$valueF,
+					A2(_user$project$EModel$PointEModel, mo, x),
+					f);
+			});
+	});
+var _user$project$DEL_semantics$testAM2 = {
+	am_name: '(Skip;Skip)',
+	am_domain: {
+		ctor: '::',
+		_0: '(e1,e1)',
+		_1: {ctor: '[]'}
+	},
+	am_relation: {
+		ctor: '::',
+		_0: {ctor: '_Tuple3', _0: 'a', _1: '(e1,e1)', _2: '(e1,e1)'},
+		_1: {ctor: '[]'}
+	},
+	am_pre: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: '(e1,e1)',
+			_1: A2(
+				_user$project$Common_syntax$Precon,
+				{
+					am_name: 'Skip',
+					am_domain: {
+						ctor: '::',
+						_0: 'skip',
+						_1: {ctor: '[]'}
+					},
+					am_relation: {ctor: '[]'},
+					am_pre: {ctor: '[]'}
+				},
+				'e1')
+		},
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$DEL_semantics$testAM = {
+	am_name: '(Skip;Skip)',
+	am_domain: {
+		ctor: '::',
+		_0: '(e1,e1)',
+		_1: {ctor: '[]'}
+	},
+	am_relation: {
+		ctor: '::',
+		_0: {ctor: '_Tuple3', _0: 'a', _1: '(e1,e1)', _2: '(e1,e1)'},
+		_1: {ctor: '[]'}
+	},
+	am_pre: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: '(e1,e1)',
+			_1: A2(
+				_user$project$Common_syntax$And,
+				A2(
+					_user$project$Common_syntax$Precon,
+					{
+						am_name: 'Skip',
+						am_domain: {
+							ctor: '::',
+							_0: 'skip',
+							_1: {ctor: '[]'}
+						},
+						am_relation: {ctor: '[]'},
+						am_pre: {ctor: '[]'}
+					},
+					'e1'),
+				A2(
+					_user$project$Common_syntax$BoxAction,
+					A2(
+						_user$project$Common_syntax$PointAModel,
+						{
+							am_name: 'Skip',
+							am_domain: {
+								ctor: '::',
+								_0: 'skip',
+								_1: {ctor: '[]'}
+							},
+							am_relation: {ctor: '[]'},
+							am_pre: {ctor: '[]'}
+						},
+						'e1'),
+					A2(
+						_user$project$Common_syntax$Precon,
+						{
+							am_name: 'Skip',
+							am_domain: {
+								ctor: '::',
+								_0: 'skip',
+								_1: {ctor: '[]'}
+							},
+							am_relation: {ctor: '[]'},
+							am_pre: {ctor: '[]'}
+						},
+						'e1')))
+		},
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$DEL_semantics$testKM = {
+	em_name: 'MuddyChildren',
+	em_domain: {
+		ctor: '::',
+		_0: '000',
+		_1: {
+			ctor: '::',
+			_0: '100',
+			_1: {
+				ctor: '::',
+				_0: '001',
+				_1: {
+					ctor: '::',
+					_0: '010',
+					_1: {
+						ctor: '::',
+						_0: '011',
+						_1: {
+							ctor: '::',
+							_0: '110',
+							_1: {
+								ctor: '::',
+								_0: '101',
+								_1: {
+									ctor: '::',
+									_0: '111',
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	em_relation: {
+		ctor: '::',
+		_0: {ctor: '_Tuple3', _0: 'a', _1: '000', _2: '100'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: 'a', _1: '100', _2: '000'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'a', _1: '010', _2: '110'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'a', _1: '110', _2: '010'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'a', _1: '001', _2: '101'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'a', _1: '101', _2: '001'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple3', _0: 'a', _1: '011', _2: '111'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple3', _0: 'a', _1: '111', _2: '011'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple3', _0: 'b', _1: '000', _2: '010'},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple3', _0: 'b', _1: '010', _2: '000'},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple3', _0: 'b', _1: '100', _2: '110'},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple3', _0: 'b', _1: '110', _2: '100'},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple3', _0: 'b', _1: '001', _2: '011'},
+														_1: {
+															ctor: '::',
+															_0: {ctor: '_Tuple3', _0: 'b', _1: '011', _2: '001'},
+															_1: {
+																ctor: '::',
+																_0: {ctor: '_Tuple3', _0: 'b', _1: '101', _2: '111'},
+																_1: {
+																	ctor: '::',
+																	_0: {ctor: '_Tuple3', _0: 'b', _1: '111', _2: '101'},
+																	_1: {
+																		ctor: '::',
+																		_0: {ctor: '_Tuple3', _0: 'c', _1: '000', _2: '001'},
+																		_1: {
+																			ctor: '::',
+																			_0: {ctor: '_Tuple3', _0: 'c', _1: '001', _2: '000'},
+																			_1: {
+																				ctor: '::',
+																				_0: {ctor: '_Tuple3', _0: 'c', _1: '010', _2: '011'},
+																				_1: {
+																					ctor: '::',
+																					_0: {ctor: '_Tuple3', _0: 'c', _1: '011', _2: '010'},
+																					_1: {
+																						ctor: '::',
+																						_0: {ctor: '_Tuple3', _0: 'c', _1: '100', _2: '101'},
+																						_1: {
+																							ctor: '::',
+																							_0: {ctor: '_Tuple3', _0: 'c', _1: '101', _2: '100'},
+																							_1: {
+																								ctor: '::',
+																								_0: {ctor: '_Tuple3', _0: 'c', _1: '110', _2: '111'},
+																								_1: {
+																									ctor: '::',
+																									_0: {ctor: '_Tuple3', _0: 'c', _1: '111', _2: '110'},
+																									_1: {
+																										ctor: '::',
+																										_0: {ctor: '_Tuple3', _0: 'a', _1: '000', _2: '000'},
+																										_1: {
+																											ctor: '::',
+																											_0: {ctor: '_Tuple3', _0: 'a', _1: '100', _2: '100'},
+																											_1: {
+																												ctor: '::',
+																												_0: {ctor: '_Tuple3', _0: 'a', _1: '001', _2: '001'},
+																												_1: {
+																													ctor: '::',
+																													_0: {ctor: '_Tuple3', _0: 'a', _1: '010', _2: '010'},
+																													_1: {
+																														ctor: '::',
+																														_0: {ctor: '_Tuple3', _0: 'a', _1: '011', _2: '011'},
+																														_1: {
+																															ctor: '::',
+																															_0: {ctor: '_Tuple3', _0: 'a', _1: '110', _2: '110'},
+																															_1: {
+																																ctor: '::',
+																																_0: {ctor: '_Tuple3', _0: 'a', _1: '111', _2: '111'},
+																																_1: {ctor: '[]'}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	em_value: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 'p1',
+			_1: {
+				ctor: '::',
+				_0: '111',
+				_1: {
+					ctor: '::',
+					_0: '101',
+					_1: {
+						ctor: '::',
+						_0: '100',
+						_1: {
+							ctor: '::',
+							_0: '110',
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'p0',
+				_1: {
+					ctor: '::',
+					_0: '011',
+					_1: {
+						ctor: '::',
+						_0: '001',
+						_1: {
+							ctor: '::',
+							_0: '000',
+							_1: {
+								ctor: '::',
+								_0: '010',
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'q1',
+					_1: {
+						ctor: '::',
+						_0: '010',
+						_1: {
+							ctor: '::',
+							_0: '111',
+							_1: {
+								ctor: '::',
+								_0: '110',
+								_1: {
+									ctor: '::',
+									_0: '011',
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'q0',
+						_1: {
+							ctor: '::',
+							_0: '000',
+							_1: {
+								ctor: '::',
+								_0: '101',
+								_1: {
+									ctor: '::',
+									_0: '100',
+									_1: {
+										ctor: '::',
+										_0: '001',
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 'r1',
+							_1: {
+								ctor: '::',
+								_0: '001',
+								_1: {
+									ctor: '::',
+									_0: '011',
+									_1: {
+										ctor: '::',
+										_0: '101',
+										_1: {
+											ctor: '::',
+											_0: '111',
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'r0',
+								_1: {
+									ctor: '::',
+									_0: '000',
+									_1: {
+										ctor: '::',
+										_0: '100',
+										_1: {
+											ctor: '::',
+											_0: '010',
+											_1: {
+												ctor: '::',
+												_0: '110',
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$DEL_semantics$DomVal = F2(
+	function (a, b) {
+		return {dom: a, prop: b};
+	});

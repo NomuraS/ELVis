@@ -1,0 +1,44 @@
+{
+    "name": "ELVis",
+    "version": "1.0.0",
+    "description": "",
+    "author": "Shoshih Nomura",
+    "license": "MIT", 
+    "main": "bundle.js",
+    "devDependencies": {
+        "@types/elm": "^0.12.29",
+        "@types/es6-promise": "0.0.33",
+        "@types/jquery": "^3.2.15",
+        "@types/lodash": "^4.14.88",
+        "@types/ramda": "^0.25.9",
+        "@types/rx-dom": "^7.0.0",
+        "@types/tsmonad": "^0.5.0",
+        "@types/vis": "^4.21.0",
+        "browser-sync": "^2.14.0",
+        "clear": "0.0.1",
+        "npm-install-missing": "^0.1.4",
+        "st": "^1.1.0",
+        "tsify": "^3.0.4",
+        "vinyl-source-stream": "^1.1.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@reactivex/rxjs": "^5.5.5",
+        "bootstrap": "^3.3.7",
+        "jquery": "^3.2.1",
+        "jquery-ui-bundle": "^1.12.1",
+        "jquery-ui-dist": "^1.12.1",
+        "lodash": "^4.17.4",
+        "mathjax": "^2.7.2",
+        "ramda": "^0.25.0",
+        "rx-dom": "^7.0.3",
+        "rx-node": "^1.0.2",
+        "rxjs": "^5.5.4",
+        "rxjs-es": "^5.0.0-beta.12",
+        "tsmonad": "^0.8.0",
+        "vis": "^4.21.0",
+        "webpack": "^3.10.0"
+    }
+}

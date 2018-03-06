@@ -1,0 +1,1126 @@
+var _user$project$Common_syntax$outputAction = function (f) {
+	var _p0 = f;
+	switch (_p0.ctor) {
+		case 'PointAModel':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'(',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_p0._0.am_name,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						',',
+						A2(_elm_lang$core$Basics_ops['++'], _p0._1, ')'))));
+		case 'Cup':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Common_syntax$outputAction(_p0._0),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'U',
+					_user$project$Common_syntax$outputAction(_p0._1)));
+		default:
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Common_syntax$outputAction(_p0._0),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					';',
+					_user$project$Common_syntax$outputAction(_p0._1)));
+	}
+};
+var _user$project$Common_syntax_ops = _user$project$Common_syntax_ops || {};
+_user$project$Common_syntax_ops['++++'] = F2(
+	function (a, b) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			a,
+			A2(_elm_lang$core$Basics_ops['++'], ' ', b));
+	});
+var _user$project$Common_syntax$outputForm = F2(
+	function (n, f) {
+		var paren = F2(
+			function (k, s) {
+				return (_elm_lang$core$Native_Utils.cmp(n, k) > 0) ? A2(
+					_elm_lang$core$Basics_ops['++'],
+					'(',
+					A2(_elm_lang$core$Basics_ops['++'], s, ')')) : s;
+			});
+		var _p1 = f;
+		switch (_p1.ctor) {
+			case 'Atom':
+				return _p1._0;
+			case 'AnyFormula':
+				return _p1._0;
+			case 'Top':
+				return 'top';
+			case 'Bot':
+				return 'bot';
+			case 'Not':
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'~',
+					A2(_user$project$Common_syntax$outputForm, 3, _p1._0));
+			case 'Dia':
+				return A2(
+					_user$project$Common_syntax_ops['++++'],
+					A2(_elm_lang$core$Basics_ops['++'], '$', _p1._0),
+					A2(_user$project$Common_syntax$outputForm, 3, _p1._1));
+			case 'Box':
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'#',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p1._0,
+						A2(_user$project$Common_syntax$outputForm, 3, _p1._1)));
+			case 'Imply':
+				return A2(
+					paren,
+					1,
+					A2(
+						_user$project$Common_syntax_ops['++++'],
+						A2(_user$project$Common_syntax$outputForm, 2, _p1._0),
+						A2(
+							_user$project$Common_syntax_ops['++++'],
+							'-> ',
+							A2(_user$project$Common_syntax$outputForm, 2, _p1._1))));
+			case 'Imply2':
+				return A2(
+					paren,
+					1,
+					A2(
+						_user$project$Common_syntax_ops['++++'],
+						A2(_user$project$Common_syntax$outputForm, 2, _p1._0),
+						A2(
+							_user$project$Common_syntax_ops['++++'],
+							'<-',
+							A2(_user$project$Common_syntax$outputForm, 2, _p1._1))));
+			case 'Iff':
+				return A2(
+					paren,
+					1,
+					A2(
+						_user$project$Common_syntax_ops['++++'],
+						A2(_user$project$Common_syntax$outputForm, 2, _p1._0),
+						A2(
+							_user$project$Common_syntax_ops['++++'],
+							'<->',
+							A2(_user$project$Common_syntax$outputForm, 2, _p1._1))));
+			case 'And':
+				return A2(
+					paren,
+					2,
+					A2(
+						_user$project$Common_syntax_ops['++++'],
+						A2(_user$project$Common_syntax$outputForm, 3, _p1._0),
+						A2(
+							_user$project$Common_syntax_ops['++++'],
+							'&',
+							A2(_user$project$Common_syntax$outputForm, 3, _p1._1))));
+			case 'Or':
+				return A2(
+					paren,
+					2,
+					A2(
+						_user$project$Common_syntax_ops['++++'],
+						A2(_user$project$Common_syntax$outputForm, 3, _p1._0),
+						A2(
+							_user$project$Common_syntax_ops['++++'],
+							'v',
+							A2(_user$project$Common_syntax$outputForm, 3, _p1._1))));
+			case 'Bigwedge':
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'&&(Rel',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'(',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p1._1._0.am_name,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								')(',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_p1._1._1._0,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										')(',
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_p1._1._1._1,
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												',',
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													_p1._1._1._2,
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														'))',
+														A2(_user$project$Common_syntax$outputForm, 3, _p1._2)))))))))));
+			case 'Bigvee':
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'vv(Rel',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'(',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p1._1._0.am_name,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								')(',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_p1._1._1._0,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										')(',
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_p1._1._1._1,
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												',',
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													_p1._1._1._2,
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														'))',
+														A2(_user$project$Common_syntax$outputForm, 3, _p1._2)))))))))));
+			case 'BoxAction':
+				return A2(
+					paren,
+					3,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'[',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_user$project$Common_syntax$outputAction(_p1._0),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								']',
+								A2(_user$project$Common_syntax$outputForm, 3, _p1._1)))));
+			case 'DiaAction':
+				return A2(
+					paren,
+					3,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'<',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_user$project$Common_syntax$outputAction(_p1._0),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'>',
+								A2(_user$project$Common_syntax$outputForm, 3, _p1._1)))));
+			case 'Precon':
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'Pre(',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p1._0.am_name,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							')(',
+							A2(_elm_lang$core$Basics_ops['++'], _p1._1, ')'))));
+			case 'Announce':
+				return A2(
+					paren,
+					3,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'[',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$Common_syntax$outputForm, 3, _p1._0),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								']',
+								A2(_user$project$Common_syntax$outputForm, 3, _p1._1)))));
+			default:
+				return A2(
+					paren,
+					3,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'<',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(_user$project$Common_syntax$outputForm, 3, _p1._0),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'>',
+								A2(_user$project$Common_syntax$outputForm, 3, _p1._1)))));
+		}
+	});
+var _user$project$Common_syntax$lookPre = F2(
+	function (li, at) {
+		lookPre:
+		while (true) {
+			var _p2 = li;
+			if (_p2.ctor === '[]') {
+				return _elm_lang$core$Maybe$Nothing;
+			} else {
+				if (_elm_lang$core$Native_Utils.eq(at, _p2._0._0)) {
+					return _elm_lang$core$Maybe$Just(_p2._0._1);
+				} else {
+					var _v3 = _p2._1,
+						_v4 = at;
+					li = _v3;
+					at = _v4;
+					continue lookPre;
+				}
+			}
+		}
+	});
+var _user$project$Common_syntax$amodel2agentlist = function (ac) {
+	return A2(
+		_elm_lang$core$List$map,
+		function (_p3) {
+			var _p4 = _p3;
+			return _p4._0;
+		},
+		ac.am_relation);
+};
+var _user$project$Common_syntax$formula2Int = function (f) {
+	var _p5 = f;
+	switch (_p5.ctor) {
+		case 'Bot':
+			return 0;
+		case 'Top':
+			return 1;
+		case 'Atom':
+			return 2 + _elm_lang$core$String$length(_p5._0);
+		case 'AnyFormula':
+			return 3 + _elm_lang$core$String$length(_p5._0);
+		case 'Not':
+			return 4 + _user$project$Common_syntax$formula2Int(_p5._0);
+		case 'And':
+			return (5 + _user$project$Common_syntax$formula2Int(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Or':
+			return (6 + _user$project$Common_syntax$formula2Int(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Imply':
+			return (7 + _user$project$Common_syntax$formula2Int(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Imply2':
+			return (8 + _user$project$Common_syntax$formula2Int(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Iff':
+			return (9 + _user$project$Common_syntax$formula2Int(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Dia':
+			return (10 + _elm_lang$core$String$length(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Box':
+			return (11 + _elm_lang$core$String$length(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Announce':
+			return (12 + _user$project$Common_syntax$formula2Int(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Announce2':
+			return (13 + _user$project$Common_syntax$formula2Int(_p5._0)) + _user$project$Common_syntax$formula2Int(_p5._1);
+		case 'Bigwedge':
+			return 14;
+		case 'Bigvee':
+			return 15;
+		case 'BoxAction':
+			return 16;
+		case 'DiaAction':
+			return 17;
+		default:
+			return 18;
+	}
+};
+var _user$project$Common_syntax$isDELformula = function (f) {
+	isDELformula:
+	while (true) {
+		var _p6 = f;
+		_v7_14:
+		do {
+			switch (_p6.ctor) {
+				case 'Not':
+					var _v8 = _p6._0;
+					f = _v8;
+					continue isDELformula;
+				case 'And':
+					return _user$project$Common_syntax$isDELformula(_p6._0) && _user$project$Common_syntax$isDELformula(_p6._1);
+				case 'Imply':
+					return _user$project$Common_syntax$isDELformula(_p6._0) && _user$project$Common_syntax$isDELformula(_p6._1);
+				case 'Imply2':
+					return _user$project$Common_syntax$isDELformula(_p6._0) && _user$project$Common_syntax$isDELformula(_p6._1);
+				case 'Iff':
+					return _user$project$Common_syntax$isDELformula(_p6._0) && _user$project$Common_syntax$isDELformula(_p6._1);
+				case 'Dia':
+					var _v9 = _p6._1;
+					f = _v9;
+					continue isDELformula;
+				case 'Box':
+					var _v10 = _p6._1;
+					f = _v10;
+					continue isDELformula;
+				case 'Announce':
+					return false;
+				case 'Announce2':
+					return false;
+				case 'Bigwedge':
+					if ((_p6._1.ctor === '_Tuple2') && (_p6._1._1.ctor === '_Tuple3')) {
+						var _v11 = _p6._2;
+						f = _v11;
+						continue isDELformula;
+					} else {
+						break _v7_14;
+					}
+				case 'Bigvee':
+					if ((_p6._1.ctor === '_Tuple2') && (_p6._1._1.ctor === '_Tuple3')) {
+						var _v12 = _p6._2;
+						f = _v12;
+						continue isDELformula;
+					} else {
+						break _v7_14;
+					}
+				case 'BoxAction':
+					var _v13 = _p6._1;
+					f = _v13;
+					continue isDELformula;
+				case 'DiaAction':
+					var _v14 = _p6._1;
+					f = _v14;
+					continue isDELformula;
+				case 'Precon':
+					return true;
+				default:
+					break _v7_14;
+			}
+		} while(false);
+		return true;
+	}
+};
+var _user$project$Common_syntax$isPALformula = function (f) {
+	isPALformula:
+	while (true) {
+		var _p7 = f;
+		_v15_14:
+		do {
+			switch (_p7.ctor) {
+				case 'Not':
+					var _v16 = _p7._0;
+					f = _v16;
+					continue isPALformula;
+				case 'And':
+					return _user$project$Common_syntax$isPALformula(_p7._0) && _user$project$Common_syntax$isPALformula(_p7._1);
+				case 'Imply':
+					return _user$project$Common_syntax$isPALformula(_p7._0) && _user$project$Common_syntax$isPALformula(_p7._1);
+				case 'Imply2':
+					return _user$project$Common_syntax$isPALformula(_p7._0) && _user$project$Common_syntax$isPALformula(_p7._1);
+				case 'Iff':
+					return _user$project$Common_syntax$isPALformula(_p7._0) && _user$project$Common_syntax$isPALformula(_p7._1);
+				case 'Dia':
+					var _v17 = _p7._1;
+					f = _v17;
+					continue isPALformula;
+				case 'Box':
+					var _v18 = _p7._1;
+					f = _v18;
+					continue isPALformula;
+				case 'Announce':
+					return _user$project$Common_syntax$isPALformula(_p7._0) && _user$project$Common_syntax$isPALformula(_p7._1);
+				case 'Announce2':
+					return _user$project$Common_syntax$isPALformula(_p7._0) && _user$project$Common_syntax$isPALformula(_p7._1);
+				case 'Bigwedge':
+					if ((_p7._1.ctor === '_Tuple2') && (_p7._1._1.ctor === '_Tuple3')) {
+						return false;
+					} else {
+						break _v15_14;
+					}
+				case 'Bigvee':
+					if ((_p7._1.ctor === '_Tuple2') && (_p7._1._1.ctor === '_Tuple3')) {
+						return false;
+					} else {
+						break _v15_14;
+					}
+				case 'BoxAction':
+					return false;
+				case 'DiaAction':
+					return false;
+				case 'Precon':
+					return false;
+				default:
+					break _v15_14;
+			}
+		} while(false);
+		return true;
+	}
+};
+var _user$project$Common_syntax$isELformula = function (f) {
+	isELformula:
+	while (true) {
+		var _p8 = f;
+		_v19_14:
+		do {
+			switch (_p8.ctor) {
+				case 'Not':
+					var _v20 = _p8._0;
+					f = _v20;
+					continue isELformula;
+				case 'And':
+					return _user$project$Common_syntax$isELformula(_p8._0) && _user$project$Common_syntax$isELformula(_p8._1);
+				case 'Imply':
+					return _user$project$Common_syntax$isELformula(_p8._0) && _user$project$Common_syntax$isELformula(_p8._1);
+				case 'Imply2':
+					return _user$project$Common_syntax$isELformula(_p8._0) && _user$project$Common_syntax$isELformula(_p8._1);
+				case 'Iff':
+					return _user$project$Common_syntax$isELformula(_p8._0) && _user$project$Common_syntax$isELformula(_p8._1);
+				case 'Dia':
+					var _v21 = _p8._1;
+					f = _v21;
+					continue isELformula;
+				case 'Box':
+					var _v22 = _p8._1;
+					f = _v22;
+					continue isELformula;
+				case 'Announce':
+					return false;
+				case 'Announce2':
+					return false;
+				case 'Bigwedge':
+					if ((_p8._1.ctor === '_Tuple2') && (_p8._1._1.ctor === '_Tuple3')) {
+						return false;
+					} else {
+						break _v19_14;
+					}
+				case 'Bigvee':
+					if ((_p8._1.ctor === '_Tuple2') && (_p8._1._1.ctor === '_Tuple3')) {
+						return false;
+					} else {
+						break _v19_14;
+					}
+				case 'BoxAction':
+					return false;
+				case 'DiaAction':
+					return false;
+				case 'Precon':
+					return false;
+				default:
+					break _v19_14;
+			}
+		} while(false);
+		return true;
+	}
+};
+var _user$project$Common_syntax$AtomBool = F2(
+	function (a, b) {
+		return {atom: a, maybeBool: b};
+	});
+var _user$project$Common_syntax$FormulaBool = F2(
+	function (a, b) {
+		return {formula: a, maybeBool: b};
+	});
+var _user$project$Common_syntax$AModel = F4(
+	function (a, b, c, d) {
+		return {am_name: a, am_domain: b, am_relation: c, am_pre: d};
+	});
+var _user$project$Common_syntax$Precon = F2(
+	function (a, b) {
+		return {ctor: 'Precon', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$DiaAction = F2(
+	function (a, b) {
+		return {ctor: 'DiaAction', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$BoxAction = F2(
+	function (a, b) {
+		return {ctor: 'BoxAction', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Bigvee = F3(
+	function (a, b, c) {
+		return {ctor: 'Bigvee', _0: a, _1: b, _2: c};
+	});
+var _user$project$Common_syntax$Bigwedge = F3(
+	function (a, b, c) {
+		return {ctor: 'Bigwedge', _0: a, _1: b, _2: c};
+	});
+var _user$project$Common_syntax$Announce2 = F2(
+	function (a, b) {
+		return {ctor: 'Announce2', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Announce = F2(
+	function (a, b) {
+		return {ctor: 'Announce', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Box = F2(
+	function (a, b) {
+		return {ctor: 'Box', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$know = F2(
+	function (ag, f) {
+		return A2(_user$project$Common_syntax$Box, ag, f);
+	});
+var _user$project$Common_syntax$Dia = F2(
+	function (a, b) {
+		return {ctor: 'Dia', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Iff = F2(
+	function (a, b) {
+		return {ctor: 'Iff', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Imply2 = F2(
+	function (a, b) {
+		return {ctor: 'Imply2', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Imply = F2(
+	function (a, b) {
+		return {ctor: 'Imply', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Or = F2(
+	function (a, b) {
+		return {ctor: 'Or', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$And = F2(
+	function (a, b) {
+		return {ctor: 'And', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Not = function (a) {
+	return {ctor: 'Not', _0: a};
+};
+var _user$project$Common_syntax$notknow = F2(
+	function (ag, f) {
+		return _user$project$Common_syntax$Not(
+			A2(_user$project$Common_syntax$know, ag, f));
+	});
+var _user$project$Common_syntax$AnyFormula = function (a) {
+	return {ctor: 'AnyFormula', _0: a};
+};
+var _user$project$Common_syntax$Atom = function (a) {
+	return {ctor: 'Atom', _0: a};
+};
+var _user$project$Common_syntax$reada = function () {
+	var readaPre = {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 'e1',
+			_1: _user$project$Common_syntax$Atom('p')
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'e0',
+				_1: _user$project$Common_syntax$Not(
+					_user$project$Common_syntax$Atom('p'))
+			},
+			_1: {ctor: '[]'}
+		}
+	};
+	var name = 'Reada';
+	var pa = 'e1';
+	var npa = 'e0';
+	var readaS = {
+		ctor: '::',
+		_0: npa,
+		_1: {
+			ctor: '::',
+			_0: pa,
+			_1: {ctor: '[]'}
+		}
+	};
+	var readaR = A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: 'a', _1: npa, _2: npa},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'a', _1: pa, _2: pa},
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'b', _1: npa, _2: npa},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'b', _1: pa, _2: pa},
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'b', _1: npa, _2: pa},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'b', _1: pa, _2: npa},
+					_1: {ctor: '[]'}
+				}
+			}));
+	return {am_name: name, am_domain: readaS, am_relation: readaR, am_pre: readaPre};
+}();
+var _user$project$Common_syntax$readb = function () {
+	var readaPre = {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 'pb',
+			_1: _user$project$Common_syntax$Atom('p')
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'npb',
+				_1: _user$project$Common_syntax$Not(
+					_user$project$Common_syntax$Atom('p'))
+			},
+			_1: {ctor: '[]'}
+		}
+	};
+	var name = 'Readb';
+	var pb = 'pb';
+	var npb = 'npb';
+	var readaS = {
+		ctor: '::',
+		_0: npb,
+		_1: {
+			ctor: '::',
+			_0: pb,
+			_1: {ctor: '[]'}
+		}
+	};
+	var readaR = A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: 'a', _1: npb, _2: npb},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'a', _1: pb, _2: pb},
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'a', _1: npb, _2: pb},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'a', _1: pb, _2: npb},
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'b', _1: npb, _2: npb},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'b', _1: pb, _2: pb},
+					_1: {ctor: '[]'}
+				}
+			}));
+	return {am_name: name, am_domain: readaS, am_relation: readaR, am_pre: readaPre};
+}();
+var _user$project$Common_syntax$Bot = {ctor: 'Bot'};
+var _user$project$Common_syntax$bigOr = function (li) {
+	var _p9 = li;
+	if (_p9.ctor === '[]') {
+		return _user$project$Common_syntax$Bot;
+	} else {
+		return A3(
+			_elm_lang$core$List$foldr,
+			F2(
+				function (x, y) {
+					return A2(_user$project$Common_syntax$Or, x, y);
+				}),
+			_p9._0,
+			_p9._1);
+	}
+};
+var _user$project$Common_syntax$knowEither = F2(
+	function (ag, f) {
+		return _user$project$Common_syntax$bigOr(
+			{
+				ctor: '::',
+				_0: A2(_user$project$Common_syntax$Box, ag, f),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$Common_syntax$Box,
+						ag,
+						_user$project$Common_syntax$Not(f)),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _user$project$Common_syntax$knowNeither = F2(
+	function (ag, f) {
+		return _user$project$Common_syntax$Not(
+			A2(_user$project$Common_syntax$knowEither, ag, f));
+	});
+var _user$project$Common_syntax$lookPre2 = F2(
+	function (li, at) {
+		lookPre2:
+		while (true) {
+			var _p10 = li;
+			if (_p10.ctor === '[]') {
+				return _user$project$Common_syntax$Bot;
+			} else {
+				if (_elm_lang$core$Native_Utils.eq(at, _p10._0._0)) {
+					return _p10._0._1;
+				} else {
+					var _v25 = _p10._1,
+						_v26 = at;
+					li = _v25;
+					at = _v26;
+					continue lookPre2;
+				}
+			}
+		}
+	});
+var _user$project$Common_syntax$Top = {ctor: 'Top'};
+var _user$project$Common_syntax$bigAnd = function (li) {
+	var _p11 = li;
+	if (_p11.ctor === '[]') {
+		return _user$project$Common_syntax$Top;
+	} else {
+		return A3(
+			_elm_lang$core$List$foldr,
+			F2(
+				function (x, y) {
+					return A2(_user$project$Common_syntax$And, x, y);
+				}),
+			_p11._0,
+			_p11._1);
+	}
+};
+var _user$project$Common_syntax$skip = function () {
+	var skipPre = {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'e1', _1: _user$project$Common_syntax$Top},
+		_1: {ctor: '[]'}
+	};
+	var e1 = 'e1';
+	var skipS = {
+		ctor: '::',
+		_0: e1,
+		_1: {ctor: '[]'}
+	};
+	var refl = function (ag) {
+		return A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return {ctor: '_Tuple3', _0: ag, _1: x, _2: x};
+			},
+			skipS);
+	};
+	var skipR = {
+		ctor: '::',
+		_0: {ctor: '_Tuple3', _0: 'a', _1: e1, _2: e1},
+		_1: {ctor: '[]'}
+	};
+	return {am_name: 'Skip', am_domain: skipS, am_relation: skipR, am_pre: skipPre};
+}();
+var _user$project$Common_syntax$ComposePoAM = F2(
+	function (a, b) {
+		return {ctor: 'ComposePoAM', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$Cup = F2(
+	function (a, b) {
+		return {ctor: 'Cup', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$PointAModel = F2(
+	function (a, b) {
+		return {ctor: 'PointAModel', _0: a, _1: b};
+	});
+var _user$project$Common_syntax$composeAM = F2(
+	function (e1, e2) {
+		var form = F2(
+			function (x, y) {
+				return A2(
+					_user$project$Common_syntax$And,
+					A2(_user$project$Common_syntax$Precon, e1, x),
+					A2(
+						_user$project$Common_syntax$BoxAction,
+						A2(_user$project$Common_syntax$PointAModel, e1, x),
+						A2(_user$project$Common_syntax$Precon, e2, y)));
+			});
+		var mapF = function (_p12) {
+			var _p13 = _p12;
+			var _p15 = _p13._1;
+			var _p14 = _p13._0;
+			return {
+				ctor: '_Tuple2',
+				_0: A2(
+					_elm_lang$core$Basics_ops['++'],
+					'(',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p14,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							',',
+							A2(_elm_lang$core$Basics_ops['++'], _p15, ')')))),
+				_1: A2(form, _p14, _p15)
+			};
+		};
+		var ff = function (_p16) {
+			var _p17 = _p16;
+			var _p18 = _p17._0;
+			return A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p18, _1: _p17._1._0, _2: _p17._2._0},
+				e1.am_relation) && A2(
+				_elm_lang$core$List$member,
+				{ctor: '_Tuple3', _0: _p18, _1: _p17._1._1, _2: _p17._2._1},
+				e2.am_relation);
+		};
+		var domain1 = A2(_user$project$Util$cartesian, e1.am_domain, e2.am_domain);
+		var domain2 = A2(
+			_elm_lang$core$List$map,
+			function (_p19) {
+				var _p20 = _p19;
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'(',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p20._0,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							',',
+							A2(_elm_lang$core$Basics_ops['++'], _p20._1, ')'))));
+			},
+			domain1);
+		var pre2 = A2(_elm_lang$core$List$map, mapF, domain1);
+		var name2 = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				e1.am_name,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					';',
+					A2(_elm_lang$core$Basics_ops['++'], e2.am_name, ')'))));
+		var agents = _user$project$Util$nub2(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Common_syntax$amodel2agentlist(e1),
+				_user$project$Common_syntax$amodel2agentlist(e2)));
+		var relation1 = A3(_user$project$Util$cartesian2, agents, domain1, domain1);
+		var relation2 = A2(_elm_lang$core$List$filter, ff, relation1);
+		var relation3 = A2(
+			_elm_lang$core$List$map,
+			function (_p21) {
+				var _p22 = _p21;
+				return {
+					ctor: '_Tuple3',
+					_0: _p22._0,
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'(',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p22._1._0,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',',
+								A2(_elm_lang$core$Basics_ops['++'], _p22._1._1, ')')))),
+					_2: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'(',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p22._2._0,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',',
+								A2(_elm_lang$core$Basics_ops['++'], _p22._2._1, ')'))))
+				};
+			},
+			relation2);
+		return {am_name: name2, am_domain: domain2, am_relation: relation3, am_pre: pre2};
+	});
+var _user$project$Common_syntax$composeAction = F2(
+	function (a, b) {
+		composeAction:
+		while (true) {
+			var _p23 = {ctor: '_Tuple2', _0: a, _1: b};
+			_v32_4:
+			do {
+				if (_p23.ctor === '_Tuple2') {
+					switch (_p23._0.ctor) {
+						case 'PointAModel':
+							switch (_p23._1.ctor) {
+								case 'PointAModel':
+									return A2(
+										_user$project$Common_syntax$PointAModel,
+										A2(_user$project$Common_syntax$composeAM, _p23._0._0, _p23._1._0),
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'(',
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												_p23._0._1,
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													',',
+													A2(_elm_lang$core$Basics_ops['++'], _p23._1._1, ')')))));
+								case 'ComposePoAM':
+									var _v33 = A2(_user$project$Common_syntax$PointAModel, _p23._0._0, _p23._0._1),
+										_v34 = A2(_user$project$Common_syntax$composeAction, _p23._1._0, _p23._1._1);
+									a = _v33;
+									b = _v34;
+									continue composeAction;
+								default:
+									break _v32_4;
+							}
+						case 'ComposePoAM':
+							switch (_p23._1.ctor) {
+								case 'PointAModel':
+									var _v35 = A2(_user$project$Common_syntax$composeAction, _p23._0._0, _p23._0._1),
+										_v36 = A2(_user$project$Common_syntax$PointAModel, _p23._1._0, _p23._1._1);
+									a = _v35;
+									b = _v36;
+									continue composeAction;
+								case 'ComposePoAM':
+									var _v37 = A2(_user$project$Common_syntax$composeAction, _p23._0._0, _p23._0._1),
+										_v38 = A2(_user$project$Common_syntax$composeAction, _p23._1._0, _p23._1._1);
+									a = _v37;
+									b = _v38;
+									continue composeAction;
+								default:
+									break _v32_4;
+							}
+						default:
+							break _v32_4;
+					}
+				} else {
+					break _v32_4;
+				}
+			} while(false);
+			return _elm_lang$core$Native_Utils.crashCase(
+				'Common_syntax',
+				{
+					start: {line: 197, column: 22},
+					end: {line: 208, column: 50}
+				},
+				_p23)('error in composeAction');
+		}
+	});
+var _user$project$Common_syntax_ops = _user$project$Common_syntax_ops || {};
+_user$project$Common_syntax_ops['+++'] = _user$project$Common_syntax$composeAction;
+var _user$project$Common_syntax$skip_point = A2(_user$project$Common_syntax$PointAModel, _user$project$Common_syntax$skip, 's1');
+var _user$project$Common_syntax$reada_po = A2(_user$project$Common_syntax$PointAModel, _user$project$Common_syntax$reada, 'pa');
+var _user$project$Common_syntax$readb_po = A2(_user$project$Common_syntax$PointAModel, _user$project$Common_syntax$readb, 'pb');
+var _user$project$Common_syntax$mayReada = function () {
+	var readaPre = {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 'pa',
+			_1: _user$project$Common_syntax$Atom('p')
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'npa',
+				_1: _user$project$Common_syntax$Not(
+					_user$project$Common_syntax$Atom('p'))
+			},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 't', _1: _user$project$Common_syntax$Top},
+				_1: {ctor: '[]'}
+			}
+		}
+	};
+	var name = 'MayReada';
+	var t = 't';
+	var pa = 'pa';
+	var npa = 'npa';
+	var readaS = {
+		ctor: '::',
+		_0: npa,
+		_1: {
+			ctor: '::',
+			_0: pa,
+			_1: {
+				ctor: '::',
+				_0: t,
+				_1: {ctor: '[]'}
+			}
+		}
+	};
+	var readaR = A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: 'a', _1: npa, _2: npa},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'a', _1: pa, _2: pa},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'a', _1: t, _2: t},
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple3', _0: 'b', _1: npa, _2: npa},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'b', _1: pa, _2: pa},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'b', _1: t, _2: t},
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple3', _0: 'b', _1: npa, _2: pa},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'b', _1: pa, _2: npa},
+						_1: {ctor: '[]'}
+					}
+				},
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'b', _1: npa, _2: t},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'b', _1: t, _2: npa},
+							_1: {ctor: '[]'}
+						}
+					},
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple3', _0: 'b', _1: pa, _2: t},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple3', _0: 'b', _1: t, _2: pa},
+							_1: {ctor: '[]'}
+						}
+					}))));
+	return A2(
+		_user$project$Common_syntax$PointAModel,
+		{am_name: name, am_domain: readaS, am_relation: readaR, am_pre: readaPre},
+		pa);
+}();

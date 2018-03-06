@@ -1,0 +1,675 @@
+var _user$project$Random_formula$emptyAction = function (string) {
+	return A2(
+		_user$project$Common_syntax$PointAModel,
+		A4(
+			_user$project$Common_syntax$AModel,
+			string,
+			{ctor: '[]'},
+			{ctor: '[]'},
+			{ctor: '[]'}),
+		_elm_lang$core$String$toLower(string));
+};
+var _user$project$Random_formula$atomLists = function (listOfConnectives) {
+	var n4shuffle = _Skinney$fnv$FNV$hashString(
+		A2(_elm_lang$core$String$join, '', listOfConnectives));
+	var pn = F2(
+		function (n, p) {
+			return _user$project$Common_syntax$Atom(
+				A2(
+					_elm_lang$core$String$append,
+					p,
+					_user$project$Util$show(n)));
+		});
+	var gg = function (x) {
+		var _p0 = x;
+		switch (_p0) {
+			case '&':
+				return 1;
+			case 'v':
+				return 1;
+			case '->':
+				return 1;
+			case '<->':
+				return 1;
+			case '[.]':
+				return 1;
+			case '<.>':
+				return 1;
+			default:
+				return 0;
+		}
+	};
+	var nn = _elm_lang$core$List$sum(
+		A2(_elm_lang$core$List$map, gg, listOfConnectives)) + 1;
+	var plist = A2(_elm_lang$core$List$repeat, nn, 'p');
+	var listpn = A2(_elm_lang$core$List$indexedMap, pn, plist);
+	var shuf = _elm_community$random_extra$Random_List$shuffle(
+		_elm_lang$core$List$concat(
+			A2(_elm_lang$core$List$repeat, nn, listpn)));
+	var _p1 = A2(
+		_elm_lang$core$Random$step,
+		shuf,
+		_elm_lang$core$Random$initialSeed(n4shuffle));
+	var aa = _p1._0;
+	var s = _p1._1;
+	return A2(_elm_lang$core$List$take, nn, aa);
+};
+var _user$project$Random_formula$randomConnectives = F3(
+	function (seed0, n, conneList) {
+		if (_elm_lang$core$Native_Utils.eq(n, 0)) {
+			return {ctor: '[]'};
+		} else {
+			var _p2 = A2(
+				_elm_lang$core$Random$step,
+				_elm_community$random_extra$Random_List$shuffle(conneList),
+				seed0);
+			var shufflelist = _p2._0;
+			var seed1 = _p2._1;
+			var _p3 = shufflelist;
+			if (_p3.ctor === '[]') {
+				return _elm_lang$core$Native_Utils.crashCase(
+					'Random_formula',
+					{
+						start: {line: 103, column: 4},
+						end: {line: 105, column: 62}
+					},
+					_p3)('error in randomConnectives');
+			} else {
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					A3(_user$project$Random_formula$randomConnectives, seed1, n - 1, conneList),
+					{
+						ctor: '::',
+						_0: _p3._0,
+						_1: {ctor: '[]'}
+					});
+			}
+		}
+	});
+var _user$project$Random_formula$makeAct = function (n) {
+	var gg = function (x) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'[',
+			A2(_elm_lang$core$Basics_ops['++'], x, ']'));
+	};
+	return A2(
+		_elm_lang$core$List$map,
+		gg,
+		A2(
+			_elm_lang$core$List$take,
+			n,
+			{
+				ctor: '::',
+				_0: 'a',
+				_1: {
+					ctor: '::',
+					_0: 'b',
+					_1: {
+						ctor: '::',
+						_0: 'c',
+						_1: {
+							ctor: '::',
+							_0: 'd',
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}));
+};
+var _user$project$Random_formula$makeBox = function (n) {
+	var gg = function (x) {
+		return A2(_elm_lang$core$Basics_ops['++'], '#', x);
+	};
+	return A2(
+		_elm_lang$core$List$map,
+		gg,
+		A2(
+			_elm_lang$core$List$take,
+			n,
+			{
+				ctor: '::',
+				_0: 'a',
+				_1: {
+					ctor: '::',
+					_0: 'b',
+					_1: {
+						ctor: '::',
+						_0: 'c',
+						_1: {
+							ctor: '::',
+							_0: 'd',
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}));
+};
+var _user$project$Random_formula$connectiveList4EL = function (maxNumberOfAgents) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: '~',
+			_1: {
+				ctor: '::',
+				_0: '->',
+				_1: {
+					ctor: '::',
+					_0: '&',
+					_1: {
+						ctor: '::',
+						_0: 'v',
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		_user$project$Random_formula$makeBox(maxNumberOfAgents));
+};
+var _user$project$Random_formula$connectiveList4PAL = function (maxNumberOfAgents) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: '~',
+			_1: {
+				ctor: '::',
+				_0: '->',
+				_1: {
+					ctor: '::',
+					_0: '&',
+					_1: {
+						ctor: '::',
+						_0: 'v',
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_user$project$Random_formula$makeBox(maxNumberOfAgents),
+			{
+				ctor: '::',
+				_0: '[.]',
+				_1: {ctor: '[]'}
+			}));
+};
+var _user$project$Random_formula$connectiveList4DEL = F2(
+	function (maxNumberOfActions, maxNumberOfAgents) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: '~',
+				_1: {
+					ctor: '::',
+					_0: '->',
+					_1: {
+						ctor: '::',
+						_0: '&',
+						_1: {
+							ctor: '::',
+							_0: 'v',
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Random_formula$makeBox(maxNumberOfAgents),
+				_user$project$Random_formula$makeAct(maxNumberOfActions)));
+	});
+var _user$project$Random_formula$connectiveList4CL = {
+	ctor: '::',
+	_0: '~',
+	_1: {
+		ctor: '::',
+		_0: '->',
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Random_formula$maxLengthOfRandomFormula = 5;
+var _user$project$Random_formula$numOfFormulas = 100;
+var _user$project$Random_formula$List = function (a) {
+	return {ctor: 'List', _0: a};
+};
+var _user$project$Random_formula$Zero = function (a) {
+	return {ctor: 'Zero', _0: a};
+};
+var _user$project$Random_formula$One = function (a) {
+	return {ctor: 'One', _0: a};
+};
+var _user$project$Random_formula$randomFormula = F2(
+	function (seed0, connectivelist) {
+		randomFormula:
+		while (true) {
+			var _p5 = connectivelist;
+			_v2_2:
+			do {
+				if (_p5.ctor === '::') {
+					if (_p5._1.ctor === '[]') {
+						if (_p5._0.ctor === 'Zero') {
+							return _p5._0._0;
+						} else {
+							break _v2_2;
+						}
+					} else {
+						var _p11 = _p5._1._0;
+						var _p10 = _p5._1._1;
+						var _p9 = _p5._0;
+						var _p6 = {ctor: '_Tuple2', _0: _p9, _1: _p11};
+						switch (_p6._0.ctor) {
+							case 'One':
+								var _v4 = seed0,
+									_v5 = {
+									ctor: '::',
+									_0: _p11,
+									_1: A2(
+										_elm_lang$core$Basics_ops['++'],
+										_p10,
+										{
+											ctor: '::',
+											_0: _p9,
+											_1: {ctor: '[]'}
+										})
+								};
+								seed0 = _v4;
+								connectivelist = _v5;
+								continue randomFormula;
+							case 'Two':
+								var _v6 = seed0,
+									_v7 = {
+									ctor: '::',
+									_0: _p11,
+									_1: A2(
+										_elm_lang$core$Basics_ops['++'],
+										_p10,
+										{
+											ctor: '::',
+											_0: _p9,
+											_1: {ctor: '[]'}
+										})
+								};
+								seed0 = _v6;
+								connectivelist = _v7;
+								continue randomFormula;
+							default:
+								switch (_p6._1.ctor) {
+									case 'Zero':
+										var _v8 = seed0,
+											_v9 = {
+											ctor: '::',
+											_0: _p11,
+											_1: A2(
+												_elm_lang$core$Basics_ops['++'],
+												_p10,
+												{
+													ctor: '::',
+													_0: _p9,
+													_1: {ctor: '[]'}
+												})
+										};
+										seed0 = _v8;
+										connectivelist = _v9;
+										continue randomFormula;
+									case 'One':
+										var _p7 = A2(
+											_elm_lang$core$Random$step,
+											_elm_community$random_extra$Random_List$shuffle(
+												{
+													ctor: '::',
+													_0: _user$project$Random_formula$Zero(
+														_p6._1._0(_p6._0._0)),
+													_1: _p10
+												}),
+											seed0);
+										var shufflexs = _p7._0;
+										var seed1 = _p7._1;
+										var _v10 = seed1,
+											_v11 = shufflexs;
+										seed0 = _v10;
+										connectivelist = _v11;
+										continue randomFormula;
+									default:
+										var _p8 = A2(
+											_elm_lang$core$Random$step,
+											_elm_community$random_extra$Random_List$shuffle(
+												{
+													ctor: '::',
+													_0: _user$project$Random_formula$One(
+														_p6._1._0(_p6._0._0)),
+													_1: _p10
+												}),
+											seed0);
+										var shufflexs = _p8._0;
+										var seed1 = _p8._1;
+										var _v12 = seed1,
+											_v13 = shufflexs;
+										seed0 = _v12;
+										connectivelist = _v13;
+										continue randomFormula;
+								}
+						}
+					}
+				} else {
+					break _v2_2;
+				}
+			} while(false);
+			return _elm_lang$core$Native_Utils.crashCase(
+				'Random_formula',
+				{
+					start: {line: 195, column: 3},
+					end: {line: 212, column: 46}
+				},
+				_p5)('error in randomFormula');
+		}
+	});
+var _user$project$Random_formula$Two = function (a) {
+	return {ctor: 'Two', _0: a};
+};
+var _user$project$Random_formula$string2connective = function (li) {
+	var gg = function (b) {
+		var _p13 = b;
+		switch (_p13) {
+			case '~':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return _user$project$Common_syntax$Not(x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '&':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$Two(
+						F2(
+							function (x, y) {
+								return A2(_user$project$Common_syntax$And, x, y);
+							})),
+					_1: {ctor: '[]'}
+				};
+			case 'v':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$Two(
+						F2(
+							function (x, y) {
+								return A2(_user$project$Common_syntax$Or, x, y);
+							})),
+					_1: {ctor: '[]'}
+				};
+			case '->':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$Two(
+						F2(
+							function (x, y) {
+								return A2(_user$project$Common_syntax$Imply, x, y);
+							})),
+					_1: {ctor: '[]'}
+				};
+			case '<->':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$Two(
+						F2(
+							function (x, y) {
+								return A2(_user$project$Common_syntax$Iff, x, y);
+							})),
+					_1: {ctor: '[]'}
+				};
+			case '[.]':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$Two(
+						F2(
+							function (x, y) {
+								return A2(_user$project$Common_syntax$Announce, x, y);
+							})),
+					_1: {ctor: '[]'}
+				};
+			case '<.>':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$Two(
+						F2(
+							function (x, y) {
+								return A2(_user$project$Common_syntax$Announce2, x, y);
+							})),
+					_1: {ctor: '[]'}
+				};
+			case '[a]':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$BoxAction,
+								_user$project$Random_formula$emptyAction('E1'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '[b]':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$BoxAction,
+								_user$project$Random_formula$emptyAction('E2'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '[c]':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$BoxAction,
+								_user$project$Random_formula$emptyAction('E3'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '[d]':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$BoxAction,
+								_user$project$Random_formula$emptyAction('E4'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '<a>':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$DiaAction,
+								_user$project$Random_formula$emptyAction('E1'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '<b>':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$DiaAction,
+								_user$project$Random_formula$emptyAction('E2'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '<c>':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$DiaAction,
+								_user$project$Random_formula$emptyAction('E3'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '<d>':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(
+								_user$project$Common_syntax$DiaAction,
+								_user$project$Random_formula$emptyAction('E4'),
+								x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '#a':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Box, 'a', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '#b':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Box, 'b', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '#c':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Box, 'c', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '#d':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Box, 'd', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '$a':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Dia, 'a', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '$b':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Dia, 'b', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '$c':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Dia, 'c', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			case '$d':
+				return {
+					ctor: '::',
+					_0: _user$project$Random_formula$One(
+						function (x) {
+							return A2(_user$project$Common_syntax$Dia, 'd', x);
+						}),
+					_1: {ctor: '[]'}
+				};
+			default:
+				return _elm_lang$core$Native_Utils.crashCase(
+					'Random_formula',
+					{
+						start: {line: 158, column: 12},
+						end: {line: 184, column: 51}
+					},
+					_p13)('error in string2connective');
+		}
+	};
+	var _p15 = li;
+	if (_p15.ctor === '[]') {
+		return {ctor: '[]'};
+	} else {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			gg(_p15._0),
+			_user$project$Random_formula$string2connective(_p15._1));
+	}
+};
+var _user$project$Random_formula$createRandomFormula = F3(
+	function (num, conneList, seed0) {
+		var _p16 = A2(_elm_lang$core$Random$step, _elm_lang$core$Random$bool, seed0);
+		var bool = _p16._0;
+		var seed1 = _p16._1;
+		var randomConnects = A3(_user$project$Random_formula$randomConnectives, seed0, num, conneList);
+		var atom = A2(
+			_elm_lang$core$List$map,
+			function (x) {
+				return _user$project$Random_formula$Zero(x);
+			},
+			_user$project$Random_formula$atomLists(randomConnects));
+		var randomf = function (listOfConnective) {
+			return A2(
+				_user$project$Random_formula$randomFormula,
+				seed0,
+				A2(_elm_lang$core$Basics_ops['++'], atom, listOfConnective));
+		}(
+			_user$project$Random_formula$string2connective(randomConnects));
+		return {ctor: '_Tuple2', _0: randomf, _1: seed1};
+	});
+var _user$project$Random_formula$createRandomFormula_s = F3(
+	function (n, connects, seed0) {
+		var _p17 = A3(_user$project$Random_formula$createRandomFormula, _user$project$Random_formula$maxLengthOfRandomFormula, connects, seed0);
+		var f = _p17._0;
+		var seed1 = _p17._1;
+		var li = _user$project$Util$int2list(n);
+		var _p18 = n;
+		if (_p18 === 0) {
+			return {ctor: '[]'};
+		} else {
+			return _user$project$Util$nub(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: f,
+						_1: {ctor: '[]'}
+					},
+					A3(_user$project$Random_formula$createRandomFormula_s, n - 1, connects, seed1)));
+		}
+	});

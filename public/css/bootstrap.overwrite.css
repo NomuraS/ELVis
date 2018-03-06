@@ -1,0 +1,49 @@
+.btn-success-overwrite {
+    background-color: #168270;
+    border-color: #168270;
+    /* border-radius:0px; */
+}
+
+.btn-success-overwrite:hover {
+    background-color: #4e8279;
+    border-color: #4e8279;
+    /* border-radius:0px; */
+}
+
+.btn-info-overwrite {
+    background-color: #555;
+    border-color: #555;
+    /* border-radius:0px; */
+}
+
+.btn-info-overwrite:hover {
+    background-color: #97997f;
+    border-color: #97997f;
+    /* border-radius:0px; */
+}
+
+.btn-danger-overwrite {}
+
+.btn-danger-overwrite:hover {}
+
+/* #site-map {
+    margin-right: 0px;
+    padding-right: 12px;
+} */
+#tabMain ::-webkit-scrollbar {
+    display: none;
+  }
+/* .container-fluid {
+    padding-right: 10px;
+    padding-left: 10px;
+} */
+
+
+.widget-area {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+	background: rgba(51, 71, 61, 0.05);
+	display: none;
+	padding: 0 1.5em;
+}

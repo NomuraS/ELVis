@@ -1,0 +1,253 @@
+var _user$project$Random_model$nubEModel = function (li) {
+	var gg = function (_p0) {
+		var _p1 = _p0;
+		return {ctor: '_Tuple3', _0: _p1.em_domain, _1: _p1.em_relation, _2: _p1.em_value};
+	};
+	return A3(
+		_elm_lang$core$List$foldr,
+		F2(
+			function (a, xss) {
+				var _p2 = a;
+				return A2(
+					_elm_lang$core$List$member,
+					{ctor: '_Tuple3', _0: _p2.em_domain, _1: _p2.em_relation, _2: _p2.em_value},
+					A2(_elm_lang$core$List$map, gg, xss)) ? xss : {ctor: '::', _0: a, _1: xss};
+			}),
+		{ctor: '[]'},
+		li);
+};
+var _user$project$Random_model$randomValue4EM = F3(
+	function (atomL, lisW, seed0) {
+		var _p3 = A2(_elm_lang$core$Random$step, _elm_community$random_extra$Random_Int$anyInt, seed0);
+		var k = _p3._0;
+		var seed1 = _p3._1;
+		var atomL2 = A2(
+			_elm_lang$core$List$indexedMap,
+			F2(
+				function (n, p) {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Random$initialSeed(k + n),
+						_1: p
+					};
+				}),
+			atomL);
+		var powW = _user$project$Util$powerList(lisW);
+		var gg = function (_p4) {
+			var _p5 = _p4;
+			var _p6 = A2(
+				_elm_lang$core$Random$step,
+				_elm_community$random_extra$Random_List$choose(powW),
+				_p5._0);
+			var maybea = _p6._0._0;
+			return A2(
+				_user$project$Applicative_ops['?>'],
+				maybea,
+				function (x) {
+					return {ctor: '_Tuple2', _0: _p5._1, _1: x};
+				});
+		};
+		return {
+			ctor: '_Tuple2',
+			_0: A2(_elm_lang$core$List$filterMap, gg, atomL2),
+			_1: seed1
+		};
+	});
+var _user$project$Random_model$atomlist = function (n) {
+	var gg = function (n) {
+		return A2(
+			_elm_lang$core$String$append,
+			'p',
+			_elm_lang$core$Basics$toString(n));
+	};
+	return A2(
+		_elm_lang$core$List$map,
+		gg,
+		_user$project$Util$int2list(n));
+};
+var _user$project$Random_model$maxNumOfAtoms = 3;
+var _user$project$Random_model$maxNumOfWorlds = 5;
+var _user$project$Random_model$numOfEModels = 20;
+var _user$project$Random_model$nubAModel = function (li) {
+	var gg = function (_p7) {
+		var _p8 = _p7;
+		return {ctor: '_Tuple3', _0: _p8.am_domain, _1: _p8.am_relation, _2: _p8.am_pre};
+	};
+	return A3(
+		_elm_lang$core$List$foldr,
+		F2(
+			function (a, xss) {
+				var _p9 = a;
+				return A2(
+					_elm_lang$core$List$member,
+					{ctor: '_Tuple3', _0: _p9.am_domain, _1: _p9.am_relation, _2: _p9.am_pre},
+					A2(_elm_lang$core$List$map, gg, xss)) ? xss : {ctor: '::', _0: a, _1: xss};
+			}),
+		{ctor: '[]'},
+		li);
+};
+var _user$project$Random_model$randomPrecondition4AM = function (_p10) {
+	var _p11 = _p10;
+	var gg = F2(
+		function (n, s) {
+			return {
+				ctor: '_Tuple2',
+				_0: s,
+				_1: _user$project$Common_syntax$AnyFormula(
+					A2(
+						_elm_lang$core$String$append,
+						'A',
+						_elm_lang$core$Basics$toString(n)))
+			};
+		});
+	return {
+		ctor: '_Tuple2',
+		_0: A2(_elm_lang$core$List$indexedMap, gg, _p11._0),
+		_1: _p11._1
+	};
+};
+var _user$project$Random_model$randomRelations4AM = F3(
+	function (numAgt, dom, _p12) {
+		var _p13 = _p12;
+		var agt = A2(
+			_elm_lang$core$List$indexedMap,
+			F2(
+				function (n, a) {
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						a,
+						_elm_lang$core$Basics$toString(n));
+				}),
+			A2(_elm_lang$core$List$repeat, 10, 'a'));
+		var agents = A2(
+			_elm_lang$core$List$take,
+			numAgt,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
+					ctor: '::',
+					_0: 'a',
+					_1: {
+						ctor: '::',
+						_0: 'b',
+						_1: {
+							ctor: '::',
+							_0: 'c',
+							_1: {
+								ctor: '::',
+								_0: 'd',
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				},
+				agt));
+		var cartesianOfAgtState = A3(_user$project$Util$cartesian2, agents, dom, dom);
+		var _p14 = A2(
+			_elm_lang$core$Random$step,
+			A2(
+				_elm_lang$core$Random$int,
+				0,
+				_elm_lang$core$List$length(cartesianOfAgtState)),
+			_p13._1);
+		var randomNum = _p14._0;
+		var seed1 = _p14._1;
+		var _p15 = function (x) {
+			return A2(_elm_lang$core$Random$step, x, seed1);
+		}(
+			_elm_community$random_extra$Random_List$shuffle(cartesianOfAgtState));
+		var cartesianOfAgtStateShuffled = _p15._0;
+		var seed2 = _p15._1;
+		return {
+			ctor: '_Tuple2',
+			_0: A2(_elm_lang$core$List$take, randomNum, cartesianOfAgtStateShuffled),
+			_1: seed2
+		};
+	});
+var _user$project$Random_model$createRandomKModel = F4(
+	function (numAgt, numSt, n, seed0) {
+		var model_name = 'RandomKM';
+		var domain = A2(
+			_elm_lang$core$List$indexedMap,
+			F2(
+				function ($int, x) {
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						x,
+						_elm_lang$core$Basics$toString($int));
+				}),
+			A2(_elm_lang$core$List$repeat, numSt, 'w'));
+		var _p16 = A3(
+			_user$project$Random_model$randomRelations4AM,
+			numAgt,
+			domain,
+			{ctor: '_Tuple2', _0: domain, _1: seed0});
+		var randomR = _p16._0;
+		var seed2 = _p16._1;
+		var _p17 = A3(
+			_user$project$Random_model$randomValue4EM,
+			_user$project$Random_model$atomlist(_user$project$Random_model$maxNumOfAtoms),
+			domain,
+			seed2);
+		var randomV = _p17._0;
+		var seed3 = _p17._1;
+		return {
+			ctor: '_Tuple2',
+			_0: {em_name: model_name, em_domain: domain, em_relation: randomR, em_value: randomV},
+			_1: seed3
+		};
+	});
+var _user$project$Random_model$createRandomAModel = F4(
+	function (numAgt, numSt, n, seed0) {
+		var model_name = 'RandomAM';
+		var domain = A2(
+			_elm_lang$core$List$indexedMap,
+			F2(
+				function ($int, x) {
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						x,
+						_elm_lang$core$Basics$toString($int));
+				}),
+			A2(_elm_lang$core$List$repeat, numSt, 's'));
+		var _p18 = A3(
+			_user$project$Random_model$randomRelations4AM,
+			numAgt,
+			domain,
+			{ctor: '_Tuple2', _0: domain, _1: seed0});
+		var randomR = _p18._0;
+		var seed2 = _p18._1;
+		var _p19 = _user$project$Random_model$randomPrecondition4AM(
+			{ctor: '_Tuple2', _0: domain, _1: seed2});
+		var randomPre = _p19._0;
+		var seed3 = _p19._1;
+		return {
+			ctor: '_Tuple2',
+			_0: {am_name: model_name, am_domain: domain, am_relation: randomR, am_pre: randomPre},
+			_1: seed3
+		};
+	});
+var _user$project$Random_model$createRandomAModel_s = F4(
+	function (numAgt, numSt, n, seed0) {
+		var _p20 = A4(_user$project$Random_model$createRandomAModel, numAgt, numSt, n, seed0);
+		var am = _p20._0;
+		var seed1 = _p20._1;
+		var li = _user$project$Util$int2list(n);
+		var _p21 = n;
+		if (_p21 === 0) {
+			return {ctor: '[]'};
+		} else {
+			return _user$project$Random_model$nubAModel(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: am,
+						_1: {ctor: '[]'}
+					},
+					A4(_user$project$Random_model$createRandomAModel_s, numAgt, numSt, n - 1, seed1)));
+		}
+	});
+var _user$project$Random_model$maxNumOfAgents = 2;
+var _user$project$Random_model$maxNumOfStates = 5;
+var _user$project$Random_model$numOfAModels = 20;
