@@ -522,8 +522,10 @@ var _user$project$Parser_Formula$knowifp = _elm_community$parser_combinators$Com
 					return A2(
 						_user$project$Common_syntax$Or,
 						A2(_user$project$Common_syntax$Box, _p58, _p59),
-						_user$project$Common_syntax$Not(
-							A2(_user$project$Common_syntax$Box, _p58, _p59)));
+						A2(
+							_user$project$Common_syntax$Box,
+							_p58,
+							_user$project$Common_syntax$Not(_p59)));
 				},
 				_elm_community$parser_combinators$Combine$string('knows_if')),
 			_elm_community$parser_combinators$Combine$parens(_user$project$Parser_Formula$knowp2));

@@ -145,7 +145,7 @@ knowp =  Par.lazy <| \() ->
 
 knowifp : Parser s Formula
 knowifp =  Par.lazy <| \() ->
-       (\(x,y) -> Or (Box x y) (Not (Box x y)))
+       (\(x,y) -> Or (Box x y)  (Box x (Not y)))
            <$ Par.string "knows_if"
            <*> 
            Par.parens knowp2
