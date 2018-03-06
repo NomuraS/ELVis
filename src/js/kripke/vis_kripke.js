@@ -4,18 +4,15 @@ var _ = require("lodash");
 var Util = require("../lib/util");
 var Vis = require("../lib/vis");
 var Ac = require("../action/vis_action");
-// constant symbols
-// const $$NODES_COLOR_KRIPKE: string = "#BF8736 ffc966 FD8C1D "  // orange
-var $$NODES_COLOR_KRIPKE = "#C38728"; // blue
+var $$NODES_COLOR_KRIPKE = "#C38728";
 exports.$$BACKGROUND_COLOR = "#333333";
-exports.$A1 = document.getElementById('node-label_kripke'); //.value = $data.label;
-exports.$A2 = document.getElementById('saveButton_kripke'); //.onclick = saveData_kripke.bind(this, $data, $callback);
-exports.$A3 = document.getElementById('cancelButton_kripke'); //.onclick = clearPopUp_kripke.bind(null);
-exports.$A4 = document.getElementById('network-popUp_node_kripke'); //.style.display = 'block';
+exports.$A1 = document.getElementById('node-label_kripke');
+exports.$A2 = document.getElementById('saveButton_kripke');
+exports.$A3 = document.getElementById('cancelButton_kripke');
+exports.$A4 = document.getElementById('network-popUp_node_kripke');
 exports.$AGENT_LABEL = document.getElementById('id_of_input_for_arrow_backup_kripke').value;
 exports.$CONFIG_KRIPKE = document.getElementById('config_kripke');
 exports.$CONTAINER_KRIPKE = document.getElementById('network_kripke');
-//global variables 
 exports.AGENT_COLOR_K = [
     { agent: "a", color: "#9CDD29" },
     { agent: "b", color: "#5BD4ED" },
@@ -132,19 +129,12 @@ var Letter = function () {
     };
 }();
 exports.KRIPKE_DATA = [MuddyChildren, Letter, HexaModel];
-// let $centralGravity_kripke = (document.getElementById("centralGravity_kripke") as HTMLInputElement)
-// let $SPRING_LENGTH_KRIPKE = (document.getElementById("springLength_kripke") as HTMLInputElement)
-// let $springConstant_kripke = (document.getElementById("springConstant_kripke") as HTMLInputElement)
-// let $nodeDistance_kripke = (document.getElementById("nodeDistance_kripke") as HTMLInputElement)
 exports.OPTION_KRIPKE = {
     physics: {
         barnesHut: {
             gravitationalConstant: -2000,
-            // centralGravity: Number($centralGravity_kripke),
             centralGravity: 0.2,
-            // springLength: Number($SPRING_LENGTH_KRIPKE.value),
             springLength: 100,
-            // springConstant: Number($springConstant_kripke),
             springConstant: 0.05,
         }
     },
@@ -170,54 +160,30 @@ exports.OPTION_KRIPKE = {
         size: 15,
         font: {
             color: '#ffffff',
-            // color:'#cae6fc',
-            // strokeWidth:2,
-            // strokeColor:'#18171A',
             face: 'Comic Sans MS',
         },
         color: $$NODES_COLOR_KRIPKE
-        // color: { 
-        //       border: $$NODES_COLOR_KRIPKE,
-        //       background: $$NODES_COLOR_KRIPKE 
-        // }
     },
     edges: {
         arrows: 'to',
-        smooth: false // デフォルト:true、falseにするとエッジが直線になる
+        smooth: false
     },
     layout: {
         hierarchical: false
     },
 };
-// export function agColor($ag: string): string { // impure by AGENT_LIST
-//       const gg = () => _.map(AGENT_COLOR, x => x.agent)
-//       if (!_.includes(gg(), $ag)) { AGENT_COLOR.push({ agent: $ag, color: Util.colorGen() }) }
-//       const ff = (x: AgentColor): string => { if (x.agent === $ag) { return x.color } };
-//       return _(AGENT_COLOR)
-//             .map(ff)
-//             .compact()
-//             .head()
-// }
-//------------------------------------------------------------------------------------------------------------------
-// functions which change global variables
-//------------------------------------------------------------------------------------------------------------------
 function change_global_NODES_EDGES_update($nodes, $edges) {
     exports.EDGES.remove(exports.EDGES.getIds());
     exports.NODES.remove(exports.NODES.getIds());
-    //nodes
     exports.NODES.update($nodes);
     exports.EDGES.update($edges);
 }
-//------------------------------------------------------------------------------------------------------------------ 
-//------------------------------------------------------------------------------------------------------------------
-//ここにonclickと繋がったdomain追加のevent listenerがある(saveData_kripke)
 function $id_of_input_for_arrow_backup_kripke() {
     var _a = document.getElementById('id_of_input_for_arrow_backup_kripke');
     console.log(_a);
     return _a.value;
 }
 exports.$id_of_input_for_arrow_backup_kripke = $id_of_input_for_arrow_backup_kripke;
-// watch nodes remove --not pure
 function watchRemoveNodefunction($data, $callback, $nodes, $edges) {
     var _arrayEdges = $edges.get();
     var _selectednode = _.head($data.nodes);
@@ -232,14 +198,12 @@ function watchRemoveNodefunction($data, $callback, $nodes, $edges) {
     nodeEdge2writeTopPanel($nodes, $edges);
 }
 exports.watchRemoveNodefunction = watchRemoveNodefunction;
-// watch nodes remove --not pure
 function watchRemoveDeletefunction($data, $callback, $nodes, $edges) {
     var _selectedEdge = _.head($data.edges);
     $edges.remove(_selectedEdge);
     nodeEdge2writeTopPanel($nodes, $edges);
 }
 exports.watchRemoveDeletefunction = watchRemoveDeletefunction;
-// watch nodes add --not pure
 function watchAddNodefunction($nod, $func, $nodes, $edges, $label_kripke, $saveButton_kripke, $cancelButton_kripke, $popUp_node_kripke) {
     var clearPopUp_kripke = function () {
         $saveButton_kripke.onclick = null;
@@ -252,9 +216,7 @@ function watchAddNodefunction($nod, $func, $nodes, $edges, $label_kripke, $saveB
         $data.id = $data.label;
         if (_domain2.indexOf($data.label) === -1) {
             $nodes.add($data);
-            //htmlのpanelに反映する
             nodeEdge2writeTopPanel($nodes, $edges);
-            //figureに反映する
             clearPopUp_kripke();
             $callback($data);
         }
@@ -268,9 +230,8 @@ function watchAddNodefunction($nod, $func, $nodes, $edges, $label_kripke, $saveB
     $popUp_node_kripke.style.display = 'block';
 }
 exports.watchAddNodefunction = watchAddNodefunction;
-// watch edges --not pure
 function watchAddEdgefunction($rel, $func, $nodes, $edges, $agent) {
-    var agtInput = $agent; //= $id_of_input_for_arrow_backup()
+    var agtInput = $agent;
     var addingArrow = $rel.from + "_" + $rel.to + "_" + agtInput;
     var addEdge_checked = function () {
         $edges.add({
@@ -291,9 +252,6 @@ function watchAddEdgefunction($rel, $func, $nodes, $edges, $agent) {
     }
 }
 exports.watchAddEdgefunction = watchAddEdgefunction;
-//--------------------------------------------------------------------------------------- 
-// kripke editor
-//---------------------------------------------------------------------------------------
 function rel2anotherRel($rel) {
     var customizer = function (x, y) {
         if (_.isArray(x)) {
@@ -321,7 +279,6 @@ function rel2anotherRel($rel) {
         .value();
 }
 exports.rel2anotherRel = rel2anotherRel;
-// export function kripkeObject2string_withoutBar($kripkeModel: KripkeModel): string { // pure 
 function kripkeObject2string($kripkeModel) {
     var _name = $kripkeModel.name;
     var _name2 = _name.replace(/\|/g, "<br>|").replace(/\*/g, "<br>*");
@@ -333,14 +290,10 @@ function kripkeObject2string($kripkeModel) {
     var _amname = Util.string2number(_name);
     var h = "<li>" +
         "<div class=\"btn-group model-title\" data-toggle=\"buttons\">" +
-        (
-        // `<input value="${_name}" type="button" class="panel_in_panel3 btn btn-success btn-success-overwrite btn-xs">` +
-        // `<input value="show graph" type="button" class="btn btn-info btn-info-overwrite btn-xs see_graph_${_amname}">` +
-        "<button type=\"button\" class=\"panel_in_panel3 btn btn-success btn-success-overwrite btn-xs\">" + _name2 + "</button>") +
+        ("<button type=\"button\" class=\"panel_in_panel3 btn btn-success btn-success-overwrite btn-xs\">" + _name2 + "</button>") +
         ("<button type=\"button\" class=\"btn btn-info btn-info-overwrite btn-xs see_graph_" + _amname + "\">show graph</button>") +
         "</div>" +
         "<div class=\"close_panel kripke_list_panel\" style=\"display:none\">" +
-        //            ここに隠す中身
         "<ul class=\"css_border_left_green\">" +
         "<li class='class_name_of_kripke'>Name of Kripke Model " +
         ("<p>" + _name + "</p>") +
@@ -365,7 +318,6 @@ function kripkeObject2string($kripkeModel) {
     h += "<li>Comment <p>" + _comment + "</p></li>" +
         "</ul>" +
         "</div>" +
-        //            ここまで隠す   
         "</li>";
     return h;
 }
@@ -388,7 +340,6 @@ function edges2relation($edge) {
 exports.edges2relation = edges2relation;
 function kmRelation2html($edge) {
     var _arrayEdges2 = $edge;
-    //newvalue
     var _ff = function (k) {
         return "<li>Relation of <span class='textarea4agents'>" + k.agent + "</span>: <br>" +
             "{" +
@@ -403,15 +354,9 @@ function kmRelation2html($edge) {
         .uniq()
         .join(' ')
         .value();
-    //reset
     return _html;
 }
 exports.kmRelation2html = kmRelation2html;
-// change precondition text (by save button in graph)
-//  function nodes2htmlPrecondition($dom: Vis.DataSet<Vis.Node>): string { //pure
-//       const _arrayNodes = $dom.get().map(x => x.label)
-//       return kmDomain2htmlPrecondition(_arrayNodes)
-// }
 function kmDomain2htmlValuation($val) {
     $('#kripke_valuation').empty();
     var _ff = function (x) {
@@ -424,15 +369,11 @@ function kmDomain2htmlValuation($val) {
 function kmDomain2htmlValuation_for_display($val) {
     var _ff = function (x) {
         return "<li class='classOfPrecondition_kripke'>Value(<span class='color_text_panel_kripke'> " + x.prop + " </span>) = { " + x.worlds + " }" +
-            // `{ <input type='text' value='${x.worlds}' class='precondition4state_kripke input_width_small'> }` +
             "</li>";
     };
     return _($val).map(_ff).join(" ");
 }
 exports.kmDomain2htmlValuation_for_display = kmDomain2htmlValuation_for_display;
-//-------------------------------------------------------------------
-// write top panel
-//-------------------------------------------------------------------
 function nodeEdge2writeTopPanel($nodes, $edges) {
     Util.writeDOM_html("#number_of_domain_kripke")(nodes2string($nodes));
     Util.writeDOM_html('#kripke_relation')(kmRelation2html(edges2html($edges)));
@@ -440,7 +381,6 @@ function nodeEdge2writeTopPanel($nodes, $edges) {
 exports.nodeEdge2writeTopPanel = nodeEdge2writeTopPanel;
 function kripkeObject2writeTopPanel($act, $change_val) {
     Util.writeDOM_value('#form2_kripke')($act.name);
-    //text of inputarea on figure
     Util.writeDOM_html('#kripkeNameOnGraph')($act.name);
     $('#number_of_domain_kripke').empty();
     Util.writeDOM_html("#number_of_domain_kripke")($act.domain.join(" , "));
@@ -466,19 +406,8 @@ function addKripke2compositionSelect($name, $ready) {
         $(".multiSelect_kripke").multilineSelectmenu('destroy');
         $(".multiSelect_kripke").multilineSelectmenu();
     }
-    // $(".multiSelect").multilineSelectmenu('destroy');
-    // $(".multiSelect").multilineSelectmenu();
-    // $(".multiSelect").selectmenu({ style: "dropdown", width:140 });
-    // $('select.multiLineOption').selectmenu();
-    // $(".multiSelect").multilineSelectmenu('destroy');
-    // $(".multiSelect").multilineSelectmenu()
 }
 exports.addKripke2compositionSelect = addKripke2compositionSelect;
-// $('#button').click(function(){
-//       $('#select').append($('<option>').html('new| option'));
-//       $("#select").multilineSelectmenu('destroy');
-//       $("#select").multilineSelectmenu();  
-// })
 function addWorlds2worldSelect_for_truthChecker($name, $KRIPKE_LIST) {
     var kmodel = _.find($KRIPKE_LIST, function (o) { return o.name === $name; });
     var ff = function (x) {
@@ -497,9 +426,7 @@ function graph2kripkeObject($name, $nodes, $edges) {
     };
 }
 exports.graph2kripkeObject = graph2kripkeObject;
-// console.log(string2number("p&p")) 
 function addEvent2kripkeList($km, $nodes, $edges, $change_val) {
-    // const modifyName = (str) => str.replace(/\&|\(|\)|\<|\>|\;|\||\*| |\~/g, "")
     var modifyName = function (str) { return Util.string2number(str); };
     var _kmname = modifyName($km.name);
     $(".see_graph_" + _kmname).on('click', function () {
@@ -525,24 +452,6 @@ function addEvent2kripkeList($km, $nodes, $edges, $change_val) {
         kripkeObject2writeTopPanel(_km(), $change_val);
         change_global_NODES_EDGES_update(_newNodes, _newEdges);
     });
-    // document.querySelector("#see_graph_" + _kmname).addEventListener('click', () => {
-    //       const _km = () => {
-    //             const aa = _.find(KRIPKE_DATA, x => modifyName(x.name) === _kmname)
-    //             if (aa !== undefined) { return aa } else { alert("undefined in addEvent2kripkeList") }
-    //       }
-    //       const _newNodes = _.map(_km().domain, x => { return { label: x, id: x } })
-    //       const _newEdges = _.map(_km().relation, x => {
-    //             return {
-    //                   from: x.from,
-    //                   to: x.to,
-    //                   label: x.agent,
-    //                   color: Ac.agColor(x.agent, AGENT_COLOR_K),
-    //                   id: `${x.from}_${x.to}_${x.agent}`
-    //             }
-    //       })
-    //       kripkeObject2writeTopPanel(_km(), $change_val)
-    //       change_global_NODES_EDGES_update(_newNodes, _newEdges)
-    // })
 }
 exports.addEvent2kripkeList = addEvent2kripkeList;
 function acName2ac(name, acs) {
@@ -558,21 +467,15 @@ function acName2ac(name, acs) {
     return ff(_.find(acs, function (x) { return x.name === name; }));
 }
 exports.acName2ac = acName2ac;
-// change domain text (by save button in graph)
 function nodes2string($nodes) {
-    //reset
     $('#number_of_domain').empty();
-    // add list 
     return _($nodes.get())
         .map(function (x) { return x.label; })
         .join(" , ");
 }
 exports.nodes2string = nodes2string;
-function button2kripkeObject(// pure
-    $nameInfo, $commentInfo, $fromInfo, $toInfo, $nodes, $edges, $KRIPKE_DATA) {
-    //domain
+function button2kripkeObject($nameInfo, $commentInfo, $fromInfo, $toInfo, $nodes, $edges, $KRIPKE_DATA) {
     var _domain4output = _.map($nodes.get(), function (x) { return x.label; });
-    //relation 
     var _arrayEdges = $edges.get();
     var relMake = function (x) {
         var z = _.nth(x, 0);
@@ -585,13 +488,12 @@ function button2kripkeObject(// pure
     };
     var _rel4output = _.chain(_arrayEdges)
         .map(function (x) { return x.label; })
-        .uniq() //whole agent in arrayEdges
+        .uniq()
         .thru(function (x) { return Util.cartesianProduct([_arrayEdges, x]); })
         .map(relMake)
         .uniqWith(_.isEqual)
-        .compact() // .filter(x => x !== undefined)
+        .compact()
         .value();
-    //precondition
     var _fromTo = (_.zip($fromInfo, $toInfo));
     var _cart = Util.cartesianProduct([_domain4output, _fromTo]);
     var preMake = function (x) {
@@ -613,7 +515,6 @@ function button2kripkeObject(// pure
         .map(preMake)
         .compact()
         .value();
-    // kripke_json
     var _kripke_object = {
         name: $nameInfo,
         domain: _domain4output,
@@ -638,9 +539,6 @@ function kmName2km($name, $kms) {
     return ff(_.find($kms, function (x) { return x.name === _nameWithout; }));
 }
 exports.kmName2km = kmName2km;
-//--------------------------------------------------------------
-//sample load (kripke models)
-//--------------------------------------------------------------
 function ajax_output($e) {
     $.ajax({
         url: $e,
@@ -666,11 +564,8 @@ function json2kripkeData($json) {
     _.chain(exports.KRIPKE_DATA)
         .uniqBy('name')
         .forEach(function (x) {
-        // 3. add kripke to composition select
         addKripke2compositionSelect(x.name, false);
-        // 4. write kripke list
         $("#kripke_list").append(kripkeObject2string(x));
-        // 5. kripke listにevent割り当て
         addEvent2kripkeList(x, exports.NODES, exports.EDGES, true);
     })
         .value();

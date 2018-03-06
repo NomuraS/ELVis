@@ -18,7 +18,7 @@ function syntaxFail() {
     $('#error_input').css("color", "#A44644");
 }
 function syntaxSuccess() {
-    Util.writeDOM_html('#error_input')('syntax &#10004;'); // green 
+    Util.writeDOM_html('#error_input')('syntax &#10004;');
     $('#error_input').css("color", "#346B36");
 }
 function syntaxCheck(str) {

@@ -9,30 +9,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Rx = __webpack_require__(28);
 var _ = __webpack_require__(18);
 var Ac = __webpack_require__(23);
-// import * as Vis from 'vis';
 var Vis = __webpack_require__(16);
-// import * as IO from '../lib/io_monad';
 var Util = __webpack_require__(10);
 var Elm_action = __webpack_require__(335);
 var Elm_frame = __webpack_require__(74);
 var Elm_randomAM = __webpack_require__(75);
-// declare let Vis: any
-//----------------------------------------------
-// event listners 
-//----------------------------------------------
-// keyup event 
 var $$FORM2_ACTION = document.querySelector('#form2_action');
-// click events 
 var $BUTTON_CHECK_FRAME_PROPERTIES = document.querySelector('#button_check_frame_properties');
-// const $BUTTON_ISREFLEXIVE: Element | null = document.querySelector('#button_isReflexive')
-// const $BUTTON_ISTRANSITIVE: Element | null = document.querySelector('#button_isTransitive')
-// const $BUTTON_ISSYMMETRIC: Element | null = document.querySelector('#button_isSymmetric')
-// const $BUTTON_ISEUCLEADIAN: Element | null = document.querySelector('#button_isEucleadian')
 var $BUTTON_MAKEITREFLEXIVE = document.querySelector('#button_makeItReflexive');
 var $BUTTON_MAKEITTRANSITIVE = document.querySelector('#button_makeItTransitive');
 var $BUTTON_MAKEITSYMMETRIC = document.querySelector('#button_makeItSymmetric');
 var $BUTTON_MAKEITEUCLEADIAN = document.querySelector('#button_makeItEucleadian');
-//
 var $ACTION_SAMPLE1 = document.querySelector('#action_sample1');
 var $ACTION_SAMPLE2 = document.querySelector('#action_sample2');
 var $EXPORT_ACTION_MODELS = document.querySelector('#export_action_models');
@@ -42,17 +29,13 @@ var $SELECT_COMPOSITION_ACTION2 = document.querySelector('#select_composition_ac
 var $BUTTON_COMPOSITION_ACTION = document.querySelector('#button_composition_action');
 var $COMP_BUTTON_ADD_ACTION = document.querySelector('#comp_button_add_action');
 var $BUTTON_CREATE_RANDOM_ACTION = document.querySelector("#button_create_random_action");
-// change events
-var $INPUT_CHECK_ACTION = document.querySelector('input[name="check_action"]'); // straight arrow
-var $INPUT_CHECK_ACTION2 = document.querySelector('input[name="check_action2"]'); // invisible arrows
+var $INPUT_CHECK_ACTION = document.querySelector('input[name="check_action"]');
+var $INPUT_CHECK_ACTION2 = document.querySelector('input[name="check_action2"]');
 var $INPUT_NODETYPE_CHECK_ACTION = $('input[name="nodeType_check_action"]:radio');
 var $ELM_ACTION = Elm_action.ElmFunctions_action.embed(document.getElementById('elm_action'));
 var $ELM_FRAME = Elm_frame.ElmFunctions_frame.embed(document.getElementById('elm_frame'));
 var $ELM_RANDOM_AM = Elm_randomAM.ElmFunctions_randomAM.embed(document.getElementById('elm_randomAM'));
 var $FILE_ACTION = document.querySelector("#file_action");
-//----------------------------------------------
-// constants
-//----------------------------------------------
 var $$INITIAL_NODES = [
     { label: "e0", id: "e0", font: { multi: true } },
     { label: "e1", id: "e1" },
@@ -63,13 +46,9 @@ var $$INITIAL_EDGES = [
     { from: "e0", to: "e1", label: "a", id: "e0_e1_a", color: Ac.agColor("a", Ac.AGENT_COLOR) },
     { from: "e0", to: "e2", label: "b", id: "e0_e2_b", color: Ac.agColor("b", Ac.AGENT_COLOR) },
 ];
-//----------------------------------------------
-// global variables
-//----------------------------------------------
 var CHECK_STRAIGHT_LINE = $('#checkbox_hierarchical_action').prop('checked');
 var CHECK_INVISIBLE_ARROWS = $('#checkbox_invisibleArrows_action').prop('checked');
 var NODE_TYPE = document.querySelector("input[name='nodeType_check_action']:checked").value;
-// let NODE_TYPE = $('#checkbox_node_action').prop('checked');
 var CHECK_PHYSICS_ENABLE = $('#checkbox_physics_action').prop('checked');
 var CHECK_HIERARCHICAL_ACTION = $('#checkbox_hierarchical_action_auto').prop('checked');
 var COMPOSED_ACTION;
@@ -86,17 +65,12 @@ function change_global_NUM_OF_RANDOMAM() {
     NUM_OF_RANDOMAM = NUM_OF_RANDOMAM + 1;
 }
 exports.change_global_NUM_OF_RANDOMAM = change_global_NUM_OF_RANDOMAM;
-//----------------------------------------------
-// initials
-//----------------------------------------------
 Rx.DOM.ready().subscribe(function () {
-    // variable settngs
     var _name_action = $$FORM2_ACTION.value.toString();
-    // setting for the initial graph
     document.getElementById('network-popUp_edge').style.display = 'none';
     Ac.NODES.add($$INITIAL_NODES);
     Ac.EDGES.add($$INITIAL_EDGES);
-    var _initialAM = Ac.graph2actionObject(_name_action, Ac.NODES, Ac.EDGES); // (I). setting for the graph
+    var _initialAM = Ac.graph2actionObject(_name_action, Ac.NODES, Ac.EDGES);
     Ac.OPTION_ACTION.manipulation = {
         editEdge: false,
         deleteNode: function ($data, $callback) {
@@ -112,57 +86,37 @@ Rx.DOM.ready().subscribe(function () {
             Ac.watchAddEdgefunction($data, $callback, Ac.NODES, Ac.EDGES, Ac.$id_of_input_for_arrow_backup());
         }
     };
-    // (II). draw the graph
     NETWORK_ACTION = new Vis.Network(Ac.$CONTAINER_ACTION, { nodes: Ac.NODES, edges: Ac.EDGES }, Ac.OPTION_ACTION);
-    // 2. write TopPanel
     Ac.actionObject2writeTopPanel(_initialAM);
     Ac.ACTION_DATA.forEach(function (x) {
-        // 3. add action to composition select
         Ac.addAction2compositionSelect(x.name, true);
-        // 4. write action list
         $("#action_list").append(Ac.actionObject2string(x));
-        // 5. action listにevent割り当て
         Ac.addEvent2actionList(x, Ac.NODES, Ac.EDGES);
     });
-    // 6. check frame property
     checkFrameProperty(Ac.EDGES, Ac.NODES);
-    // 7. overlay adding
     Ac.overlay4action(Ac.ACTION_DATA.map(function (x) { return x.name; }));
 }, function (error) { return console.log(error); }, function () { return console.log('initialization completed'); });
-//------------------------------------------------------------
-// button_add
-//------------------------------------------------------------
 Rx.Observable.fromEvent($BUTTON_ADD_ACTION, 'click')
     .subscribe(function () {
-    // open panel of action list
     $('#actionListPanel').show(500);
     var _nameInfo = $('#form2_action').val().toString();
     var _commentInfo = $('#textarea_comment').val().toString();
-    var _fromInfo = $(".classOfPrecondition > .color_text_panel"); //e0
-    var _toInfo = $(".classOfPrecondition > .precondition4state"); //top
+    var _fromInfo = $(".classOfPrecondition > .color_text_panel");
+    var _toInfo = $(".classOfPrecondition > .precondition4state");
     var _action_object = Ac.button2actionObject(_nameInfo, _commentInfo, _fromInfo, _toInfo, Ac.NODES, Ac.EDGES, Ac.ACTION_DATA);
     _action_object.caseOf({
         right: function (_am) {
-            // 7. Ac.ACTION_DATA.push(_action_object);
             change_global_ACTION_DATA(_am);
-            // 3. add action to composition select
             Ac.addAction2compositionSelect(_am.name, false);
-            // 4. write action list
             $("#action_list").append(Ac.actionObject2string(_am));
             $("#action_list_editor").append(Ac.actionObject2string(_am));
-            // 5. action listにevent割当
             Ac.addEvent2actionList(_am, Ac.NODES, Ac.EDGES);
-            // 7. overlay adding
             Ac.overlay4action(Ac.ACTION_DATA.map(function (x) { return x.name; }));
-            // success message
             alert("new Action Model \"" + _am.name + "\" has been successfully added to Action Model List.");
         },
         left: function (errorMsg) { return console.log("error in events_action.ts (1): " + errorMsg); }
     });
 }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
-//------------------------------------------------------------
-// button for frme properties
-//------------------------------------------------------------
 function checkFrameProperty($edges, $nodes) {
     var sendingFrame = Ac.edges2relation($edges);
     var sendingJSON = {
@@ -178,12 +132,12 @@ $ELM_FRAME.ports.output2.subscribe(function (model) {
         if (x) {
             Util.writeDOM_html(str + "> .table1-yw4l", "&#10004;");
             $(str).css("background-color", "#DBEED3");
-            $(str + "> .table1-yw4l").css("color", "#346B36"); //red
+            $(str + "> .table1-yw4l").css("color", "#346B36");
         }
         else {
             Util.writeDOM_html(str + "> .table1-yw4l", "&#10008;");
             $(str).css("background-color", "#F0D9D9");
-            $(str + "> .table1-yw4l").css("color", "#A44644 "); //green
+            $(str + "> .table1-yw4l").css("color", "#A44644 ");
         }
     };
     ff(model.checkRef, '#result_isReflexive');
@@ -192,57 +146,47 @@ $ELM_FRAME.ports.output2.subscribe(function (model) {
     ff(model.checkSym, '#result_isSymmetric');
     ff(model.checkSer, '#result_isSerial');
 });
-// button_check_frame_properties
 Rx.Observable.fromEvent($BUTTON_CHECK_FRAME_PROPERTIES, 'click')
     .subscribe(function () { return checkFrameProperty(Ac.EDGES, Ac.NODES); }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
-// make it ref
 Rx.Observable.fromEvent($BUTTON_MAKEITREFLEXIVE, 'click')
     .subscribe(function () {
     var sendingFrame = Ac.edges2relation(Ac.EDGES);
     var sendingJSON = {
         frame: sendingFrame,
         property: "T",
-        // agents: _.map(Ac.AGENT_COLOR, (x: Ac.AgentColor) => x.agent),
         agents: _.uniq(_.map(Ac.EDGES.get(), function (x) { return x.label; })),
-        // agents: _.map(Ac.AGENT_LIST, (x: string[]) => _.nth(x, 0)),
         domain: _.map(Ac.NODES.get(), function (x) { return x.label; }),
     };
     $ELM_FRAME.ports.input1.send(sendingJSON);
 }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
-// make it tra
 Rx.Observable.fromEvent($BUTTON_MAKEITTRANSITIVE, 'click')
     .subscribe(function () {
     var _sendingFrame = Ac.edges2relation(Ac.EDGES);
     var _sendingJSON = {
         frame: _sendingFrame,
         property: "4",
-        // agents: _.map(Ac.AGENT_COLOR, (x: Ac.AgentColor) => x.agent),
         agents: _.uniq(_.map(Ac.EDGES.get(), function (x) { return x.label; })),
         domain: _.map(Ac.NODES.get(), function (x) { return x.label; }),
     };
     $ELM_FRAME.ports.input1.send(_sendingJSON);
 }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
-// make it symm
 Rx.Observable.fromEvent($BUTTON_MAKEITSYMMETRIC, 'click')
     .subscribe(function () {
     var sendingFrame = Ac.edges2relation(Ac.EDGES);
     var sendingJSON = {
         frame: sendingFrame,
         property: "B",
-        // agents: _.map(Ac.AGENT_COLOR, (x: Ac.AgentColor) => x.agent),
         agents: _.uniq(_.map(Ac.EDGES.get(), function (x) { return x.label; })),
         domain: _.map(Ac.NODES.get(), function (x) { return x.label; }),
     };
     $ELM_FRAME.ports.input1.send(sendingJSON);
 }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
-// make it tra
 Rx.Observable.fromEvent($BUTTON_MAKEITEUCLEADIAN, 'click')
     .subscribe(function () {
     var _sendingFrame = Ac.edges2relation(Ac.EDGES);
     var _sendingJSON = {
         frame: _sendingFrame,
         property: "5",
-        // agents: _.map(Ac.AGENT_COLOR, (x: Ac.AgentColor) => x.agent),
         agents: _.uniq(_.map(Ac.EDGES.get(), function (x) { return x.label; })),
         domain: _.map(Ac.NODES.get(), function (x) { return x.label; }),
     };
@@ -265,8 +209,6 @@ $ELM_FRAME.ports.output1.subscribe(function (model) {
     Ac.actionObject2writeTopPanel(_amobject);
     checkFrameProperty(Ac.EDGES, Ac.NODES);
 });
-//------------------------------------------------------------
-//------------------------------------------------------------
 Rx.Observable.fromEvent($BUTTON_COMPOSITION_ACTION, 'click')
     .subscribe(function () {
     var _ac1 = $SELECT_COMPOSITION_ACTION1.value.toString();
@@ -279,13 +221,8 @@ Rx.Observable.fromEvent($BUTTON_COMPOSITION_ACTION, 'click')
 }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
 $ELM_ACTION.ports.output1.subscribe(function (model) {
     change_global_COMPOSED_ACTION(model);
-    // console.log(Ac.ACTION_DATA) 
     Ac.actionObject2writeComposePanel(model);
 });
-//------------------------------------------------------------------------------------
-// add action (composition)
-//------------------------------------------------------------------------------------
-// $COMP_BUTTON_ADD_ACTION.addEventListener('click', function () {
 Rx.Observable.fromEvent($COMP_BUTTON_ADD_ACTION, 'click')
     .subscribe(function () {
     var _nameInfo = $('#comp_form2_action').val().toString();
@@ -295,24 +232,16 @@ Rx.Observable.fromEvent($COMP_BUTTON_ADD_ACTION, 'click')
     var _action_object = Ac.button2actionObject(_nameInfo, _commentInfo, _fromInfo, _toInfo, Ac.NODES, Ac.EDGES, Ac.ACTION_DATA);
     _action_object.caseOf({
         right: function (_am) {
-            // 7. Ac.ACTION_DATA.push(_action_object);
             change_global_ACTION_DATA(COMPOSED_ACTION);
-            // 3. add action to composition select
             Ac.addAction2compositionSelect(COMPOSED_ACTION.name, false);
-            // 4. write action list
             $("#action_list").append(Ac.actionObject2string(COMPOSED_ACTION));
             $("#action_list_composition").append(Ac.actionObject2string(COMPOSED_ACTION));
-            // 5. action listにevent割当
             Ac.addEvent2actionList(_am, Ac.NODES, Ac.EDGES);
-            // success message
             alert("new Action Model \"" + _am.name + "\" has been successfully added to Action Model List.");
         },
         left: function (errorMsg) { return console.log("error in events_action.ts (2): " + errorMsg); }
     });
 }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
-//------------------------------------------------------------------------------------
-// add action (random)
-//------------------------------------------------------------------------------------
 var NUM_OF_RANDOMAM = 0;
 Rx.Observable.fromEvent($BUTTON_CREATE_RANDOM_ACTION, 'click')
     .subscribe(function () {
@@ -334,44 +263,18 @@ $ELM_RANDOM_AM.ports.output1.subscribe(function (model) {
         comment: "Random Action Model" + String(NUM_OF_RANDOMAM)
     };
     change_global_NUM_OF_RANDOMAM();
-    // 7. Ac.ACTION_DATA.push(_action_object);
     change_global_ACTION_DATA(_am);
-    // 3. add action to composition select
     Ac.addAction2compositionSelect(_am.name, false);
-    // 4. write action list
     $("#action_list").append(Ac.actionObject2string(_am));
     $("#action_list_random").append(Ac.actionObject2string(_am));
-    // 5. action listにevent割当
     Ac.addEvent2actionList(_am, Ac.NODES, Ac.EDGES);
-    // success message
     alert("new Action Model \"" + _am.name + "\" has been successfully added to Action Model List.");
 });
-// export interface Relation {
-//     agent: string,
-//     from: string,
-//     to: string
-// }
-// export interface Precondition {
-//     from: string,
-//     to: string
-// }
-// export interface ActionModel {
-//     name: string,
-//     domain: string[],
-//     relation: Relation[],
-//     precondition: Precondition[],
-//     comment: string
-// }
-//------------------------------------------------------------------------------------
-// Figure Configurations 
-//------------------------------------------------------------------------------------
-// hierarchical
 $INPUT_CHECK_ACTION.addEventListener('change', function () {
     CHECK_STRAIGHT_LINE = $('#checkbox_hierarchical_action').prop('checked');
     NETWORK_ACTION.setOptions({ edges: { smooth: !CHECK_STRAIGHT_LINE } });
     reflect_checkbox();
 });
-// チェックボックスをチェックしたら発動2 reflexive arrowsを透明にする
 $INPUT_CHECK_ACTION2.addEventListener('change', function () {
     CHECK_INVISIBLE_ARROWS = $('#checkbox_invisibleArrows_action').prop('checked');
     if (CHECK_INVISIBLE_ARROWS) {
@@ -397,7 +300,6 @@ $INPUT_CHECK_ACTION2.addEventListener('change', function () {
             .value();
     }
 });
-// node type
 $INPUT_NODETYPE_CHECK_ACTION.on('change', function () {
     NODE_TYPE = document.querySelector("input[name='nodeType_check_action']:checked").value;
     if (NODE_TYPE === 'type1') {
@@ -447,10 +349,8 @@ $("#springConstant_action").on('change', function () {
     reflect_checkbox();
 });
 function reflect_checkbox() {
-    // CHECK_STRAOGHT_LINE
     CHECK_STRAIGHT_LINE = $('#checkbox_hierarchical_action').prop('checked');
     NETWORK_ACTION.setOptions({ edges: { smooth: !CHECK_STRAIGHT_LINE } });
-    // CHECK_HIERARCHICAL_ACTION
     CHECK_HIERARCHICAL_ACTION = $('#checkbox_hierarchical_action_auto').prop('checked');
     if (CHECK_HIERARCHICAL_ACTION) {
         NETWORK_ACTION.setOptions({ layout: { hierarchical: { enabled: true } } });
@@ -458,21 +358,13 @@ function reflect_checkbox() {
     else {
         NETWORK_ACTION.setOptions({ layout: { hierarchical: false } });
     }
-    // CHECK_PHYSICS_ENABLE
     CHECK_PHYSICS_ENABLE = $('#checkbox_physics_action').prop('checked');
     NETWORK_ACTION.setOptions({ physics: { enabled: CHECK_PHYSICS_ENABLE } });
 }
-//----------------------------------------------------------------------------------------
-// keyup 
-//----------------------------------------------------------------------------------------
-// setting (write figure's title) 
 $$FORM2_ACTION.addEventListener('keyup', function () {
     var name_action = $$FORM2_ACTION.value.toString();
     Util.writeDOM_html('#actionNameOnGraph')(name_action);
 });
-//------------------------------------------------------------
-// download the action list
-//------------------------------------------------------------
 Rx.Observable.fromEvent($EXPORT_ACTION_MODELS, 'click')
     .subscribe(function () {
     var FOR_DOWNLOAD = _.map(Ac.ACTION_DATA, function (x) { return JSON.stringify(x, null, "\t"); });
@@ -481,17 +373,12 @@ Rx.Observable.fromEvent($EXPORT_ACTION_MODELS, 'click')
     _link.download = "ActionModels.json";
     _link.click();
 }, function (error) { return console.log(error); }, function () { return console.log('drawandwritenewgraph completed'); });
-//------------------------------------------------------------
-//action_sample1
 $ACTION_SAMPLE1.addEventListener('click', function () {
     Ac.ajax_output('./src/files/AModels/MayReada.json');
 });
 $ACTION_SAMPLE2.addEventListener('click', function () {
     Ac.ajax_output('./src/files/AModels/MayReada.json');
 });
-//--------------------------------------------------------------
-//load json (action models)
-//--------------------------------------------------------------
 Rx.Observable.fromEvent($FILE_ACTION, 'change')
     .subscribe(function () {
     if (window.File) {
@@ -66535,17 +66422,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _ = __webpack_require__(18);
 var Util = __webpack_require__(10);
 var Vis = __webpack_require__(16);
-// import * as Vis from 'vis';
-// import * as $ from 'jquery';
 var tsmonad_1 = __webpack_require__(37);
 var util_1 = __webpack_require__(10);
-// constant symbols
 var $$NODES_COLOR = "mediumturquoise";
 exports.$$BACKGROUND_COLOR = "whitesmoke";
-exports.$A1 = document.getElementById('node-label_action'); //.value = $data.label;
-exports.$A2 = document.getElementById('saveButton_action'); //.onclick = saveData_action.bind(this, $data, $callback);
-exports.$A3 = document.getElementById('cancelButton_action'); //.onclick = clearPopUp_action.bind(null);
-exports.$A4 = document.getElementById('network-popUp_node'); //.style.display = 'block';
+exports.$A1 = document.getElementById('node-label_action');
+exports.$A2 = document.getElementById('saveButton_action');
+exports.$A3 = document.getElementById('cancelButton_action');
+exports.$A4 = document.getElementById('network-popUp_node');
 exports.$AGENT_LABEL = document.getElementById('id_of_input_for_arrow_backup').value;
 exports.$CONFIG_ACTION = document.getElementById('config_action');
 exports.$CONTAINER_ACTION = document.getElementById('network_action');
@@ -66554,7 +66438,6 @@ function makeRefl($agt, $listWorld) {
         .map(function (pair) { return { "agent": _.nth(pair, 0), "from": _.nth(pair, 1), "to": _.nth(pair, 1) }; })
         .value();
 }
-//global variables 
 exports.AGENT_COLOR = [{ agent: "a", color: "orangered" }, { agent: "b", color: "royalblue" }];
 exports.NODES = new Vis.DataSet();
 exports.EDGES = new Vis.DataSet();
@@ -66659,19 +66542,12 @@ function publicAnnouncement($agts, $f) {
         "comment": "public announcement of " + $f
     };
 }
-// let $centralGravity_action = (document.getElementById("centralGravity_action") as HTMLInputElement)
-// let $SPRING_LENGTH_ACTION = (document.getElementById("springLength_action") as HTMLInputElement)
-// let $springConstant_action = (document.getElementById("springConstant_action") as HTMLInputElement)
-// let $nodeDistance_action = (document.getElementById("nodeDistance_action") as HTMLInputElement)
 exports.OPTION_ACTION = {
     physics: {
         barnesHut: {
             gravitationalConstant: -2000,
-            // centralGravity: Number($centralGravity_action),
             centralGravity: 0.2,
-            // springLength: Number($SPRING_LENGTH_ACTION.value),
             springLength: 100,
-            // springConstant: Number($springConstant_action),
             springConstant: 0.05,
         }
     },
@@ -66697,15 +66573,12 @@ exports.OPTION_ACTION = {
         size: 15,
         color: $$NODES_COLOR,
         font: {
-            // color:'#cae6fc',
-            // strokeWidth:2,
-            // strokeColor:'#18171A',
             face: 'Comic Sans MS',
         },
     },
     edges: {
         arrows: 'to',
-        smooth: false // デフォルト:true、falseにするとエッジが直線になる
+        smooth: false
     },
     layout: {
         hierarchical: false
@@ -66725,25 +66598,17 @@ function agColor($ag, $AGENT_COLOR) {
         .head();
 }
 exports.agColor = agColor;
-//------------------------------------------------------------------------------------------------------------------
-// functions which change global variables
-//------------------------------------------------------------------------------------------------------------------
 function change_global_NODES_EDGES_update($nodes, $edges) {
     exports.EDGES.remove(exports.EDGES.getIds());
     exports.NODES.remove(exports.NODES.getIds());
-    //nodes
     exports.NODES.update($nodes);
     exports.EDGES.update($edges);
 }
-//------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------
-//ここにonclickと繋がったdomain追加のevent listenerがある(saveData_action)
 function $id_of_input_for_arrow_backup() {
     var _a = document.getElementById('id_of_input_for_arrow_backup');
     return _a.value;
 }
 exports.$id_of_input_for_arrow_backup = $id_of_input_for_arrow_backup;
-// watch nodes remove --not pure
 function watchRemoveNodefunction($data, $callback, $nodes, $edges) {
     var _arrayEdges = $edges.get();
     var _selectednode = _.head($data.nodes);
@@ -66758,14 +66623,12 @@ function watchRemoveNodefunction($data, $callback, $nodes, $edges) {
     nodeEdge2writeTopPanel($nodes, $edges);
 }
 exports.watchRemoveNodefunction = watchRemoveNodefunction;
-// watch nodes remove --not pure
 function watchRemoveEdgeFunction($data, $callback, $nodes, $edges) {
     var _selectedEdge = _.head($data.edges);
     $edges.remove(_selectedEdge);
     nodeEdge2writeTopPanel($nodes, $edges);
 }
 exports.watchRemoveEdgeFunction = watchRemoveEdgeFunction;
-// watch nodes add --not pure
 function watchAddNodefunction($nod, $func, $nodes, $edges, $label_action, $saveButton_action, $cancelButton_action, $popUp_node) {
     var clearPopUp_action = function () {
         $saveButton_action.onclick = null;
@@ -66773,15 +66636,12 @@ function watchAddNodefunction($nod, $func, $nodes, $edges, $label_action, $saveB
         $popUp_node.style.display = 'none';
     };
     var saveData_action = function ($data, $callback) {
-        // function saveData_action(nodes,edges,$data, $callback): void {
         $data.label = document.getElementById('node-label_action').value;
         var _domain2 = _.map($nodes.get(), function (x) { return x.label; });
         $data.id = $data.label;
         if (_domain2.indexOf($data.label) === -1) {
             $nodes.add($data);
-            //htmlのpanelに反映する
             nodeEdge2writeTopPanel($nodes, $edges);
-            //figureに反映する
             clearPopUp_action();
             $callback($data);
         }
@@ -66795,9 +66655,8 @@ function watchAddNodefunction($nod, $func, $nodes, $edges, $label_action, $saveB
     $popUp_node.style.display = 'block';
 }
 exports.watchAddNodefunction = watchAddNodefunction;
-// watch edges --not pure
 function watchAddEdgefunction($rel, $func, $nodes, $edges, $agent) {
-    var agtInput = $agent; //= $id_of_input_for_arrow_backup()
+    var agtInput = $agent;
     var addingArrow = $rel.from + "_" + $rel.to + "_" + agtInput;
     var addEdge_checked = function () {
         $edges.add({
@@ -66810,7 +66669,7 @@ function watchAddEdgefunction($rel, $func, $nodes, $edges, $agent) {
     };
     if (!_.includes($edges.getIds(), addingArrow)) {
         addEdge_checked();
-        nodeEdge2writeTopPanel($nodes, $edges); // $('#action_relation').html(edges2html($edges));
+        nodeEdge2writeTopPanel($nodes, $edges);
         $func($rel);
     }
     else {
@@ -66829,9 +66688,6 @@ function overlay4action($ACTION_LIST_NAME) {
     ]);
 }
 exports.overlay4action = overlay4action;
-//---------------------------------------------------------------------------------------
-// action editor
-//---------------------------------------------------------------------------------------
 function rel2anotherRel($rel) {
     var customizer = function (x, y) {
         if (_.isArray(x)) {
@@ -66866,7 +66722,6 @@ function actionObject2string($actionModel) {
     var _precondition = $actionModel.precondition;
     var _comment = $actionModel.comment;
     var _relation2 = rel2anotherRel(_relation);
-    // const _amname = _name.replace(/\(|\)|\;/g, "")
     var _amname = util_1.string2number(_name);
     var h = "<li>" +
         "<div class=\"btn-group model-title\" data-toggle=\"buttons\">" +
@@ -66874,7 +66729,6 @@ function actionObject2string($actionModel) {
         ("<input value=\"show graph\" type=\"button\" class=\"btn btn-info btn-info-overwrite btn-xs see_graph_" + _amname + "111\">") +
         "</div>" +
         "<div class=\"close_panel action_list_panel\" style=\"display:none\">" +
-        //            ここに隠す中身
         "<ul class=\"css_border_left\">" +
         "<li class='class_name_of_action'>Name of Action Model " +
         ("<p>" + _name + "</p>") +
@@ -66891,7 +66745,6 @@ function actionObject2string($actionModel) {
     h += "<li>Comment <p>" + _comment + "</p></li>" +
         "</ul>" +
         "</div>" +
-        //            ここまで隠す   
         "</li>";
     return h;
 }
@@ -66913,7 +66766,6 @@ function edges2relation($edge) {
 }
 exports.edges2relation = edges2relation;
 function amRelation2html($edge) {
-    // const _arrayEdges2: any[]/*Relation[]*/ = $edge
     var _ff = function (k) {
         return "<li>Relation of <span class='textarea4agents'>" + k.agent + "</span>: <br>" +
             "{" +
@@ -66928,12 +66780,9 @@ function amRelation2html($edge) {
         .uniq()
         .join(' ')
         .value();
-    //reset
-    // $('#action_relation').empty();
     return _html;
 }
 exports.amRelation2html = amRelation2html;
-// change precondition text (by save button in graph)
 function nodes2htmlPrecondition($dom) {
     var _arrayNodes = $dom.get().map(function (x) { return x.label; });
     return amDomain2htmlPrecondition(_arrayNodes);
@@ -66951,9 +66800,6 @@ function amDomain2htmlPrecondition(dom) {
     return _html;
 }
 exports.amDomain2htmlPrecondition = amDomain2htmlPrecondition;
-//-------------------------------------------------------------------
-// write top panel
-//-------------------------------------------------------------------
 function nodeEdge2writeTopPanel($nodes, $edges) {
     Util.writeDOM_html("#number_of_domain")(nodes2string($nodes));
     Util.writeDOM_html('#action_relation')(amRelation2html(edges2html($edges)));
@@ -66962,14 +66808,10 @@ function nodeEdge2writeTopPanel($nodes, $edges) {
 exports.nodeEdge2writeTopPanel = nodeEdge2writeTopPanel;
 function actionObject2writeTopPanel($act) {
     Util.writeDOM_value('#form2_action')($act.name);
-    //text of inputarea on figure
     Util.writeDOM_html('#actionNameOnGraph')($act.name);
     $('#number_of_domain').empty();
     Util.writeDOM_html("#number_of_domain")($act.domain.join(" , "));
     Util.writeDOM_html("#action_relation")(amRelation2html($act.relation));
-    // $("#action_relation").append(amRelation2html($act.relation))
-    // Util.writeDOM_html("#number_of_domain")(nodes2string(NODES))
-    // Util.writeDOM_html("#action_relation")(edges2html(EDGES))
     $("#action_precondition").append(amDomain2htmlPrecondition($act.domain));
     $('#textarea_comment').val($act.comment);
 }
@@ -66977,12 +66819,10 @@ exports.actionObject2writeTopPanel = actionObject2writeTopPanel;
 function actionObject2writeComposePanel(act) {
     $('#composedAction').css('display', 'block');
     Util.writeDOM_value('#comp_form2_action')(act.name);
-    //text of inputarea on figure
     $('#comp_number_of_domain').empty();
     Util.writeDOM_html("#comp_number_of_domain")(act.domain.join(" , "));
     Util.writeDOM_html("#comp_action_relation")(amRelation2html(act.relation));
     $('#comp_action_precondition').empty();
-    // $("#comp_action_precondition").append(amDomain2htmlPrecondition(act.domain));
     _.map(act.precondition, function (x) {
         return $('#comp_action_precondition').append("<li> pre(" + x.from + ")=" + x.to + "</li>");
     });
@@ -67014,9 +66854,8 @@ function graph2actionObject($name, $nodes, $edges) {
 }
 exports.graph2actionObject = graph2actionObject;
 function addEvent2actionList($am, $nodes, $edges) {
-    // const modifyName = (str) => str.replace(/\(|\)|\;/g, "")
     var modifyName = function (str) { return Util.string2number(str); };
-    var _amname = modifyName($am.name); //$am.name.replace(/\(|\)|\;/g, "")
+    var _amname = modifyName($am.name);
     $(".see_graph_" + _amname + "111").on('click', function () {
         var _am = function () {
             var aa = _.find(exports.ACTION_DATA, function (x) { return modifyName(x.name) === _amname; });
@@ -67034,7 +66873,6 @@ function addEvent2actionList($am, $nodes, $edges) {
                 to: x.to,
                 label: x.agent,
                 color: agColor(x.agent, exports.AGENT_COLOR),
-                // id: x.from + x.to + x.agent
                 id: x.from + "_" + x.to + "_" + x.agent
             };
         });
@@ -67056,21 +66894,15 @@ function acName2ac(name, acs) {
     return ff(_.find(acs, function (x) { return x.name === name; }));
 }
 exports.acName2ac = acName2ac;
-// change domain text (by save button in graph)
 function nodes2string($nodes) {
-    //reset
     $('#number_of_domain').empty();
-    // add list 
     return _($nodes.get())
         .map(function (x) { return x.label; })
         .join(" , ");
 }
 exports.nodes2string = nodes2string;
-function button2actionObject(// pure
-    $nameInfo, $commentInfo, $fromInfo, $toInfo, $nodes, $edges, $action_data) {
-    //domain
+function button2actionObject($nameInfo, $commentInfo, $fromInfo, $toInfo, $nodes, $edges, $action_data) {
     var _domain4output = _.map($nodes.get(), function (x) { return x.label; });
-    //relation 
     var _arrayEdges = $edges.get();
     var relMake = function (x) {
         var z = _.nth(x, 0);
@@ -67083,13 +66915,12 @@ function button2actionObject(// pure
     };
     var _rel4output = _.chain(_arrayEdges)
         .map(function (x) { return x.label; })
-        .uniq() //whole agent in arrayEdges
+        .uniq()
         .thru(function (x) { return Util.cartesianProduct([_arrayEdges, x]); })
         .map(relMake)
         .uniqWith(_.isEqual)
-        .compact() // .filter(x => x !== undefined) 
+        .compact()
         .value();
-    //precondition
     var _fromTo = (_.zip($fromInfo, $toInfo));
     var _cart = Util.cartesianProduct([_domain4output, _fromTo]);
     var preMake = function (x) {
@@ -67111,7 +66942,6 @@ function button2actionObject(// pure
         .map(preMake)
         .compact()
         .value();
-    // action_json 
     var action_object = {
         name: $nameInfo,
         domain: _domain4output,
@@ -67119,7 +66949,6 @@ function button2actionObject(// pure
         precondition: _pre4output,
         comment: $commentInfo
     };
-    //check if the name of action model exists.
     if (_.every($action_data, function (x) { return x.name !== action_object.name; })) {
         return tsmonad_1.Either.right(action_object);
     }
@@ -67128,9 +66957,6 @@ function button2actionObject(// pure
     }
 }
 exports.button2actionObject = button2actionObject;
-//--------------------------------------------------------------
-//sample load (action models)
-//--------------------------------------------------------------
 function ajax_output($e) {
     $.ajax({
         url: $e,
@@ -67152,17 +66978,12 @@ function json2actionData($json) {
     };
     var AMsFromJSON = $json.filter(function (y) { return ff(y.name); });
     exports.ACTION_DATA = _.concat(exports.ACTION_DATA, AMsFromJSON);
-    // ACTION_DATA = AMsFromJSON
     $("#action_list").empty();
-    // $("#select_composition_action1").empty()
     _.chain(exports.ACTION_DATA)
         .uniqBy('name')
         .forEach(function (x) {
-        // 3. add action to composition select
         addAction2compositionSelect(x.name, false);
-        // 4. write action list
         $("#action_list").append(actionObject2string(x));
-        // 5. action listにevent割り当て
         addEvent2actionList(x, exports.NODES, exports.EDGES);
     })
         .value();

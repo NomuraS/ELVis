@@ -595,8 +595,6 @@ var equals = /*#__PURE__*/Object(__WEBPACK_IMPORTED_MODULE_0__internal_curry2__[
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = __webpack_require__(18);
 var R = __webpack_require__(135);
-// takeing from answer 13 of the following topic of stackoverflow.com
-// https://stackoverflow.com/questions/12303989/cartesian-product-of-multiple-arrays-in-javascript
 function string2number($str) {
     var _array = $str.split("");
     for (var i = 0; i < _array.length; i++) {
@@ -609,7 +607,7 @@ function cartesianProduct(a) {
     var i, j, l, m, a1, o = [];
     if (!a || a.length == 0)
         return a;
-    a1 = a.splice(0, 1)[0]; // the first array of a
+    a1 = a.splice(0, 1)[0];
     a = cartesianProduct(a);
     for (i = 0, l = a1.length; i < l; i++) {
         if (a && a.length)
@@ -632,7 +630,6 @@ function makePair(list, list2) {
 }
 exports.makePair = makePair;
 function colorGen() {
-    // const a = '#' + Math.floor(Math.random() * 16777215).toString(16);
     return '#' + Math.floor(Math.random() * 15000000).toString(16);
 }
 exports.colorGen = colorGen;
@@ -644,7 +641,6 @@ exports.writeDOM_html = R.curry(function ($selector, $val) {
     document.querySelector($selector).innerHTML = $val;
 });
 exports.writeDOM_append = R.curry(function ($selector, $val) {
-    // document.querySelector($selector).appendChild($val)
     document.getElementById($selector).appendChild($val);
 });
 exports.writeDOM_value = R.curry(function ($selector, $val) {
@@ -656,8 +652,6 @@ function parseRelation(str) {
         .replace(/\{|\}/g, "")
         .toArray()
         .value();
-    // return parseRelation2(aaa, [], [])
-    // console.log(_.includes(str, "("))
     if (_.includes(str, "(")) {
         return parseRelation2(aaa, [], []);
     }
@@ -666,20 +660,6 @@ function parseRelation(str) {
     }
 }
 exports.parseRelation = parseRelation;
-// export function parseRelationWithCut(str: string): string[] {
-//     const aaa = _.chain(str)
-//         .replace(/ /g, "")
-//         .replace(/\{|\}/g, "")
-//         .thru(x => cutHeadLastOfString(x))
-//         .toArray()
-//         .value()
-//         console.log(_.includes(str, "("))
-//     if (_.includes(str, "(")) {
-//         return parseRelation2(aaa, [], [])
-//     } else {
-//         return _.split(str, ",", 2)
-//     }
-// }
 function countx(array, x) {
     return array.filter(function (y) { return y === x; }).length;
 }

@@ -2,16 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var PS = require("./port_sequent");
 var Rx = require("rx-dom");
-// import * as Vis from 'vis';
 var Vis = require("../lib/vis");
 var Checker = require("../syntaxChecker/events_syntaxChecker");
-//--------------------------------------------------
-// constants
-//--------------------------------------------------
 exports.$CONTAINER = document.getElementById('network_sequent');
-//--------------------------------------------------
-// event
-//--------------------------------------------------
 $(document).ready(function () {
     PS.EL_system_string();
     PS.Modal_system_string();
@@ -26,7 +19,6 @@ for (var i = 0; i < $('.example_formula').length; i++) {
         Checker.syntaxCheck(PS.replace_string(x));
     }, false);
 }
-// for modal system
 $("input[class='modal_system']").on("click", function () {
     PS.Modal_system_string();
 });
@@ -76,7 +68,6 @@ $("input[name='seqent_config_sortMethod']").on("click", function () {
     }
     PS.OPTIONS.layout.hierarchical.sortMethod = _sortMethod;
     exports.NETWORK_SEQUENT.setOptions(PS.OPTIONS);
-    // 次を書かないとsyntax highliteされない
     PS.send_info2elm_proof_draw();
 });
 $('#button_create_random_formula').on('click', function () {
