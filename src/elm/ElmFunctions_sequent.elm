@@ -107,7 +107,7 @@ proofSystemfromJSON json =
             maxNum = json.maxNumberOfExpressionsAppearingInANode
             --proofSystem = modal_system json ++ proofSystemfromJSON json ---- loopp
           in 
-            case json.elSystem of  --(Debug.log "Provable_formula" )
+            case json.elSystem of 
                 "EL" -> basicRules++ ruleK
                 "PAL"-> basicRules++ ruleK++GPAL.ruleGPAL
                 "IntPAL"-> basicRules_int--  ++ IntEL.ruleK_int ++IntPAL.ruleGIntPAL 
@@ -304,13 +304,12 @@ update message model =
 
         JsonFromJS2_randomFormula json -> 
           let
-            aaa =  (json |> Debug.log "check(3)")
             decodedJSON  =Decoder.decodeValue decodeJSON4prove json
             decodedJSON2 = case decodedJSON of 
                         Ok a -> a
                         Err errorMsg-> Debug.crash ("error in update (2):" ++ errorMsg)
             maybeFormula = createRandomFormulaFromJSON decodedJSON2
-            newModel = case (Debug.log "Main-2:" <| maybeFormula ) of 
+            newModel = case maybeFormula of 
               Nothing -> {model | nodes=[],edges=[]}
               Just f ->
                   { model | formula=Syntax.outputForm 0 f}
@@ -319,7 +318,6 @@ update message model =
 
         JsonFromJS3_randomFormulaProvable json -> 
           let
-            aaa =  (json |> Debug.log "check(4)")
             decodedJSON  =Decoder.decodeValue decodeJSON4prove json 
             decodedJSON2 = case decodedJSON of 
                         Ok a -> a
@@ -339,7 +337,7 @@ update message model =
                         Ok a -> a
                         Err errorMsg-> Debug.crash ("error in update (4):" ++ errorMsg)
             maybeFormula = Parser.parseFormula  decodedJSON2.formula
-            newModel = case (Debug.log "Main-input-string:" <| maybeFormula ) of 
+            newModel = case maybeFormula of 
               Ok f ->  { model | formula=Syntax.outputForm 0 f}
                              
               Err a -> {model | formula="parseError in " ++  a}

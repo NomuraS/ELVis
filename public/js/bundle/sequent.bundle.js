@@ -94897,8 +94897,7 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						_1: {ctor: '[]'}
 					});
 			case 'JsonFromJS2_randomFormula':
-				var _p18 = _p5._0;
-				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p18);
+				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p5._0);
 				var decodedJSON2 = function () {
 					var _p15 = decodedJSON;
 					if (_p15.ctor === 'Ok') {
@@ -94907,8 +94906,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 309, column: 28},
-								end: {line: 311, column: 88}
+								start: {line: 308, column: 28},
+								end: {line: 310, column: 88}
 							},
 							_p15)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (2):', _p15._0));
@@ -94916,7 +94915,7 @@ var _user$project$ElmFunctions_sequent$update = F2(
 				}();
 				var maybeFormula = _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON(decodedJSON2);
 				var newModel = function () {
-					var _p17 = A2(_elm_lang$core$Debug$log, 'Main-2:', maybeFormula);
+					var _p17 = maybeFormula;
 					if (_p17.ctor === 'Nothing') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
@@ -94932,7 +94931,6 @@ var _user$project$ElmFunctions_sequent$update = F2(
 							});
 					}
 				}();
-				var aaa = A2(_elm_lang$core$Debug$log, 'check(3)', _p18);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					newModel,
@@ -94942,27 +94940,26 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						_1: {ctor: '[]'}
 					});
 			case 'JsonFromJS3_randomFormulaProvable':
-				var _p22 = _p5._0;
-				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p22);
+				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p5._0);
 				var decodedJSON2 = function () {
-					var _p19 = decodedJSON;
-					if (_p19.ctor === 'Ok') {
-						return _p19._0;
+					var _p18 = decodedJSON;
+					if (_p18.ctor === 'Ok') {
+						return _p18._0;
 					} else {
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 324, column: 28},
-								end: {line: 326, column: 88}
+								start: {line: 322, column: 28},
+								end: {line: 324, column: 88}
 							},
-							_p19)(
-							A2(_elm_lang$core$Basics_ops['++'], 'error in update (3):', _p19._0));
+							_p18)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update (3):', _p18._0));
 					}
 				}();
 				var maybeFormula = _user$project$ElmFunctions_sequent$createRandomFormulaFromJSON_provable(decodedJSON2);
 				var newModel = function () {
-					var _p21 = maybeFormula;
-					if (_p21.ctor === 'Nothing') {
+					var _p20 = maybeFormula;
+					if (_p20.ctor === 'Nothing') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
@@ -94973,11 +94970,10 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								formula: A2(_user$project$Common_syntax$outputForm, 0, _p21._0)
+								formula: A2(_user$project$Common_syntax$outputForm, 0, _p20._0)
 							});
 					}
 				}();
-				var aaa = A2(_elm_lang$core$Debug$log, 'check(4)', _p22);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					newModel,
@@ -94989,34 +94985,34 @@ var _user$project$ElmFunctions_sequent$update = F2(
 			default:
 				var decodedJSON = A2(_elm_lang$core$Json_Decode$decodeValue, _user$project$ElmFunctions_sequent$decodeJSON4prove, _p5._0);
 				var decodedJSON2 = function () {
-					var _p23 = decodedJSON;
-					if (_p23.ctor === 'Ok') {
-						return _p23._0;
+					var _p21 = decodedJSON;
+					if (_p21.ctor === 'Ok') {
+						return _p21._0;
 					} else {
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 338, column: 28},
-								end: {line: 340, column: 88}
+								start: {line: 336, column: 28},
+								end: {line: 338, column: 88}
 							},
-							_p23)(
-							A2(_elm_lang$core$Basics_ops['++'], 'error in update (4):', _p23._0));
+							_p21)(
+							A2(_elm_lang$core$Basics_ops['++'], 'error in update (4):', _p21._0));
 					}
 				}();
 				var maybeFormula = _user$project$Parser_Formula$parseFormula(decodedJSON2.formula);
 				var newModel = function () {
-					var _p25 = A2(_elm_lang$core$Debug$log, 'Main-input-string:', maybeFormula);
-					if (_p25.ctor === 'Ok') {
+					var _p23 = maybeFormula;
+					if (_p23.ctor === 'Ok') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								formula: A2(_user$project$Common_syntax$outputForm, 0, _p25._0)
+								formula: A2(_user$project$Common_syntax$outputForm, 0, _p23._0)
 							});
 					} else {
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								formula: A2(_elm_lang$core$Basics_ops['++'], 'parseError in ', _p25._0)
+								formula: A2(_elm_lang$core$Basics_ops['++'], 'parseError in ', _p23._0)
 							});
 					}
 				}();
