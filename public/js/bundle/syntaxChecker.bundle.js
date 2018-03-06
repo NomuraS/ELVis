@@ -27,12 +27,10 @@ function syntaxCheck(str) {
         system: _elsystem,
         formula: str
     };
-    console.log(_form);
     $ELM_SYNTAX.ports.input1.send(_form);
 }
 exports.syntaxCheck = syntaxCheck;
 $ELM_SYNTAX.ports.output1.subscribe(function ($model) {
-    console.log($model);
     if ($model.result === 'parseError') {
         syntaxFail();
     }

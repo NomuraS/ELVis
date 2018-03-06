@@ -23,11 +23,9 @@ export function syntaxCheck(str: string) {
         system: _elsystem,
         formula: str
     }
-    console.log(_form) 
     $ELM_SYNTAX.ports.input1.send(_form)
 } 
 $ELM_SYNTAX.ports.output1.subscribe($model => {
-    console.log($model)
     if ($model.result === 'parseError') {
         syntaxFail()
     } else {
