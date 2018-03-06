@@ -325,10 +325,7 @@ var _user$project$DEL_sequent$ruleAModel = {
 							return _user$project$Common_sequent$LabelForm(
 								{ctor: '_Tuple4', _0: _p30._0._0._0, _1: _p30._0._0._1, _2: _p30._0._0._2, _3: a});
 						},
-						A2(
-							_elm_lang$core$Debug$log,
-							'DEL_seq',
-							A2(_user$project$Common_syntax$lookPre, _p30._0._0._3._0.am_pre, _p30._0._0._3._1))));
+						A2(_user$project$Common_syntax$lookPre, _p30._0._0._3._0.am_pre, _p30._0._0._3._1)));
 			} else {
 				return _elm_lang$core$Maybe$Nothing;
 			}

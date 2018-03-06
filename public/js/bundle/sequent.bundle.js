@@ -86885,10 +86885,7 @@ var _user$project$DEL_sequent$ruleAModel = {
 							return _user$project$Common_sequent$LabelForm(
 								{ctor: '_Tuple4', _0: _p30._0._0._0, _1: _p30._0._0._1, _2: _p30._0._0._2, _3: a});
 						},
-						A2(
-							_elm_lang$core$Debug$log,
-							'DEL_seq',
-							A2(_user$project$Common_syntax$lookPre, _p30._0._0._3._0.am_pre, _p30._0._0._3._1))));
+						A2(_user$project$Common_syntax$lookPre, _p30._0._0._3._0.am_pre, _p30._0._0._3._1)));
 			} else {
 				return _elm_lang$core$Maybe$Nothing;
 			}
@@ -108919,8 +108916,6 @@ var _user$project$ElmFunctions_syntaxChecker$checkPAL = function (fr) {
 };
 var _user$project$ElmFunctions_syntaxChecker$syntaxCheck = F2(
 	function (fr, st) {
-		var aaa = A2(_elm_lang$core$Debug$log, '03aaa', fr);
-		var bbb = A2(_elm_lang$core$Debug$log, '02bbb', st);
 		var _p2 = st;
 		switch (_p2) {
 			case 'EL':
@@ -108973,10 +108968,7 @@ var _user$project$ElmFunctions_syntaxChecker$update = F2(
 				function (_p5) {
 					var _p6 = _p5;
 					var _p7 = _p6._0;
-					return A2(
-						_elm_lang$core$Debug$log,
-						'0ElmFunctions_syntax1ccc',
-						A2(_user$project$ElmFunctions_syntaxChecker$syntaxCheck, _p7, _p6._1)) ? _elm_lang$core$Maybe$Just(
+					return A2(_user$project$ElmFunctions_syntaxChecker$syntaxCheck, _p7, _p6._1) ? _elm_lang$core$Maybe$Just(
 						A2(_user$project$Common_syntax$outputForm, 0, _p7)) : _elm_lang$core$Maybe$Nothing;
 				}));
 		return A2(

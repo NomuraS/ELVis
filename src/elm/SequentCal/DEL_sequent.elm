@@ -679,7 +679,7 @@ ruleAModel = [
     ,rulename="R.Definition of AModel_pre"
     ,rule = \seq  -> case seq.rightForm of
                LabelForm(boxhist, w, formOrAct, Precon am s)::rightt->
-                 (Debug.log "DEL_seq" <|Sy.lookPre am.am_pre s)
+                 Sy.lookPre am.am_pre s
                  |> Maybe.map (\a-> LabelForm (boxhist, w, formOrAct, a))
                  |> Maybe.map (\add1->
                        [{seq | rightForm=[add1]++rightt}

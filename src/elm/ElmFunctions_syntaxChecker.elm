@@ -50,7 +50,7 @@ update msg model = case msg of
                                                      Ok a  -> Just (a, x.system)
                                                      Err a -> Nothing)
                                   ?>>= (\(fr,sys) -> 
-                                            if Debug.log "0ElmFunctions_syntax1ccc" (syntaxCheck fr sys) 
+                                            if syntaxCheck fr sys
                                             then Just (Syntax.outputForm 0 fr)
                                             else Nothing)
                                   |>   (\x-> Maybe.withDefault "parseError"  x)
@@ -84,10 +84,7 @@ update msg model = case msg of
 
 syntaxCheck : Formula -> String -> Bool
 syntaxCheck fr st = 
-    let 
-      bbb = Debug.log "02bbb" st 
-      aaa = Debug.log "03aaa"  fr
-    in case st of 
+  case st of 
   "EL" -> (checkPAL fr) && (checkDEL fr)
   "PAL" -> checkPAL fr
   "DEL" -> checkDEL fr
