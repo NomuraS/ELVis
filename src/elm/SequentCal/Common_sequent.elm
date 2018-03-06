@@ -204,7 +204,7 @@ axiomRule  =[
               else Nothing}
   ,{ priority=initN
     ,category=Rule4Other
-    ,rulename="top"
+    ,rulename="Top"
     ,rule = \seq ->
                   if Util.exists seq.rightForm (\a->case a of
                                     LabelForm (_,_,_,Top) -> True
@@ -214,7 +214,7 @@ axiomRule  =[
 
   ,{ priority=initN
     ,category=Rule4Other
-    ,rulename="bot"
+    ,rulename="Bot"
     ,rule = \seq ->
                   if Util.exists seq.leftForm (\a->case a of
                                     LabelForm (_,_,_,Bot) -> True
