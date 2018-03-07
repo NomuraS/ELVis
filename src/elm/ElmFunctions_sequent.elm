@@ -234,13 +234,14 @@ type alias Model = --Graph
        ,edges : List  Edge
        ,provable : Int
        ,system : String 
+       ,tex : String 
     }
 
 ----------------------------------------------
 -- initmodel
 ----------------------------------------------
 initModel : ( Model, Cmd Msg )
-initModel = ( Model "" [] [] 0 ""
+initModel = ( Model "" [] [] 0 "" ""
             , Cmd.none
             )
 
@@ -285,19 +286,22 @@ update message model =
                 maybeFormula3_AModelChanged = 
                        actionList 
                     |>  \listOfAM-> (\x->GDEL.substitution4AModel4list x listOfAM)
-                    |>  \func->  Maybe.map func  maybeFormula2_syntaxChecked
+                    |>  \func->  Maybe.map func maybeFormula2_syntaxChecked
                 newModel = case   maybeFormula3_AModelChanged  of
                   Nothing -> {model | nodes=[],edges=[]}
                   Just f ->
                     let 
                       bottom_sequent = CommonSeq.formula2seq f
-                      graph =  CommonSeq.drawProof limitNum  (modal_system++el_system)  bottom_sequent 
+                      proof = CommonSeq.makeProofTree limitNum (modal_system++el_system)  bottom_sequent 
+                      graph =  CommonSeq.drawProof proof
+                      tex_ = drawTexProof [proof]
                     in 
                       { formula=Syntax.outputForm 0 f
                       , nodes=graph.nodes
                       , edges=graph.edges
                       , provable=graph.provable 
                       , system="  ("++object.elSystem ++", "++ object.modalSystem++")"
+                      , tex=tex_
                       }         
           in
               newModel ! [ output4prove newModel ]

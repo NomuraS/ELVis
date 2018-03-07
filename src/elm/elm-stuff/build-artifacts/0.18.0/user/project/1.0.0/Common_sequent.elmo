@@ -37,7 +37,7 @@ var _user$project$Common_sequent$texRule = function (r) {
 			return _p0;
 	}
 };
-var _user$project$Common_sequent$drawTexF = F2(
+var _user$project$Common_sequent$drawTexFormula = F2(
 	function (n, f) {
 		var kakko = F2(
 			function (k, s) {
@@ -60,18 +60,18 @@ var _user$project$Common_sequent$drawTexF = F2(
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
 					' \\neg ',
-					A2(_user$project$Common_sequent$drawTexF, 3, _p1._0));
+					A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._0));
 			case 'Box':
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
-					'\\mathcal{K}_{',
+					'\\Box_{',
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						_p1._0,
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'}',
-							A2(_user$project$Common_sequent$drawTexF, 3, _p1._1))));
+							A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._1))));
 			case 'Dia':
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
@@ -82,7 +82,7 @@ var _user$project$Common_sequent$drawTexF = F2(
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'}',
-							A2(_user$project$Common_sequent$drawTexF, 3, _p1._1))));
+							A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._1))));
 			case 'Announce':
 				return A2(
 					kakko,
@@ -92,11 +92,11 @@ var _user$project$Common_sequent$drawTexF = F2(
 						'[',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							A2(_user$project$Common_sequent$drawTexF, 3, _p1._0),
+							A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._0),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								']',
-								A2(_user$project$Common_sequent$drawTexF, 3, _p1._1)))));
+								A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._1)))));
 			case 'Announce2':
 				return A2(
 					kakko,
@@ -106,11 +106,11 @@ var _user$project$Common_sequent$drawTexF = F2(
 						'\\langle ',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							A2(_user$project$Common_sequent$drawTexF, 3, _p1._0),
+							A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._0),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'\\rangle ',
-								A2(_user$project$Common_sequent$drawTexF, 3, _p1._1)))));
+								A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._1)))));
 			case 'And':
 				return A2(
 					kakko,
@@ -120,13 +120,13 @@ var _user$project$Common_sequent$drawTexF = F2(
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'(',
-							A2(_user$project$Common_sequent$drawTexF, 3, _p1._0)),
+							A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._0)),
 						A2(
 							_user$project$Common_syntax_ops['++++'],
 							'\\wedge',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(_user$project$Common_sequent$drawTexF, 3, _p1._1),
+								A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._1),
 								')'))));
 			case 'Or':
 				return A2(
@@ -137,13 +137,13 @@ var _user$project$Common_sequent$drawTexF = F2(
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'(',
-							A2(_user$project$Common_sequent$drawTexF, 3, _p1._0)),
+							A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._0)),
 						A2(
 							_user$project$Common_syntax_ops['++++'],
 							'\\vee',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(_user$project$Common_sequent$drawTexF, 3, _p1._1),
+								A2(_user$project$Common_sequent$drawTexFormula, 3, _p1._1),
 								')'))));
 			case 'Imply':
 				return A2(
@@ -151,33 +151,33 @@ var _user$project$Common_sequent$drawTexF = F2(
 					1,
 					A2(
 						_user$project$Common_syntax_ops['++++'],
-						A2(_user$project$Common_sequent$drawTexF, 2, _p1._0),
+						A2(_user$project$Common_sequent$drawTexFormula, 2, _p1._0),
 						A2(
 							_user$project$Common_syntax_ops['++++'],
 							'\\to',
-							A2(_user$project$Common_sequent$drawTexF, 2, _p1._1))));
+							A2(_user$project$Common_sequent$drawTexFormula, 2, _p1._1))));
 			case 'Imply2':
 				return A2(
 					kakko,
 					1,
 					A2(
 						_user$project$Common_syntax_ops['++++'],
-						A2(_user$project$Common_sequent$drawTexF, 2, _p1._1),
+						A2(_user$project$Common_sequent$drawTexFormula, 2, _p1._1),
 						A2(
 							_user$project$Common_syntax_ops['++++'],
 							'\\to',
-							A2(_user$project$Common_sequent$drawTexF, 2, _p1._0))));
+							A2(_user$project$Common_sequent$drawTexFormula, 2, _p1._0))));
 			case 'Iff':
 				return A2(
 					kakko,
 					1,
 					A2(
 						_user$project$Common_syntax_ops['++++'],
-						A2(_user$project$Common_sequent$drawTexF, 2, _p1._0),
+						A2(_user$project$Common_sequent$drawTexFormula, 2, _p1._0),
 						A2(
 							_user$project$Common_syntax_ops['++++'],
 							'\\leftrightarrow',
-							A2(_user$project$Common_sequent$drawTexF, 2, _p1._1))));
+							A2(_user$project$Common_sequent$drawTexFormula, 2, _p1._1))));
 			case 'Bigwedge':
 				return A2(
 					_user$project$Common_syntax_ops['++++'],
@@ -197,7 +197,7 @@ var _user$project$Common_sequent$drawTexF = F2(
 					A2(
 						_user$project$Common_syntax_ops['++++'],
 						A2(_elm_lang$core$Basics_ops['++'], _p1._1._1._2, '}'),
-						A2(_user$project$Common_sequent$drawTexF, 1, _p1._2)));
+						A2(_user$project$Common_sequent$drawTexFormula, 1, _p1._2)));
 			case 'Bigvee':
 				return A2(
 					_user$project$Common_syntax_ops['++++'],
@@ -220,7 +220,7 @@ var _user$project$Common_sequent$drawTexF = F2(
 						A2(
 							_user$project$Common_syntax_ops['++++'],
 							'}',
-							A2(_user$project$Common_sequent$drawTexF, 1, _p1._2))));
+							A2(_user$project$Common_sequent$drawTexFormula, 1, _p1._2))));
 			case 'BoxAction':
 				return A2(
 					_user$project$Common_syntax_ops['++++'],
@@ -231,7 +231,7 @@ var _user$project$Common_sequent$drawTexF = F2(
 							_elm_lang$core$Basics_ops['++'],
 							_user$project$Common_syntax$outputAction(_p1._0),
 							']')),
-					A2(_user$project$Common_sequent$drawTexF, 1, _p1._1));
+					A2(_user$project$Common_sequent$drawTexFormula, 1, _p1._1));
 			case 'DiaAction':
 				return A2(
 					_user$project$Common_syntax_ops['++++'],
@@ -242,7 +242,7 @@ var _user$project$Common_sequent$drawTexF = F2(
 						A2(
 							_user$project$Common_syntax_ops['++++'],
 							'\\rangle',
-							A2(_user$project$Common_sequent$drawTexF, 1, f))));
+							A2(_user$project$Common_sequent$drawTexFormula, 1, f))));
 			default:
 				return A2(
 					_user$project$Common_syntax_ops['++++'],
@@ -256,67 +256,25 @@ var _user$project$Common_sequent$drawTexF = F2(
 							A2(_user$project$Common_syntax_ops['++++'], _p1._1, ')('))));
 		}
 	});
-var _user$project$Common_sequent$drawTexL2 = function (r) {
-	var _p2 = r;
-	if (_p2.ctor === 'RelAtom') {
-		if (_p2._0._1.ctor === '[]') {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				_user$project$Util$show(_p2._0._2),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'\\mathsf{R}^{\\epsilon}_',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						_p2._0._0,
-						_user$project$Util$show(_p2._0._3))));
-		} else {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				_user$project$Util$show(_p2._0._2),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'\\mathsf{R}^{',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'here',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'}_',
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								_p2._0._0,
-								_user$project$Util$show(_p2._0._3))))));
-		}
-	} else {
-		return A2(
-			_user$project$Common_syntax_ops['++++'],
-			_user$project$Util$show(_p2._0._0),
-			A2(
-				_user$project$Common_syntax_ops['++++'],
-				'here',
-				_user$project$Util$show(_p2._0._1)));
-	}
-};
 var _user$project$Common_sequent$words2 = function (x) {
-	var _p3 = x;
-	if (_p3.ctor === '[]') {
+	var _p2 = x;
+	if (_p2.ctor === '[]') {
 		return '';
 	} else {
-		if (_p3._1.ctor === '[]') {
-			return _p3._0;
+		if (_p2._1.ctor === '[]') {
+			return _p2._0;
 		} else {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_p3._0,
+				_p2._0,
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					',',
-					_user$project$Common_sequent$words2(_p3._1)));
+					_user$project$Common_sequent$words2(_p2._1)));
 		}
 	}
 };
-var _user$project$Common_sequent$drawTexL = function (l) {
+var _user$project$Common_sequent$drawTexLabelForm = function (l) {
 	var forml = function (fs) {
 		return function (x) {
 			return _user$project$Common_sequent$words2(x);
@@ -324,104 +282,147 @@ var _user$project$Common_sequent$drawTexL = function (l) {
 			A2(
 				_elm_lang$core$List$map,
 				function (f) {
-					return A2(_user$project$Common_sequent$drawTexF, 1, f);
+					return A2(_user$project$Common_sequent$drawTexFormula, 1, f);
 				},
 				fs));
 	};
-	var _p4 = l;
-	if (_p4._0._0.ctor === '[]') {
+	var _p3 = l;
+	if (_p3._0._0.ctor === '[]') {
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
-			_user$project$Util$show(_p4._0._1),
+			_user$project$Util$show(_p3._0._1),
 			A2(
 				_elm_lang$core$Basics_ops['++'],
-				'{:}^{\\epsilon}',
-				A2(_user$project$Common_sequent$drawTexF, 1, _p4._0._3)));
+				'{:}^{}',
+				A2(_user$project$Common_sequent$drawTexFormula, 1, _p3._0._3)));
 	} else {
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
-			_user$project$Util$show(_p4._0._1),
+			_user$project$Util$show(_p3._0._1),
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				'{:}^{',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					'here',
+					'here1',
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'}',
-						A2(_user$project$Common_sequent$drawTexF, 1, _p4._0._3)))));
+						A2(_user$project$Common_sequent$drawTexFormula, 1, _p3._0._3)))));
 	}
 };
-var _user$project$Common_sequent$drawTexS = function (seq) {
+var _user$project$Common_sequent$showla = function (_p4) {
+	var _p5 = _p4;
+	var _p8 = _p5._1;
+	var _p7 = _p5._0;
+	var ff = _user$project$Common_sequent$words2(
+		A2(_elm_lang$core$List$map, _user$project$Common_syntax$outputAction, _p8));
+	var _p6 = _p8;
+	if (_p6.ctor === '[]') {
+		return _user$project$Util$show(_p7);
+	} else {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Util$show(_p7),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					',',
+					A2(_elm_lang$core$Basics_ops['++'], ff, ')'))));
+	}
+};
+var _user$project$Common_sequent$drawTexLabelForm2 = function (r) {
+	var _p9 = r;
+	if (_p9.ctor === 'RelAtom') {
+		if (_p9._0._1.ctor === '[]') {
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Common_sequent$showla(_p9._0._2),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\\mathsf{R}^{}_',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p9._0._0,
+						_user$project$Common_sequent$showla(_p9._0._3))));
+		} else {
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Common_sequent$showla(_p9._0._2),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\\mathsf{R}^{',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'here2',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'}_',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_p9._0._0,
+								_user$project$Common_sequent$showla(_p9._0._3))))));
+		}
+	} else {
+		return A2(
+			_user$project$Common_syntax_ops['++++'],
+			_user$project$Util$show(_p9._0._0),
+			A2(
+				_user$project$Common_syntax_ops['++++'],
+				'here3',
+				_user$project$Util$show(_p9._0._1)));
+	}
+};
+var _user$project$Common_sequent$drawTexSequent = function (seq) {
 	var forDEL = seq.forDEL;
-	var rightRel = _user$project$Common_sequent$words2(
-		A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexL2, seq.rightRel));
-	var rightForm = _user$project$Common_sequent$words2(
-		A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexL, seq.rightForm));
-	var leftRel = _user$project$Common_sequent$words2(
-		A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexL2, seq.leftRel));
-	var leftForm = _user$project$Common_sequent$words2(
-		A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexL, seq.leftForm));
+	var rightRel = A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexLabelForm2, seq.rightRel);
+	var rightForm = A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexLabelForm, seq.rightForm);
+	var leftRel = A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexLabelForm2, seq.leftRel);
+	var leftForm = A2(_elm_lang$core$List$map, _user$project$Common_sequent$drawTexLabelForm, seq.leftForm);
 	return _elm_lang$core$Native_Utils.eq(
 		forDEL,
 		{ctor: '[]'}) ? A2(
 		_elm_lang$core$Basics_ops['++'],
-		leftForm,
+		_user$project$Common_sequent$words2(
+			A2(_elm_lang$core$Basics_ops['++'], leftForm, leftRel)),
 		A2(
 			_elm_lang$core$Basics_ops['++'],
-			',',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				leftRel,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'\\Rightarrow ',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						rightForm,
-						A2(_elm_lang$core$Basics_ops['++'], ',', rightRel)))))) : A2(
+			'\\Rightarrow ',
+			_user$project$Common_sequent$words2(
+				A2(_elm_lang$core$Basics_ops['++'], rightForm, rightRel)))) : A2(
 		_elm_lang$core$Basics_ops['++'],
-		leftForm,
+		_user$project$Common_sequent$words2(
+			A2(_elm_lang$core$Basics_ops['++'], leftForm, leftRel)),
 		A2(
 			_elm_lang$core$Basics_ops['++'],
-			',',
+			'\\Rightarrow ',
 			A2(
 				_elm_lang$core$Basics_ops['++'],
-				leftRel,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'\\Rightarrow ',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						rightForm,
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							',',
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								rightRel,
-								A2(_elm_lang$core$Basics_ops['++'], '||', 'here'))))))));
+				_user$project$Common_sequent$words2(
+					A2(_elm_lang$core$Basics_ops['++'], rightForm, rightRel)),
+				A2(_elm_lang$core$Basics_ops['++'], '||', 'here4'))));
 };
 var _user$project$Common_sequent$toGraph = F2(
 	function (pairs, result) {
 		toGraph:
 		while (true) {
-			var _p5 = pairs;
-			if (_p5.ctor === '[]') {
+			var _p10 = pairs;
+			if (_p10.ctor === '[]') {
 				return result;
 			} else {
-				var _v6 = _p5._1,
-					_v7 = _elm_lang$core$Native_Utils.update(
+				var _v8 = _p10._1,
+					_v9 = _elm_lang$core$Native_Utils.update(
 					result,
 					{
 						nodes: _user$project$Util$nub(
-							A2(_elm_lang$core$Basics_ops['++'], result.nodes, _p5._0._0)),
+							A2(_elm_lang$core$Basics_ops['++'], result.nodes, _p10._0._0)),
 						edges: _user$project$Util$nub(
-							A2(_elm_lang$core$Basics_ops['++'], result.edges, _p5._0._1))
+							A2(_elm_lang$core$Basics_ops['++'], result.edges, _p10._0._1))
 					});
-				pairs = _v6;
-				result = _v7;
+				pairs = _v8;
+				result = _v9;
 				continue toGraph;
 			}
 		}
@@ -450,11 +451,11 @@ var _user$project$Common_sequent$splitStringByRoundBraket = function (string) {
 	return {ctor: '_Tuple2', _0: a, _1: b};
 };
 var _user$project$Common_sequent$drawNodeElm = function (string) {
-	var _p6 = _user$project$Common_sequent$splitStringByRoundBraket(string);
-	var stringCut = _p6._0;
-	var stringCut2 = _p6._1;
-	var _p7 = stringCut;
-	switch (_p7) {
+	var _p11 = _user$project$Common_sequent$splitStringByRoundBraket(string);
+	var stringCut = _p11._0;
+	var stringCut2 = _p11._1;
+	var _p12 = stringCut;
+	switch (_p12) {
 		case '(init)':
 			return {
 				id: _Skinney$fnv$FNV$hashString(string),
@@ -499,29 +500,29 @@ var _user$project$Common_sequent$drawNodeElm = function (string) {
 			};
 	}
 };
-var _user$project$Common_sequent$drawEdgeElm = function (_p8) {
-	var _p9 = _p8;
-	var _p12 = _p9._1;
-	var _p11 = _p9._0;
+var _user$project$Common_sequent$drawEdgeElm = function (_p13) {
+	var _p14 = _p13;
+	var _p17 = _p14._1;
+	var _p16 = _p14._0;
 	var a = {
 		ctor: '::',
-		_0: _user$project$Common_sequent$drawNodeElm(_p11),
+		_0: _user$project$Common_sequent$drawNodeElm(_p16),
 		_1: {
 			ctor: '::',
-			_0: _user$project$Common_sequent$drawNodeElm(_p12),
+			_0: _user$project$Common_sequent$drawNodeElm(_p17),
 			_1: {ctor: '[]'}
 		}
 	};
-	var _p10 = _user$project$Common_sequent$splitStringByRoundBraket(_p11);
-	var stringCut = _p10._0;
-	var stringCut2 = _p10._1;
+	var _p15 = _user$project$Common_sequent$splitStringByRoundBraket(_p16);
+	var stringCut = _p15._0;
+	var stringCut2 = _p15._1;
 	var b = {
 		ctor: '::',
 		_0: {
 			id: _Skinney$fnv$FNV$hashString(
-				A2(_elm_lang$core$Basics_ops['++'], _p11, _p12)),
-			from: _Skinney$fnv$FNV$hashString(_p11),
-			to: _Skinney$fnv$FNV$hashString(_p12),
+				A2(_elm_lang$core$Basics_ops['++'], _p16, _p17)),
+			from: _Skinney$fnv$FNV$hashString(_p16),
+			to: _Skinney$fnv$FNV$hashString(_p17),
 			label: stringCut
 		},
 		_1: {ctor: '[]'}
@@ -549,75 +550,75 @@ var _user$project$Common_sequent$addBlank = F2(
 		while (true) {
 			var wholeseq = A2(
 				_elm_lang$core$List$concatMap,
-				function (_p13) {
-					var _p14 = _p13;
+				function (_p18) {
+					var _p19 = _p18;
 					return {
 						ctor: '::',
-						_0: _p14._0,
+						_0: _p19._0,
 						_1: {
 							ctor: '::',
-							_0: _p14._1,
+							_0: _p19._1,
 							_1: {ctor: '[]'}
 						}
 					};
 				},
 				li);
-			var _p15 = li;
-			if (_p15.ctor === '[]') {
+			var _p20 = li;
+			if (_p20.ctor === '[]') {
 				return res;
 			} else {
-				var _p18 = _p15._0._1;
-				var _p17 = _p15._1;
-				var _p16 = _p15._0._0;
+				var _p23 = _p20._0._1;
+				var _p22 = _p20._1;
+				var _p21 = _p20._0._0;
 				if (A2(
 					_user$project$Util$exists,
 					wholeseq,
 					function (z) {
 						return A2(
 							_elm_lang$core$List$member,
-							{ctor: '_Tuple2', _0: z, _1: _p18},
-							_p17);
+							{ctor: '_Tuple2', _0: z, _1: _p23},
+							_p22);
 					})) {
-					var _v12 = _p17,
-						_v13 = {
+					var _v14 = _p22,
+						_v15 = {
 						ctor: '::',
 						_0: {
 							ctor: '_Tuple2',
-							_0: _p16,
-							_1: A2(_elm_lang$core$Basics_ops['++'], _p18, ' ')
+							_0: _p21,
+							_1: A2(_elm_lang$core$Basics_ops['++'], _p23, ' ')
 						},
-						_1: res
-					};
-					li = _v12;
-					res = _v13;
-					continue addBlank;
-				} else {
-					var _v14 = _p17,
-						_v15 = {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: _p16, _1: _p18},
 						_1: res
 					};
 					li = _v14;
 					res = _v15;
+					continue addBlank;
+				} else {
+					var _v16 = _p22,
+						_v17 = {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: _p21, _1: _p23},
+						_1: res
+					};
+					li = _v16;
+					res = _v17;
 					continue addBlank;
 				}
 			}
 		}
 	});
 var _user$project$Common_sequent$tree2vis = F2(
-	function (_p19, list_tofrom) {
-		var _p20 = _p19;
-		var _p24 = _p20._1;
-		var _p21 = _p24;
-		if (_p21.ctor === '[]') {
+	function (_p24, list_tofrom) {
+		var _p25 = _p24;
+		var _p29 = _p25._1;
+		var _p26 = _p29;
+		if (_p26.ctor === '[]') {
 			return list_tofrom;
 		} else {
 			return function (x) {
 				return function (list) {
 					return function (f) {
 						return _user$project$Util$nub2(
-							A2(_elm_lang$core$List$concatMap, f, _p24));
+							A2(_elm_lang$core$List$concatMap, f, _p29));
 					}(
 						function (tree) {
 							return A2(_user$project$Common_sequent$tree2vis, tree, list);
@@ -627,16 +628,16 @@ var _user$project$Common_sequent$tree2vis = F2(
 			}(
 				A2(
 					_elm_lang$core$List$map,
-					function (_p22) {
-						var _p23 = _p22;
-						return {ctor: '_Tuple2', _0: _p20._0, _1: _p23._0};
+					function (_p27) {
+						var _p28 = _p27;
+						return {ctor: '_Tuple2', _0: _p25._0, _1: _p28._0};
 					},
-					_p21));
+					_p26));
 		}
 	});
 var _user$project$Common_sequent$outputLabelExp3 = function (f) {
-	var gg = function (_p25) {
-		var _p26 = _p25;
+	var gg = function (_p30) {
+		var _p31 = _p30;
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
 			'Rel(',
@@ -650,23 +651,23 @@ var _user$project$Common_sequent$outputLabelExp3 = function (f) {
 						function (_) {
 							return _.am_name;
 						},
-						_p26._1)),
+						_p31._1)),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					')(',
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						_p26._0,
+						_p31._0,
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							')(',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								_p26._2,
+								_p31._2,
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									',',
-									A2(_elm_lang$core$Basics_ops['++'], _p26._3, ')'))))))));
+									A2(_elm_lang$core$Basics_ops['++'], _p31._3, ')'))))))));
 	};
 	return _user$project$Util$concatComma(
 		A2(_elm_lang$core$List$map, gg, f));
@@ -680,60 +681,60 @@ var _user$project$Common_sequent$outputLabelExp2 = F2(
 					_user$project$Common_syntax$outputForm(n),
 					annouceform));
 		};
-		var _p27 = f;
-		_v20_4:
+		var _p32 = f;
+		_v22_4:
 		do {
-			if (_p27.ctor === 'RelAtom') {
-				if (_p27._0.ctor === '_Tuple4') {
-					if (_p27._0._1.ctor === '::') {
-						if ((((_p27._0._2.ctor === '_Tuple2') && (_p27._0._2._1.ctor === '[]')) && (_p27._0._3.ctor === '_Tuple2')) && (_p27._0._3._1.ctor === '[]')) {
+			if (_p32.ctor === 'RelAtom') {
+				if (_p32._0.ctor === '_Tuple4') {
+					if (_p32._0._1.ctor === '::') {
+						if ((((_p32._0._2.ctor === '_Tuple2') && (_p32._0._2._1.ctor === '[]')) && (_p32._0._3.ctor === '_Tuple2')) && (_p32._0._3._1.ctor === '[]')) {
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
 								'<i>',
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									_user$project$Util$show(_p27._0._2._0),
+									_user$project$Util$show(_p32._0._2._0),
 									A2(
 										_elm_lang$core$Basics_ops['++'],
 										'R',
 										A2(
 											_elm_lang$core$Basics_ops['++'],
-											_p27._0._0,
+											_p32._0._0,
 											A2(
 												_elm_lang$core$Basics_ops['++'],
 												'(',
 												A2(
 													_elm_lang$core$Basics_ops['++'],
 													gg(
-														{ctor: '::', _0: _p27._0._1._0, _1: _p27._0._1._1}),
+														{ctor: '::', _0: _p32._0._1._0, _1: _p32._0._1._1}),
 													A2(
 														_elm_lang$core$Basics_ops['++'],
 														')',
 														A2(
 															_elm_lang$core$Basics_ops['++'],
-															_user$project$Util$show(_p27._0._3._0),
+															_user$project$Util$show(_p32._0._3._0),
 															'</i>'))))))));
 						} else {
-							break _v20_4;
+							break _v22_4;
 						}
 					} else {
-						if ((_p27._0._2.ctor === '_Tuple2') && (_p27._0._3.ctor === '_Tuple2')) {
-							if ((_p27._0._2._1.ctor === '[]') && (_p27._0._3._1.ctor === '[]')) {
+						if ((_p32._0._2.ctor === '_Tuple2') && (_p32._0._3.ctor === '_Tuple2')) {
+							if ((_p32._0._2._1.ctor === '[]') && (_p32._0._3._1.ctor === '[]')) {
 								return A2(
 									_elm_lang$core$Basics_ops['++'],
 									'<i>',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_user$project$Util$show(_p27._0._2._0),
+										_user$project$Util$show(_p32._0._2._0),
 										A2(
 											_elm_lang$core$Basics_ops['++'],
 											'R',
 											A2(
 												_elm_lang$core$Basics_ops['++'],
-												_p27._0._0,
+												_p32._0._0,
 												A2(
 													_elm_lang$core$Basics_ops['++'],
-													_user$project$Util$show(_p27._0._3._0),
+													_user$project$Util$show(_p32._0._3._0),
 													'</i>')))));
 							} else {
 								return A2(
@@ -744,7 +745,7 @@ var _user$project$Common_sequent$outputLabelExp2 = F2(
 										'(',
 										A2(
 											_elm_lang$core$Basics_ops['++'],
-											_user$project$Util$show(_p27._0._2._0),
+											_user$project$Util$show(_p32._0._2._0),
 											A2(
 												_elm_lang$core$Basics_ops['++'],
 												',',
@@ -753,7 +754,7 @@ var _user$project$Common_sequent$outputLabelExp2 = F2(
 													A2(
 														_elm_lang$core$String$join,
 														',',
-														A2(_elm_lang$core$List$map, _user$project$Common_syntax$outputAction, _p27._0._2._1)),
+														A2(_elm_lang$core$List$map, _user$project$Common_syntax$outputAction, _p32._0._2._1)),
 													A2(
 														_elm_lang$core$Basics_ops['++'],
 														')',
@@ -762,13 +763,13 @@ var _user$project$Common_sequent$outputLabelExp2 = F2(
 															'R',
 															A2(
 																_elm_lang$core$Basics_ops['++'],
-																_p27._0._0,
+																_p32._0._0,
 																A2(
 																	_elm_lang$core$Basics_ops['++'],
 																	'(',
 																	A2(
 																		_elm_lang$core$Basics_ops['++'],
-																		_user$project$Util$show(_p27._0._3._0),
+																		_user$project$Util$show(_p32._0._3._0),
 																		A2(
 																			_elm_lang$core$Basics_ops['++'],
 																			',',
@@ -777,77 +778,77 @@ var _user$project$Common_sequent$outputLabelExp2 = F2(
 																				A2(
 																					_elm_lang$core$String$join,
 																					',',
-																					A2(_elm_lang$core$List$map, _user$project$Common_syntax$outputAction, _p27._0._3._1)),
+																					A2(_elm_lang$core$List$map, _user$project$Common_syntax$outputAction, _p32._0._3._1)),
 																				A2(_elm_lang$core$Basics_ops['++'], ')', '</i>')))))))))))));
 							}
 						} else {
-							break _v20_4;
+							break _v22_4;
 						}
 					}
 				} else {
-					break _v20_4;
+					break _v22_4;
 				}
 			} else {
-				if (_p27._0.ctor === '_Tuple2') {
+				if (_p32._0.ctor === '_Tuple2') {
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
-						_user$project$Util$show(_p27._0._0),
+						_user$project$Util$show(_p32._0._0),
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'=<',
-							_user$project$Util$show(_p27._0._1)));
+							_user$project$Util$show(_p32._0._1)));
 				} else {
-					break _v20_4;
+					break _v22_4;
 				}
 			}
 		} while(false);
 		return _elm_lang$core$Native_Utils.crashCase(
 			'Common_sequent',
 			{
-				start: {line: 937, column: 5},
-				end: {line: 945, column: 58}
+				start: {line: 936, column: 5},
+				end: {line: 944, column: 58}
 			},
-			_p27)('error in outputLabelExp2');
+			_p32)('error in outputLabelExp2');
 	});
 var _user$project$Common_sequent$action2string = function (pam) {
-	var _p29 = pam;
-	switch (_p29.ctor) {
+	var _p34 = pam;
+	switch (_p34.ctor) {
 		case 'PointAModel':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'(',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_p29._0.am_name,
+					_p34._0.am_name,
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						',',
-						A2(_elm_lang$core$Basics_ops['++'], _p29._1, ')'))));
+						A2(_elm_lang$core$Basics_ops['++'], _p34._1, ')'))));
 		case 'Cup':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_user$project$Common_sequent$action2string(_p29._0),
+				_user$project$Common_sequent$action2string(_p34._0),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					'U',
-					_user$project$Common_sequent$action2string(_p29._1)));
+					_user$project$Common_sequent$action2string(_p34._1)));
 		default:
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_user$project$Common_sequent$action2string(_p29._0),
+				_user$project$Common_sequent$action2string(_p34._0),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					';',
-					_user$project$Common_sequent$action2string(_p29._1)));
+					_user$project$Common_sequent$action2string(_p34._1)));
 	}
 };
 var _user$project$Common_sequent$outputLabelExp = F2(
-	function (n, _p30) {
-		var _p31 = _p30;
-		var _p43 = _p31._0._1;
-		var _p42 = _p31._0._3;
-		var _p41 = _p31._0._0;
-		var _p40 = _p31._0._2;
+	function (n, _p35) {
+		var _p36 = _p35;
+		var _p48 = _p36._0._1;
+		var _p47 = _p36._0._3;
+		var _p46 = _p36._0._0;
+		var _p45 = _p36._0._2;
 		var addhistory2 = function (x) {
 			return _elm_lang$core$Native_Utils.eq(x, '') ? x : A2(
 				_elm_lang$core$Basics_ops['++'],
@@ -871,7 +872,7 @@ var _user$project$Common_sequent$outputLabelExp = F2(
 										_user$project$Common_sequent$action2string,
 										_user$project$Util$snd(x)))));
 					},
-					_p41)));
+					_p46)));
 		var addhistory1 = function (x) {
 			return _elm_lang$core$Native_Utils.eq(x, '') ? x : A2(
 				_elm_lang$core$Basics_ops['++'],
@@ -885,43 +886,43 @@ var _user$project$Common_sequent$outputLabelExp = F2(
 						return _user$project$Util$show(
 							_user$project$Util$fst(x));
 					},
-					_p41)));
-		var ff = function (_p32) {
+					_p46)));
+		var ff = function (_p37) {
 			return _user$project$Util$concatComma(
 				A2(
 					_elm_lang$core$List$map,
 					function (y) {
-						var _p33 = y;
-						if (_p33.ctor === 'PointAModel') {
+						var _p38 = y;
+						if (_p38.ctor === 'PointAModel') {
 							return _user$project$Common_syntax$outputAction(
-								A2(_user$project$Common_syntax$PointAModel, _p33._0, _p33._1));
+								A2(_user$project$Common_syntax$PointAModel, _p38._0, _p38._1));
 						} else {
 							return _elm_lang$core$Native_Utils.crashCase(
 								'Common_sequent',
 								{
-									start: {line: 903, column: 48},
-									end: {line: 905, column: 97}
+									start: {line: 902, column: 48},
+									end: {line: 904, column: 97}
 								},
-								_p33)('error in error in outputLabelExp (1)');
+								_p38)('error in error in outputLabelExp (1)');
 						}
 					},
-					_p32));
+					_p37));
 		};
-		var gg = function (_p35) {
+		var gg = function (_p40) {
 			return _user$project$Util$concatComma(
 				A2(
 					_elm_lang$core$List$map,
 					_user$project$Common_syntax$outputForm(n),
-					_p35));
+					_p40));
 		};
-		var _p36 = _p40;
-		if (_p36.ctor === '[]') {
+		var _p41 = _p45;
+		if (_p41.ctor === '[]') {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'<b>',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(_p43),
+					_elm_lang$core$Basics$toString(_p48),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'</b>:',
@@ -933,24 +934,24 @@ var _user$project$Common_sequent$outputLabelExp = F2(
 								'<code>',
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									A2(_user$project$Common_syntax$outputForm, n, _p42),
+									A2(_user$project$Common_syntax$outputForm, n, _p47),
 									'</code>'))))));
 		} else {
-			var _p37 = _p36._0;
-			if (_p37.ctor === 'Left') {
+			var _p42 = _p41._0;
+			if (_p42.ctor === 'Left') {
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
 					'<b>',
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						_elm_lang$core$Basics$toString(_p43),
+						_elm_lang$core$Basics$toString(_p48),
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'(',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								gg(
-									_toastal$either$Either$lefts(_p40)),
+									_toastal$either$Either$lefts(_p45)),
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									')</b>:',
@@ -962,11 +963,11 @@ var _user$project$Common_sequent$outputLabelExp = F2(
 											'<code>',
 											A2(
 												_elm_lang$core$Basics_ops['++'],
-												A2(_user$project$Common_syntax$outputForm, n, _p42),
+												A2(_user$project$Common_syntax$outputForm, n, _p47),
 												'</code>'))))))));
 			} else {
-				var _p38 = _p37._0;
-				if (_p38.ctor === 'PointAModel') {
+				var _p43 = _p42._0;
+				if (_p43.ctor === 'PointAModel') {
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						'<b>',
@@ -975,14 +976,14 @@ var _user$project$Common_sequent$outputLabelExp = F2(
 							'(',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								_elm_lang$core$Basics$toString(_p43),
+								_elm_lang$core$Basics$toString(_p48),
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									',',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
 										ff(
-											_toastal$either$Either$rights(_p40)),
+											_toastal$either$Either$rights(_p45)),
 										A2(
 											_elm_lang$core$Basics_ops['++'],
 											')</b>:',
@@ -994,16 +995,16 @@ var _user$project$Common_sequent$outputLabelExp = F2(
 													'<code>',
 													A2(
 														_elm_lang$core$Basics_ops['++'],
-														A2(_user$project$Common_syntax$outputForm, n, _p42),
+														A2(_user$project$Common_syntax$outputForm, n, _p47),
 														'</code>')))))))));
 				} else {
 					return _elm_lang$core$Native_Utils.crashCase(
 						'Common_sequent',
 						{
-							start: {line: 920, column: 20},
-							end: {line: 922, column: 59}
+							start: {line: 919, column: 20},
+							end: {line: 921, column: 59}
 						},
-						_p38)('error in outputLabelExp (2)');
+						_p43)('error in outputLabelExp (2)');
 				}
 			}
 		}
@@ -1033,8 +1034,8 @@ var _user$project$Common_sequent$outputSequent = function (seq) {
 			_elm_lang$core$List$map,
 			_user$project$Common_sequent$outputLabelExp2(1),
 			seq.leftRel));
-	var _p44 = _elm_lang$core$List$isEmpty(seq.forDEL);
-	if (_p44 === true) {
+	var _p49 = _elm_lang$core$List$isEmpty(seq.forDEL);
+	if (_p49 === true) {
 		return _elm_community$string_extra$String_Extra$clean(
 			A2(
 				_user$project$Common_syntax_ops['++++'],
@@ -1085,109 +1086,109 @@ var _user$project$Common_sequent$outputSequent = function (seq) {
 	}
 };
 var _user$project$Common_sequent$divideRules = F2(
-	function (listrule, _p45) {
+	function (listrule, _p50) {
 		divideRules:
 		while (true) {
-			var _p46 = _p45;
-			var _p56 = _p46._2;
-			var _p55 = _p46._3;
-			var _p54 = _p46._4;
-			var _p53 = _p46._5;
-			var _p52 = _p46._0;
-			var _p51 = _p46._1;
-			var _p47 = listrule;
-			if (_p47.ctor === '::') {
-				var _p50 = _p47._1;
-				var _p49 = _p47._0;
-				var _p48 = _p49.category;
-				switch (_p48.ctor) {
+			var _p51 = _p50;
+			var _p61 = _p51._2;
+			var _p60 = _p51._3;
+			var _p59 = _p51._4;
+			var _p58 = _p51._5;
+			var _p57 = _p51._0;
+			var _p56 = _p51._1;
+			var _p52 = listrule;
+			if (_p52.ctor === '::') {
+				var _p55 = _p52._1;
+				var _p54 = _p52._0;
+				var _p53 = _p54.category;
+				switch (_p53.ctor) {
 					case 'Rule4LeftFormula':
-						var _v31 = _p50,
-							_v32 = {
-							ctor: '_Tuple6',
-							_0: _p52,
-							_1: {ctor: '::', _0: _p49, _1: _p51},
-							_2: _p56,
-							_3: _p55,
-							_4: _p54,
-							_5: _p53
-						};
-						listrule = _v31;
-						_p45 = _v32;
-						continue divideRules;
-					case 'Rule4LeftRel':
-						var _v33 = _p50,
+						var _v33 = _p55,
 							_v34 = {
 							ctor: '_Tuple6',
-							_0: {ctor: '::', _0: _p49, _1: _p52},
-							_1: _p51,
-							_2: _p56,
-							_3: _p55,
-							_4: _p54,
-							_5: _p53
+							_0: _p57,
+							_1: {ctor: '::', _0: _p54, _1: _p56},
+							_2: _p61,
+							_3: _p60,
+							_4: _p59,
+							_5: _p58
 						};
 						listrule = _v33;
-						_p45 = _v34;
+						_p50 = _v34;
 						continue divideRules;
-					case 'Rule4RightFormula':
-						var _v35 = _p50,
+					case 'Rule4LeftRel':
+						var _v35 = _p55,
 							_v36 = {
 							ctor: '_Tuple6',
-							_0: _p52,
-							_1: _p51,
-							_2: _p56,
-							_3: {ctor: '::', _0: _p49, _1: _p55},
-							_4: _p54,
-							_5: _p53
+							_0: {ctor: '::', _0: _p54, _1: _p57},
+							_1: _p56,
+							_2: _p61,
+							_3: _p60,
+							_4: _p59,
+							_5: _p58
 						};
 						listrule = _v35;
-						_p45 = _v36;
+						_p50 = _v36;
 						continue divideRules;
-					case 'Rule4RightRel':
-						var _v37 = _p50,
+					case 'Rule4RightFormula':
+						var _v37 = _p55,
 							_v38 = {
 							ctor: '_Tuple6',
-							_0: _p52,
-							_1: _p51,
-							_2: {ctor: '::', _0: _p49, _1: _p56},
-							_3: _p55,
-							_4: _p54,
-							_5: _p53
+							_0: _p57,
+							_1: _p56,
+							_2: _p61,
+							_3: {ctor: '::', _0: _p54, _1: _p60},
+							_4: _p59,
+							_5: _p58
 						};
 						listrule = _v37;
-						_p45 = _v38;
+						_p50 = _v38;
 						continue divideRules;
-					case 'Rule4DEL':
-						var _v39 = _p50,
+					case 'Rule4RightRel':
+						var _v39 = _p55,
 							_v40 = {
 							ctor: '_Tuple6',
-							_0: _p52,
-							_1: _p51,
-							_2: _p56,
-							_3: _p55,
-							_4: {ctor: '::', _0: _p49, _1: _p54},
-							_5: _p53
+							_0: _p57,
+							_1: _p56,
+							_2: {ctor: '::', _0: _p54, _1: _p61},
+							_3: _p60,
+							_4: _p59,
+							_5: _p58
 						};
 						listrule = _v39;
-						_p45 = _v40;
+						_p50 = _v40;
 						continue divideRules;
-					default:
-						var _v41 = _p50,
+					case 'Rule4DEL':
+						var _v41 = _p55,
 							_v42 = {
 							ctor: '_Tuple6',
-							_0: _p52,
-							_1: _p51,
-							_2: _p56,
-							_3: _p55,
-							_4: _p54,
-							_5: {ctor: '::', _0: _p49, _1: _p53}
+							_0: _p57,
+							_1: _p56,
+							_2: _p61,
+							_3: _p60,
+							_4: {ctor: '::', _0: _p54, _1: _p59},
+							_5: _p58
 						};
 						listrule = _v41;
-						_p45 = _v42;
+						_p50 = _v42;
+						continue divideRules;
+					default:
+						var _v43 = _p55,
+							_v44 = {
+							ctor: '_Tuple6',
+							_0: _p57,
+							_1: _p56,
+							_2: _p61,
+							_3: _p60,
+							_4: _p59,
+							_5: {ctor: '::', _0: _p54, _1: _p58}
+						};
+						listrule = _v43;
+						_p50 = _v44;
 						continue divideRules;
 				}
 			} else {
-				return {ctor: '_Tuple6', _0: _p52, _1: _p51, _2: _p56, _3: _p55, _4: _p54, _5: _p53};
+				return {ctor: '_Tuple6', _0: _p57, _1: _p56, _2: _p61, _3: _p60, _4: _p59, _5: _p58};
 			}
 		}
 	});
@@ -1202,64 +1203,64 @@ var _user$project$Common_sequent$seq2branch = F2(
 	});
 var _user$project$Common_sequent$anyFormulaCheck = function (seq) {
 	var gg = function (f) {
-		var _p57 = f;
-		if (_p57.ctor === 'AnyFormula') {
+		var _p62 = f;
+		if (_p62.ctor === 'AnyFormula') {
 			return true;
 		} else {
 			return false;
 		}
 	};
-	var ff = function (_p58) {
-		var _p59 = _p58;
-		return _p59._0._3;
+	var ff = function (_p63) {
+		var _p64 = _p63;
+		return _p64._0._3;
 	};
 	return _user$project$Util$or(
 		A2(
 			_elm_lang$core$List$map,
-			function (_p60) {
+			function (_p65) {
 				return gg(
-					ff(_p60));
+					ff(_p65));
 			},
 			A2(_elm_lang$core$Basics_ops['++'], seq.leftForm, seq.rightForm)));
 };
 var _user$project$Common_sequent$isProvable = function (pr) {
-	var gg = function (_p61) {
-		var _p62 = _p61;
+	var gg = function (_p66) {
+		var _p67 = _p66;
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
 			{
 				ctor: '::',
-				_0: _p62._1,
+				_0: _p67._1,
 				_1: {ctor: '[]'}
 			},
-			A2(_elm_lang$core$List$concatMap, gg, _p62._2));
+			A2(_elm_lang$core$List$concatMap, gg, _p67._2));
 	};
 	var ruleList = gg(pr);
 	return A2(_elm_lang$core$List$member, 'end', ruleList) ? 0 : (A2(_elm_lang$core$List$member, 'stop', ruleList) ? 9 : (A2(_elm_lang$core$List$member, 'limit', ruleList) ? 2 : 1));
 };
 var _user$project$Common_sequent$sortRelAtom = function (li) {
 	var gg3 = function (x) {
-		var _p63 = x;
-		if (_p63.ctor === 'RelAtom') {
-			return _p63._0._3._0;
+		var _p68 = x;
+		if (_p68.ctor === 'RelAtom') {
+			return _p68._0._3._0;
 		} else {
-			return _p63._0._0;
+			return _p68._0._0;
 		}
 	};
 	var gg2 = function (x) {
-		var _p64 = x;
-		if (_p64.ctor === 'RelAtom') {
-			return _p64._0._2._0;
+		var _p69 = x;
+		if (_p69.ctor === 'RelAtom') {
+			return _p69._0._2._0;
 		} else {
-			return _p64._0._0;
+			return _p69._0._0;
 		}
 	};
 	var gg1 = function (x) {
-		var _p65 = x;
-		if (_p65.ctor === 'RelAtom') {
-			return _p65._0._0;
+		var _p70 = x;
+		if (_p70.ctor === 'RelAtom') {
+			return _p70._0._0;
 		} else {
-			return _user$project$Util$show(_p65._0._0);
+			return _user$project$Util$show(_p70._0._0);
 		}
 	};
 	return function (x) {
@@ -1268,17 +1269,17 @@ var _user$project$Common_sequent$sortRelAtom = function (li) {
 		A6(_TSFoster$elm_compare$Compare$by, gg1, _TSFoster$elm_compare$Compare$thenBy, gg2, _TSFoster$elm_compare$Compare$thenBy, gg3, _TSFoster$elm_compare$Compare$ascending));
 };
 var _user$project$Common_sequent$sortLabelForm = function (li) {
-	var gg3 = function (_p66) {
-		var _p67 = _p66;
-		return _elm_lang$core$List$length(_p67._0._2);
+	var gg3 = function (_p71) {
+		var _p72 = _p71;
+		return _elm_lang$core$List$length(_p72._0._2);
 	};
-	var gg2 = function (_p68) {
-		var _p69 = _p68;
-		return _user$project$Common_syntax$formula2Int(_p69._0._3);
+	var gg2 = function (_p73) {
+		var _p74 = _p73;
+		return _user$project$Common_syntax$formula2Int(_p74._0._3);
 	};
-	var gg1 = function (_p70) {
-		var _p71 = _p70;
-		return _p71._0._1;
+	var gg1 = function (_p75) {
+		var _p76 = _p75;
+		return _p76._0._1;
 	};
 	return A2(
 		_elm_lang$core$List$sortWith,
@@ -1286,13 +1287,13 @@ var _user$project$Common_sequent$sortLabelForm = function (li) {
 		li);
 };
 var _user$project$Common_sequent$sortLeftRightOfSeq = function (seq) {
-	var ff = function (_p72) {
+	var ff = function (_p77) {
 		return _user$project$Util$nub(
-			_user$project$Common_sequent$sortLabelForm(_p72));
+			_user$project$Common_sequent$sortLabelForm(_p77));
 	};
-	var gg = function (_p73) {
+	var gg = function (_p78) {
 		return _user$project$Util$nub(
-			_user$project$Common_sequent$sortRelAtom(_p73));
+			_user$project$Common_sequent$sortRelAtom(_p78));
 	};
 	return _elm_lang$core$Native_Utils.update(
 		seq,
@@ -1355,9 +1356,9 @@ var _user$project$Common_sequent$sameSeq = F2(
 	});
 var _user$project$Common_sequent$agentInLabelExpression2 = F2(
 	function (x, li) {
-		var _p74 = x;
-		if (_p74.ctor === 'RelAtom') {
-			return {ctor: '::', _0: _p74._0._0, _1: li};
+		var _p79 = x;
+		if (_p79.ctor === 'RelAtom') {
+			return {ctor: '::', _0: _p79._0._0, _1: li};
 		} else {
 			return li;
 		}
@@ -1368,67 +1369,67 @@ var _user$project$Common_sequent$agentInLabelExpression = F2(
 			function (y, zs) {
 				gg:
 				while (true) {
-					var _p75 = y;
-					switch (_p75.ctor) {
+					var _p80 = y;
+					switch (_p80.ctor) {
 						case 'Box':
-							var _v54 = _p75._1,
-								_v55 = {ctor: '::', _0: _p75._0, _1: zs};
-							y = _v54;
-							zs = _v55;
-							continue gg;
-						case 'Dia':
-							var _v56 = _p75._1,
-								_v57 = {ctor: '::', _0: _p75._0, _1: zs};
+							var _v56 = _p80._1,
+								_v57 = {ctor: '::', _0: _p80._0, _1: zs};
 							y = _v56;
 							zs = _v57;
 							continue gg;
-						case 'Not':
-							var _v58 = _p75._0,
-								_v59 = zs;
+						case 'Dia':
+							var _v58 = _p80._1,
+								_v59 = {ctor: '::', _0: _p80._0, _1: zs};
 							y = _v58;
 							zs = _v59;
+							continue gg;
+						case 'Not':
+							var _v60 = _p80._0,
+								_v61 = zs;
+							y = _v60;
+							zs = _v61;
 							continue gg;
 						case 'And':
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(gg, _p75._0, zs),
-								A2(gg, _p75._1, zs));
+								A2(gg, _p80._0, zs),
+								A2(gg, _p80._1, zs));
 						case 'Or':
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(gg, _p75._0, zs),
-								A2(gg, _p75._1, zs));
+								A2(gg, _p80._0, zs),
+								A2(gg, _p80._1, zs));
 						case 'Imply':
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(gg, _p75._0, zs),
-								A2(gg, _p75._1, zs));
+								A2(gg, _p80._0, zs),
+								A2(gg, _p80._1, zs));
 						case 'Iff':
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(gg, _p75._0, zs),
-								A2(gg, _p75._1, zs));
+								A2(gg, _p80._0, zs),
+								A2(gg, _p80._1, zs));
 						case 'Announce':
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(gg, _p75._0, zs),
-								A2(gg, _p75._1, zs));
+								A2(gg, _p80._0, zs),
+								A2(gg, _p80._1, zs));
 						case 'Announce2':
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(gg, _p75._0, zs),
-								A2(gg, _p75._1, zs));
+								A2(gg, _p80._0, zs),
+								A2(gg, _p80._1, zs));
 						default:
 							return zs;
 					}
 				}
 			});
-		var _p76 = x;
-		if (_p76.ctor === 'Left') {
-			return A2(gg, _p76._0._0._3, ags);
+		var _p81 = x;
+		if (_p81.ctor === 'Left') {
+			return A2(gg, _p81._0._0._3, ags);
 		} else {
-			if (_p76._0.ctor === 'RelAtom') {
-				return {ctor: '::', _0: _p76._0._0._0, _1: ags};
+			if (_p81._0.ctor === 'RelAtom') {
+				return {ctor: '::', _0: _p81._0._0._0, _1: ags};
 			} else {
 				return ags;
 			}
@@ -1473,42 +1474,42 @@ var _user$project$Common_sequent$wholeLabel = function (seq) {
 				_elm_lang$core$String$toInt(
 					A2(_elm_lang$core$String$filter, _elm_lang$core$Char$isDigit, s))));
 	};
-	var gg3 = function (_p77) {
-		var _p78 = _p77;
+	var gg3 = function (_p82) {
+		var _p83 = _p82;
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
-			gg_(_p78._2),
-			gg_(_p78._3));
+			gg_(_p83._2),
+			gg_(_p83._3));
 	};
 	var gg2 = function (x) {
-		var _p79 = x;
-		if (_p79.ctor === 'RelAtom') {
+		var _p84 = x;
+		if (_p84.ctor === 'RelAtom') {
 			return {
 				ctor: '::',
-				_0: _p79._0._2._0,
+				_0: _p84._0._2._0,
 				_1: {
 					ctor: '::',
-					_0: _p79._0._3._0,
+					_0: _p84._0._3._0,
 					_1: {ctor: '[]'}
 				}
 			};
 		} else {
 			return {
 				ctor: '::',
-				_0: _p79._0._0,
+				_0: _p84._0._0,
 				_1: {
 					ctor: '::',
-					_0: _p79._0._1,
+					_0: _p84._0._1,
 					_1: {ctor: '[]'}
 				}
 			};
 		}
 	};
-	var gg1 = function (_p80) {
-		var _p81 = _p80;
+	var gg1 = function (_p85) {
+		var _p86 = _p85;
 		return {
 			ctor: '::',
-			_0: _p81._0._1,
+			_0: _p86._0._1,
 			_1: {ctor: '[]'}
 		};
 	};
@@ -1528,15 +1529,15 @@ var _user$project$Common_sequent$wholeLabel = function (seq) {
 				A2(_elm_lang$core$List$concatMap, gg3, seq.forDEL))));
 };
 var _user$project$Common_sequent$freshLabel = function (sq) {
-	var n = function (_p82) {
+	var n = function (_p87) {
 		return _elm_lang$core$List$maximum(
-			_user$project$Common_sequent$wholeLabel(_p82));
+			_user$project$Common_sequent$wholeLabel(_p87));
 	}(sq);
-	var _p83 = n;
-	if (_p83.ctor === 'Nothing') {
+	var _p88 = n;
+	if (_p88.ctor === 'Nothing') {
 		return 0;
 	} else {
-		return _p83._0 + 1;
+		return _p88._0 + 1;
 	}
 };
 var _user$project$Common_sequent$deadEnd = function (seq) {
@@ -1544,42 +1545,42 @@ var _user$project$Common_sequent$deadEnd = function (seq) {
 		return A2(
 			_elm_lang$core$List$map,
 			function (z) {
-				var _p84 = z;
-				if ((((_p84.ctor === 'RelAtom') && (_p84._0.ctor === '_Tuple4')) && (_p84._0._3.ctor === '_Tuple2')) && (_p84._0._3._1.ctor === '[]')) {
-					var _p87 = _p84._0._3._0;
+				var _p89 = z;
+				if ((((_p89.ctor === 'RelAtom') && (_p89._0.ctor === '_Tuple4')) && (_p89._0._3.ctor === '_Tuple2')) && (_p89._0._3._1.ctor === '[]')) {
+					var _p92 = _p89._0._3._0;
 					return ((!_elm_lang$core$Native_Utils.eq(
-						_p84._0._2,
+						_p89._0._2,
 						{
 							ctor: '_Tuple2',
-							_0: _p87,
+							_0: _p92,
 							_1: {ctor: '[]'}
 						})) && (!A2(
 						_user$project$Util$exists,
 						seq.leftRel,
 						function (w) {
-							var _p85 = w;
-							if ((((((_p85.ctor === 'RelAtom') && (_p85._0.ctor === '_Tuple4')) && (_p85._0._2.ctor === '_Tuple2')) && (_p85._0._2._1.ctor === '[]')) && (_p85._0._3.ctor === '_Tuple2')) && (_p85._0._3._1.ctor === '[]')) {
+							var _p90 = w;
+							if ((((((_p90.ctor === 'RelAtom') && (_p90._0.ctor === '_Tuple4')) && (_p90._0._2.ctor === '_Tuple2')) && (_p90._0._2._1.ctor === '[]')) && (_p90._0._3.ctor === '_Tuple2')) && (_p90._0._3._1.ctor === '[]')) {
 								return _elm_lang$core$Native_Utils.eq(
-									_toastal$either$Either$Left(_p87),
-									_toastal$either$Either$Left(_p85._0._2._0));
+									_toastal$either$Either$Left(_p92),
+									_toastal$either$Either$Left(_p90._0._2._0));
 							} else {
 								return _elm_lang$core$Native_Utils.crashCase(
 									'Common_sequent',
 									{
-										start: {line: 619, column: 68},
-										end: {line: 621, column: 63}
+										start: {line: 618, column: 68},
+										end: {line: 620, column: 63}
 									},
-									_p85)('error in deadEnd (1)');
+									_p90)('error in deadEnd (1)');
 							}
-						}))) ? _elm_lang$core$Maybe$Just(_p87) : _elm_lang$core$Maybe$Nothing;
+						}))) ? _elm_lang$core$Maybe$Just(_p92) : _elm_lang$core$Maybe$Nothing;
 				} else {
 					return _elm_lang$core$Native_Utils.crashCase(
 						'Common_sequent',
 						{
-							start: {line: 617, column: 18},
-							end: {line: 624, column: 52}
+							start: {line: 616, column: 18},
+							end: {line: 623, column: 52}
 						},
-						_p84)('error in deadEnd (2)');
+						_p89)('error in deadEnd (2)');
 				}
 			},
 			seq.leftRel);
@@ -1787,10 +1788,10 @@ var _user$project$Common_sequent$RelAtom = function (a) {
 };
 var _user$project$Common_sequent$tran = F2(
 	function (exp1, exp2) {
-		var _p89 = {ctor: '_Tuple2', _0: exp1, _1: exp2};
-		if (((((((_p89.ctor === '_Tuple2') && (_p89._0.ctor === 'RelAtom')) && (_p89._0._0.ctor === '_Tuple4')) && (_p89._0._0._1.ctor === '[]')) && (_p89._1.ctor === 'RelAtom')) && (_p89._1._0.ctor === '_Tuple4')) && (_p89._1._0._1.ctor === '[]')) {
-			var _p90 = _p89._0._0._0;
-			return (_elm_lang$core$Native_Utils.eq(_p90, _p89._1._0._0) && _elm_lang$core$Native_Utils.eq(_p89._0._0._3, _p89._1._0._2)) ? {
+		var _p94 = {ctor: '_Tuple2', _0: exp1, _1: exp2};
+		if (((((((_p94.ctor === '_Tuple2') && (_p94._0.ctor === 'RelAtom')) && (_p94._0._0.ctor === '_Tuple4')) && (_p94._0._0._1.ctor === '[]')) && (_p94._1.ctor === 'RelAtom')) && (_p94._1._0.ctor === '_Tuple4')) && (_p94._1._0._1.ctor === '[]')) {
+			var _p95 = _p94._0._0._0;
+			return (_elm_lang$core$Native_Utils.eq(_p95, _p94._1._0._0) && _elm_lang$core$Native_Utils.eq(_p94._0._0._3, _p94._1._0._2)) ? {
 				ctor: '::',
 				_0: exp1,
 				_1: {
@@ -1801,10 +1802,10 @@ var _user$project$Common_sequent$tran = F2(
 						_0: _user$project$Common_sequent$RelAtom(
 							{
 								ctor: '_Tuple4',
-								_0: _p90,
+								_0: _p95,
 								_1: {ctor: '[]'},
-								_2: _p89._0._0._2,
-								_3: _p89._1._0._3
+								_2: _p94._0._0._2,
+								_3: _p94._1._0._3
 							}),
 						_1: {ctor: '[]'}
 					}
@@ -1832,12 +1833,12 @@ var _user$project$Common_sequent$tran = F2(
 	});
 var _user$project$Common_sequent$eucl = F2(
 	function (exp1, exp2) {
-		var _p91 = {ctor: '_Tuple2', _0: exp1, _1: exp2};
-		if (((((((_p91.ctor === '_Tuple2') && (_p91._0.ctor === 'RelAtom')) && (_p91._0._0.ctor === '_Tuple4')) && (_p91._0._0._1.ctor === '[]')) && (_p91._1.ctor === 'RelAtom')) && (_p91._1._0.ctor === '_Tuple4')) && (_p91._1._0._1.ctor === '[]')) {
-			var _p94 = _p91._1._0._3;
-			var _p93 = _p91._0._0._3;
-			var _p92 = _p91._0._0._0;
-			return (_elm_lang$core$Native_Utils.eq(_p91._0._0._2, _p91._1._0._2) && _elm_lang$core$Native_Utils.eq(_p92, _p91._1._0._0)) ? {
+		var _p96 = {ctor: '_Tuple2', _0: exp1, _1: exp2};
+		if (((((((_p96.ctor === '_Tuple2') && (_p96._0.ctor === 'RelAtom')) && (_p96._0._0.ctor === '_Tuple4')) && (_p96._0._0._1.ctor === '[]')) && (_p96._1.ctor === 'RelAtom')) && (_p96._1._0.ctor === '_Tuple4')) && (_p96._1._0._1.ctor === '[]')) {
+			var _p99 = _p96._1._0._3;
+			var _p98 = _p96._0._0._3;
+			var _p97 = _p96._0._0._0;
+			return (_elm_lang$core$Native_Utils.eq(_p96._0._0._2, _p96._1._0._2) && _elm_lang$core$Native_Utils.eq(_p97, _p96._1._0._0)) ? {
 				ctor: '::',
 				_0: exp1,
 				_1: {
@@ -1848,20 +1849,20 @@ var _user$project$Common_sequent$eucl = F2(
 						_0: _user$project$Common_sequent$RelAtom(
 							{
 								ctor: '_Tuple4',
-								_0: _p92,
+								_0: _p97,
 								_1: {ctor: '[]'},
-								_2: _p93,
-								_3: _p94
+								_2: _p98,
+								_3: _p99
 							}),
 						_1: {
 							ctor: '::',
 							_0: _user$project$Common_sequent$RelAtom(
 								{
 									ctor: '_Tuple4',
-									_0: _p92,
+									_0: _p97,
 									_1: {ctor: '[]'},
-									_2: _p94,
-									_3: _p93
+									_2: _p99,
+									_3: _p98
 								}),
 							_1: {ctor: '[]'}
 						}
@@ -1893,66 +1894,66 @@ var _user$project$Common_sequent$Proof = F3(
 	function (a, b, c) {
 		return {ctor: 'Proof', _0: a, _1: b, _2: c};
 	});
-var _user$project$Common_sequent$drawTexP = function (q) {
-	var _p95 = q;
-	if ((_p95.ctor === '::') && (_p95._1.ctor === '[]')) {
-		var _p98 = _p95._0._0;
-		var _p97 = _p95._0._1;
-		var _p96 = _p95._0._2;
-		if (_p96.ctor === '[]') {
+var _user$project$Common_sequent$drawTexProof = function (q) {
+	var _p100 = q;
+	if ((_p100.ctor === '::') && (_p100._1.ctor === '[]')) {
+		var _p103 = _p100._0._0;
+		var _p102 = _p100._0._1;
+		var _p101 = _p100._0._2;
+		if (_p101.ctor === '[]') {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'\\infer[\\mbox{($',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_user$project$Common_sequent$texRule(_p97),
+					_user$project$Common_sequent$texRule(_p102),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'$)}]{',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							_user$project$Common_sequent$drawTexS(_p98),
+							_user$project$Common_sequent$drawTexSequent(_p103),
 							'}{}'))));
 		} else {
-			if (_p96._1.ctor === '[]') {
+			if (_p101._1.ctor === '[]') {
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
 					'\\infer[\\mbox{($',
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						_user$project$Common_sequent$texRule(_p97),
+						_user$project$Common_sequent$texRule(_p102),
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'$)}]{',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								_user$project$Common_sequent$drawTexS(_p98),
+								_user$project$Common_sequent$drawTexSequent(_p103),
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									'}{',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_user$project$Common_sequent$drawTexP(
+										_user$project$Common_sequent$drawTexProof(
 											{
 												ctor: '::',
-												_0: A3(_user$project$Common_sequent$Proof, _p96._0._0, _p96._0._1, _p96._0._2),
+												_0: A3(_user$project$Common_sequent$Proof, _p101._0._0, _p101._0._1, _p101._0._2),
 												_1: {ctor: '[]'}
 											}),
 										'}'))))));
 			} else {
-				if (_p96._1._1.ctor === '[]') {
+				if (_p101._1._1.ctor === '[]') {
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						'\\infer[\\mbox{($',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							_user$project$Common_sequent$texRule(_p97),
+							_user$project$Common_sequent$texRule(_p102),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'$)}]{',
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									_user$project$Common_sequent$drawTexS(_p98),
+									_user$project$Common_sequent$drawTexSequent(_p103),
 									A2(
 										_elm_lang$core$Basics_ops['++'],
 										'}',
@@ -1961,10 +1962,10 @@ var _user$project$Common_sequent$drawTexP = function (q) {
 											'{',
 											A2(
 												_elm_lang$core$Basics_ops['++'],
-												_user$project$Common_sequent$drawTexP(
+												_user$project$Common_sequent$drawTexProof(
 													{
 														ctor: '::',
-														_0: A3(_user$project$Common_sequent$Proof, _p96._0._0, _p96._0._1, _p96._0._2),
+														_0: A3(_user$project$Common_sequent$Proof, _p101._0._0, _p101._0._1, _p101._0._2),
 														_1: {ctor: '[]'}
 													}),
 												A2(
@@ -1972,27 +1973,27 @@ var _user$project$Common_sequent$drawTexP = function (q) {
 													'&',
 													A2(
 														_elm_lang$core$Basics_ops['++'],
-														_user$project$Common_sequent$drawTexP(
+														_user$project$Common_sequent$drawTexProof(
 															{
 																ctor: '::',
-																_0: A3(_user$project$Common_sequent$Proof, _p96._1._0._0, _p96._1._0._1, _p96._1._0._2),
+																_0: A3(_user$project$Common_sequent$Proof, _p101._1._0._0, _p101._1._0._1, _p101._1._0._2),
 																_1: {ctor: '[]'}
 															}),
 														'}')))))))));
 				} else {
-					if (_p96._1._1._1.ctor === '[]') {
+					if (_p101._1._1._1.ctor === '[]') {
 						return A2(
 							_elm_lang$core$Basics_ops['++'],
 							'\\infer[\\mbox{($',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								_user$project$Common_sequent$texRule(_p97),
+								_user$project$Common_sequent$texRule(_p102),
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									'$)}]{',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_user$project$Common_sequent$drawTexS(_p98),
+										_user$project$Common_sequent$drawTexSequent(_p103),
 										A2(
 											_elm_lang$core$Basics_ops['++'],
 											'}',
@@ -2001,10 +2002,10 @@ var _user$project$Common_sequent$drawTexP = function (q) {
 												'{',
 												A2(
 													_elm_lang$core$Basics_ops['++'],
-													_user$project$Common_sequent$drawTexP(
+													_user$project$Common_sequent$drawTexProof(
 														{
 															ctor: '::',
-															_0: A3(_user$project$Common_sequent$Proof, _p96._0._0, _p96._0._1, _p96._0._2),
+															_0: A3(_user$project$Common_sequent$Proof, _p101._0._0, _p101._0._1, _p101._0._2),
 															_1: {ctor: '[]'}
 														}),
 													A2(
@@ -2012,10 +2013,10 @@ var _user$project$Common_sequent$drawTexP = function (q) {
 														'&',
 														A2(
 															_elm_lang$core$Basics_ops['++'],
-															_user$project$Common_sequent$drawTexP(
+															_user$project$Common_sequent$drawTexProof(
 																{
 																	ctor: '::',
-																	_0: A3(_user$project$Common_sequent$Proof, _p96._1._0._0, _p96._1._0._1, _p96._1._0._2),
+																	_0: A3(_user$project$Common_sequent$Proof, _p101._1._0._0, _p101._1._0._1, _p101._1._0._2),
 																	_1: {ctor: '[]'}
 																}),
 															A2(
@@ -2023,21 +2024,21 @@ var _user$project$Common_sequent$drawTexP = function (q) {
 																'&',
 																A2(
 																	_elm_lang$core$Basics_ops['++'],
-																	_user$project$Common_sequent$drawTexP(
+																	_user$project$Common_sequent$drawTexProof(
 																		{
 																			ctor: '::',
-																			_0: A3(_user$project$Common_sequent$Proof, _p96._1._1._0._0, _p96._1._1._0._1, _p96._1._1._0._2),
+																			_0: A3(_user$project$Common_sequent$Proof, _p101._1._1._0._0, _p101._1._1._0._1, _p101._1._1._0._2),
 																			_1: {ctor: '[]'}
 																		}),
 																	'}')))))))))));
 					} else {
-						return 'error in drawTexP (1)';
+						return 'error in drawTexProof (1)';
 					}
 				}
 			}
 		}
 	} else {
-		return 'error in drawTexP (2)';
+		return 'error in drawTexProof (2)';
 	}
 };
 var _user$project$Common_sequent$Rule4Other = {ctor: 'Rule4Other'};
@@ -2048,15 +2049,15 @@ var _user$project$Common_sequent$axiomRule = {
 		category: _user$project$Common_sequent$Rule4Other,
 		rulename: 'init',
 		rule: function (seq) {
-			var deleteBoxHistoty = function (_p99) {
-				var _p100 = _p99;
+			var deleteBoxHistoty = function (_p104) {
+				var _p105 = _p104;
 				return _user$project$Common_sequent$LabelForm(
 					{
 						ctor: '_Tuple4',
 						_0: {ctor: '[]'},
-						_1: _p100._0._1,
-						_2: _p100._0._2,
-						_3: _p100._0._3
+						_1: _p105._0._1,
+						_2: _p105._0._2,
+						_3: _p105._0._3
 					});
 			};
 			return (A2(
@@ -2096,8 +2097,8 @@ var _user$project$Common_sequent$axiomRule = {
 					_user$project$Util$exists,
 					seq.rightForm,
 					function (a) {
-						var _p101 = a;
-						if ((_p101._0.ctor === '_Tuple4') && (_p101._0._3.ctor === 'Top')) {
+						var _p106 = a;
+						if ((_p106._0.ctor === '_Tuple4') && (_p106._0._3.ctor === 'Top')) {
 							return true;
 						} else {
 							return false;
@@ -2117,8 +2118,8 @@ var _user$project$Common_sequent$axiomRule = {
 						_user$project$Util$exists,
 						seq.leftForm,
 						function (a) {
-							var _p102 = a;
-							if ((_p102._0.ctor === '_Tuple4') && (_p102._0._3.ctor === 'Bot')) {
+							var _p107 = a;
+							if ((_p107._0.ctor === '_Tuple4') && (_p107._0._3.ctor === 'Bot')) {
 								return true;
 							} else {
 								return false;
@@ -2134,11 +2135,11 @@ var _user$project$Common_sequent$axiomRule = {
 var _user$project$Common_sequent$initCheck = function (li) {
 	initCheck:
 	while (true) {
-		var _p103 = li;
-		if (_p103.ctor === '[]') {
+		var _p108 = li;
+		if (_p108.ctor === '[]') {
 			return _elm_lang$core$Maybe$Nothing;
 		} else {
-			var _p104 = _p103._0;
+			var _p109 = _p108._0;
 			if (A2(
 				_user$project$Util$forall,
 				_user$project$Common_sequent$axiomRule,
@@ -2147,13 +2148,13 @@ var _user$project$Common_sequent$initCheck = function (li) {
 						return _elm_lang$core$Native_Utils.eq(_elm_lang$core$Maybe$Nothing, y);
 					}(
 						_elm_community$maybe_extra$Maybe_Extra$combine(
-							A2(_elm_lang$core$List$map, x.rule, _p104.resultSequents)));
+							A2(_elm_lang$core$List$map, x.rule, _p109.resultSequents)));
 				})) {
-				var _v75 = _p103._1;
-				li = _v75;
+				var _v77 = _p108._1;
+				li = _v77;
 				continue initCheck;
 			} else {
-				return _elm_lang$core$Maybe$Just(_p104);
+				return _elm_lang$core$Maybe$Just(_p109);
 			}
 		}
 	}
@@ -2279,13 +2280,13 @@ var _user$project$Common_sequent$makeProofBranch = F3(
 						}))));
 		var branchesSorted = A2(
 			_elm_lang$core$List$sortBy,
-			function (_p105) {
+			function (_p110) {
 				return function (_) {
 					return _.priority;
 				}(
 					function (_) {
 						return _.appliedRule;
-					}(_p105));
+					}(_p110));
 			},
 			branches);
 		if (_elm_lang$core$Native_Utils.cmp(
@@ -2295,15 +2296,15 @@ var _user$project$Common_sequent$makeProofBranch = F3(
 			maxNum) > 0) {
 			return limitBranch;
 		} else {
-			var _p106 = branchesSorted;
-			if (_p106.ctor === '[]') {
+			var _p111 = branchesSorted;
+			if (_p111.ctor === '[]') {
 				return _user$project$Common_sequent$anyFormulaCheck(seq) ? stopBranch : endBranch;
 			} else {
-				var _p107 = _user$project$Common_sequent$initCheck(branchesSorted);
-				if (_p107.ctor === 'Just') {
-					return _user$project$Common_sequent$sortSeqOfBranch(_p107._0);
+				var _p112 = _user$project$Common_sequent$initCheck(branchesSorted);
+				if (_p112.ctor === 'Just') {
+					return _user$project$Common_sequent$sortSeqOfBranch(_p112._0);
 				} else {
-					return _user$project$Common_sequent$sortSeqOfBranch(_p106._0);
+					return _user$project$Common_sequent$sortSeqOfBranch(_p111._0);
 				}
 			}
 		}
@@ -2322,13 +2323,13 @@ var _user$project$Common_sequent$makeProofTree = F3(
 	});
 var _user$project$Common_sequent$isProvableSeq = F3(
 	function (maxNum, ruleSet, seq) {
-		var _p108 = seq;
-		if (_p108.ctor === 'Nothing') {
+		var _p113 = seq;
+		if (_p113.ctor === 'Nothing') {
 			return false;
 		} else {
-			var prf = A3(_user$project$Common_sequent$makeProofTree, maxNum, ruleSet, _p108._0);
-			var _p109 = _user$project$Common_sequent$isProvable(prf);
-			if (_p109 === 1) {
+			var prf = A3(_user$project$Common_sequent$makeProofTree, maxNum, ruleSet, _p113._0);
+			var _p114 = _user$project$Common_sequent$isProvable(prf);
+			if (_p114 === 1) {
 				return true;
 			} else {
 				return false;
@@ -2398,8 +2399,8 @@ var _user$project$Common_sequent$ruleD = {
 			var fresh = _user$project$Common_sequent$freshLabel(seq);
 			var headLa = _user$project$Common_sequent$deadEnd(seq);
 			var wholeAg = _user$project$Common_sequent$wholeAgent(seq);
-			var _p110 = headLa;
-			if (_p110.ctor === 'Nothing') {
+			var _p115 = headLa;
+			if (_p115.ctor === 'Nothing') {
 				return _elm_lang$core$Maybe$Nothing;
 			} else {
 				var gg = A2(
@@ -2414,7 +2415,7 @@ var _user$project$Common_sequent$ruleD = {
 									_1: {ctor: '[]'},
 									_2: {
 										ctor: '_Tuple2',
-										_0: _p110._0,
+										_0: _p115._0,
 										_1: {ctor: '[]'}
 									},
 									_3: {
@@ -2460,17 +2461,17 @@ var _user$project$Common_sequent$ruleClassic = {
 		category: _user$project$Common_sequent$Rule4LeftFormula,
 		rulename: 'L~',
 		rule: function (seq) {
-			var _p111 = seq.leftForm;
-			if (((_p111.ctor === '::') && (_p111._0._0.ctor === '_Tuple4')) && (_p111._0._0._3.ctor === 'Not')) {
+			var _p116 = seq.leftForm;
+			if (((_p116.ctor === '::') && (_p116._0._0.ctor === '_Tuple4')) && (_p116._0._0._3.ctor === 'Not')) {
 				var add1 = _user$project$Common_sequent$LabelForm(
-					{ctor: '_Tuple4', _0: _p111._0._0._0, _1: _p111._0._0._1, _2: _p111._0._0._2, _3: _p111._0._0._3._0});
+					{ctor: '_Tuple4', _0: _p116._0._0._0, _1: _p116._0._0._1, _2: _p116._0._0._2, _3: _p116._0._0._3._0});
 				return _elm_lang$core$Maybe$Just(
 					{
 						ctor: '::',
 						_0: _elm_lang$core$Native_Utils.update(
 							seq,
 							{
-								leftForm: _p111._1,
+								leftForm: _p116._1,
 								rightForm: A2(
 									_elm_lang$core$Basics_ops['++'],
 									{
@@ -2494,10 +2495,10 @@ var _user$project$Common_sequent$ruleClassic = {
 			category: _user$project$Common_sequent$Rule4RightFormula,
 			rulename: 'R~',
 			rule: function (seq) {
-				var _p112 = seq.rightForm;
-				if (((_p112.ctor === '::') && (_p112._0._0.ctor === '_Tuple4')) && (_p112._0._0._3.ctor === 'Not')) {
+				var _p117 = seq.rightForm;
+				if (((_p117.ctor === '::') && (_p117._0._0.ctor === '_Tuple4')) && (_p117._0._0._3.ctor === 'Not')) {
 					var add1 = _user$project$Common_sequent$LabelForm(
-						{ctor: '_Tuple4', _0: _p112._0._0._0, _1: _p112._0._0._1, _2: _p112._0._0._2, _3: _p112._0._0._3._0});
+						{ctor: '_Tuple4', _0: _p117._0._0._0, _1: _p117._0._0._1, _2: _p117._0._0._2, _3: _p117._0._0._3._0});
 					return _elm_lang$core$Maybe$Just(
 						{
 							ctor: '::',
@@ -2512,7 +2513,7 @@ var _user$project$Common_sequent$ruleClassic = {
 											_1: {ctor: '[]'}
 										},
 										seq.leftForm),
-									rightForm: _p112._1
+									rightForm: _p117._1
 								}),
 							_1: {ctor: '[]'}
 						});
@@ -2528,15 +2529,15 @@ var _user$project$Common_sequent$ruleClassic = {
 				category: _user$project$Common_sequent$Rule4LeftFormula,
 				rulename: 'L&',
 				rule: function (seq) {
-					var _p113 = seq.leftForm;
-					if (((_p113.ctor === '::') && (_p113._0._0.ctor === '_Tuple4')) && (_p113._0._0._3.ctor === 'And')) {
-						var _p116 = _p113._0._0._1;
-						var _p115 = _p113._0._0._0;
-						var _p114 = _p113._0._0._2;
+					var _p118 = seq.leftForm;
+					if (((_p118.ctor === '::') && (_p118._0._0.ctor === '_Tuple4')) && (_p118._0._0._3.ctor === 'And')) {
+						var _p121 = _p118._0._0._1;
+						var _p120 = _p118._0._0._0;
+						var _p119 = _p118._0._0._2;
 						var add2 = _user$project$Common_sequent$LabelForm(
-							{ctor: '_Tuple4', _0: _p115, _1: _p116, _2: _p114, _3: _p113._0._0._3._1});
+							{ctor: '_Tuple4', _0: _p120, _1: _p121, _2: _p119, _3: _p118._0._0._3._1});
 						var add1 = _user$project$Common_sequent$LabelForm(
-							{ctor: '_Tuple4', _0: _p115, _1: _p116, _2: _p114, _3: _p113._0._0._3._0});
+							{ctor: '_Tuple4', _0: _p120, _1: _p121, _2: _p119, _3: _p118._0._0._3._0});
 						return _elm_lang$core$Maybe$Just(
 							{
 								ctor: '::',
@@ -2554,7 +2555,7 @@ var _user$project$Common_sequent$ruleClassic = {
 													_1: {ctor: '[]'}
 												}
 											},
-											_p113._1)
+											_p118._1)
 									}),
 								_1: {ctor: '[]'}
 							});
@@ -2570,16 +2571,16 @@ var _user$project$Common_sequent$ruleClassic = {
 					category: _user$project$Common_sequent$Rule4RightFormula,
 					rulename: 'R&',
 					rule: function (seq) {
-						var _p117 = seq.rightForm;
-						if (((_p117.ctor === '::') && (_p117._0._0.ctor === '_Tuple4')) && (_p117._0._0._3.ctor === 'And')) {
-							var _p121 = _p117._1;
-							var _p120 = _p117._0._0._1;
-							var _p119 = _p117._0._0._0;
-							var _p118 = _p117._0._0._2;
+						var _p122 = seq.rightForm;
+						if (((_p122.ctor === '::') && (_p122._0._0.ctor === '_Tuple4')) && (_p122._0._0._3.ctor === 'And')) {
+							var _p126 = _p122._1;
+							var _p125 = _p122._0._0._1;
+							var _p124 = _p122._0._0._0;
+							var _p123 = _p122._0._0._2;
 							var f2 = _user$project$Common_sequent$LabelForm(
-								{ctor: '_Tuple4', _0: _p119, _1: _p120, _2: _p118, _3: _p117._0._0._3._1});
+								{ctor: '_Tuple4', _0: _p124, _1: _p125, _2: _p123, _3: _p122._0._0._3._1});
 							var f1 = _user$project$Common_sequent$LabelForm(
-								{ctor: '_Tuple4', _0: _p119, _1: _p120, _2: _p118, _3: _p117._0._0._3._0});
+								{ctor: '_Tuple4', _0: _p124, _1: _p125, _2: _p123, _3: _p122._0._0._3._0});
 							return _elm_lang$core$Maybe$Just(
 								{
 									ctor: '::',
@@ -2593,7 +2594,7 @@ var _user$project$Common_sequent$ruleClassic = {
 													_0: f1,
 													_1: {ctor: '[]'}
 												},
-												_p121)
+												_p126)
 										}),
 									_1: {
 										ctor: '::',
@@ -2607,7 +2608,7 @@ var _user$project$Common_sequent$ruleClassic = {
 														_0: f2,
 														_1: {ctor: '[]'}
 													},
-													_p121)
+													_p126)
 											}),
 										_1: {ctor: '[]'}
 									}
@@ -2624,16 +2625,16 @@ var _user$project$Common_sequent$ruleClassic = {
 						category: _user$project$Common_sequent$Rule4LeftFormula,
 						rulename: 'Lv',
 						rule: function (seq) {
-							var _p122 = seq.leftForm;
-							if (((_p122.ctor === '::') && (_p122._0._0.ctor === '_Tuple4')) && (_p122._0._0._3.ctor === 'Or')) {
-								var _p126 = _p122._1;
-								var _p125 = _p122._0._0._1;
-								var _p124 = _p122._0._0._0;
-								var _p123 = _p122._0._0._2;
+							var _p127 = seq.leftForm;
+							if (((_p127.ctor === '::') && (_p127._0._0.ctor === '_Tuple4')) && (_p127._0._0._3.ctor === 'Or')) {
+								var _p131 = _p127._1;
+								var _p130 = _p127._0._0._1;
+								var _p129 = _p127._0._0._0;
+								var _p128 = _p127._0._0._2;
 								var add2 = _user$project$Common_sequent$LabelForm(
-									{ctor: '_Tuple4', _0: _p124, _1: _p125, _2: _p123, _3: _p122._0._0._3._1});
+									{ctor: '_Tuple4', _0: _p129, _1: _p130, _2: _p128, _3: _p127._0._0._3._1});
 								var add1 = _user$project$Common_sequent$LabelForm(
-									{ctor: '_Tuple4', _0: _p124, _1: _p125, _2: _p123, _3: _p122._0._0._3._0});
+									{ctor: '_Tuple4', _0: _p129, _1: _p130, _2: _p128, _3: _p127._0._0._3._0});
 								return _elm_lang$core$Maybe$Just(
 									{
 										ctor: '::',
@@ -2647,7 +2648,7 @@ var _user$project$Common_sequent$ruleClassic = {
 														_0: add1,
 														_1: {ctor: '[]'}
 													},
-													_p126)
+													_p131)
 											}),
 										_1: {
 											ctor: '::',
@@ -2661,7 +2662,7 @@ var _user$project$Common_sequent$ruleClassic = {
 															_0: add2,
 															_1: {ctor: '[]'}
 														},
-														_p126)
+														_p131)
 												}),
 											_1: {ctor: '[]'}
 										}
@@ -2678,15 +2679,15 @@ var _user$project$Common_sequent$ruleClassic = {
 							category: _user$project$Common_sequent$Rule4RightFormula,
 							rulename: 'Rv',
 							rule: function (seq) {
-								var _p127 = seq.rightForm;
-								if (((_p127.ctor === '::') && (_p127._0._0.ctor === '_Tuple4')) && (_p127._0._0._3.ctor === 'Or')) {
-									var _p130 = _p127._0._0._1;
-									var _p129 = _p127._0._0._0;
-									var _p128 = _p127._0._0._2;
+								var _p132 = seq.rightForm;
+								if (((_p132.ctor === '::') && (_p132._0._0.ctor === '_Tuple4')) && (_p132._0._0._3.ctor === 'Or')) {
+									var _p135 = _p132._0._0._1;
+									var _p134 = _p132._0._0._0;
+									var _p133 = _p132._0._0._2;
 									var add2 = _user$project$Common_sequent$LabelForm(
-										{ctor: '_Tuple4', _0: _p129, _1: _p130, _2: _p128, _3: _p127._0._0._3._1});
+										{ctor: '_Tuple4', _0: _p134, _1: _p135, _2: _p133, _3: _p132._0._0._3._1});
 									var add1 = _user$project$Common_sequent$LabelForm(
-										{ctor: '_Tuple4', _0: _p129, _1: _p130, _2: _p128, _3: _p127._0._0._3._0});
+										{ctor: '_Tuple4', _0: _p134, _1: _p135, _2: _p133, _3: _p132._0._0._3._0});
 									return _elm_lang$core$Maybe$Just(
 										{
 											ctor: '::',
@@ -2704,7 +2705,7 @@ var _user$project$Common_sequent$ruleClassic = {
 																_1: {ctor: '[]'}
 															}
 														},
-														_p127._1)
+														_p132._1)
 												}),
 											_1: {ctor: '[]'}
 										});
@@ -2720,23 +2721,23 @@ var _user$project$Common_sequent$ruleClassic = {
 								category: _user$project$Common_sequent$Rule4LeftFormula,
 								rulename: 'L->',
 								rule: function (seq) {
-									var _p131 = seq.leftForm;
-									if (((_p131.ctor === '::') && (_p131._0._0.ctor === '_Tuple4')) && (_p131._0._0._3.ctor === 'Imply')) {
-										var _p135 = _p131._1;
-										var _p134 = _p131._0._0._1;
-										var _p133 = _p131._0._0._0;
-										var _p132 = _p131._0._0._2;
+									var _p136 = seq.leftForm;
+									if (((_p136.ctor === '::') && (_p136._0._0.ctor === '_Tuple4')) && (_p136._0._0._3.ctor === 'Imply')) {
+										var _p140 = _p136._1;
+										var _p139 = _p136._0._0._1;
+										var _p138 = _p136._0._0._0;
+										var _p137 = _p136._0._0._2;
 										var add2 = _user$project$Common_sequent$LabelForm(
-											{ctor: '_Tuple4', _0: _p133, _1: _p134, _2: _p132, _3: _p131._0._0._3._1});
+											{ctor: '_Tuple4', _0: _p138, _1: _p139, _2: _p137, _3: _p136._0._0._3._1});
 										var add1 = _user$project$Common_sequent$LabelForm(
-											{ctor: '_Tuple4', _0: _p133, _1: _p134, _2: _p132, _3: _p131._0._0._3._0});
+											{ctor: '_Tuple4', _0: _p138, _1: _p139, _2: _p137, _3: _p136._0._0._3._0});
 										return _elm_lang$core$Maybe$Just(
 											{
 												ctor: '::',
 												_0: _elm_lang$core$Native_Utils.update(
 													seq,
 													{
-														leftForm: _p135,
+														leftForm: _p140,
 														rightForm: A2(
 															_elm_lang$core$Basics_ops['++'],
 															{
@@ -2758,7 +2759,7 @@ var _user$project$Common_sequent$ruleClassic = {
 																	_0: add2,
 																	_1: {ctor: '[]'}
 																},
-																_p135)
+																_p140)
 														}),
 													_1: {ctor: '[]'}
 												}
@@ -2775,15 +2776,15 @@ var _user$project$Common_sequent$ruleClassic = {
 									category: _user$project$Common_sequent$Rule4RightFormula,
 									rulename: 'R->',
 									rule: function (seq) {
-										var _p136 = seq.rightForm;
-										if (((_p136.ctor === '::') && (_p136._0._0.ctor === '_Tuple4')) && (_p136._0._0._3.ctor === 'Imply')) {
-											var _p139 = _p136._0._0._1;
-											var _p138 = _p136._0._0._0;
-											var _p137 = _p136._0._0._2;
+										var _p141 = seq.rightForm;
+										if (((_p141.ctor === '::') && (_p141._0._0.ctor === '_Tuple4')) && (_p141._0._0._3.ctor === 'Imply')) {
+											var _p144 = _p141._0._0._1;
+											var _p143 = _p141._0._0._0;
+											var _p142 = _p141._0._0._2;
 											var add2 = _user$project$Common_sequent$LabelForm(
-												{ctor: '_Tuple4', _0: _p138, _1: _p139, _2: _p137, _3: _p136._0._0._3._1});
+												{ctor: '_Tuple4', _0: _p143, _1: _p144, _2: _p142, _3: _p141._0._0._3._1});
 											var add1 = _user$project$Common_sequent$LabelForm(
-												{ctor: '_Tuple4', _0: _p138, _1: _p139, _2: _p137, _3: _p136._0._0._3._0});
+												{ctor: '_Tuple4', _0: _p143, _1: _p144, _2: _p142, _3: _p141._0._0._3._0});
 											return _elm_lang$core$Maybe$Just(
 												{
 													ctor: '::',
@@ -2805,7 +2806,7 @@ var _user$project$Common_sequent$ruleClassic = {
 																	_0: add2,
 																	_1: {ctor: '[]'}
 																},
-																_p136._1)
+																_p141._1)
 														}),
 													_1: {ctor: '[]'}
 												});
@@ -2821,16 +2822,16 @@ var _user$project$Common_sequent$ruleClassic = {
 										category: _user$project$Common_sequent$Rule4LeftFormula,
 										rulename: 'L->2',
 										rule: function (seq) {
-											var _p140 = seq.leftForm;
-											if (((_p140.ctor === '::') && (_p140._0._0.ctor === '_Tuple4')) && (_p140._0._0._3.ctor === 'Imply2')) {
-												var _p144 = _p140._1;
-												var _p143 = _p140._0._0._1;
-												var _p142 = _p140._0._0._0;
-												var _p141 = _p140._0._0._2;
+											var _p145 = seq.leftForm;
+											if (((_p145.ctor === '::') && (_p145._0._0.ctor === '_Tuple4')) && (_p145._0._0._3.ctor === 'Imply2')) {
+												var _p149 = _p145._1;
+												var _p148 = _p145._0._0._1;
+												var _p147 = _p145._0._0._0;
+												var _p146 = _p145._0._0._2;
 												var add2 = _user$project$Common_sequent$LabelForm(
-													{ctor: '_Tuple4', _0: _p142, _1: _p143, _2: _p141, _3: _p140._0._0._3._0});
+													{ctor: '_Tuple4', _0: _p147, _1: _p148, _2: _p146, _3: _p145._0._0._3._0});
 												var add1 = _user$project$Common_sequent$LabelForm(
-													{ctor: '_Tuple4', _0: _p142, _1: _p143, _2: _p141, _3: _p140._0._0._3._1});
+													{ctor: '_Tuple4', _0: _p147, _1: _p148, _2: _p146, _3: _p145._0._0._3._1});
 												return _elm_lang$core$Maybe$Just(
 													{
 														ctor: '::',
@@ -2844,14 +2845,14 @@ var _user$project$Common_sequent$ruleClassic = {
 																		_0: add2,
 																		_1: {ctor: '[]'}
 																	},
-																	_p144)
+																	_p149)
 															}),
 														_1: {
 															ctor: '::',
 															_0: _elm_lang$core$Native_Utils.update(
 																seq,
 																{
-																	leftForm: _p144,
+																	leftForm: _p149,
 																	rightForm: A2(
 																		_elm_lang$core$Basics_ops['++'],
 																		{
@@ -2876,15 +2877,15 @@ var _user$project$Common_sequent$ruleClassic = {
 											category: _user$project$Common_sequent$Rule4RightFormula,
 											rulename: 'R->2',
 											rule: function (seq) {
-												var _p145 = seq.rightForm;
-												if (((_p145.ctor === '::') && (_p145._0._0.ctor === '_Tuple4')) && (_p145._0._0._3.ctor === 'Imply2')) {
-													var _p148 = _p145._0._0._1;
-													var _p147 = _p145._0._0._0;
-													var _p146 = _p145._0._0._2;
+												var _p150 = seq.rightForm;
+												if (((_p150.ctor === '::') && (_p150._0._0.ctor === '_Tuple4')) && (_p150._0._0._3.ctor === 'Imply2')) {
+													var _p153 = _p150._0._0._1;
+													var _p152 = _p150._0._0._0;
+													var _p151 = _p150._0._0._2;
 													var add2 = _user$project$Common_sequent$LabelForm(
-														{ctor: '_Tuple4', _0: _p147, _1: _p148, _2: _p146, _3: _p145._0._0._3._1});
+														{ctor: '_Tuple4', _0: _p152, _1: _p153, _2: _p151, _3: _p150._0._0._3._1});
 													var add1 = _user$project$Common_sequent$LabelForm(
-														{ctor: '_Tuple4', _0: _p147, _1: _p148, _2: _p146, _3: _p145._0._0._3._0});
+														{ctor: '_Tuple4', _0: _p152, _1: _p153, _2: _p151, _3: _p150._0._0._3._0});
 													return _elm_lang$core$Maybe$Just(
 														{
 															ctor: '::',
@@ -2906,7 +2907,7 @@ var _user$project$Common_sequent$ruleClassic = {
 																			_0: add1,
 																			_1: {ctor: '[]'}
 																		},
-																		_p145._1)
+																		_p150._1)
 																}),
 															_1: {ctor: '[]'}
 														});
@@ -2922,20 +2923,20 @@ var _user$project$Common_sequent$ruleClassic = {
 												category: _user$project$Common_sequent$Rule4LeftFormula,
 												rulename: 'L<->',
 												rule: function (seq) {
-													var _p149 = seq.leftForm;
-													if (((_p149.ctor === '::') && (_p149._0._0.ctor === '_Tuple4')) && (_p149._0._0._3.ctor === 'Iff')) {
-														var _p151 = _p149._0._0._3._1;
-														var _p150 = _p149._0._0._3._0;
+													var _p154 = seq.leftForm;
+													if (((_p154.ctor === '::') && (_p154._0._0.ctor === '_Tuple4')) && (_p154._0._0._3.ctor === 'Iff')) {
+														var _p156 = _p154._0._0._3._1;
+														var _p155 = _p154._0._0._3._0;
 														var add1 = _user$project$Common_sequent$LabelForm(
 															{
 																ctor: '_Tuple4',
-																_0: _p149._0._0._0,
-																_1: _p149._0._0._1,
-																_2: _p149._0._0._2,
+																_0: _p154._0._0._0,
+																_1: _p154._0._0._1,
+																_2: _p154._0._0._2,
 																_3: A2(
 																	_user$project$Common_syntax$And,
-																	A2(_user$project$Common_syntax$Imply, _p150, _p151),
-																	A2(_user$project$Common_syntax$Imply, _p151, _p150))
+																	A2(_user$project$Common_syntax$Imply, _p155, _p156),
+																	A2(_user$project$Common_syntax$Imply, _p156, _p155))
 															});
 														return _elm_lang$core$Maybe$Just(
 															{
@@ -2950,7 +2951,7 @@ var _user$project$Common_sequent$ruleClassic = {
 																				_0: add1,
 																				_1: {ctor: '[]'}
 																			},
-																			_p149._1)
+																			_p154._1)
 																	}),
 																_1: {ctor: '[]'}
 															});
@@ -2966,20 +2967,20 @@ var _user$project$Common_sequent$ruleClassic = {
 													category: _user$project$Common_sequent$Rule4RightFormula,
 													rulename: 'R<->',
 													rule: function (seq) {
-														var _p152 = seq.rightForm;
-														if (((_p152.ctor === '::') && (_p152._0._0.ctor === '_Tuple4')) && (_p152._0._0._3.ctor === 'Iff')) {
-															var _p154 = _p152._0._0._3._1;
-															var _p153 = _p152._0._0._3._0;
+														var _p157 = seq.rightForm;
+														if (((_p157.ctor === '::') && (_p157._0._0.ctor === '_Tuple4')) && (_p157._0._0._3.ctor === 'Iff')) {
+															var _p159 = _p157._0._0._3._1;
+															var _p158 = _p157._0._0._3._0;
 															var add1 = _user$project$Common_sequent$LabelForm(
 																{
 																	ctor: '_Tuple4',
-																	_0: _p152._0._0._0,
-																	_1: _p152._0._0._1,
-																	_2: _p152._0._0._2,
+																	_0: _p157._0._0._0,
+																	_1: _p157._0._0._1,
+																	_2: _p157._0._0._2,
 																	_3: A2(
 																		_user$project$Common_syntax$And,
-																		A2(_user$project$Common_syntax$Imply, _p153, _p154),
-																		A2(_user$project$Common_syntax$Imply, _p154, _p153))
+																		A2(_user$project$Common_syntax$Imply, _p158, _p159),
+																		A2(_user$project$Common_syntax$Imply, _p159, _p158))
 																});
 															return _elm_lang$core$Maybe$Just(
 																{
@@ -2994,7 +2995,7 @@ var _user$project$Common_sequent$ruleClassic = {
 																					_0: add1,
 																					_1: {ctor: '[]'}
 																				},
-																				_p152._1)
+																				_p157._1)
 																		}),
 																	_1: {ctor: '[]'}
 																});
@@ -3023,18 +3024,18 @@ var _user$project$Common_sequent$ruleK = {
 		category: _user$project$Common_sequent$Rule4RightFormula,
 		rulename: 'R#',
 		rule: function (seq) {
-			var _p155 = seq.rightForm;
-			if (((_p155.ctor === '::') && (_p155._0._0.ctor === '_Tuple4')) && (_p155._0._0._3.ctor === 'Box')) {
-				var _p156 = _p155._0._0._2;
+			var _p160 = seq.rightForm;
+			if (((_p160.ctor === '::') && (_p160._0._0.ctor === '_Tuple4')) && (_p160._0._0._3.ctor === 'Box')) {
+				var _p161 = _p160._0._0._2;
 				var $new = _user$project$Common_sequent$freshLabel(seq);
 				var add1 = _user$project$Common_sequent$RelAtom(
 					{
 						ctor: '_Tuple4',
-						_0: _p155._0._0._3._0,
-						_1: _toastal$either$Either$lefts(_p156),
+						_0: _p160._0._0._3._0,
+						_1: _toastal$either$Either$lefts(_p161),
 						_2: {
 							ctor: '_Tuple2',
-							_0: _p155._0._0._1,
+							_0: _p160._0._0._1,
 							_1: {ctor: '[]'}
 						},
 						_3: {
@@ -3044,7 +3045,7 @@ var _user$project$Common_sequent$ruleK = {
 						}
 					});
 				var add2 = _user$project$Common_sequent$LabelForm(
-					{ctor: '_Tuple4', _0: _p155._0._0._0, _1: $new, _2: _p156, _3: _p155._0._0._3._1});
+					{ctor: '_Tuple4', _0: _p160._0._0._0, _1: $new, _2: _p161, _3: _p160._0._0._3._1});
 				return _elm_lang$core$Maybe$Just(
 					{
 						ctor: '::',
@@ -3058,7 +3059,7 @@ var _user$project$Common_sequent$ruleK = {
 										_0: add2,
 										_1: {ctor: '[]'}
 									},
-									_p155._1),
+									_p160._1),
 								leftRel: _user$project$Common_sequent$sortRelAtom(
 									A2(
 										_elm_lang$core$Basics_ops['++'],
@@ -3083,62 +3084,62 @@ var _user$project$Common_sequent$ruleK = {
 			category: _user$project$Common_sequent$Rule4LeftFormula,
 			rulename: 'L#',
 			rule: function (seq) {
-				var _p157 = seq.leftForm;
-				if (((_p157.ctor === '::') && (_p157._0._0.ctor === '_Tuple4')) && (_p157._0._0._3.ctor === 'Box')) {
-					var _p169 = _p157._0._0._1;
-					var _p168 = _p157._0._0._3._1;
-					var _p167 = _p157._1;
-					var _p166 = _p157._0._0._0;
-					var _p165 = _p157._0._0._2;
-					var _p164 = _p157._0._0._3._0;
-					var orig = function (_p158) {
-						var _p159 = _p158;
+				var _p162 = seq.leftForm;
+				if (((_p162.ctor === '::') && (_p162._0._0.ctor === '_Tuple4')) && (_p162._0._0._3.ctor === 'Box')) {
+					var _p174 = _p162._0._0._1;
+					var _p173 = _p162._0._0._3._1;
+					var _p172 = _p162._1;
+					var _p171 = _p162._0._0._0;
+					var _p170 = _p162._0._0._2;
+					var _p169 = _p162._0._0._3._0;
+					var orig = function (_p163) {
+						var _p164 = _p163;
 						return _user$project$Common_sequent$LabelForm(
 							{
 								ctor: '_Tuple4',
 								_0: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: _p159._0, _1: _p159._1},
-									_1: _p166
+									_0: {ctor: '_Tuple2', _0: _p164._0, _1: _p164._1},
+									_1: _p171
 								},
-								_1: _p169,
-								_2: _p165,
-								_3: A2(_user$project$Common_syntax$Box, _p164, _p168)
+								_1: _p174,
+								_2: _p170,
+								_3: A2(_user$project$Common_syntax$Box, _p169, _p173)
 							});
 					};
-					var add2 = function (_p160) {
-						var _p161 = _p160;
+					var add2 = function (_p165) {
+						var _p166 = _p165;
 						return _user$project$Common_sequent$RelAtom(
 							{
 								ctor: '_Tuple4',
-								_0: _p164,
-								_1: _toastal$either$Either$lefts(_p165),
+								_0: _p169,
+								_1: _toastal$either$Either$lefts(_p170),
 								_2: {
 									ctor: '_Tuple2',
-									_0: _p169,
+									_0: _p174,
 									_1: {ctor: '[]'}
 								},
 								_3: {
 									ctor: '_Tuple2',
-									_0: _p161._0,
+									_0: _p166._0,
 									_1: {ctor: '[]'}
 								}
 							});
 					};
-					var add1 = function (_p162) {
-						var _p163 = _p162;
+					var add1 = function (_p167) {
+						var _p168 = _p167;
 						return _user$project$Common_sequent$LabelForm(
 							{
 								ctor: '_Tuple4',
 								_0: {ctor: '[]'},
-								_1: _p163._0,
-								_2: _p165,
-								_3: _p168
+								_1: _p168._0,
+								_2: _p170,
+								_3: _p173
 							});
 					};
 					var justlabel = function (wholeLabel2) {
 						return _elm_community$list_extra$List_Extra$last(
-							A2(_user$project$Util$difference, wholeLabel2, _p166));
+							A2(_user$project$Util$difference, wholeLabel2, _p171));
 					}(
 						A2(
 							_elm_lang$core$List$map,
@@ -3170,7 +3171,7 @@ var _user$project$Common_sequent$ruleK = {
 													_1: {ctor: '[]'}
 												}
 											},
-											_p167)
+											_p172)
 									}),
 								_1: {
 									ctor: '::',
@@ -3184,7 +3185,7 @@ var _user$project$Common_sequent$ruleK = {
 													_0: orig(x),
 													_1: {ctor: '[]'}
 												},
-												_p167),
+												_p172),
 											rightRel: A2(
 												_elm_lang$core$Basics_ops['++'],
 												{
@@ -3210,62 +3211,62 @@ var _user$project$Common_sequent$ruleK = {
 				category: _user$project$Common_sequent$Rule4RightFormula,
 				rulename: 'R$',
 				rule: function (seq) {
-					var _p170 = seq.rightForm;
-					if (((_p170.ctor === '::') && (_p170._0._0.ctor === '_Tuple4')) && (_p170._0._0._3.ctor === 'Dia')) {
-						var _p182 = _p170._0._0._1;
-						var _p181 = _p170._1;
-						var _p180 = _p170._0._0._3._1;
-						var _p179 = _p170._0._0._0;
-						var _p178 = _p170._0._0._2;
-						var _p177 = _p170._0._0._3._0;
-						var orig = function (_p171) {
-							var _p172 = _p171;
+					var _p175 = seq.rightForm;
+					if (((_p175.ctor === '::') && (_p175._0._0.ctor === '_Tuple4')) && (_p175._0._0._3.ctor === 'Dia')) {
+						var _p187 = _p175._0._0._1;
+						var _p186 = _p175._1;
+						var _p185 = _p175._0._0._3._1;
+						var _p184 = _p175._0._0._0;
+						var _p183 = _p175._0._0._2;
+						var _p182 = _p175._0._0._3._0;
+						var orig = function (_p176) {
+							var _p177 = _p176;
 							return _user$project$Common_sequent$LabelForm(
 								{
 									ctor: '_Tuple4',
 									_0: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: _p172._0, _1: _p172._1},
-										_1: _p179
+										_0: {ctor: '_Tuple2', _0: _p177._0, _1: _p177._1},
+										_1: _p184
 									},
-									_1: _p182,
-									_2: _p178,
-									_3: A2(_user$project$Common_syntax$Dia, _p177, _p180)
+									_1: _p187,
+									_2: _p183,
+									_3: A2(_user$project$Common_syntax$Dia, _p182, _p185)
 								});
 						};
-						var add2 = function (_p173) {
-							var _p174 = _p173;
+						var add2 = function (_p178) {
+							var _p179 = _p178;
 							return _user$project$Common_sequent$RelAtom(
 								{
 									ctor: '_Tuple4',
-									_0: _p177,
-									_1: _toastal$either$Either$lefts(_p178),
+									_0: _p182,
+									_1: _toastal$either$Either$lefts(_p183),
 									_2: {
 										ctor: '_Tuple2',
-										_0: _p182,
+										_0: _p187,
 										_1: {ctor: '[]'}
 									},
 									_3: {
 										ctor: '_Tuple2',
-										_0: _p174._0,
+										_0: _p179._0,
 										_1: {ctor: '[]'}
 									}
 								});
 						};
-						var add1 = function (_p175) {
-							var _p176 = _p175;
+						var add1 = function (_p180) {
+							var _p181 = _p180;
 							return _user$project$Common_sequent$LabelForm(
 								{
 									ctor: '_Tuple4',
 									_0: {ctor: '[]'},
-									_1: _p176._0,
-									_2: _p178,
-									_3: _p180
+									_1: _p181._0,
+									_2: _p183,
+									_3: _p185
 								});
 						};
 						var justlabel = function (wholeLabel2) {
 							return _elm_lang$core$List$head(
-								A2(_user$project$Util$difference, wholeLabel2, _p179));
+								A2(_user$project$Util$difference, wholeLabel2, _p184));
 						}(
 							A2(
 								_elm_lang$core$List$map,
@@ -3297,7 +3298,7 @@ var _user$project$Common_sequent$ruleK = {
 														_1: {ctor: '[]'}
 													}
 												},
-												_p181)
+												_p186)
 										}),
 									_1: {
 										ctor: '::',
@@ -3311,7 +3312,7 @@ var _user$project$Common_sequent$ruleK = {
 														_0: orig(x),
 														_1: {ctor: '[]'}
 													},
-													_p181),
+													_p186),
 												rightRel: A2(
 													_elm_lang$core$Basics_ops['++'],
 													{
@@ -3337,18 +3338,18 @@ var _user$project$Common_sequent$ruleK = {
 					category: _user$project$Common_sequent$Rule4LeftFormula,
 					rulename: 'L$',
 					rule: function (seq) {
-						var _p183 = seq.leftForm;
-						if (((_p183.ctor === '::') && (_p183._0._0.ctor === '_Tuple4')) && (_p183._0._0._3.ctor === 'Dia')) {
-							var _p184 = _p183._0._0._2;
+						var _p188 = seq.leftForm;
+						if (((_p188.ctor === '::') && (_p188._0._0.ctor === '_Tuple4')) && (_p188._0._0._3.ctor === 'Dia')) {
+							var _p189 = _p188._0._0._2;
 							var $new = _user$project$Common_sequent$freshLabel(seq);
 							var add1 = _user$project$Common_sequent$RelAtom(
 								{
 									ctor: '_Tuple4',
-									_0: _p183._0._0._3._0,
-									_1: _toastal$either$Either$lefts(_p184),
+									_0: _p188._0._0._3._0,
+									_1: _toastal$either$Either$lefts(_p189),
 									_2: {
 										ctor: '_Tuple2',
-										_0: _p183._0._0._1,
+										_0: _p188._0._0._1,
 										_1: {ctor: '[]'}
 									},
 									_3: {
@@ -3358,7 +3359,7 @@ var _user$project$Common_sequent$ruleK = {
 									}
 								});
 							var add2 = _user$project$Common_sequent$LabelForm(
-								{ctor: '_Tuple4', _0: _p183._0._0._0, _1: $new, _2: _p184, _3: _p183._0._0._3._1});
+								{ctor: '_Tuple4', _0: _p188._0._0._0, _1: $new, _2: _p189, _3: _p188._0._0._3._1});
 							return _elm_lang$core$Maybe$Just(
 								{
 									ctor: '::',
@@ -3372,7 +3373,7 @@ var _user$project$Common_sequent$ruleK = {
 													_0: add2,
 													_1: {ctor: '[]'}
 												},
-												_p183._1),
+												_p188._1),
 											leftRel: _user$project$Common_sequent$sortRelAtom(
 												A2(
 													_elm_lang$core$Basics_ops['++'],
@@ -3403,16 +3404,16 @@ var _user$project$Common_sequent$rule4 = {
 		category: _user$project$Common_sequent$Rule4LeftRel,
 		rulename: 'tran',
 		rule: function (seq) {
-			var _p185 = seq.leftRel;
-			if ((((_p185.ctor === '::') && (_p185._0.ctor === 'RelAtom')) && (_p185._0._0.ctor === '_Tuple4')) && (_p185._0._0._1.ctor === '[]')) {
+			var _p190 = seq.leftRel;
+			if ((((_p190.ctor === '::') && (_p190._0.ctor === 'RelAtom')) && (_p190._0._0.ctor === '_Tuple4')) && (_p190._0._0._1.ctor === '[]')) {
 				var ff = _user$project$Common_sequent$tran(
 					_user$project$Common_sequent$RelAtom(
 						{
 							ctor: '_Tuple4',
-							_0: _p185._0._0._0,
+							_0: _p190._0._0._0,
 							_1: {ctor: '[]'},
-							_2: _p185._0._0._2,
-							_3: _p185._0._0._3
+							_2: _p190._0._0._2,
+							_3: _p190._0._0._3
 						}));
 				var le2 = _user$project$Util$nub(
 					A2(_elm_lang$core$List$concatMap, ff, seq.leftRel));
@@ -3439,16 +3440,16 @@ var _user$project$Common_sequent$rule5 = {
 		category: _user$project$Common_sequent$Rule4LeftRel,
 		rulename: 'eucl',
 		rule: function (seq) {
-			var _p186 = seq.leftRel;
-			if ((((_p186.ctor === '::') && (_p186._0.ctor === 'RelAtom')) && (_p186._0._0.ctor === '_Tuple4')) && (_p186._0._0._1.ctor === '[]')) {
+			var _p191 = seq.leftRel;
+			if ((((_p191.ctor === '::') && (_p191._0.ctor === 'RelAtom')) && (_p191._0._0.ctor === '_Tuple4')) && (_p191._0._0._1.ctor === '[]')) {
 				var ff = _user$project$Common_sequent$eucl(
 					_user$project$Common_sequent$RelAtom(
 						{
 							ctor: '_Tuple4',
-							_0: _p186._0._0._0,
+							_0: _p191._0._0._0,
 							_1: {ctor: '[]'},
-							_2: _p186._0._0._2,
-							_3: _p186._0._0._3
+							_2: _p191._0._0._2,
+							_3: _p191._0._0._3
 						}));
 				var le2 = _user$project$Util$nub(
 					A2(_elm_lang$core$List$concatMap, ff, seq.leftRel));
@@ -3475,8 +3476,8 @@ var _user$project$Common_sequent$ruleB = {
 		category: _user$project$Common_sequent$Rule4LeftRel,
 		rulename: 'symm',
 		rule: function (seq) {
-			var _p187 = seq.leftRel;
-			if ((((_p187.ctor === '::') && (_p187._0.ctor === 'RelAtom')) && (_p187._0._0.ctor === '_Tuple4')) && (_p187._0._0._1.ctor === '[]')) {
+			var _p192 = seq.leftRel;
+			if ((((_p192.ctor === '::') && (_p192._0.ctor === 'RelAtom')) && (_p192._0._0.ctor === '_Tuple4')) && (_p192._0._0._1.ctor === '[]')) {
 				var le2 = _user$project$Util$nub(
 					A2(
 						_elm_lang$core$Basics_ops['++'],
@@ -3486,10 +3487,10 @@ var _user$project$Common_sequent$ruleB = {
 							_0: _user$project$Common_sequent$RelAtom(
 								{
 									ctor: '_Tuple4',
-									_0: _p187._0._0._0,
+									_0: _p192._0._0._0,
 									_1: {ctor: '[]'},
-									_2: _p187._0._0._3,
-									_3: _p187._0._0._2
+									_2: _p192._0._0._3,
+									_3: _p192._0._0._2
 								}),
 							_1: {ctor: '[]'}
 						}));
@@ -3516,54 +3517,54 @@ var _user$project$Common_sequent$ruleB = {
 var _user$project$Common_sequent$proofSystem = function (str) {
 	proofSystem:
 	while (true) {
-		var _p188 = _elm_lang$core$String$toList(str);
-		if (_p188.ctor === '[]') {
+		var _p193 = _elm_lang$core$String$toList(str);
+		if (_p193.ctor === '[]') {
 			return {ctor: '[]'};
 		} else {
-			var _p192 = _p188._1;
-			var _p189 = _p188._0;
-			switch (_p189.valueOf()) {
+			var _p197 = _p193._1;
+			var _p194 = _p193._0;
+			switch (_p194.valueOf()) {
 				case 'K':
-					var _v108 = _elm_lang$core$String$fromList(_p192);
-					str = _v108;
+					var _v110 = _elm_lang$core$String$fromList(_p197);
+					str = _v110;
 					continue proofSystem;
 				case 'T':
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						_user$project$Common_sequent$ruleT,
 						_user$project$Common_sequent$proofSystem(
-							_elm_lang$core$String$fromList(_p192)));
+							_elm_lang$core$String$fromList(_p197)));
 				case 'B':
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						_user$project$Common_sequent$ruleB,
 						_user$project$Common_sequent$proofSystem(
-							_elm_lang$core$String$fromList(_p192)));
+							_elm_lang$core$String$fromList(_p197)));
 				case 'D':
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						_user$project$Common_sequent$ruleD,
 						_user$project$Common_sequent$proofSystem(
-							_elm_lang$core$String$fromList(_p192)));
+							_elm_lang$core$String$fromList(_p197)));
 				case '4':
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						_user$project$Common_sequent$rule4,
 						_user$project$Common_sequent$proofSystem(
-							_elm_lang$core$String$fromList(_p192)));
+							_elm_lang$core$String$fromList(_p197)));
 				case '5':
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						_user$project$Common_sequent$rule5,
 						_user$project$Common_sequent$proofSystem(
-							_elm_lang$core$String$fromList(_p192)));
+							_elm_lang$core$String$fromList(_p197)));
 				case 'S':
-					var _p190 = _p192;
-					if (_p190.ctor === '[]') {
+					var _p195 = _p197;
+					if (_p195.ctor === '[]') {
 						return {ctor: '[]'};
 					} else {
-						var _p191 = _p190._0;
-						switch (_p191.valueOf()) {
+						var _p196 = _p195._0;
+						switch (_p196.valueOf()) {
 							case '5':
 								return A2(
 									_elm_lang$core$Basics_ops['++'],
@@ -3588,8 +3589,8 @@ var _user$project$Common_sequent$Tree = F2(
 	function (a, b) {
 		return {ctor: 'Tree', _0: a, _1: b};
 	});
-var _user$project$Common_sequent$proof2tree = function (_p193) {
-	var _p194 = _p193;
+var _user$project$Common_sequent$proof2tree = function (_p198) {
+	var _p199 = _p198;
 	return function (w) {
 		return A2(
 			_user$project$Common_sequent$Tree,
@@ -3598,18 +3599,22 @@ var _user$project$Common_sequent$proof2tree = function (_p193) {
 				'(',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_p194._1,
+					_p199._1,
 					A2(_elm_lang$core$Basics_ops['++'], ')  ', w))),
-			A2(_elm_lang$core$List$map, _user$project$Common_sequent$proof2tree, _p194._2));
+			A2(_elm_lang$core$List$map, _user$project$Common_sequent$proof2tree, _p199._2));
 	}(
-		_user$project$Common_sequent$outputSequent(_p194._0));
+		_user$project$Common_sequent$outputSequent(_p199._0));
 };
-var _user$project$Common_sequent$drawProof = F3(
-	function (maxNum, ruleSet, seq) {
-		var derivation = A3(_user$project$Common_sequent$makeProofTree, maxNum, ruleSet, seq);
-		var isPro = _user$project$Common_sequent$isProvable(derivation);
-		return function (z) {
-			return A2(_user$project$Common_sequent$list2pairElm, z, isPro);
+var _user$project$Common_sequent$drawProof = function (derivation) {
+	var isPro = _user$project$Common_sequent$isProvable(derivation);
+	return function (z) {
+		return A2(_user$project$Common_sequent$list2pairElm, z, isPro);
+	}(
+		function (y) {
+			return A2(
+				_user$project$Common_sequent$addBlank,
+				y,
+				{ctor: '[]'});
 		}(
 			function (y) {
 				return A2(
@@ -3623,17 +3628,11 @@ var _user$project$Common_sequent$drawProof = F3(
 						y,
 						{ctor: '[]'});
 				}(
-					function (y) {
+					function (x) {
 						return A2(
-							_user$project$Common_sequent$addBlank,
-							y,
+							_user$project$Common_sequent$tree2vis,
+							x,
 							{ctor: '[]'});
 					}(
-						function (x) {
-							return A2(
-								_user$project$Common_sequent$tree2vis,
-								x,
-								{ctor: '[]'});
-						}(
-							_user$project$Common_sequent$proof2tree(derivation))))));
-	});
+						_user$project$Common_sequent$proof2tree(derivation))))));
+};

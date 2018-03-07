@@ -154,6 +154,7 @@ function send_info2elm_proof_draw() {
 }
 exports.send_info2elm_proof_draw = send_info2elm_proof_draw;
 elm_main_sequent.ports.output4prove.subscribe(function (model) {
+    console.log(model);
     if (model.formula === "") {
         console.log("comment: error in port_sequent.ts");
     }

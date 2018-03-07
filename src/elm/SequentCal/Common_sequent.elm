@@ -77,7 +77,6 @@ type alias RandomSeed =
     }
 
 formula2seq : Formula ->Sequent
-
 formula2seq f = {  leftRel=[]
                   ,leftForm=[]
                   ,rightRel=[]
@@ -972,10 +971,10 @@ outputSequent seq =
 ----- ver3
 type alias MaxNumberOfExpressionsInANode=Int
 
-drawProof : MaxNumberOfExpressionsInANode -> List Rule -> Sequent -> Graph
-drawProof maxNum ruleSet seq =
+drawProof : Proof -> Graph
+drawProof derivation =
     let
-        derivation = makeProofTree maxNum ruleSet seq
+        --derivation = makeProofTree maxNum ruleSet seq
         isPro =  isProvable derivation
     in
         derivation
@@ -1109,18 +1108,18 @@ list2pairElm xs provable =
 --------------------------------------------------------------------------------------------
 -- Parser(output/ TeX)
 --------------------------------------------------------------------------------------------
-drawTexS : Sequent -> String
-drawTexS seq = 
+drawTexSequent : Sequent -> String
+drawTexSequent seq = 
   let
-    leftForm = List.map drawTexL seq.leftForm |> words2
-    leftRel = List.map drawTexL2 seq.leftRel |> words2
-    rightForm =List.map drawTexL seq.rightForm |> words2
-    rightRel = List.map drawTexL2 seq.rightRel |> words2
+    leftForm = List.map drawTexLabelForm seq.leftForm
+    leftRel = List.map drawTexLabelForm2 seq.leftRel
+    rightForm =List.map drawTexLabelForm seq.rightForm
+    rightRel = List.map drawTexLabelForm2 seq.rightRel
     forDEL = seq.forDEL
   in
     if forDEL ==[]
-    then leftForm++","++leftRel++"\\Rightarrow " ++ rightForm++","++rightRel
-    else  leftForm++","++leftRel++"\\Rightarrow " ++ rightForm++","++rightRel ++"||"++"here"
+    then (words2 <| leftForm++leftRel)++"\\Rightarrow " ++ (words2 <| rightForm++rightRel)
+    else   (words2 <| leftForm++leftRel)++"\\Rightarrow " ++ (words2 <| rightForm++rightRel) ++"||"++"here4"
 
 
 words2 : List String -> String
@@ -1129,24 +1128,34 @@ words2 x = case x of
   (s::[]) -> s
   (s::ss) -> s++ "," ++ words2 ss
 
-drawTexL : LabelForm -> String
-drawTexL l = 
+drawTexLabelForm : LabelForm -> String
+drawTexLabelForm l = 
   let
-   forml fs = List.map (\f-> drawTexF 1 f) fs
+   forml fs = List.map (\f-> drawTexFormula 1 f) fs
               |> \x-> words2 x
   in 
     case l of 
-            LabelForm ([], w, list,f) -> (Util.show w )++ "{:}^{\\epsilon}"++ (drawTexF 1 f)
-            LabelForm (annf, w, list, f) -> (Util.show w )++ "{:}^{" ++"here"++"}"++ (drawTexF 1 f) --++ (forml (List.reverse annf) )
+            LabelForm ([], w, list,f) -> (Util.show w )++ "{:}^{}"++ (drawTexFormula 1 f)
+            LabelForm (annf, w, list, f) -> (Util.show w )++ "{:}^{" ++"here1"++"}"++ (drawTexFormula 1 f) --++ (forml (List.reverse annf) )
 
-drawTexL2 : RelAtom -> String
-drawTexL2 r = case r of 
-            RelAtom (ag, [], w1,w2) -> Util.show w1 ++ "\\mathsf{R}^{\\epsilon}_"++ag++ Util.show w2 --(forml annf )++ 
-            RelAtom (ag, annf, w1,w2) -> Util.show w1 ++ "\\mathsf{R}^{"++"here"++ "}_"++ag++ Util.show w2 --(forml annf )++ 
-            RelAtom_int (w1,w2) -> (Util.show w1)++++"here"++++ (Util.show w2)
+--type alias LabelAct = (Label, List Action)
+showla : LabelAct -> String
+showla (a,li) =
+  let
+    ff = List.map Sy.outputAction li |> words2
+  in
+       case li of 
+          []-> Util.show a
+          li -> "("++Util.show a++","++ ff++")"
+
+drawTexLabelForm2 : RelAtom -> String
+drawTexLabelForm2 r = case r of 
+            RelAtom (ag, [], w1,w2) -> showla w1 ++ "\\mathsf{R}^{}_"++ag++ showla w2 --(forml annf )++ 
+            RelAtom (ag, annf, w1,w2) -> showla w1 ++ "\\mathsf{R}^{"++"here2"++ "}_"++ag++ showla w2 --(forml annf )++ 
+            RelAtom_int (w1,w2) -> (Util.show w1)++++"here3"++++ (Util.show w2)
 
 
-drawTexF n f =
+drawTexFormula n f =
   let 
      kakko k s = if n > k then "(" ++ s ++ ")" else s
   in
@@ -1155,33 +1164,33 @@ drawTexF n f =
     AnyFormula i   -> i
     Top             -> " \\top "
     Bot             -> " \\bot "
-    Not  a          -> " \\neg " ++ drawTexF 3 a
-    Box ag   a          -> "\\mathcal{K}_{" ++ag++ "}" ++ drawTexF 3 a
-    Dia ag  a          -> "\\lozenge_{" ++ag++ "}" ++ drawTexF 3 a
-    Announce a b    -> kakko 3 ("["  ++drawTexF 3 a ++ "]"  ++ drawTexF 3 b)
-    Announce2 a b   -> kakko 3 ("\\langle "  ++drawTexF 3 a ++ "\\rangle "  ++ drawTexF 3 b)
-    And a b        -> kakko 2 ("("++drawTexF 3 a ++++ "\\wedge"  ++++ drawTexF 3 b++")")
-    Or a b        -> kakko 2 ("("++drawTexF 3 a ++++ "\\vee"  ++++ drawTexF 3 b++")")
-    Imply a b        -> kakko 1 (drawTexF 2 a ++++ "\\to" ++++ drawTexF 2 b)
-    Imply2 a b        -> kakko 1 (drawTexF 2 b ++++ "\\to" ++++ drawTexF 2 a)
-    Iff a b        -> kakko 1 (drawTexF 2 a ++++ "\\leftrightarrow" ++++ drawTexF 2 b)
-    Bigwedge sts (am,(ag,s1,s2)) f1-> "\\bigwedge_{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++"}" ++++ (drawTexF 1 f1)
-    Bigvee   sts (am,(ag,s1,s2)) f1-> "\\bigvee{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++++"}" ++++ (drawTexF 1 f1)
-    BoxAction act f-> "["++Sy.outputAction act++"]" ++++ (drawTexF 1 f)
-    DiaAction act f1 -> "\\langle"++++Sy.outputAction act++++"\\rangle" ++++ (drawTexF 1 f)
+    Not  a          -> " \\neg " ++ drawTexFormula 3 a
+    Box ag   a          -> "\\Box_{" ++ag++ "}" ++ drawTexFormula 3 a
+    Dia ag  a          -> "\\lozenge_{" ++ag++ "}" ++ drawTexFormula 3 a
+    Announce a b    -> kakko 3 ("["  ++drawTexFormula 3 a ++ "]"  ++ drawTexFormula 3 b)
+    Announce2 a b   -> kakko 3 ("\\langle "  ++drawTexFormula 3 a ++ "\\rangle "  ++ drawTexFormula 3 b)
+    And a b        -> kakko 2 ("("++drawTexFormula 3 a ++++ "\\wedge"  ++++ drawTexFormula 3 b++")")
+    Or a b        -> kakko 2 ("("++drawTexFormula 3 a ++++ "\\vee"  ++++ drawTexFormula 3 b++")")
+    Imply a b        -> kakko 1 (drawTexFormula 2 a ++++ "\\to" ++++ drawTexFormula 2 b)
+    Imply2 a b        -> kakko 1 (drawTexFormula 2 b ++++ "\\to" ++++ drawTexFormula 2 a)
+    Iff a b        -> kakko 1 (drawTexFormula 2 a ++++ "\\leftrightarrow" ++++ drawTexFormula 2 b)
+    Bigwedge sts (am,(ag,s1,s2)) f1-> "\\bigwedge_{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++"}" ++++ (drawTexFormula 1 f1)
+    Bigvee   sts (am,(ag,s1,s2)) f1-> "\\bigvee{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++++"}" ++++ (drawTexFormula 1 f1)
+    BoxAction act f-> "["++Sy.outputAction act++"]" ++++ (drawTexFormula 1 f)
+    DiaAction act f1 -> "\\langle"++++Sy.outputAction act++++"\\rangle" ++++ (drawTexFormula 1 f)
     Precon am st -> "pre("++++ am.am_name ++++")("++++ st ++++")("
 
-drawTexP : List Proof -> String
-drawTexP q = 
+drawTexProof : List Proof -> String
+drawTexProof q = 
   case q of 
     [Proof sq rule next] -> 
       case next of  
-        [] -> "\\infer[\\mbox{($" ++ (texRule rule) ++"$)}]{"++ drawTexS sq ++"}{}"
-        [(Proof sq2 rule2 pr2)] -> "\\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}{"++ drawTexP [(Proof sq2 rule2 pr2)] ++"}"
-        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}"++ "{"++ drawTexP [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexP [(Proof sq3 rule3 pr3)] ++"}"
-        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}"++ "{"++ drawTexP [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexP [(Proof sq3 rule3 pr3)]++ "&"++ drawTexP [(Proof sq4 rule4 pr4)] ++"}"
-        _->"error in drawTexP (1)"
-    _->"error in drawTexP (2)"
+        [] -> "\\infer[\\mbox{($" ++ (texRule rule) ++"$)}]{"++ drawTexSequent sq ++"}{}"
+        [(Proof sq2 rule2 pr2)] -> "\\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexProof [(Proof sq3 rule3 pr3)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexProof [(Proof sq3 rule3 pr3)]++ "&"++ drawTexProof [(Proof sq4 rule4 pr4)] ++"}"
+        _->"error in drawTexProof (1)"
+    _->"error in drawTexProof (2)"
 
 --writeP  x= writeFile
 -- "figureTeX.tex" 

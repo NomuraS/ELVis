@@ -210,7 +210,8 @@ var _user$project$ElmFunctions_sequent$output4prove = _elm_lang$core$Native_Plat
 					return {id: v.id, from: v.from, to: v.to, label: v.label};
 				}),
 			provable: v.provable,
-			system: v.system
+			system: v.system,
+			tex: v.tex
 		};
 	});
 var _user$project$ElmFunctions_sequent$output4randomFormula = _elm_lang$core$Native_Platform.outgoingPort(
@@ -227,7 +228,8 @@ var _user$project$ElmFunctions_sequent$output4randomFormula = _elm_lang$core$Nat
 					return {id: v.id, from: v.from, to: v.to, label: v.label};
 				}),
 			provable: v.provable,
-			system: v.system
+			system: v.system,
+			tex: v.tex
 		};
 	});
 var _user$project$ElmFunctions_sequent$output4randomFormula_provable = _elm_lang$core$Native_Platform.outgoingPort(
@@ -244,7 +246,8 @@ var _user$project$ElmFunctions_sequent$output4randomFormula_provable = _elm_lang
 					return {id: v.id, from: v.from, to: v.to, label: v.label};
 				}),
 			provable: v.provable,
-			system: v.system
+			system: v.system,
+			tex: v.tex
 		};
 	});
 var _user$project$ElmFunctions_sequent$output4syntaxCheck = _elm_lang$core$Native_Platform.outgoingPort(
@@ -261,7 +264,8 @@ var _user$project$ElmFunctions_sequent$output4syntaxCheck = _elm_lang$core$Nativ
 					return {id: v.id, from: v.from, to: v.to, label: v.label};
 				}),
 			provable: v.provable,
-			system: v.system
+			system: v.system,
+			tex: v.tex
 		};
 	});
 var _user$project$ElmFunctions_sequent$JSON = F6(
@@ -304,8 +308,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 263, column: 26},
-								end: {line: 265, column: 107}
+								start: {line: 264, column: 26},
+								end: {line: 266, column: 107}
 							},
 							_p6)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error (1) in ElmFunctions_sequent.elm: ', _p6._0));
@@ -361,8 +365,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 								return _elm_lang$core$Native_Utils.crashCase(
 									'ElmFunctions_sequent',
 									{
-										start: {line: 278, column: 27},
-										end: {line: 283, column: 87}
+										start: {line: 279, column: 27},
+										end: {line: 284, column: 87}
 									},
 									_p10)('error (3) in ElmFunctions_sequent.elm: ');
 						}
@@ -389,11 +393,18 @@ var _user$project$ElmFunctions_sequent$update = F2(
 					} else {
 						var _p14 = _p13._0;
 						var bottom_sequent = _user$project$Common_sequent$formula2seq(_p14);
-						var graph = A3(
-							_user$project$Common_sequent$drawProof,
+						var proof = A3(
+							_user$project$Common_sequent$makeProofTree,
 							limitNum,
 							A2(_elm_lang$core$Basics_ops['++'], modal_system, el_system),
 							bottom_sequent);
+						var graph = _user$project$Common_sequent$drawProof(proof);
+						var tex_ = _user$project$Common_sequent$drawTexProof(
+							{
+								ctor: '::',
+								_0: proof,
+								_1: {ctor: '[]'}
+							});
 						return {
 							formula: A2(_user$project$Common_syntax$outputForm, 0, _p14),
 							nodes: graph.nodes,
@@ -408,7 +419,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 									A2(
 										_elm_lang$core$Basics_ops['++'],
 										', ',
-										A2(_elm_lang$core$Basics_ops['++'], object.modalSystem, ')'))))
+										A2(_elm_lang$core$Basics_ops['++'], object.modalSystem, ')')))),
+							tex: tex_
 						};
 					}
 				}();
@@ -430,8 +442,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 308, column: 28},
-								end: {line: 310, column: 88}
+								start: {line: 312, column: 28},
+								end: {line: 314, column: 88}
 							},
 							_p15)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (2):', _p15._0));
@@ -473,8 +485,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 322, column: 28},
-								end: {line: 324, column: 88}
+								start: {line: 326, column: 28},
+								end: {line: 328, column: 88}
 							},
 							_p18)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (3):', _p18._0));
@@ -516,8 +528,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 336, column: 28},
-								end: {line: 338, column: 88}
+								start: {line: 340, column: 28},
+								end: {line: 342, column: 88}
 							},
 							_p21)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (4):', _p21._0));
@@ -558,18 +570,19 @@ var _user$project$ElmFunctions_sequent$Edge = F4(
 	function (a, b, c, d) {
 		return {id: a, from: b, to: c, label: d};
 	});
-var _user$project$ElmFunctions_sequent$Model = F5(
-	function (a, b, c, d, e) {
-		return {formula: a, nodes: b, edges: c, provable: d, system: e};
+var _user$project$ElmFunctions_sequent$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {formula: a, nodes: b, edges: c, provable: d, system: e, tex: f};
 	});
 var _user$project$ElmFunctions_sequent$initModel = {
 	ctor: '_Tuple2',
-	_0: A5(
+	_0: A6(
 		_user$project$ElmFunctions_sequent$Model,
 		'',
 		{ctor: '[]'},
 		{ctor: '[]'},
 		0,
+		'',
 		''),
 	_1: _elm_lang$core$Platform_Cmd$none
 };

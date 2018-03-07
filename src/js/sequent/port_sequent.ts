@@ -178,7 +178,8 @@ export function send_info2elm_proof_draw(): void {
 	elm_main_sequent.ports.input4prove.send(_json_data); 
 }//input
 elm_main_sequent.ports.output4prove.subscribe(function (model) {
-	if (model.formula === "") {　
+	console.log(model) 
+	if (model.formula === "") {
 		console.log("comment: error in port_sequent.ts")
 	}
 	// history 

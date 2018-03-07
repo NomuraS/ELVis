@@ -1,47 +1,16 @@
-\documentclass{paper}
+\documentclass[b4paper,landscape]{article}
 
-\usepackage{wrapfig}
-\usepackage{amsmath, amssymb}\usepackage{latexsym}
+\usepackage{amsmath, amssymb,amsthm}
 \usepackage{proof}
-\usepackage{multicol}
-\usepackage[dvipdfmx]{graphicx,xcolor}
-\usepackage[all]{xy}
-%\usepackage[framemethod=tikz]{mdframed}
-\usepackage{array}
-%\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage{booktabs}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage{pifont}
-\usepackage{url}
-%\usepackage{times}
-\usepackage[varg]{txfonts}
-\usepackage{enumitem}\setenumerate{topsep=1pt}
-%\usepackage{stmaryrd}
-
-\newtheorem{fact}{Fact}
-%\setlength{\textheight}{22cm}
-%\setlength{\textwidth}{15cm}
-%\setlength{\oddsidemargin}{0.59cm}
-%\setlength{\evensidemargin}{0.59cm}
-
-\newcommand{\redd}[1]{{\color{red} #1}}
-\newcommand{\orangee}[1]{{\color{orange} #1}}
-\newcommand{\bluee}[1]{{\color{blue} #1}}
-\newcommand{\greenn}[1]{{\color{green} #1}}
-%\vspace{-9Q}
-
-
-
+\usepackage[truedimen,b4j,landscape,dvipdfm]{geometry}
 \begin{document}
-\title{Revising a Labelled Sequent Calculus\\ for  Public Announcement Logic}
-\author{Shoshin Nomura, Katsuhiko Sano and Satoshi Tojo}
+\title{}
+\author{}
 
 
 %\date{->day}
 % 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono"
-
+\infer[\mbox{($R\to $)}]{,\Rightarrow 0{:}^{\epsilon}\mathcal{K}_{a}(p \to q) \to (\mathcal{K}_{a}p \to \mathcal{K}_{a}q),}{\infer[\mbox{($R\to $)}]{0{:}^{\epsilon}\mathcal{K}_{a}(p \to q),\Rightarrow 0{:}^{\epsilon}\mathcal{K}_{a}p \to \mathcal{K}_{a}q,}{\infer[\mbox{($R\Box $)}]{0{:}^{\epsilon}\mathcal{K}_{a}(p \to q),0{:}^{\epsilon}\mathcal{K}_{a}p,\Rightarrow 0{:}^{\epsilon}\mathcal{K}_{a}q,}{\infer[\mbox{($L\Box $)}]{0{:}^{\epsilon}\mathcal{K}_{a}(p \to q),0{:}^{\epsilon}\mathcal{K}_{a}p,(0,[])\mathsf{R}^{\epsilon}_a(1,[])\Rightarrow 1{:}^{\epsilon}q,}{\infer[\mbox{($L\to $)}]{1{:}^{\epsilon}p \to q,0{:}^{here}\mathcal{K}_{a}(p \to q),0{:}^{\epsilon}\mathcal{K}_{a}p,(0,[])\mathsf{R}^{\epsilon}_a(1,[])\Rightarrow 1{:}^{\epsilon}q,}{\infer[\mbox{($L\Box $)}]{0{:}^{here}\mathcal{K}_{a}(p \to q),0{:}^{\epsilon}\mathcal{K}_{a}p,(0,[])\mathsf{R}^{\epsilon}_a(1,[])\Rightarrow 1{:}^{\epsilon}q,1{:}^{\epsilon}p,}{\infer[\mbox{($init$)}]{1{:}^{\epsilon}p,0{:}^{here}\mathcal{K}_{a}(p \to q),0{:}^{here}\mathcal{K}_{a}p,(0,[])\mathsf{R}^{\epsilon}_a(1,[])\Rightarrow 1{:}^{\epsilon}p,1{:}^{\epsilon}q,}{}&\infer[\mbox{($init$)}]{0{:}^{here}\mathcal{K}_{a}(p \to q),0{:}^{here}\mathcal{K}_{a}p,(0,[])\mathsf{R}^{\epsilon}_a(1,[])\Rightarrow 1{:}^{\epsilon}p,1{:}^{\epsilon}q,(0,[])\mathsf{R}^{\epsilon}_a(1,[])}{}}&\infer[\mbox{($init$)}]{1{:}^{\epsilon}q,0{:}^{here}\mathcal{K}_{a}(p \to q),0{:}^{\epsilon}\mathcal{K}_{a}p,(0,[])\mathsf{R}^{\epsilon}_a(1,[])\Rightarrow 1{:}^{\epsilon}q,}{}}&\infer[\mbox{($init$)}]{0{:}^{here}\mathcal{K}_{a}(p \to q),0{:}^{\epsilon}\mathcal{K}_{a}p,(0,[])\mathsf{R}^{\epsilon}_a(1,[])\Rightarrow 1{:}^{\epsilon}q,(0,[])\mathsf{R}^{\epsilon}_a(1,[])}{}}}}}
 \begin{table}[t]
 \caption{G3PAL'}
 \label{tb:table2}
