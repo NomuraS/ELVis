@@ -271,88 +271,88 @@ outputAction f =
 --Def of EModel  (Letter)
 ----------------------------------------------------------------------------------
 
----- skip
---skip_point   : Action
---skip_point = PointAModel skip ("s1")
+-- skip
+skip_point   : Action
+skip_point = PointAModel skip ("s1")
 
---skip : AModel
---skip  = 
---  let 
---    e1= "e1"   
---    skipS = [e1]
---    refl ag = List.map (\x->(ag ,x,x)) skipS
---    skipR = [("a",e1,e1)]
---    skipPre  =
---      [("e1", Top)]
---  in 
---     { am_name="Skip"
---      ,am_domain=skipS
---      ,am_relation=skipR
---      ,am_pre=skipPre}
+skip : AModel
+skip  = 
+  let 
+    e1= "e1"   
+    skipS = [e1]
+    refl ag = List.map (\x->(ag ,x,x)) skipS
+    skipR = [("a",e1,e1)]
+    skipPre  =
+      [("e1", Top)]
+  in 
+     { am_name="Skip"
+      ,am_domain=skipS
+      ,am_relation=skipR
+      ,am_pre=skipPre}
 
----- reada
---reada : AModel
---reada = 
---  let  npa = "e0"
---       pa  = "e1"
---       name = "Reada"
---       readaS = [npa,pa]
---       readaR  =  [("a",npa,npa),("a",pa,pa)]
---                ++[("b",npa,npa),("b",pa,pa)]++ [("b",npa,pa),("b",pa,npa)]
---       readaPre = [("e1" , Atom "p"),
---                   ("e0" , Not (Atom "p"))]
---  in 
---     { am_name=name
---      ,am_domain=readaS
---      ,am_relation=readaR
---      ,am_pre=readaPre}
+-- reada
+reada : AModel
+reada = 
+  let  npa = "e0"
+       pa  = "e1"
+       name = "Reada"
+       readaS = [npa,pa]
+       readaR  =  [("a",npa,npa),("a",pa,pa)]
+                ++[("b",npa,npa),("b",pa,pa)]++ [("b",npa,pa),("b",pa,npa)]
+       readaPre = [("e1" , Atom "p"),
+                   ("e0" , Not (Atom "p"))]
+  in 
+     { am_name=name
+      ,am_domain=readaS
+      ,am_relation=readaR
+      ,am_pre=readaPre}
 
---reada_po: Action
---reada_po = PointAModel reada ("pa")
+reada_po: Action
+reada_po = PointAModel reada ("pa")
      
 
----- readb
---readb : AModel
---readb = 
---  let  npb = "npb"
---       pb  = "pb"
---       name = "Readb"
---       readaS = [npb,pb]
---       readaR =   [("a",npb,npb),("a",pb,pb)]++ [("a",npb,pb),("a",pb,npb)]
---                ++[("b",npb,npb),("b",pb,pb)]
---       readaPre = [
---                          ("pb" ,Atom "p"),
---                          ("npb" ,Not (Atom "p"))]
---  in 
---     { am_name=name
---      ,am_domain=readaS
---      ,am_relation=readaR
---      ,am_pre=readaPre}
+-- readb
+readb : AModel
+readb = 
+  let  npb = "npb"
+       pb  = "pb"
+       name = "Readb"
+       readaS = [npb,pb]
+       readaR =   [("a",npb,npb),("a",pb,pb)]++ [("a",npb,pb),("a",pb,npb)]
+                ++[("b",npb,npb),("b",pb,pb)]
+       readaPre = [
+                          ("pb" ,Atom "p"),
+                          ("npb" ,Not (Atom "p"))]
+  in 
+     { am_name=name
+      ,am_domain=readaS
+      ,am_relation=readaR
+      ,am_pre=readaPre}
 
---readb_po: Action
---readb_po = PointAModel readb ("pb")
+readb_po: Action
+readb_po = PointAModel readb ("pb")
   
----- mayReada
---mayReada : Action
---mayReada = 
---  let  npa = "npa"
---       pa  = "pa"
---       t  = "t"
---       name = "MayReada"
---       readaS = [npa,pa,t]
---       readaR  =    [("a", npa,npa),("a",pa,pa),("a",t,t)]
---                 ++ [("b", npa,npa),("b",pa,pa),("b",t,t)]
+-- mayReada
+mayReada : Action
+mayReada = 
+  let  npa = "npa"
+       pa  = "pa"
+       t  = "t"
+       name = "MayReada"
+       readaS = [npa,pa,t]
+       readaR  =    [("a", npa,npa),("a",pa,pa),("a",t,t)]
+                 ++ [("b", npa,npa),("b",pa,pa),("b",t,t)]
 
---                 ++ [("b", npa,pa),("b",pa,npa)]
---                 ++ [("b", npa,t),("b",t,npa)]
---                 ++ [("b",pa,t),("b",t,pa)]
---       readaPre = [ ("pa", Atom "p"),
---                    ("npa", Not (Atom "p")),
---                    ("t", Top)]
---  in PointAModel
---     { am_name=name
---       ,am_domain=readaS
---       ,am_relation=readaR
---       ,am_pre=readaPre}
---     pa
+                 ++ [("b", npa,pa),("b",pa,npa)]
+                 ++ [("b", npa,t),("b",t,npa)]
+                 ++ [("b",pa,t),("b",t,pa)]
+       readaPre = [ ("pa", Atom "p"),
+                    ("npa", Not (Atom "p")),
+                    ("t", Top)]
+  in PointAModel
+     { am_name=name
+       ,am_domain=readaS
+       ,am_relation=readaR
+       ,am_pre=readaPre}
+     pa
 

@@ -2031,13 +2031,13 @@ var _user$project$Common_sequent$drawTexP = function (q) {
 																		}),
 																	'}')))))))))));
 					} else {
-						return '';
+						return 'error in drawTexP (1)';
 					}
 				}
 			}
 		}
 	} else {
-		return '';
+		return 'error in drawTexP (2)';
 	}
 };
 var _user$project$Common_sequent$Rule4Other = {ctor: 'Rule4Other'};

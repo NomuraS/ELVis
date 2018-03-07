@@ -1171,9 +1171,6 @@ drawTexF n f =
     DiaAction act f1 -> "\\langle"++++Sy.outputAction act++++"\\rangle" ++++ (drawTexF 1 f)
     Precon am st -> "pre("++++ am.am_name ++++")("++++ st ++++")("
 
---type       Proof =  Proof Sequent RuleName (List Proof)
-
-
 drawTexP : List Proof -> String
 drawTexP q = 
   case q of 
@@ -1183,8 +1180,8 @@ drawTexP q =
         [(Proof sq2 rule2 pr2)] -> "\\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}{"++ drawTexP [(Proof sq2 rule2 pr2)] ++"}"
         [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}"++ "{"++ drawTexP [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexP [(Proof sq3 rule3 pr3)] ++"}"
         [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}"++ "{"++ drawTexP [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexP [(Proof sq3 rule3 pr3)]++ "&"++ drawTexP [(Proof sq4 rule4 pr4)] ++"}"
-        _->""
-    _->""
+        _->"error in drawTexP (1)"
+    _->"error in drawTexP (2)"
 
 --writeP  x= writeFile
 -- "figureTeX.tex" 
