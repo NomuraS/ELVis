@@ -1102,3 +1102,113 @@ list2pairElm xs provable =
                     , provable=provable
                     }
 
+
+
+
+
+--------------------------------------------------------------------------------------------
+-- Parser(output/ TeX)
+--------------------------------------------------------------------------------------------
+drawTexS : Sequent -> String
+drawTexS seq = 
+  let
+    leftForm = List.map drawTexL seq.leftForm |> words2
+    leftRel = List.map drawTexL2 seq.leftRel |> words2
+    rightForm =List.map drawTexL seq.rightForm |> words2
+    rightRel = List.map drawTexL2 seq.rightRel |> words2
+    forDEL = seq.forDEL
+  in
+    if forDEL ==[]
+    then leftForm++","++leftRel++"\\Rightarrow " ++ rightForm++","++rightRel
+    else  leftForm++","++leftRel++"\\Rightarrow " ++ rightForm++","++rightRel ++"||"++"here"
+
+
+words2 : List String -> String
+words2 x = case x of 
+  [] -> ""
+  (s::[]) -> s
+  (s::ss) -> s++ "," ++ words2 ss
+
+drawTexL : LabelForm -> String
+drawTexL l = 
+  let
+   forml fs = List.map (\f-> drawTexF 1 f) fs
+              |> \x-> words2 x
+  in 
+    case l of 
+            LabelForm ([], w, list,f) -> (Util.show w )++ "{:}^{\\epsilon}"++ (drawTexF 1 f)
+            LabelForm (annf, w, list, f) -> (Util.show w )++ "{:}^{" ++"here"++"}"++ (drawTexF 1 f) --++ (forml (List.reverse annf) )
+
+drawTexL2 : RelAtom -> String
+drawTexL2 r = case r of 
+            RelAtom (ag, [], w1,w2) -> Util.show w1 ++ "\\mathsf{R}^{\\epsilon}_"++ag++ Util.show w2 --(forml annf )++ 
+            RelAtom (ag, annf, w1,w2) -> Util.show w1 ++ "\\mathsf{R}^{"++"here"++ "}_"++ag++ Util.show w2 --(forml annf )++ 
+            RelAtom_int (w1,w2) -> (Util.show w1)++++"here"++++ (Util.show w2)
+
+
+drawTexF n f =
+  let 
+     kakko k s = if n > k then "(" ++ s ++ ")" else s
+  in
+    case f of
+    Atom i   -> i
+    AnyFormula i   -> i
+    Top             -> " \\top "
+    Bot             -> " \\bot "
+    Not  a          -> " \\neg " ++ drawTexF 3 a
+    Box ag   a          -> "\\mathcal{K}_{" ++ag++ "}" ++ drawTexF 3 a
+    Dia ag  a          -> "\\lozenge_{" ++ag++ "}" ++ drawTexF 3 a
+    Announce a b    -> kakko 3 ("["  ++drawTexF 3 a ++ "]"  ++ drawTexF 3 b)
+    Announce2 a b   -> kakko 3 ("\\langle "  ++drawTexF 3 a ++ "\\rangle "  ++ drawTexF 3 b)
+    And a b        -> kakko 2 ("("++drawTexF 3 a ++++ "\\wedge"  ++++ drawTexF 3 b++")")
+    Or a b        -> kakko 2 ("("++drawTexF 3 a ++++ "\\vee"  ++++ drawTexF 3 b++")")
+    Imply a b        -> kakko 1 (drawTexF 2 a ++++ "\\to" ++++ drawTexF 2 b)
+    Imply2 a b        -> kakko 1 (drawTexF 2 b ++++ "\\to" ++++ drawTexF 2 a)
+    Iff a b        -> kakko 1 (drawTexF 2 a ++++ "\\leftrightarrow" ++++ drawTexF 2 b)
+    Bigwedge sts (am,(ag,s1,s2)) f1-> "\\bigwedge_{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++"}" ++++ (drawTexF 1 f1)
+    Bigvee   sts (am,(ag,s1,s2)) f1-> "\\bigvee{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++++"}" ++++ (drawTexF 1 f1)
+    BoxAction act f-> "["++Sy.outputAction act++"]" ++++ (drawTexF 1 f)
+    DiaAction act f1 -> "\\langle"++++Sy.outputAction act++++"\\rangle" ++++ (drawTexF 1 f)
+    Precon am st -> "pre("++++ am.am_name ++++")("++++ st ++++")("
+
+--type       Proof =  Proof Sequent RuleName (List Proof)
+
+
+drawTexP : List Proof -> String
+drawTexP q = 
+  case q of 
+    [Proof sq rule next] -> 
+      case next of  
+        [] -> "\\infer[\\mbox{($" ++ (texRule rule) ++"$)}]{"++ drawTexS sq ++"}{}"
+        [(Proof sq2 rule2 pr2)] -> "\\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}{"++ drawTexP [(Proof sq2 rule2 pr2)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}"++ "{"++ drawTexP [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexP [(Proof sq3 rule3 pr3)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexS sq ++"}"++ "{"++ drawTexP [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexP [(Proof sq3 rule3 pr3)]++ "&"++ drawTexP [(Proof sq4 rule4 pr4)] ++"}"
+        _->""
+    _->""
+
+--writeP  x= writeFile
+-- "figureTeX.tex" 
+-- ("\\documentclass[landscape,a0b,final]{article}\n\\usepackage{amsmath, amssymb,amsthm}\n\\usepackage{proof}\n\\usepackage[truedimen,b4j,landscape,dvipdfm]{geometry}\n\\begin{document}\\tiny{" 
+--  ++ x ++ "}\\end{document}")
+
+texRule r = case   r of 
+       "R~" -> "R\\neg "
+       "L~" -> "L\\neg "
+       "R&" -> "R\\wedge "
+       "L&" -> "L\\wedge "
+       "Rv" -> "R\\vee "
+       "Lv" -> "L\\vee "
+       "R->" -> "R\\to "
+       "L->"  -> "L\\to "
+       "R<->" -> "R\\leftrightarrow "
+       "L<->" -> "L\\leftrightarrow "
+       "R<.>" -> "L\\langle . \\rangle "
+       "L<.>" -> "R\\langle . \\rangle "
+       "R#" -> "R\\Box "
+       "L#" -> "L\\Box "
+       "R$" -> "R\\lozenge "
+       "L$" -> "L\\lozenge "
+       x -> x
+
+
+
