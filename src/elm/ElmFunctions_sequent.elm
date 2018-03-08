@@ -2,14 +2,11 @@
 port module ElmFunctions_sequent exposing (main)
 
 import Util
-import Applicative exposing (..)
-
 import Html exposing (Attribute,Html)
 import Json.Decode as Decoder exposing (Decoder)
 import Json.Encode as Encoder exposing (Value)
-
-import AgentAtom exposing (Agent,State)
-import Common_sequent as CommonSeq exposing (..) 
+--import AgentAtom exposing (Agent,State)
+import Common_sequent as CSeq exposing (Rule)
 import Common_syntax as Syntax exposing (Formula(..))
 import Int_sequent as IntEL
 import PAL_sequent as GPAL
@@ -29,6 +26,7 @@ type alias JSON =
     , elSystem : String
     , maxNumberOfExpressionsAppearingInANode : Int
     , randomSeed : RandomSeed
+    --, latex_package : String
     }
 
 type alias RandomSeed =
@@ -42,9 +40,9 @@ type alias RandomSeed =
 ---- inference rules
 -------------------------------------------------------------------------------------------
 basicRules : List Rule
-basicRules = axiomRule ++ ruleClassic
+basicRules = CSeq.axiomRule ++ CSeq.ruleClassic
 
-basicRules_int = axiomRule ++ IntEL.ruleInt2 -- maxNum ruleSet
+basicRules_int = CSeq.axiomRule ++ IntEL.ruleInt2 -- maxNum ruleSet
 
 --------------------------------------------------------------------------------------------
 -- createRandomFormula
@@ -108,22 +106,22 @@ proofSystemfromJSON json =
             --proofSystem = modal_system json ++ proofSystemfromJSON json ---- loopp
           in 
             case json.elSystem of 
-                "EL" -> basicRules++ ruleK
-                "PAL"-> basicRules++ ruleK++GPAL.ruleGPAL
+                "EL" -> basicRules++ CSeq.ruleK
+                "PAL"-> basicRules++ CSeq.ruleK++GPAL.ruleGPAL
                 "IntPAL"-> basicRules_int--  ++ IntEL.ruleK_int ++IntPAL.ruleGIntPAL 
-                "DEL"-> basicRules++ ruleK++GDEL.ruleK_DEL++GDEL.ruleDEL
-                _->     basicRules++ ruleK
+                "DEL"-> basicRules++ CSeq.ruleK++GDEL.ruleK_DEL++GDEL.ruleDEL
+                _->     basicRules++ CSeq.ruleK
 
 modal_system : JSON -> List Rule
 modal_system json = 
   let 
      modalSystemString  = String.toList <| json.modalSystem
      modal_system x = case x  of 
-        'T' -> ruleT
-        'D' -> ruleD
-        'B' -> ruleB
-        '4' -> rule4
-        '5' -> rule5
+        'T' -> CSeq.ruleT
+        'D' -> CSeq.ruleD
+        'B' -> CSeq.ruleB
+        '4' -> CSeq.rule4
+        '5' -> CSeq.rule5
         _->[]
   in
    Util.nub <| List.concatMap modal_system modalSystemString
@@ -140,8 +138,8 @@ createRandomFormulaFromJSON_provable  json =
         createRandomFormulaFromJSON json 
       |> Maybe.withDefault Top 
       |> \p->  modal_system json++proofSystemfromJSON json 
-            |> \sy-> makeProofTree 15 sy (formula2seq p)
-            |> \pr->  if CommonSeq.isProvable pr == 1 then Just p 
+            |> \sy-> CSeq.makeProofTree 15 sy (CSeq.formula2seq p)
+            |> \pr->  if CSeq.isProvable pr == 1 then Just p 
                       else createRandomFormulaFromJSON_provable json2 
 
 ----------------------------------------------
@@ -190,6 +188,7 @@ decodeJSON4prove =
         (Decoder.field "elSystem" Decoder.string)
         (Decoder.field "maxNumberOfExpressionsAppearingInANode" Decoder.int)
         (Decoder.field "randomSeed" decodeJSON4randomFormula)
+        --(Decoder.field "latex_package" Decoder.string)
 
 decodeJSON4randomFormula : Decoder RandomSeed
 decodeJSON4randomFormula =
@@ -234,14 +233,14 @@ type alias Model = --Graph
        ,edges : List  Edge
        ,provable : Int
        ,system : String 
-       ,tex : String 
+       ,tex : {proofsty:String,ebproofsty:String}
     }
 
 ----------------------------------------------
 -- initmodel
 ----------------------------------------------
 initModel : ( Model, Cmd Msg )
-initModel = ( Model "" [] [] 0 "" ""
+initModel = ( Model "" [] [] 0 "" {proofsty="",ebproofsty=""}
             , Cmd.none
             )
 
@@ -265,11 +264,11 @@ update message model =
                         Ok a -> a
                         Err errorMsg-> Debug.crash ("error (1) in ElmFunctions_sequent.elm: " ++ errorMsg)
                 modal_system =  object.modalSystem
-                               |> CommonSeq.proofSystem
+                               |> CSeq.proofSystem
                 limitNum= object.maxNumberOfExpressionsAppearingInANode
                 el_system = case object.elSystem of 
-                        "EL" -> basicRules++ CommonSeq.ruleK
-                        "PAL"-> basicRules++ CommonSeq.ruleK++GPAL.ruleGPAL
+                        "EL" -> basicRules++ CSeq.ruleK
+                        "PAL"-> basicRules++ CSeq.ruleK++GPAL.ruleGPAL
                         "IntPAL"-> basicRules_int ++ IntEL.ruleK_int ++IntPAL.ruleGIntPAL -- limitNum proofSystem -- 
                         "DEL" ->basicRules++ GDEL.ruleK_DEL ++ GDEL.ruleDEL ++GDEL.ruleAModel -- change rules here
                         _ -> []      
@@ -291,10 +290,13 @@ update message model =
                   Nothing -> {model | nodes=[],edges=[]}
                   Just f ->
                     let 
-                      bottom_sequent = CommonSeq.formula2seq f
-                      proof = CommonSeq.makeProofTree limitNum (modal_system++el_system)  bottom_sequent 
-                      graph =  CommonSeq.drawProof proof
-                      tex_ = drawTexProof [proof]
+                      bottom_sequent = CSeq.formula2seq f
+                      proof = CSeq.makeProofTree limitNum (modal_system++el_system)  bottom_sequent 
+                      graph =  CSeq.drawProof proof
+                      tex_ = {
+                              proofsty = CSeq.drawTexProof_proofsty [proof],
+                              ebproofsty = CSeq.drawTexProof_ebproofsty [proof]
+                             } 
                     in 
                       { formula=Syntax.outputForm 0 f
                       , nodes=graph.nodes

@@ -211,7 +211,7 @@ var _user$project$ElmFunctions_sequent$output4prove = _elm_lang$core$Native_Plat
 				}),
 			provable: v.provable,
 			system: v.system,
-			tex: v.tex
+			tex: {proofsty: v.tex.proofsty, ebproofsty: v.tex.ebproofsty}
 		};
 	});
 var _user$project$ElmFunctions_sequent$output4randomFormula = _elm_lang$core$Native_Platform.outgoingPort(
@@ -229,7 +229,7 @@ var _user$project$ElmFunctions_sequent$output4randomFormula = _elm_lang$core$Nat
 				}),
 			provable: v.provable,
 			system: v.system,
-			tex: v.tex
+			tex: {proofsty: v.tex.proofsty, ebproofsty: v.tex.ebproofsty}
 		};
 	});
 var _user$project$ElmFunctions_sequent$output4randomFormula_provable = _elm_lang$core$Native_Platform.outgoingPort(
@@ -247,7 +247,7 @@ var _user$project$ElmFunctions_sequent$output4randomFormula_provable = _elm_lang
 				}),
 			provable: v.provable,
 			system: v.system,
-			tex: v.tex
+			tex: {proofsty: v.tex.proofsty, ebproofsty: v.tex.ebproofsty}
 		};
 	});
 var _user$project$ElmFunctions_sequent$output4syntaxCheck = _elm_lang$core$Native_Platform.outgoingPort(
@@ -265,7 +265,7 @@ var _user$project$ElmFunctions_sequent$output4syntaxCheck = _elm_lang$core$Nativ
 				}),
 			provable: v.provable,
 			system: v.system,
-			tex: v.tex
+			tex: {proofsty: v.tex.proofsty, ebproofsty: v.tex.ebproofsty}
 		};
 	});
 var _user$project$ElmFunctions_sequent$JSON = F6(
@@ -308,8 +308,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 264, column: 26},
-								end: {line: 266, column: 107}
+								start: {line: 263, column: 26},
+								end: {line: 265, column: 107}
 							},
 							_p6)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error (1) in ElmFunctions_sequent.elm: ', _p6._0));
@@ -365,8 +365,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 								return _elm_lang$core$Native_Utils.crashCase(
 									'ElmFunctions_sequent',
 									{
-										start: {line: 279, column: 27},
-										end: {line: 284, column: 87}
+										start: {line: 278, column: 27},
+										end: {line: 283, column: 87}
 									},
 									_p10)('error (3) in ElmFunctions_sequent.elm: ');
 						}
@@ -399,12 +399,20 @@ var _user$project$ElmFunctions_sequent$update = F2(
 							A2(_elm_lang$core$Basics_ops['++'], modal_system, el_system),
 							bottom_sequent);
 						var graph = _user$project$Common_sequent$drawProof(proof);
-						var tex_ = _user$project$Common_sequent$drawTexProof(
-							{
-								ctor: '::',
-								_0: proof,
-								_1: {ctor: '[]'}
-							});
+						var tex_ = {
+							proofsty: _user$project$Common_sequent$drawTexProof_proofsty(
+								{
+									ctor: '::',
+									_0: proof,
+									_1: {ctor: '[]'}
+								}),
+							ebproofsty: _user$project$Common_sequent$drawTexProof_ebproofsty(
+								{
+									ctor: '::',
+									_0: proof,
+									_1: {ctor: '[]'}
+								})
+						};
 						return {
 							formula: A2(_user$project$Common_syntax$outputForm, 0, _p14),
 							nodes: graph.nodes,
@@ -442,8 +450,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 312, column: 28},
-								end: {line: 314, column: 88}
+								start: {line: 314, column: 28},
+								end: {line: 316, column: 88}
 							},
 							_p15)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (2):', _p15._0));
@@ -485,8 +493,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 326, column: 28},
-								end: {line: 328, column: 88}
+								start: {line: 328, column: 28},
+								end: {line: 330, column: 88}
 							},
 							_p18)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (3):', _p18._0));
@@ -528,8 +536,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 340, column: 28},
-								end: {line: 342, column: 88}
+								start: {line: 342, column: 28},
+								end: {line: 344, column: 88}
 							},
 							_p21)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (4):', _p21._0));
@@ -583,7 +591,7 @@ var _user$project$ElmFunctions_sequent$initModel = {
 		{ctor: '[]'},
 		0,
 		'',
-		''),
+		{proofsty: '', ebproofsty: ''}),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
 var _user$project$ElmFunctions_sequent$JsonFromJS4_syntaxChecker = function (a) {

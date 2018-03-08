@@ -6,10 +6,6 @@ var Vis = require("../lib/vis");
 var Ac = require("../action/vis_action");
 var $$NODES_COLOR_KRIPKE = "#C38728";
 exports.$$BACKGROUND_COLOR = "#333333";
-exports.$A1 = document.getElementById('node-label_kripke');
-exports.$A2 = document.getElementById('saveButton_kripke');
-exports.$A3 = document.getElementById('cancelButton_kripke');
-exports.$A4 = document.getElementById('network-popUp_node_kripke');
 exports.$AGENT_LABEL = document.getElementById('id_of_input_for_arrow_backup_kripke').value;
 exports.$CONFIG_KRIPKE = document.getElementById('config_kripke');
 exports.$CONTAINER_KRIPKE = document.getElementById('network_kripke');
@@ -180,7 +176,6 @@ function change_global_NODES_EDGES_update($nodes, $edges) {
 }
 function $id_of_input_for_arrow_backup_kripke() {
     var _a = document.getElementById('id_of_input_for_arrow_backup_kripke');
-    console.log(_a);
     return _a.value;
 }
 exports.$id_of_input_for_arrow_backup_kripke = $id_of_input_for_arrow_backup_kripke;
@@ -204,11 +199,15 @@ function watchRemoveDeletefunction($data, $callback, $nodes, $edges) {
     nodeEdge2writeTopPanel($nodes, $edges);
 }
 exports.watchRemoveDeletefunction = watchRemoveDeletefunction;
-function watchAddNodefunction($nod, $func, $nodes, $edges, $label_kripke, $saveButton_kripke, $cancelButton_kripke, $popUp_node_kripke) {
+function watchAddNodefunction($nod, $func, $nodes, $edges) {
+    var _label_kripke = document.getElementById('node-label_kripke');
+    var _saveButton_kripke = document.getElementById('saveButton_kripke');
+    var _cancelButton_kripke = document.getElementById('cancelButton_kripke');
+    var _popUp_node_kripke = document.getElementById('network-popUp_node_kripke');
     var clearPopUp_kripke = function () {
-        $saveButton_kripke.onclick = null;
-        $cancelButton_kripke.onclick = null;
-        $popUp_node_kripke.style.display = 'none';
+        _saveButton_kripke.onclick = null;
+        _cancelButton_kripke.onclick = null;
+        _popUp_node_kripke.style.display = 'none';
     };
     var saveData_kripke = function ($data, $callback) {
         $data.label = document.getElementById('node-label_kripke').value;
@@ -225,9 +224,9 @@ function watchAddNodefunction($nod, $func, $nodes, $edges, $label_kripke, $saveB
         }
     };
     Util.writeDOM_value('#node-label_kripke')($nod.label);
-    $saveButton_kripke.onclick = saveData_kripke.bind(this, $nod, $func);
-    $cancelButton_kripke.onclick = clearPopUp_kripke.bind(null);
-    $popUp_node_kripke.style.display = 'block';
+    _saveButton_kripke.onclick = saveData_kripke.bind(this, $nod, $func);
+    _cancelButton_kripke.onclick = clearPopUp_kripke.bind(null);
+    _popUp_node_kripke.style.display = 'block';
 }
 exports.watchAddNodefunction = watchAddNodefunction;
 function watchAddEdgefunction($rel, $func, $nodes, $edges, $agent) {
@@ -311,7 +310,7 @@ function kripkeObject2string($kripkeModel) {
         "<ul class=\"list-unstyled2\">" +
         "<li class='classOfPrecondition_kripke'>Value(" +
         "<span class='color_text_panel_kripke'> x </span>) =" +
-        "\\(\\varnothing\\), &nbsp; if other x \\(\\in\\) Atom" +
+        "&empty;, &nbsp; if other x  &isin;  Atom" +
         "</li>" +
         "</ul>" +
         "</li>";

@@ -131,9 +131,18 @@ parseForm3_and =  Par.lazy <|\() ->
 parseForm2_unary : Parser s Formula
 parseForm2_unary =
      Par.lazy <|
-        \() -> Par.choice [knowp,knowifp,boxp,diap,notp]
+        \() -> Par.choice [knowp,knowifp,boxap,diaap,boxp,diap,notp]
                <|> parseForm1_term
 
+
+boxap : Parser s Formula
+boxap =  Par.lazy <|\() ->
+ (\x->Box "a" x) <$> (Par.string "#" *> parseForm2_unary)
+            
+diaap : Parser s Formula
+diaap =  Par.lazy <|\() ->
+ (\x->Dia "a" x) <$> (Par.string "$" *> parseForm2_unary)
+            
 
 knowp : Parser s Formula
 knowp =  Par.lazy <| \() ->

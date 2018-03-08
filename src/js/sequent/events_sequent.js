@@ -13,6 +13,15 @@ $(document).ready(function () {
     exports.NETWORK_SEQUENT = new Vis.Network(exports.$CONTAINER, { nodes: PS.NODES_SEQ, edges: PS.EDGES_SEQ }, PS.OPTIONS);
     PS.send_info2elm_proof_draw();
 });
+$("#modalbutton1").on('click', function () {
+    var _latex_package = $('[name="proofdownload"]:checked').map(function () { return $(this).val(); }).get().join('');
+    if (_latex_package === "proof_sty") {
+        $('#latexOutput').html(PS.PROOF_LATEX.proofsty);
+    }
+    else if (_latex_package === "ebproof_sty") {
+        $('#latexOutput').html(PS.PROOF_LATEX.ebproofsty);
+    }
+});
 for (var i = 0; i < $('.example_formula').length; i++) {
     $('.example_formula')[i].addEventListener("click", function (x) {
         PS.funcInput(x);

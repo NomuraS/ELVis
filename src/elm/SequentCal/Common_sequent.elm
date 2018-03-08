@@ -56,6 +56,7 @@ type       RuleCategory =   Rule4LeftRel
                           | Rule4RightFormula
                           | Rule4DEL
                           | Rule4Other
+type ProofTex = Proofsty | EbProofsty
 type alias Rule = {   
              priority:Int
             ,category:RuleCategory
@@ -950,6 +951,13 @@ outputLabelExp3 f =
   in
     Util.concatComma <| List.map gg f
 
+outputLabelExp3tex : AMRelation4Sequent -> String
+outputLabelExp3tex f =
+  let
+    gg (ag,ams,x, y) =  x++"\\sim_{"++ag++"}^{"++String.join ";" (List.map .am_name ams)++"}"++y
+  in
+    Util.concatComma <| List.map gg f
+
 outputSequent : Sequent -> String
 outputSequent seq =
   let
@@ -1108,8 +1116,8 @@ list2pairElm xs provable =
 --------------------------------------------------------------------------------------------
 -- Parser(output/ TeX)
 --------------------------------------------------------------------------------------------
-drawTexSequent : Sequent -> String
-drawTexSequent seq = 
+drawTexSequent : Sequent->ProofTex -> String
+drawTexSequent seq a = 
   let
     leftForm = List.map drawTexLabelForm seq.leftForm
     leftRel = List.map drawTexLabelForm2 seq.leftRel
@@ -1117,29 +1125,31 @@ drawTexSequent seq =
     rightRel = List.map drawTexLabelForm2 seq.rightRel
     forDEL = seq.forDEL
   in
-    if forDEL ==[]
-    then (words2 <| leftForm++leftRel)++"\\Rightarrow " ++ (words2 <| rightForm++rightRel)
-    else   (words2 <| leftForm++leftRel)++"\\Rightarrow " ++ (words2 <| rightForm++rightRel) ++"\\mid "++"here4"
+   case a of 
+    Proofsty -> 
+      if forDEL ==[]
+      then (words <| leftForm++leftRel)++"\\Longrightarrow " ++ (words <| rightForm++rightRel)
+      else   (words <| leftForm++leftRel)++"\\Longrightarrow " ++ (words <| rightForm++rightRel) ++"\\| "++ (outputLabelExp3tex forDEL) 
+    EbProofsty -> 
+      if forDEL ==[]
+      then (words <| leftForm++leftRel)++"&\\Longrightarrow " ++ (words <| rightForm++rightRel)
+      else   (words <| leftForm++leftRel)++"&\\Longrightarrow " ++ (words <| rightForm++rightRel) ++"\\| "++ (outputLabelExp3tex forDEL) 
 
 
-words2 : List String -> String
-words2 x = case x of 
-  [] -> ""
-  (s::[]) -> s
-  (s::ss) -> s++ "," ++ words2 ss
+words : List String -> String
+words = Util.concatComma
 
 drawTexLabelForm : LabelForm -> String
 drawTexLabelForm l = 
   let
    forml fs = List.map (\f-> drawTexFormula 1 f) fs
-              |> words2
+              |> words
    gg x = case x of 
     Left a -> drawTexFormula 0 a
     Right a -> Sy.outputAction a
   in 
     case l of 
-            --LabelForm ([], w, list,f) -> (Util.show w )++ "{:}^{" ++ (ff list)++"}"++ (drawTexFormula 1 f)
-            LabelForm (hist, w, annf, f) -> (Util.show w )++ "{:}^{" ++ (List.map gg annf |> words2)++"}"++ (drawTexFormula 1 f) --++ (forml (List.reverse annf) ) here1
+            LabelForm (hist, w, annf, f) -> (Util.show w )++ "{:}^{" ++ (List.map gg annf |> words)++"}"++ (drawTexFormula 1 f) --++ (forml (List.reverse annf) ) here1
 
 --type alias FormOrAct = Either Formula Action
 
@@ -1147,7 +1157,7 @@ drawTexLabelForm l =
 showla : LabelAct -> String
 showla (a,li) =
   let
-    ff = List.map Sy.outputAction li |> words2
+    ff = List.map Sy.outputAction li |> words
   in
        case li of 
           []-> Util.show a
@@ -1160,7 +1170,7 @@ drawTexLabelForm2 r =
   in
    case r of 
             RelAtom (ag, [], w1,w2) -> showla w1 ++ "\\mathsf{R}^{}_{"++ag++"}"++ showla w2 --(forml annf )++ 
-            RelAtom (ag, annf, w1,w2) -> showla w1 ++ "\\mathsf{R}^{"++(List.map gg annf |> words2)++ "}_{"++ag++"}"++ showla w2 --(forml annf )++ 
+            RelAtom (ag, annf, w1,w2) -> showla w1 ++ "\\mathsf{R}^{"++(List.map gg annf |> words)++ "}_{"++ag++"}"++ showla w2 --(forml annf )++ 
             RelAtom_int (w1,w2) -> (Util.show w1)++++"\\leq"++++ (Util.show w2)
 
 --type       RelAtom   =   RelAtom (Agent,List Formula,LabelAct,LabelAct)
@@ -1192,17 +1202,65 @@ drawTexFormula n f =
     DiaAction act f1 -> "\\langle"++++Sy.outputAction act++++"\\rangle" ++++ (drawTexFormula 3 f)
     Precon am st -> "pre^{"++++ am.am_name ++++"}("++++ st ++++")"
 
-drawTexProof : List Proof -> String
-drawTexProof q = 
+drawTexProof_proofsty : List Proof -> String
+drawTexProof_proofsty q =
+        "<div>\\documentclass{article}</div>"++
+        "<div>\\usepackage{amsmath,amssymb,amsthm}</div>"++
+        "<div>\\usepackage{proof}</div>"++
+        "<div>\\begin{document}</div>" ++
+        "<div>\\begin{tiny}</div>" ++
+           (drawTexProof_proofsty2 q)++
+        "<div>\\end{tiny}</div>" ++
+        "<div>\\end{document}</div>"
+
+drawTexProof_proofsty2 : List Proof -> String
+drawTexProof_proofsty2 q = 
   case q of 
     [Proof sq rule next] -> 
       case next of  
-        [] -> "\n \\infer[\\mbox{($" ++ (texRule rule) ++"$)}]{"++ drawTexSequent sq ++"}{}"
-        [(Proof sq2 rule2 pr2)] -> "\n \\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++"}"
-        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\n \\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "\n &"++ drawTexProof [(Proof sq3 rule3 pr3)] ++"}"
-        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\n \\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "\n &"++ drawTexProof [(Proof sq3 rule3 pr3)]++ "\n &"++ drawTexProof [(Proof sq4 rule4 pr4)] ++"}"
-        _->"error in drawTexProof (1)"
-    _->"error in drawTexProof (2)"
+        [] -> "\n \\infer[\\mbox{($" ++ (texRule rule) ++"$)}]{"++ (drawTexSequent sq Proofsty) ++"}{}"
+        [(Proof sq2 rule2 pr2)] -> "\n \\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ (drawTexSequent sq Proofsty) ++"}{"++ drawTexProof_proofsty2 [(Proof sq2 rule2 pr2)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\n \\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ (drawTexSequent sq Proofsty) ++"}"++ "{"++ drawTexProof_proofsty2 [(Proof sq2 rule2 pr2)] ++ "\n &"++ drawTexProof_proofsty2 [(Proof sq3 rule3 pr3)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\n \\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ (drawTexSequent sq Proofsty) ++"}"++ "{"++ drawTexProof_proofsty2 [(Proof sq2 rule2 pr2)] ++ "\n &"++ drawTexProof_proofsty2 [(Proof sq3 rule3 pr3)]++ "\n &"++ drawTexProof_proofsty2 [(Proof sq4 rule4 pr4)] ++"}"
+        _->"error in drawTexProof_proofsty2 (1)"
+    _->"error in drawTexProof_proofsty2 (2)"
+
+drawTexProof_ebproofsty : List Proof -> String
+drawTexProof_ebproofsty  q = 
+    "<div>\\documentclass{article}</div>" ++
+    "<div>\\usepackage{amsmath,amssymb,amsthm}</div>" ++
+    "<div>\\usepackage{ebproof}</div>" ++
+    "<div>\\begin{document}</div>"++
+    "<div>\\begin{tiny}</div>" ++
+    "<div>\\begin{prooftree}</div>" ++
+      (drawTexProof_ebproofsty2 q)++
+    "<div>\\end{prooftree}</div>" ++
+    "<div>\\end{tiny}</div>" ++
+    "<div>\\end{document}</div>"
+
+
+drawTexProof_ebproofsty2 : List Proof -> String
+drawTexProof_ebproofsty2 q = 
+  case q of 
+    [Proof sq rule next] -> 
+      case next of  
+        [] -> 
+                                  "\\Hypo{($" ++ (texRule rule) ++"$)}" ++
+                                  "\n \\Infer1[]{"++ (drawTexSequent sq EbProofsty) ++"}"
+        [(Proof sq2 rule2 pr2)] -> 
+                                  drawTexProof_ebproofsty2 [(Proof sq2 rule2 pr2)] ++
+                                  "\n \\Infer1[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ (drawTexSequent sq EbProofsty) ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> 
+                                  drawTexProof_ebproofsty2 [(Proof sq2 rule2 pr2)] ++ "\n"++
+                                  drawTexProof_ebproofsty2 [(Proof sq3 rule3 pr3)] ++
+                                  "\n \\Infer2[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ (drawTexSequent sq EbProofsty) ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> 
+                                 drawTexProof_ebproofsty2 [(Proof sq2 rule2 pr2)]++ "\n"++ 
+                                 drawTexProof_ebproofsty2 [(Proof sq3 rule3 pr3)]++ "\n"++ 
+                                 drawTexProof_ebproofsty2 [(Proof sq4 rule4 pr4)]++
+                                 "\n \\Infer3[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ (drawTexSequent sq EbProofsty) ++"}"
+        _->"error in drawTexProof_ebproofsty2 (1)"
+    _->"error in drawTexProof_ebproofsty2 (2)"
 
 --writeP  x= writeFile
 -- "figureTeX.tex" 
@@ -1236,6 +1294,9 @@ texRule r = case   r of
        "R&&" -> "R\\wedge'  "
        "L&&" -> "L\\wedge' "
        x -> x
+
+
+
 
 
 

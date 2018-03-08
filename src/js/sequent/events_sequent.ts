@@ -4,7 +4,7 @@ import * as Rx from 'rx-dom';
 import * as Vis from '../lib/vis';
 import * as Checker from '../syntaxChecker/events_syntaxChecker';
 
- 
+
 //--------------------------------------------------
 // global veriable 
 //-------------------------------------------------- 
@@ -18,28 +18,36 @@ export const $CONTAINER = document.getElementById('network_sequent')
 //--------------------------------------------------
 $(document).ready(function (): void {
     PS.EL_system_string();
-    PS.Modal_system_string();     
+    PS.Modal_system_string();
 
     PS.NODES_SEQ.add([]);
-    PS.EDGES_SEQ.add([]);   
+    PS.EDGES_SEQ.add([]);
     NETWORK_SEQUENT = new Vis.Network($CONTAINER, { nodes: PS.NODES_SEQ, edges: PS.EDGES_SEQ }, PS.OPTIONS);
-    PS.send_info2elm_proof_draw()   
+    PS.send_info2elm_proof_draw()
 });
 
+$("#modalbutton1").on('click', function () {
+    const _latex_package = $('[name="proofdownload"]:checked').map(function () { return $(this).val(); }).get().join('');
+    if (_latex_package === "proof_sty") {
+        $('#latexOutput').html(PS.PROOF_LATEX.proofsty)
+    } else if (_latex_package === "ebproof_sty") {
+        $('#latexOutput').html(PS.PROOF_LATEX.ebproofsty)
+    }
+})
 
 for (let i = 0; i < $('.example_formula').length; i++) {
     $('.example_formula')[i].addEventListener("click",
-        x => { 
+        x => {
             PS.funcInput(x);
             Checker.syntaxCheck(PS.replace_string(x))
         }
-        , false) ; 
+        , false);
 }
 
 // for modal system
 $("input[class='modal_system']").on("click", function (): void {
-    PS.Modal_system_string();   
-}); 
+    PS.Modal_system_string();
+});
 
 $("#levelSeparation").change(function () {
     const range_value: Number = Number($(this).val());
@@ -93,10 +101,10 @@ $("input[name='seqent_config_sortMethod']").on("click", function (): void {
     PS.send_info2elm_proof_draw()
 });
 
-$('#button_create_random_formula').on('click',function(){
+$('#button_create_random_formula').on('click', function () {
     PS.create_random_formula()
 });
-$('#button_create_random_formula_provable').on('click',function(){
+$('#button_create_random_formula_provable').on('click', function () {
     PS.create_random_formula_provable()
 });
 Rx.Observable.fromEvent($('#prove_sequent'), 'click')
@@ -105,7 +113,7 @@ Rx.Observable.fromEvent($('#prove_sequent'), 'click')
             PS.send_info2elm_proof_draw()
         },
         (error: Error) => console.log(error),
-        () => console.log('draw and write new graph'),
+        () => console.log('draw and write new graph'), 
 );
 
 

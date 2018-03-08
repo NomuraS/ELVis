@@ -1,0 +1,596 @@
+./vis.js:98:                /******/ // Create a new module (and put it into the cache)
+./vis.js:363:                        throw new Error('Array with property names expected as first argument');
+./vis.js:392:                        throw new TypeError('Arrays are not supported by deepExtend');
+./vis.js:413:                                    throw new TypeError('Arrays are not supported by deepExtend');
+./vis.js:440:                        throw new TypeError('Arrays are not supported by deepExtend');
+./vis.js:558:                        throw new Error('Type must be a string');
+./vis.js:580:                                return new Date(object);
+./vis.js:583:                                return new Date(object.valueOf());
+./vis.js:585:                                return new Date(object.valueOf());
+./vis.js:591:                                    return new Date(Number(match[1])); // parse number
+./vis.js:593:                                    return moment(new Date(object)).toDate(); // parse string
+./vis.js:596:                                throw new Error('Cannot convert object of type ' + exports.getType(object) + ' to type Date');
+./vis.js:617:                                throw new Error('Cannot convert object of type ' + exports.getType(object) + ' to type Date');
+./vis.js:622:                                return new Date(object);
+./vis.js:631:                                    return new Date(Number(match[1])).toISOString(); // parse number
+./vis.js:636:                                throw new Error('Cannot convert object of type ' + exports.getType(object) + ' to type ISODate');
+./vis.js:649:                                    value = new Date(Number(match[1])).valueOf(); // parse number
+./vis.js:651:                                    value = new Date(object).valueOf(); // parse string
+./vis.js:655:                                throw new Error('Cannot convert object of type ' + exports.getType(object) + ' to type ASPDate');
+./vis.js:659:                            throw new Error('Unknown type "' + type + '"');
+./vis.js:1509:                        // get a new guess
+./vis.js:1857:                                return function keys() { return new Constructor(this, kind); };
+./vis.js:1859:                                return function values() { return new Constructor(this, kind); };
+./vis.js:1861:                        return function entries() { return new Constructor(this, kind); };
+./vis.js:1874:                        IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
+./vis.js:1958:                                                return new C;
+./vis.js:1960:                                                return new C(a);
+./vis.js:1962:                                                return new C(a, b);
+./vis.js:1964:                                        return new C(a, b, c);
+./vis.js:2275:                        result = new Empty;
+./vis.js:3543:                            this._d = new Date(config._d != null ? config._d.getTime() : NaN);
+./vis.js:3545:                                this._d = new Date(NaN);
+./vis.js:3547:                            // Prevent infinite loop in case updateOffset creates new moment
+./vis.js:3625:                                    warn(msg + '\nArguments: ' + Array.prototype.slice.call(args).join('') + '\n' + (new Error()).stack);
+./vis.js:3665:                            this._dayOfMonthOrdinalParseLenient = new RegExp(
+./vis.js:4031:                                return new RegExp(unescapeFormat(token));
+./vis.js:4108:                            return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+./vis.js:4244:                                    this._longMonthsParse[i] = new RegExp('^' + this.months(mom, '').replace('.', '') + '$', 'i');
+./vis.js:4245:                                    this._shortMonthsParse[i] = new RegExp('^' + this.monthsShort(mom, '').replace('.', '') + '$', 'i');
+./vis.js:4249:                                    this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
+./vis.js:4375:                            this._monthsRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
+./vis.js:4377:                            this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+./vis.js:4378:                            this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+./vis.js:4450:                            var date = new Date(y, m, d, h, M, s, ms);
+./vis.js:4460:                            var date = new Date(Date.UTC.apply(null, arguments));
+./vis.js:4783:                                    this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
+./vis.js:4784:                                    this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
+./vis.js:4785:                                    this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
+./vis.js:4789:                                    this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
+./vis.js:4943:                            this._weekdaysRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
+./vis.js:4947:                            this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+./vis.js:4948:                            this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+./vis.js:4949:                            this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
+./vis.js:5083:                        // a new timezone) makes sense. Adding/subtracting hours does not follow
+./vis.js:5156:                                        var e = new Error("Cannot find module \"./locale\"");
+./vis.js:5197:                                        'config) should only be used for creating a new locale ' +
+./vis.js:5214:                                locales[name] = new Locale(mergeConfigs(parentConfig, config));
+./vis.js:5244:                                locale = new Locale(config);
+./vis.js:5445:                                    var momentDate = new Date(match[2]);
+./vis.js:5487:                                config._d = new Date(+matched[1]);
+./vis.js:5515:                                config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
+./vis.js:5532:                            var nowValue = new Date(hooks.now());
+./vis.js:5683:                            // This array is used to make a Date, either with `new Date` or `Date.UTC`
+./vis.js:5776:                                config._d = new Date(NaN);
+./vis.js:5824:                            var res = new Moment(checkOverflow(prepareConfig(config)));
+./vis.js:5849:                                return new Moment(checkOverflow(input));
+./vis.js:5870:                                config._d = new Date(hooks.now());
+./vis.js:5872:                                config._d = new Date(input.valueOf());
+./vis.js:5884:                                config._d = new Date(input);
+./vis.js:5978:                            return Date.now ? Date.now() : +(new Date());
+./vis.js:6341:                            ret = new Duration(duration);
+./vis.js:6466:                            return new Moment(this);
+./vis.js:6607:                         * also be evaluated to get a new moment which is the same
+./vis.js:6764:                            return new Date(this.valueOf());
+./vis.js:6786:                            // new Date(NaN).toJSON() === null
+./vis.js:7510:                                        throw new Error('Unknown unit ' + units);
+./vis.js:7755:                            config._d = new Date(parseFloat(input, 10) * 1000);
+./vis.js:7758:                            config._d = new Date(toInt(input));
+./vis.js:7828:                    throw new Error("Cannot find module '" + req + "'.");
+./vis.js:7853:                        var _rnds8 = new Uint8Array(16);
+./vis.js:7865:                        var _rnds = new Array(16);
+./vis.js:7954:                        var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime();
+./vis.js:7968:                        // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+./vis.js:7976:                            throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
+./vis.js:8025:                            buf = options == 'binary' ? new Array(16) : null;
+./vis.js:8166:                            // create a new element and add it to the SVG
+./vis.js:8171:                        // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
+./vis.js:8200:                            // create a new element and add it to the SVG
+./vis.js:8209:                        // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
+./vis.js:8334:                 *     var dataSet = new DataSet({
+./vis.js:8403:                        throw new Error('Option "convert" is deprecated. Use "type" instead.');
+./vis.js:8471:                    throw new Error('DataSet.subscribe is deprecated. Use DataSet.on instead.');
+./vis.js:8490:                    throw new Error('DataSet.unsubscribe is deprecated. Use DataSet.off instead.');
+./vis.js:8502:                        throw new Error('Cannot trigger event *');
+./vis.js:8544:                        throw new Error('Unknown dataType');
+./vis.js:8578:                            // add new item
+./vis.js:8597:                        throw new Error('Unknown dataType');
+./vis.js:8608:                        //    console.warn('Property data is deprecated. Use DataSet.get(ids) to retrieve the new data, use the oldData property on this object to get the old data');
+./vis.js:8972:                        throw new TypeError('Order must be a function or a string');
+./vis.js:9167:                            //        throw new Error('Cannot add item: item with id ' + id + ' already exists'); //hoge
+./vis.js:9168:                            throw new Error('Cannot add item: this arrow already exists');
+./vis.js:9244:                        throw new Error('Cannot update item: item has no id (item: ' + (0, _stringify2['default'])(item) + ')');
+./vis.js:9249:                        throw new Error('Cannot update item: no item with id ' + id + ' found');
+./vis.js:9363:                    var queue = new Queue(options);
+./vis.js:9366:                        throw new Error('Target object already has a property flush');
+./vis.js:9427:                        throw new Error('Method ' + method + ' undefined');
+./vis.js:9579:                        // subscribe to new dataset
+./vis.js:10056:                        throw new SyntaxError('Constructor must be called with the new operator');
+./vis.js:10095:                    this.scale = new Point3d(1 / this.xRange.range(), 1 / this.yRange.range(), 1 / this.zRange.range());
+./vis.js:10170:                    return new Point3d(dx, dy, dz);
+./vis.js:10202:                    return new Point2d(this.currentXCenter + bx * this.frame.canvas.clientWidth, this.currentYCenter - by * this.frame.canvas.clientWidth);
+./vis.js:10292:                    var range = new Range();
+./vis.js:10318:                        throw new Error('Expected data to have ' + ' field \'style\' ' + ' for graph style \'' + this.style + '\'');
+./vis.js:10324:                        throw new Error('Expected data to have ' + ' field \'' + this.colValue + '\' ' + ' for graph style \'' + this.style + '\'');
+./vis.js:10370:                        rawData = new DataSet(rawData);
+./vis.js:10377:                        throw new Error('Array, DataSet, or DataView expected');
+./vis.js:10451:                            this.dataFilter = new Filter(rawData, this.colFilter, this);
+./vis.js:10516:                            var point3d = new Point3d();
+./vis.js:10526:                            obj.bottom = new Point3d(x, y, this.zRange.min);
+./vis.js:10549:                            point = new Point3d();
+./vis.js:10561:                            obj.bottom = new Point3d(point.x, point.y, this.zRange.min);
+./vis.js:10642:                    // add the new graph to the container element
+./vis.js:10647:                 * Set a new size for the graph
+./vis.js:10674:                    if (!this.frame.filter || !this.frame.filter.slider) throw new Error('No animation available');
+./vis.js:10820:                            throw new Error('Can not determine point drawing method ' + 'for graph style \'' + this.style + '\'');
+./vis.js:10831:                        throw new Error('Graph data not initialized');
+./vis.js:10970:                    var step = new StepNumber(legendMin, legendMax, (legendMax - legendMin) / 5, true);
+./vis.js:10978:                        from = new Point2d(left - gridLineLen, y);
+./vis.js:10979:                        to = new Point2d(left, y);
+./vis.js:11006:                        var slider = new Slider(this.frame.filter, options);
+./vis.js:11175:                    var armVector = new Point2d(Math.cos(armAngle), Math.sin(armAngle));
+./vis.js:11184:                    step = new StepNumber(xRange.min, xRange.max, this.xStep, prettyStep);
+./vis.js:11191:                            from = new Point3d(x, yRange.min, zRange.min);
+./vis.js:11192:                            to = new Point3d(x, yRange.max, zRange.min);
+./vis.js:11195:                            from = new Point3d(x, yRange.min, zRange.min);
+./vis.js:11196:                            to = new Point3d(x, yRange.min + gridLenX, zRange.min);
+./vis.js:11199:                            from = new Point3d(x, yRange.max, zRange.min);
+./vis.js:11200:                            to = new Point3d(x, yRange.max - gridLenX, zRange.min);
+./vis.js:11206:                            var point3d = new Point3d(x, yText, zRange.min);
+./vis.js:11217:                    step = new StepNumber(yRange.min, yRange.max, this.yStep, prettyStep);
+./vis.js:11224:                            from = new Point3d(xRange.min, y, zRange.min);
+./vis.js:11225:                            to = new Point3d(xRange.max, y, zRange.min);
+./vis.js:11228:                            from = new Point3d(xRange.min, y, zRange.min);
+./vis.js:11229:                            to = new Point3d(xRange.min + gridLenY, y, zRange.min);
+./vis.js:11232:                            from = new Point3d(xRange.max, y, zRange.min);
+./vis.js:11233:                            to = new Point3d(xRange.max - gridLenY, y, zRange.min);
+./vis.js:11239:                            point3d = new Point3d(xText, y, zRange.min);
+./vis.js:11251:                        step = new StepNumber(zRange.min, zRange.max, this.zStep, prettyStep);
+./vis.js:11261:                            var from3d = new Point3d(xText, yText, z);
+./vis.js:11263:                            to = new Point2d(from2d.x - textMargin, from2d.y);
+./vis.js:11273:                        from = new Point3d(xText, yText, zRange.min);
+./vis.js:11274:                        to = new Point3d(xText, yText, zRange.max);
+./vis.js:11285:                        xMin2d = new Point3d(xRange.min, yRange.min, zRange.min);
+./vis.js:11286:                        xMax2d = new Point3d(xRange.max, yRange.min, zRange.min);
+./vis.js:11289:                        xMin2d = new Point3d(xRange.min, yRange.max, zRange.min);
+./vis.js:11290:                        xMax2d = new Point3d(xRange.max, yRange.max, zRange.min);
+./vis.js:11298:                        from = new Point3d(xRange.min, yRange.min, zRange.min);
+./vis.js:11299:                        to = new Point3d(xRange.min, yRange.max, zRange.min);
+./vis.js:11302:                        from = new Point3d(xRange.max, yRange.min, zRange.min);
+./vis.js:11303:                        to = new Point3d(xRange.max, yRange.max, zRange.min);
+./vis.js:11313:                        text = new Point3d(xText, yText, zRange.min);
+./vis.js:11323:                        text = new Point3d(xText, yText, zRange.min);
+./vis.js:11335:                        text = new Point3d(xText, yText, zText);
+./vis.js:11423:                    var top = [{ point: new Point3d(point3d.x - xWidth, point3d.y - yWidth, point3d.z) }, { point: new Point3d(point3d.x + xWidth, point3d.y - yWidth, point3d.z) }, { point: new Point3d(point3d.x + xWidth, point3d.y + yWidth, point3d.z) }, { point: new Point3d(point3d.x - xWidth, point3d.y + yWidth, point3d.z) }];
+./vis.js:11424:                    var bottom = [{ point: new Point3d(point3d.x - xWidth, point3d.y - yWidth, zMin) }, { point: new Point3d(point3d.x + xWidth, point3d.y - yWidth, zMin) }, { point: new Point3d(point3d.x + xWidth, point3d.y + yWidth, zMin) }, { point: new Point3d(point3d.x - xWidth, point3d.y + yWidth, zMin) }];
+./vis.js:11839:                    this.startStart = new Date(this.start);
+./vis.js:11840:                    this.startEnd = new Date(this.end);
+./vis.js:12126:                        center = new Point2d(x, y);
+./vis.js:12302:                 * Set a new size for the graph
+./vis.js:12405:                 * Initialize a new `Emitter`.
+./vis.js:12590:                    var sub = new Point3d();
+./vis.js:12604:                    var sum = new Point3d();
+./vis.js:12618:                    return new Point3d((a.x + b.x) / 2, (a.y + b.y) / 2, (a.z + b.z) / 2);
+./vis.js:12629:                    var crossproduct = new Point3d();
+./vis.js:12695:                    this.armLocation = new Point3d();
+./vis.js:12700:                    this.cameraOffset = new Point3d();
+./vis.js:12703:                    this.cameraLocation = new Point3d();
+./vis.js:12704:                    this.cameraRotation = new Point3d(0.5 * Math.PI, 0, 0);
+./vis.js:13015:                    if (index >= this.values.length) throw new Error('Index out of range');
+./vis.js:13038:                        var dataView = new DataView(this.data, {
+./vis.js:13064:                    if (index >= this.values.length) throw new Error('Index out of range');
+./vis.js:13137:                        throw new Error('No container element defined');
+./vis.js:13236:                    var start = new Date();
+./vis.js:13248:                    var end = new Date();
+./vis.js:13379:                        throw new Error('Index out of range');
+./vis.js:13485:                 *   var step = new StepNumber(0, 10, 2.5, true);
+./vis.js:13522:                 * Set a new range: start, end and step.
+./vis.js:13532:                        throw new Error('Parameter \'start\' is not numeric; value: ' + start);
+./vis.js:13535:                        throw new Error('Parameter \'end\' is not numeric; value: ' + start);
+./vis.js:13538:                        throw new Error('Parameter \'step\' is not numeric; value: ' + start);
+./vis.js:13548:                 * Set a new step size
+./vis.js:13721:                        throw new Error('Passed expansion value makes range invalid');
+./vis.js:13914:                        throw new Error('No DEFAULTS passed');
+./vis.js:13917:                        throw new Error('No dst passed');
+./vis.js:13935:                    dst.eye = new Point3d(0, 0, -1); // TODO: set eye.z about 3/4 of the width of the window?
+./vis.js:13943:                        throw new Error('No dst passed');
+./vis.js:13947:                        throw new Error('DEFAULTS not set for module Settings');
+./vis.js:14056:                            throw new Error('Style \'' + style + '\' is invalid');
+./vis.js:14061:                            throw new Error('Style \'' + style + '\' is invalid');
+./vis.js:14088:                        throw new Error('Unsupported type of backgroundColor');
+./vis.js:14129:                        dst.camera = new Camera();
+./vis.js:14199:                     *   var hammer = propagatingHammer(new Hammer(element));
+./vis.js:14200:                     *   var hammer = propagatingHammer(new Hammer(element), {preventDefault: true});
+./vis.js:14223:                                return propagating(new Hammer(element, o), o);
+./vis.js:14230:                                return propagating(new Hammer.Manager(element, o), o);
+./vis.js:14487:                     * @returns {Function} A new function wrapping the supplied method.
+./vis.js:14492:                            var e = new Error('get-stack-trace');
+./vis.js:14516:                                throw new TypeError('Cannot convert undefined or null to object');
+./vis.js:14822:                     * create new input type manager
+./vis.js:14874:                     * create new input type manager
+./vis.js:14894:                        return new(Type)(manager, inputHandler);
+./vis.js:15519:                        this.touch = new TouchInput(this.manager, handler);
+./vis.js:15520:                        this.mouse = new MouseInput(this.manager, handler);
+./vis.js:15994:                            // make a new copy of the inputData
+./vis.js:16555:                        return new Manager(element, options);
+./vis.js:16608:                         * When creating a new Manager these will be skipped.
+./vis.js:16630:                         * Add them to this method and they will be set when creating a new Manager.
+./vis.js:16702:                        this.touchAction = new TouchAction(this, this.options.touchAction);
+./vis.js:16707:                            var recognizer = this.add(new(item[0])(item[1]));
+./vis.js:16737:                         * This session will be discarded, when a new [input]start event is fired.
+./vis.js:16769:                            // or when we're in a new session
+./vis.js:17175:                                throw new Error("unsupported key: " + key);
+./vis.js:17218:                                throw new Error("unsupported key: " + key);
+./vis.js:17358:                        throw new SyntaxError('Constructor must be called with the new operator');
+./vis.js:17435:                    this.range = new Range(this.body, this.options);
+./vis.js:17440:                    this.timeAxis = new TimeAxis(this.body, this.options);
+./vis.js:17445:                    this.currentTime = new CurrentTime(this.body, this.options);
+./vis.js:17449:                    this.itemSet = new ItemSet(this.body, this.options);
+./vis.js:17529:                Timeline.prototype = new Core();
+./vis.js:17537:                    return new Configurator(this, this.dom.container, configureOptions);
+./vis.js:17590:                        newDataSet = new DataSet(items, {
+./vis.js:17617:                            newDataSet = new DataView(groups, { filter: filter });
+./vis.js:17620:                            newDataSet = new DataSet(groups.filter(filter));
+./vis.js:17653:                 *                                    smoothly to the new window. An object can be
+./vis.js:17682:                 *                                    smoothly to the new window. An object can be
+./vis.js:17717:                        // calculate the new middle and interval for the window
+./vis.js:17731:                 *                                    smoothly to the new window. An object can be
+./vis.js:17829:                        min: min != null ? new Date(min) : null,
+./vis.js:17830:                        max: max != null ? new Date(max) : null
+./vis.js:17857:                        min: min != null ? new Date(min) : null,
+./vis.js:17858:                        max: max != null ? new Date(max) : null
+./vis.js:18036:                Range.prototype = new Component();
+./vis.js:18064:                            // apply a new range. both start and end are optional
+./vis.js:18076:                        throw new TypeError('Unknown direction "' + direction + '". ' + 'Choose "horizontal" or "vertical".');
+./vis.js:18091:                        var t = util.convert(new Date(), 'Date').valueOf();
+./vis.js:18109:                        // start a renderTimer to adjust for the new time
+./vis.js:18128:                 * Set a new start and end range
+./vis.js:18134:                 *                                    smoothly to the new window. An object can be
+./vis.js:18164:                            throw new Error('Unknown easing function ' + (0, _stringify2['default'])(easingName) + '. ' + 'Choose from: ' + (0, _keys2['default'])(util.easingFunctions).join(', '));
+./vis.js:18167:                        var initTime = new Date().valueOf();
+./vis.js:18172:                                var now = new Date().valueOf();
+./vis.js:18184:                                    start: new Date(me.start),
+./vis.js:18185:                                    end: new Date(me.end),
+./vis.js:18215:                                start: new Date(this.start),
+./vis.js:18216:                                end: new Date(this.end),
+./vis.js:18252:                 * Set a new start and end range. This method is the same as setRange, but
+./vis.js:18269:                        throw new Error('Invalid start "' + start + '"');
+./vis.js:18272:                        throw new Error('Invalid end "' + end + '"');
+./vis.js:18357:                    // if the new range does NOT overlap with the old range, emit checkRangedItems to avoid not showing ranged items (ranged meaning has end time, not necessarily of type Range)
+./vis.js:18496:                    var startDate = new Date(this.start);
+./vis.js:18497:                    var endDate = new Date(this.end);
+./vis.js:18534:                        start: new Date(this.start),
+./vis.js:18535:                        end: new Date(this.end),
+./vis.js:18569:                            // calculate new start and end
+./vis.js:18657:                    // calculate new start and end
+./vis.js:18769:                    // calculate new start and end
+./vis.js:18804:                    // apply new values
+./vis.js:18815:                 * Move the range to a new center point
+./vis.js:18823:                    // calculate new start and end
+./vis.js:18934:                 * Set options for the component. The new options will be merged into the
+./vis.js:19016:                 * create new entrees for the repeating hidden dates
+./vis.js:19041:                                    throw new Error("Supplied start date is not valid: " + hiddenDates[i].start);
+./vis.js:19044:                                    throw new Error("Supplied end date is not valid: " + hiddenDates[i].end);
+./vis.js:19149:                        // ensure the new positions are not on hidden dates
+./vis.js:19209:                        console.log(i, new Date(dates[i].start), new Date(dates[i].end), dates[i].start, dates[i].end, dates[i].remove);
+./vis.js:19318:                        return new Date(x / conversion.scale + conversion.offset);
+./vis.js:19325:                        var newTime = new Date(accumulatedHiddenDuration + partialDuration + Core.range.start);
+./vis.js:19634:                    this.hammer = new Hammer(this.dom.root);
+./vis.js:19783:                    if (!container) throw new Error('No container provided');
+./vis.js:19852:                                var timeAxis2 = this.timeAxis2 = new TimeAxis(this.body);
+./vis.js:19885:                                    this.activator = new Activator(this.dom.root);
+./vis.js:19896:                            throw new Error('Option `showCustomTime` is deprecated. Create a custom time bar via timeline.addCustomTime(time [, id])');
+./vis.js:19989:                        throw new Error('No custom time bar found with id ' + (0, _stringify2['default'])(id));
+./vis.js:20008:                        throw new Error('No custom time bar found with id ' + (0, _stringify2['default'])(id));
+./vis.js:20024:                        throw new Error('No custom time bar found with id ' + (0, _stringify2['default'])(id));
+./vis.js:20045:                 *                                         the new bar should be placed.
+./vis.js:20046:                 *                                         If not provided, `new Date()` will
+./vis.js:20048:                 * @param {Number | String} [id=undefined] Id of the new bar. Optional
+./vis.js:20049:                 * @return {Number | String}               Returns the id of the new bar
+./vis.js:20052:                    var timestamp = time !== undefined ? util.convert(time, 'Date').valueOf() : new Date();
+./vis.js:20058:                        throw new Error('A custom time with id ' + (0, _stringify2['default'])(id) + ' already exists');
+./vis.js:20061:                    var customTime = new CustomTime(this.body, util.extend({}, this.options, {
+./vis.js:20084:                        throw new Error('No custom time bar found with id ' + (0, _stringify2['default'])(id));
+./vis.js:20107:                 *                                    smoothly to the new window. An object can be
+./vis.js:20123:                    var min = new Date(range.min.valueOf() - interval * 0.01);
+./vis.js:20124:                    var max = new Date(range.max.valueOf() + interval * 0.01);
+./vis.js:20136:                    throw new Error('Cannot invoke abstract method getDataRange');
+./vis.js:20155:                 *                                    smoothly to the new window. An object can be
+./vis.js:20188:                 *                                    smoothly to the new window. An object can be
+./vis.js:20216:                        start: new Date(range.start),
+./vis.js:20217:                        end: new Date(range.end)
+./vis.js:20227:                 *                                    smoothly to the new window. An object can be
+./vis.js:20257:                 *                                    smoothly to the new window. An object can be
+./vis.js:20419:                        dom.rightContainer.className = dom.rightContainer.className.replace(new RegExp('(?:^|\\s)' + 'vis-vertical-scroll' + '(?:\\s|$)'), ' ');
+./vis.js:20420:                        dom.leftContainer.className = dom.leftContainer.className.replace(new RegExp('(?:^|\\s)' + 'vis-vertical-scroll' + '(?:\\s|$)'), ' ');
+./vis.js:20504:                    throw new Error('Function repaint is deprecated. Use redraw instead.');
+./vis.js:20516:                        throw new Error('Option showCurrentTime must be true');
+./vis.js:20529:                        throw new Error('Option showCurrentTime must be true');
+./vis.js:20556:                    //return new Date(x / conversion.scale + conversion.offset);
+./vis.js:20760:                    throw new Error('Cannot invoke abstract method _createConfigurator');
+./vis.js:20953:                ItemSet.prototype = new Component();
+./vis.js:20998:                    var backgroundGroup = new BackgroundGroup(BACKGROUND, null, this);
+./vis.js:21005:                    //       can click in the empty area to create a new item or deselect an item.
+./vis.js:21006:                    this.hammer = new Hammer(this.body.dom.centerContainer);
+./vis.js:21029:                        this.groupHammer = new Hammer(this.body.dom.rightContainer);
+./vis.js:21031:                        this.groupHammer = new Hammer(this.body.dom.leftContainer);
+./vis.js:21098:                 *                              Allow creating new items on double tap
+./vis.js:21175:                                    throw new Error('option ' + name + ' must be a function ' + name + '(item, callback)');
+./vis.js:21488:                            ungrouped = new Group(id, data, this);
+./vis.js:21526:                        throw new TypeError('Data must be an instance of DataSet or DataView');
+./vis.js:21541:                        // subscribe to new dataset
+./vis.js:21547:                        // add all new items
+./vis.js:21592:                        throw new TypeError('Data must be an instance of DataSet or DataView');
+./vis.js:21615:                        // subscribe to new dataset
+./vis.js:21720:                                item = new constructor(itemData, me.conversion, me.options);
+./vis.js:21730:                                throw new TypeError('Item type "rangeoverflow" is deprecated. Use css styling instead: ' + '.vis-item.vis-range .vis-item-content {overflow: visible;}');
+./vis.js:21732:                                throw new TypeError('Unknown item type "' + type + '"');
+./vis.js:21807:                                throw new Error('Illegal group id. ' + id + ' is a reserved id.');
+./vis.js:21815:                            group = new Group(id, groupData, me);
+./vis.js:21818:                            // add items with this groupId to the new group
+./vis.js:21926:                 * Add a new item
+./vis.js:22099:                        // create a new range item when dragging with ctrl key down
+./vis.js:22105:                 * Start creating a new range item by dragging.
+./vis.js:22130:                        content: 'new item'
+./vis.js:22140:                    var newItem = new RangeItem(itemData, this.conversion, this.options);
+./vis.js:22183:                        //only calculate the new group for the item that's actually dragged
+./vis.js:22192:                                    //we know the offset for all items, so the new group for all items
+./vis.js:22222:                                            var end = new Date(initialEnd.valueOf() + offset);
+./vis.js:22229:                                            var start = new Date(initialStart.valueOf() + offset);
+./vis.js:22239:                                            var start = new Date(initialStart.valueOf() + offset);
+./vis.js:22246:                                            var end = new Date(initialEnd.valueOf() + offset);
+./vis.js:22256:                                        var start = new Date(initialStart + offset);
+./vis.js:22264:                                            itemData.end = new Date(itemData.start.valueOf() + duration);
+./vis.js:22337:                                // add a new item
+./vis.js:22595:                    // except when old selection is empty and new selection is still empty
+./vis.js:22623:                            this.popup = new Popup(this.body.dom.root, this.options.tooltip.overflowMethod || 'flip');
+./vis.js:22742:                            newItemData.content = newItemData.content ? newItemData.content : 'new item';
+./vis.js:22754:                                content: 'new item'
+./vis.js:22758:                            // when default type is a range, add a default end date to the new item
+./vis.js:23046:                 * @param {Date} [start]         The start date, for example new Date(2010, 9, 21)
+./vis.js:23047:                 *                               or new Date(2010, 9, 21, 23, 45, 00)
+./vis.js:23115:                    // update the date properties, can have a new utcOffset
+./vis.js:23133:                 * Set a new range
+./vis.js:23147:                    this._start = start != undefined ? this.moment(start.valueOf()) : new Date();
+./vis.js:23148:                    this._end = end != undefined ? this.moment(end.valueOf()) : new Date();
+./vis.js:23774:                        if (date.isSame(new Date(), 'day')) {
+./vis.js:23787:                        return date.isSame(new Date(), 'week') ? ' vis-current-week' : '';
+./vis.js:23791:                        return date.isSame(new Date(), 'month') ? ' vis-current-month' : '';
+./vis.js:23795:                        return date.isSame(new Date(), 'year') ? ' vis-current-year' : '';
+./vis.js:24166:                    // apply new height
+./vis.js:24330:                    if (new Date(item.data.start) < new Date(this.subgroups[subgroupId].start)) {
+./vis.js:24333:                    if (new Date(item.data.end) > new Date(this.subgroups[subgroupId].end)) {
+./vis.js:24348:                                if (new Date(item.data.start) < new Date(newStart)) {
+./vis.js:24351:                                if (new Date(item.data.end) > new Date(newEnd)) {
+./vis.js:24470:                 * @return {Item[]} visibleItems                            The new visible items.
+./vis.js:24671:                    // calculate new, non-overlapping positions
+./vis.js:24830:                            throw new Error('Property "start" missing in item ' + data.id);
+./vis.js:24833:                            throw new Error('Property "end" missing in item ' + data.id);
+./vis.js:24840:                RangeItem.prototype = new Item(null, null, null);
+./vis.js:24891:                        throw new Error('Cannot redraw item: no parent attached');
+./vis.js:24896:                            throw new Error('Cannot redraw item: parent has no foreground container element');
+./vis.js:25303:                        var hammer = new Hammer(dragCenter);
+./vis.js:25357:                        new Hammer(deleteButton).on('tap', function(event) {
+./vis.js:25488:                                        throw new Error('Property "content" missing in item ' + this.id);
+./vis.js:25517:                                    throw new Error('Property "content" missing in item ' + this.id);
+./vis.js:25567:                    // append new styles
+./vis.js:25696:                    // apply new height (just always zero for BackgroundGroup
+./vis.js:25755:                            throw new Error('Property "start" missing in item ' + data);
+./vis.js:25762:                BoxItem.prototype = new Item(null, null, null);
+./vis.js:25820:                        throw new Error('Cannot redraw item: no parent attached');
+./vis.js:25824:                        if (!foreground) throw new Error('Cannot redraw item: parent has no foreground container element');
+./vis.js:25829:                        if (!background) throw new Error('Cannot redraw item: parent has no background container element');
+./vis.js:25834:                        if (!background) throw new Error('Cannot redraw item: parent has no axis container element');
+./vis.js:26059:                            throw new Error('Property "start" missing in item ' + data);
+./vis.js:26066:                PointItem.prototype = new Item(null, null, null);
+./vis.js:26111:                        throw new Error('Cannot redraw item: no parent attached');
+./vis.js:26116:                            throw new Error('Cannot redraw item: parent has no foreground container element');
+./vis.js:26280:                            throw new Error('Property "start" missing in item ' + data.id);
+./vis.js:26283:                            throw new Error('Property "end" missing in item ' + data.id);
+./vis.js:26290:                BackgroundItem.prototype = new Item(null, null, null);
+./vis.js:26338:                        throw new Error('Cannot redraw item: no parent attached');
+./vis.js:26343:                            throw new Error('Cannot redraw item: parent has no background container element');
+./vis.js:26619:                        throw new TypeError("Cannot call a class as a function");
+./vis.js:26757:                TimeAxis.prototype = new Component();
+./vis.js:26891:                    var step = new TimeStep(new Date(start), new Date(end), minimumStep, this.body.hiddenDates);
+./vis.js:27023:                        // create new label
+./vis.js:27403:                        this.customTime = new Date();
+./vis.js:27414:                CustomTime.prototype = new Component();
+./vis.js:27466:                    this.hammer = new Hammer(drag);
+./vis.js:27549:                    return new Date(this.customTime.valueOf());
+./vis.js:27588:                        time: new Date(this.customTime.valueOf()),
+./vis.js:27606:                        time: new Date(this.customTime.valueOf()),
+./vis.js:27729:                CurrentTime.prototype = new Component();
+./vis.js:27784:                        var now = this.options.moment(new Date().valueOf() + this.offset);
+./vis.js:27833:                        // start a renderTimer to adjust for the new time
+./vis.js:27858:                    var now = new Date().valueOf();
+./vis.js:27868:                    return new Date(new Date().valueOf() + this.offset);
+./vis.js:28566:                        this.colorPicker = new ColorPicker(pixelRatio);
+./vis.js:29268:                         * called to update the network with the new settings.
+./vis.js:29415:                                throw new Error("Function attempted to set as colorPicker update callback is not a function.");
+./vis.js:29430:                                throw new Error("Function attempted to set as colorPicker closing callback is not a function.");
+./vis.js:29495:                                throw new Error("Unknown color passed to the colorPicker. Supported are strings: rgb, hex, rgba. Object: rgb ({r:r,g:g,b:b,[a:a]}). Supplied: " + (0, _stringify2['default'])(color));
+./vis.js:29797:                            this.newColorDiv.className = "vis-new-color";
+./vis.js:29798:                            this.newColorDiv.innerHTML = 'new';
+./vis.js:29851:                            this.hammer = new Hammer(this.colorPickerCanvas);
+./vis.js:30065:                    this.range = new Range(this.body);
+./vis.js:30070:                    this.timeAxis = new TimeAxis(this.body);
+./vis.js:30075:                    this.currentTime = new CurrentTime(this.body);
+./vis.js:30079:                    this.linegraph = new LineGraph(this.body);
+./vis.js:30117:                Graph2d.prototype = new Core();
+./vis.js:30144:                        newDataSet = new DataSet(items, {
+./vis.js:30180:                        newDataSet = new DataSet(groups);
+./vis.js:30245:                        min: min != null ? new Date(min) : null,
+./vis.js:30246:                        max: max != null ? new Date(max) : null
+./vis.js:30315:                    return new Configurator(this, this.dom.container, configureOptions);
+./vis.js:30456:                LineGraph.prototype = new Component();
+./vis.js:30475:                    this.yAxisLeft = new DataAxis(this.body, this.options.dataAxis, this.svg, this.options.groups);
+./vis.js:30478:                    this.yAxisRight = new DataAxis(this.body, this.options.dataAxis, this.svg, this.options.groups);
+./vis.js:30482:                    this.legendLeft = new Legend(this.body, this.options.legend, 'left', this.options.groups);
+./vis.js:30483:                    this.legendRight = new Legend(this.body, this.options.legend, 'right', this.options.groups);
+./vis.js:30587:                        throw new TypeError('Data must be an instance of DataSet or DataView');
+./vis.js:30602:                        // subscribe to new dataset
+./vis.js:30608:                        // add all new items
+./vis.js:30642:                        throw new TypeError('Data must be an instance of DataSet or DataView');
+./vis.js:30646:                        // subscribe to new dataset
+./vis.js:30716:                        this.groups[groupId] = new GraphGroup(group, groupId, this.options, this.groupsUsingDefaultStyles);
+./vis.js:30806:                                groupsContent[groupId] = new Array(groupCounts[groupId]);
+./vis.js:30824:                                    groupsContent[groupId] = new Array(0);
+./vis.js:30935:                    var groupIds = new Array(grouplist.length);
+./vis.js:30979:                            //  at changeCalled, abort this update cycle as the graph needs another update with new Width input from the Redraw container.
+./vis.js:31147:                                var dataContainer = new Array(last - first);
+./vis.js:31185:                                    var sampledData = new Array(amountOfPoints);
+./vis.js:31505:                DataAxis.prototype = new Component();
+./vis.js:31760:                    this.scale = new DataScale(this.range.start, this.range.end, autoScaleStart, autoScaleEnd, this.dom.frame.offsetHeight, this.props.majorCharHeight, this.options.alignZeros, this.options[orientation].format);
+./vis.js:32590:                        offset = 0; // recalculate offset with the new width;
+./vis.js:33088:                Legend.prototype = new Component();
+./vis.js:33647:                        throw new SyntaxError('Constructor must be called with the new operator');
+./vis.js:33706:                    this.images = new Images(function() {
+./vis.js:33709:                    this.groups = new Groups(); // object with groups
+./vis.js:33710:                    this.canvas = new Canvas(this.body); // DOM handler
+./vis.js:33711:                    this.selectionHandler = new SelectionHandler(this.body, this.canvas); // Selection handler
+./vis.js:33712:                    this.interactionHandler = new InteractionHandler(this.body, this.canvas, this.selectionHandler); // Interaction handler handles all the hammer bindings (that are bound by canvas), key
+./vis.js:33713:                    this.view = new View(this.body, this.canvas); // camera handler, does animations and zooms
+./vis.js:33714:                    this.renderer = new CanvasRenderer(this.body, this.canvas); // renderer, starts renderloop, has events that modules can hook into
+./vis.js:33715:                    this.physics = new PhysicsEngine(this.body); // physics engine, does all the simulations
+./vis.js:33716:                    this.layoutEngine = new LayoutEngine(this.body); // layout engine for inital layout and hierarchical layout
+./vis.js:33717:                    this.clustering = new ClusterEngine(this.body); // clustering api
+./vis.js:33718:                    this.manipulation = new ManipulationSystem(this.body, this.canvas, this.selectionHandler); // data manipulation system
+./vis.js:33720:                    this.nodesHandler = new NodesHandler(this.body, this.images, this.groups, this.layoutEngine); // Handle adding, deleting and updating of nodes as well as global options
+./vis.js:33721:                    this.edgesHandler = new EdgesHandler(this.body, this.images, this.groups); // Handle adding, deleting and updating of edges as well as global options
+./vis.js:33723:                    this.body.modules["kamadaKawai"] = new KamadaKawai(this.body, 150, 0.05); // Layouting algorithm.
+./vis.js:33782:                                this.configurator = new Configurator(this, this.body.container, configureOptions, this.canvas.pixelRatio);
+./vis.js:33813:                                    this.activator = new Activator(this.canvas.frame);
+./vis.js:33907:                        throw new SyntaxError('Data must contain either parameter "dot" or ' + ' parameter pair "nodes" and "edges", but not both.');
+./vis.js:33942:                 * var network = new vis.Network(..);
+./vis.js:34677:                        // this is a new node
+./vis.js:34877:                    throw new SyntaxError('Syntax error in part "' + chop(token, 30) + '"');
+./vis.js:35190:                    return new SyntaxError(message + ', got "' + chop(token, 30) + '" (char ' + index + ')');
+./vis.js:35486:                    addDescription: 'Click in an empty space to place a new node.',
+./vis.js:35663:                            //Clear the old subscription to the error event and put a new in place that only handle errors in loading the brokenImageUrl
+./vis.js:35700:                            //Create a new image
+./vis.js:35701:                            var img = new _CachedImage2["default"]();
+./vis.js:35725:                            //Return the new image
+./vis.js:35790:                        this.image = new Image();
+./vis.js:36042:                         * get group options of a groupname. If groupname is not found, a new group
+./vis.js:36054:                                    // create new group
+./vis.js:36061:                                    // create new group
+./vis.js:36339:                                this.body.data.nodes = new DataSet();
+./vis.js:36342:                                this.body.data.nodes = new DataSet();
+./vis.js:36344:                                throw new TypeError('Array or DataSet expected');
+./vis.js:36358:                                // subscribe to new dataset
+./vis.js:36364:                                // draw all new nodes
+./vis.js:36464:                            return new constructorClass(properties, this.body, this.images, this.groups, this.options, this.defaultOptions, this.nodeOptions);
+./vis.js:36741:                        this.labelModule = new Label(this.body, this.options, false /* Not edge label */ );
+./vis.js:36890:                         * This process all possible shorthands in the new options and makes sure that the parentOptions are fully defined.
+./vis.js:36978:                                        this.shape = new Box(this.options, this.body, this.labelModule);
+./vis.js:36981:                                        this.shape = new Circle(this.options, this.body, this.labelModule);
+./vis.js:36984:                                        this.shape = new CircularImage(this.options, this.body, this.labelModule, this.imageObj, this.imageObjAlt);
+./vis.js:36987:                                        this.shape = new Database(this.options, this.body, this.labelModule);
+./vis.js:36990:                                        this.shape = new Diamond(this.options, this.body, this.labelModule);
+./vis.js:36993:                                        this.shape = new Dot(this.options, this.body, this.labelModule);
+./vis.js:36996:                                        this.shape = new Ellipse(this.options, this.body, this.labelModule);
+./vis.js:36999:                                        this.shape = new Icon(this.options, this.body, this.labelModule);
+./vis.js:37002:                                        this.shape = new Image(this.options, this.body, this.labelModule, this.imageObj, this.imageObjAlt);
+./vis.js:37005:                                        this.shape = new Square(this.options, this.body, this.labelModule);
+./vis.js:37008:                                        this.shape = new Star(this.options, this.body, this.labelModule);
+./vis.js:37011:                                        this.shape = new Text(this.options, this.body, this.labelModule);
+./vis.js:37014:                                        this.shape = new Triangle(this.options, this.body, this.labelModule);
+./vis.js:37017:                                        this.shape = new TriangleDown(this.options, this.body, this.labelModule);
+./vis.js:37020:                                        this.shape = new Ellipse(this.options, this.body, this.labelModule);
+./vis.js:37425:                         *       is the new values to set from setOptions().
+./vis.js:38357:                            throw new TypeError("Invalid attempt to destructure non-iterable instance");
+./vis.js:38575:                        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+./vis.js:38607:                        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
+./vis.js:39041:                         * @param {true|false} selected value of new selected state for current node
+./vis.js:39048:                            this.selected = selected; // Remember new selection
+./vis.js:40498:                                    face: 'courier new',
+./vis.js:40664:                                this.body.data.edges = new DataSet();
+./vis.js:40667:                                this.body.data.edges = new DataSet();
+./vis.js:40669:                                throw new TypeError('Array or DataSet expected');
+./vis.js:40685:                                // subscribe to new dataset
+./vis.js:40690:                                // draw all new nodes
+./vis.js:40806:                            return new Edge(properties, this.body, this.options, this.defaultOptions, this.edgeOptions);
+./vis.js:40946:                        this.labelModule = new Label(this.body, this.options, true /* It's an edge label */ );
+./vis.js:41129:                                        this.edgeType = new BezierEdgeDynamic(this.options, this.body, this.labelModule);
+./vis.js:41131:                                        this.edgeType = new CubicBezierEdge(this.options, this.body, this.labelModule);
+./vis.js:41133:                                        this.edgeType = new BezierEdgeStatic(this.options, this.body, this.labelModule);
+./vis.js:41136:                                    this.edgeType = new StraightEdge(this.options, this.body, this.labelModule);
+./vis.js:41497:                                    throw new Error("The arrow newOptions can only be an object or a string. Refer to the documentation. You used:" + (0, _stringify2['default'])(newOptions.arrows));
+./vis.js:43398:                                this.nodesSolver = new ForceAtlas2BasedRepulsionSolver(this.body, this.physicsBody, options);
+./vis.js:43399:                                this.edgesSolver = new SpringSolver(this.body, this.physicsBody, options);
+./vis.js:43400:                                this.gravitySolver = new ForceAtlas2BasedCentralGravitySolver(this.body, this.physicsBody, options);
+./vis.js:43403:                                this.nodesSolver = new Repulsion(this.body, this.physicsBody, options);
+./vis.js:43404:                                this.edgesSolver = new SpringSolver(this.body, this.physicsBody, options);
+./vis.js:43405:                                this.gravitySolver = new CentralGravitySolver(this.body, this.physicsBody, options);
+./vis.js:43408:                                this.nodesSolver = new HierarchicalRepulsion(this.body, this.physicsBody, options);
+./vis.js:43409:                                this.edgesSolver = new HierarchicalSpringSolver(this.body, this.physicsBody, options);
+./vis.js:43410:                                this.gravitySolver = new CentralGravitySolver(this.body, this.physicsBody, options);
+./vis.js:43414:                                this.nodesSolver = new BarnesHutSolver(this.body, this.physicsBody, options);
+./vis.js:43415:                                this.edgesSolver = new SpringSolver(this.body, this.physicsBody, options);
+./vis.js:43416:                                this.gravitySolver = new CentralGravitySolver(this.body, this.physicsBody, options);
+./vis.js:43670:                         * Revert the simulation one step. This is done so after stabilization, every new start of the simulation will also say stabilized.
+./vis.js:44362:                            // if the branch is shaded with a node, replace the node in the new subset.
+./vis.js:44383:                         * This function subdivides the region into four new segments.
+./vis.js:44384:                         * Specifically, this inserts a single new segment.
+./vis.js:45301:                                throw new Error("Cannot call clusterByNodeData without a joinCondition function in the options.");
+./vis.js:45457:                                throw new Error("No nodeId supplied to clusterByConnection!");
+./vis.js:45460:                                throw new Error("The nodeId given to clusterByConnection does not exist!");
+./vis.js:45555:                                // construct new edges from the cluster to others
+./vis.js:45604:                                // also reference the new edge in the old edge
+./vis.js:45700:                                    throw new Error("The processProperties function does not return properties!");
+./vis.js:45741:                            // create the new edges that will connect to the cluster, all self-referencing edges will be added to childEdgesObject here.
+./vis.js:45847:                                throw new Error("No clusterNodeId supplied to openCluster.");
+./vis.js:45850:                                throw new Error("The clusterNodeId supplied to openCluster does not exist.");
+./vis.js:45936:                                        // create new cluster edge from the otherCluster:
+./vis.js:46027:                         * Using a clustered nodeId, update with the new options
+./vis.js:46036:                                throw new Error("No clusteredNodeId supplied to updateClusteredNode.");
+./vis.js:46039:                                throw new Error("No newOptions supplied to updateClusteredNode.");
+./vis.js:46042:                                throw new Error("The clusteredNodeId supplied to updateClusteredNode does not exist.");
+./vis.js:46050:                         * Using a base edgeId, update all related clustered edges with the new options
+./vis.js:46059:                                throw new Error("No startEdgeId supplied to updateEdge.");
+./vis.js:46062:                                throw new Error("No newOptions supplied to updateEdge.");
+./vis.js:46065:                                throw new Error("The startEdgeId supplied to updateEdge does not exist.");
+./vis.js:46307:                         * This returns a clone of the options or options of the edge or node to be used for construction of new edges or check functions for new nodes.
+./vis.js:46518:                                // reset the renderTimer so a new scheduled animation step can be set
+./vis.js:46522:                                    // this schedules a new simulation step
+./vis.js:46529:                                    // this schedules a new simulation step
+./vis.js:46959:                            throw new Error('Could not use the value supplied for width or height:' + value);
+./vis.js:47025:                            this.hammer = new Hammer(this.frame.canvas);
+./vis.js:47070:                            this.hammerFrame = new Hammer(this.frame);
+./vis.js:47077:                         * Set a new size for the network
+./vis.js:47646:                        this.navigationHandler = new NavigationHandler(body, canvas);
+./vis.js:47747:                            if (new Date().valueOf() - this.touchTime > 50) {
+./vis.js:47752:                                this.touchTime = new Date().valueOf();
+./vis.js:47809:                            if (new Date().valueOf() - this.touchTime > 10) {
+./vis.js:47813:                                this.touchTime = new Date().valueOf();
+./vis.js:48014:                                // calculate delta's and new location
+./vis.js:48178:                                    // calculate the new scale
+./vis.js:48189:                                    // apply the new scale
+./vis.js:48331:                                        this.popup = new Popup(this.canvas.frame);
+./vis.js:48525:                                var hammer = new Hammer(this.navigationDOM[navigationDivs[i]]);
+./vis.js:48537:                            var hammerFrame = new Hammer(this.canvas.frame);
+./vis.js:48573:                            if (new Date().valueOf() - this.touchTime > 700) {
+./vis.js:48576:                                this.touchTime = new Date().valueOf();
+./vis.js:49480:                                        throw new RangeError('Node with id "' + id + '" not found');
+./vis.js:49493:                                        throw new RangeError('Edge with id "' + id + '" not found');
+./vis.js:50101:                                this.hierarchical = new HierarchicalStatus();
+./vis.js:50125:                                    throw new Error('To use the hierarchical layout, nodes require either no predefined levels or levels have to be defined for all nodes.');
+./vis.js:51568:                                            throw new Error('The function for edit does not support two arguments (data, callback)');
+./vis.js:51574:                                    throw new Error('No function has been configured to handle the editing of nodes.');
+./vis.js:51767:                                    throw new Error('The function for delete does not support two arguments (data, callback)');
+./vis.js:51848:                         * generate a new target node. Used for creating new edges and editing edges
+./vis.js:52096:                                throw new Error('This UI function does not exist. Typo? You tried: ' + UIfunctionName + ' possible are: ' + (0, _stringify2['default'])((0, _keys2['default'])(this.body.eventListeners)));
+./vis.js:52143:                            var hammer = new Hammer(domElement, {});
+./vis.js:52314:                            if (new Date().valueOf() - this.touchTime > 100) {
+./vis.js:52349:                                this.touchTime = new Date().valueOf();
+./vis.js:52369:                         * Connect the new edge to the target if one exists, otherwise remove temp line
+./vis.js:52431:                                label: 'new'
+./vis.js:52444:                                    throw new Error('The function for add does not support two arguments (data,callback)');
+./vis.js:52454:                         * connect two nodes with a new edge.
+./vis.js:52476:                                    throw new Error('The function for connect does not support two arguments (data,callback)');
+./vis.js:52486:                         * connect two nodes with a new edge.
+./vis.js:52516:                                    throw new Error('The function for edit does not support two arguments (data, callback)');
+./vis.js:53200:                        this.distanceSolver = new _FloydWarshall2["default"]();
+./vis.js:53501:                                    //Calc new energy:
+./vis.js:53511:                                    //add new energy to sum of each column

@@ -7,6 +7,7 @@ var Elm_sequent = require("./elmFunctions_sequent");
 var elm_main_sequent = Elm_sequent.ElmFunctions_sequent.embed(document.getElementById('elm_sequent'));
 exports.NODES_SEQ = new Vis.DataSet();
 exports.EDGES_SEQ = new Vis.DataSet();
+exports.PROOF_LATEX = { proofsty: "", ebproofsty: "" };
 function EL_system_string() {
     var value = document.getElementsByClassName("select_logic_for_labelled")[0].innerHTML;
     switch (value) {
@@ -148,34 +149,39 @@ function send_info2elm_proof_draw() {
             maxLengthOfRandomFormula: 0,
             maxNumberOfAgents: 0,
             maxNumberOfActions: 0
-        }
+        },
     };
     elm_main_sequent.ports.input4prove.send(_json_data);
 }
 exports.send_info2elm_proof_draw = send_info2elm_proof_draw;
-elm_main_sequent.ports.output4prove.subscribe(function (model) {
-    console.log(model);
-    if (model.formula === "") {
+elm_main_sequent.ports.output4prove.subscribe(function ($model) {
+    if ($model.formula === "") {
         console.log("comment: error in port_sequent.ts");
     }
     var hh = function () {
-        if (model.provable === 0) {
-            return "<li><span style=\"color:#A44644\">&#10008;</span><span class='colorOfError'> " + model.formula + " </span> " + model.system + "</li>";
+        var _replaced = ($model.formula).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        if ($model.provable === 0) {
+            return "<li><span style=\"color:#A44644\">&#10008;</span><span class='colorOfError'> " + _replaced + " </span> " + $model.system + "</li>";
         }
-        else if (model.provable === 1) {
-            return "<li><span style=\"color:#346B36\">&#10004;</span> <span class='colorOfSuccess'> " + model.formula + " </span> " + model.system + "</li>";
+        else if ($model.provable === 1) {
+            return "<li><span style=\"color:#346B36\">&#10004;</span> <span class='colorOfSuccess'> " + _replaced + " </span> " + $model.system + "</li>";
         }
-        else if (model.provable === 2) {
-            return "<li><span class='colorOfWarning'>" + model.formula + "</span>" + model.system + "</li>";
+        else if ($model.provable === 2) {
+            return "<li><span class='colorOfWarning'>" + _replaced + "</span>" + $model.system + "</li>";
         }
-        else if (model.provable === 9) {
-            return "<li><span class='colorOfOrange'>" + model.formula + "</span>" + model.system + "</li>";
+        else if ($model.provable === 9) {
+            return "<li><span class='colorOfOrange'>" + _replaced + "</span>" + $model.system + "</li>";
         }
     };
     $('#history').append(hh());
-    var newNode = makeNodesFromElm(model);
-    var newEdge = makeEdgesFromElm(model);
+    var newNode = makeNodesFromElm($model);
+    var newEdge = makeEdgesFromElm($model);
     change_global_NODES_EDGES_update(newNode, newEdge);
+    $('#latexOutput').html($model.tex);
+    exports.PROOF_LATEX = {
+        proofsty: $model.tex.proofsty,
+        ebproofsty: $model.tex.ebproofsty,
+    };
 });
 function change_global_NODES_EDGES_update($nodes, $edges) {
     exports.EDGES_SEQ.remove(exports.EDGES_SEQ.getIds());

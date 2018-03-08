@@ -1,3 +1,5 @@
+var NODE_NUM=0;
+
 // agent to backup to agent's label
 function inputTextArea4Agent() {
     $("#network_action .vis-connect").after(
@@ -52428,9 +52430,9 @@ var aa = "ee";
                                 id: util.randomUUID(),
                                 x: clickData.pointer.canvas.x,
                                 y: clickData.pointer.canvas.y,
-                                label: 'new'
+                                label: 'new'+ NODE_NUM
                             };
-
+                            NODE_NUM=NODE_NUM+1
                             if (typeof this.options.addNode === 'function') {
                                 if (this.options.addNode.length === 2) {
                                     this.options.addNode(defaultData, function(finalizedData) {

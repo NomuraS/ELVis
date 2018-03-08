@@ -397,6 +397,8 @@ Rx.Observable.fromEvent($FILE_ACTION, 'change')
 /***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
+var NODE_NUM=0;
+
 // agent to backup to agent's label
 function inputTextArea4Agent() {
     $("#network_action .vis-connect").after(
@@ -52827,9 +52829,9 @@ var aa = "ee";
                                 id: util.randomUUID(),
                                 x: clickData.pointer.canvas.x,
                                 y: clickData.pointer.canvas.y,
-                                label: 'new'
+                                label: 'new'+ NODE_NUM
                             };
-
+                            NODE_NUM=NODE_NUM+1
                             if (typeof this.options.addNode === 'function') {
                                 if (this.options.addNode.length === 2) {
                                     this.options.addNode(defaultData, function(finalizedData) {
@@ -81818,14 +81820,22 @@ var _user$project$Parser_Formula$parseForm2_unary = _elm_community$parser_combin
 						_0: _user$project$Parser_Formula$knowifp,
 						_1: {
 							ctor: '::',
-							_0: _user$project$Parser_Formula$boxp,
+							_0: _user$project$Parser_Formula$boxap,
 							_1: {
 								ctor: '::',
-								_0: _user$project$Parser_Formula$diap,
+								_0: _user$project$Parser_Formula$diaap,
 								_1: {
 									ctor: '::',
-									_0: _user$project$Parser_Formula$notp,
-									_1: {ctor: '[]'}
+									_0: _user$project$Parser_Formula$boxp,
+									_1: {
+										ctor: '::',
+										_0: _user$project$Parser_Formula$diap,
+										_1: {
+											ctor: '::',
+											_0: _user$project$Parser_Formula$notp,
+											_1: {ctor: '[]'}
+										}
+									}
 								}
 							}
 						}
@@ -81833,9 +81843,22 @@ var _user$project$Parser_Formula$parseForm2_unary = _elm_community$parser_combin
 				}),
 			_user$project$Parser_Formula$parseForm1_term);
 	});
-var _user$project$Parser_Formula$boxp = _elm_community$parser_combinators$Combine$lazy(
+var _user$project$Parser_Formula$boxap = _elm_community$parser_combinators$Combine$lazy(
 	function (_p50) {
 		var _p51 = _p50;
+		return A2(
+			_elm_community$parser_combinators$Combine_ops['<$>'],
+			function (x) {
+				return A2(_user$project$Common_syntax$Box, 'a', x);
+			},
+			A2(
+				_elm_community$parser_combinators$Combine_ops['*>'],
+				_elm_community$parser_combinators$Combine$string('#'),
+				_user$project$Parser_Formula$parseForm2_unary));
+	});
+var _user$project$Parser_Formula$boxp = _elm_community$parser_combinators$Combine$lazy(
+	function (_p52) {
+		var _p53 = _p52;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<*>'],
 			A2(
@@ -81847,9 +81870,22 @@ var _user$project$Parser_Formula$boxp = _elm_community$parser_combinators$Combin
 				_user$project$Parser_Formula$parseAgent_identifire_agent),
 			_user$project$Parser_Formula$parseForm2_unary);
 	});
+var _user$project$Parser_Formula$diaap = _elm_community$parser_combinators$Combine$lazy(
+	function (_p54) {
+		var _p55 = _p54;
+		return A2(
+			_elm_community$parser_combinators$Combine_ops['<$>'],
+			function (x) {
+				return A2(_user$project$Common_syntax$Dia, 'a', x);
+			},
+			A2(
+				_elm_community$parser_combinators$Combine_ops['*>'],
+				_elm_community$parser_combinators$Combine$string('$'),
+				_user$project$Parser_Formula$parseForm2_unary));
+	});
 var _user$project$Parser_Formula$diap = _elm_community$parser_combinators$Combine$lazy(
-	function (_p52) {
-		var _p53 = _p52;
+	function (_p56) {
+		var _p57 = _p56;
 		var unaryOp = A2(
 			_elm_community$parser_combinators$Combine_ops['<$'],
 			F2(
@@ -81863,30 +81899,30 @@ var _user$project$Parser_Formula$diap = _elm_community$parser_combinators$Combin
 			_user$project$Parser_Formula$parseForm2_unary);
 	});
 var _user$project$Parser_Formula$knowifp = _elm_community$parser_combinators$Combine$lazy(
-	function (_p54) {
-		var _p55 = _p54;
+	function (_p58) {
+		var _p59 = _p58;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<*>'],
 			A2(
 				_elm_community$parser_combinators$Combine_ops['<$'],
-				function (_p56) {
-					var _p57 = _p56;
-					var _p59 = _p57._1;
-					var _p58 = _p57._0;
+				function (_p60) {
+					var _p61 = _p60;
+					var _p63 = _p61._1;
+					var _p62 = _p61._0;
 					return A2(
 						_user$project$Common_syntax$Or,
-						A2(_user$project$Common_syntax$Box, _p58, _p59),
+						A2(_user$project$Common_syntax$Box, _p62, _p63),
 						A2(
 							_user$project$Common_syntax$Box,
-							_p58,
-							_user$project$Common_syntax$Not(_p59)));
+							_p62,
+							_user$project$Common_syntax$Not(_p63)));
 				},
 				_elm_community$parser_combinators$Combine$string('knows_if')),
 			_elm_community$parser_combinators$Combine$parens(_user$project$Parser_Formula$knowp2));
 	});
 var _user$project$Parser_Formula$knowp2 = _elm_community$parser_combinators$Combine$lazy(
-	function (_p60) {
-		var _p61 = _p60;
+	function (_p64) {
+		var _p65 = _p64;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<*>'],
 			A2(
@@ -81902,22 +81938,22 @@ var _user$project$Parser_Formula$knowp2 = _elm_community$parser_combinators$Comb
 			_user$project$Parser_Formula$parseForm2_unary);
 	});
 var _user$project$Parser_Formula$knowp = _elm_community$parser_combinators$Combine$lazy(
-	function (_p62) {
-		var _p63 = _p62;
+	function (_p66) {
+		var _p67 = _p66;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<*>'],
 			A2(
 				_elm_community$parser_combinators$Combine_ops['<$'],
-				function (_p64) {
-					var _p65 = _p64;
-					return A2(_user$project$Common_syntax$Box, _p65._0, _p65._1);
+				function (_p68) {
+					var _p69 = _p68;
+					return A2(_user$project$Common_syntax$Box, _p69._0, _p69._1);
 				},
 				_elm_community$parser_combinators$Combine$string('knows')),
 			_elm_community$parser_combinators$Combine$parens(_user$project$Parser_Formula$knowp2));
 	});
 var _user$project$Parser_Formula$notp = _elm_community$parser_combinators$Combine$lazy(
-	function (_p66) {
-		var _p67 = _p66;
+	function (_p70) {
+		var _p71 = _p70;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<$>'],
 			_user$project$Common_syntax$Not,
@@ -81927,81 +81963,81 @@ var _user$project$Parser_Formula$notp = _elm_community$parser_combinators$Combin
 				_user$project$Parser_Formula$parseForm2_unary));
 	});
 var _user$project$Parser_Formula$parseForm1_term = _elm_community$parser_combinators$Combine$lazy(
-	function (_p68) {
-		var _p69 = _p68;
+	function (_p72) {
+		var _p73 = _p72;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<|>'],
 			_elm_community$parser_combinators$Combine$parens(_user$project$Parser_Formula$parseForm7_expr),
 			_user$project$Parser_Formula$parseForm_atom);
 	});
 var _user$project$Parser_Formula$parseForm7_expr = _elm_community$parser_combinators$Combine$lazy(
-	function (_p70) {
-		var _p71 = _p70;
+	function (_p74) {
+		var _p75 = _p74;
 		var binaryOp = A2(
 			_elm_community$parser_combinators$Combine_ops['<$'],
 			_user$project$Common_syntax$Iff,
 			_elm_community$parser_combinators$Combine$string('<->'));
 		return _elm_community$parser_combinators$Combine$lazy(
-			function (_p72) {
-				var _p73 = _p72;
+			function (_p76) {
+				var _p77 = _p76;
 				return A2(_elm_community$parser_combinators$Combine$chainl, binaryOp, _user$project$Parser_Formula$parseForm6_impl2);
 			});
 	});
 var _user$project$Parser_Formula$parseForm6_impl2 = _elm_community$parser_combinators$Combine$lazy(
-	function (_p74) {
-		var _p75 = _p74;
+	function (_p78) {
+		var _p79 = _p78;
 		var binaryOp = A2(
 			_elm_community$parser_combinators$Combine_ops['<$'],
 			_user$project$Common_syntax$Imply2,
 			_elm_community$parser_combinators$Combine$string('<-'));
 		return _elm_community$parser_combinators$Combine$lazy(
-			function (_p76) {
-				var _p77 = _p76;
+			function (_p80) {
+				var _p81 = _p80;
 				return A2(_elm_community$parser_combinators$Combine$chainl, binaryOp, _user$project$Parser_Formula$parseForm5_impl);
 			});
 	});
 var _user$project$Parser_Formula$parseForm5_impl = _elm_community$parser_combinators$Combine$lazy(
-	function (_p78) {
-		var _p79 = _p78;
+	function (_p82) {
+		var _p83 = _p82;
 		var binaryOp = A2(
 			_elm_community$parser_combinators$Combine_ops['<$'],
 			_user$project$Common_syntax$Imply,
 			_elm_community$parser_combinators$Combine$string('->'));
 		return _elm_community$parser_combinators$Combine$lazy(
-			function (_p80) {
-				var _p81 = _p80;
+			function (_p84) {
+				var _p85 = _p84;
 				return A2(_elm_community$parser_combinators$Combine$chainl, binaryOp, _user$project$Parser_Formula$parseForm4_or);
 			});
 	});
 var _user$project$Parser_Formula$parseForm4_or = _elm_community$parser_combinators$Combine$lazy(
-	function (_p82) {
-		var _p83 = _p82;
+	function (_p86) {
+		var _p87 = _p86;
 		var binaryOp = A2(
 			_elm_community$parser_combinators$Combine_ops['<$'],
 			_user$project$Common_syntax$Or,
 			_elm_community$parser_combinators$Combine$string('v'));
 		return _elm_community$parser_combinators$Combine$lazy(
-			function (_p84) {
-				var _p85 = _p84;
+			function (_p88) {
+				var _p89 = _p88;
 				return A2(_elm_community$parser_combinators$Combine$chainl, binaryOp, _user$project$Parser_Formula$parseForm3_and);
 			});
 	});
 var _user$project$Parser_Formula$parseForm3_and = _elm_community$parser_combinators$Combine$lazy(
-	function (_p86) {
-		var _p87 = _p86;
+	function (_p90) {
+		var _p91 = _p90;
 		var binaryOp = A2(
 			_elm_community$parser_combinators$Combine_ops['<$'],
 			_user$project$Common_syntax$And,
 			_elm_community$parser_combinators$Combine$string('&'));
 		return _elm_community$parser_combinators$Combine$lazy(
-			function (_p88) {
-				var _p89 = _p88;
+			function (_p92) {
+				var _p93 = _p92;
 				return A2(_elm_community$parser_combinators$Combine$chainl, binaryOp, _user$project$Parser_Formula$parseForm2_unary);
 			});
 	});
 var _user$project$Parser_Formula$parseForm10_bigWedgep = _elm_community$parser_combinators$Combine$lazy(
-	function (_p90) {
-		var _p91 = _p90;
+	function (_p94) {
+		var _p95 = _p94;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<*>'],
 			A2(
@@ -82021,8 +82057,8 @@ var _user$project$Parser_Formula$parseForm10_bigWedgep = _elm_community$parser_c
 			_user$project$Parser_Formula$parseForm2_unary);
 	});
 var _user$project$Parser_Formula$parseForm11_action_p = _elm_community$parser_combinators$Combine$lazy(
-	function (_p92) {
-		var _p93 = _p92;
+	function (_p96) {
+		var _p97 = _p96;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<*>'],
 			A2(
@@ -82032,8 +82068,8 @@ var _user$project$Parser_Formula$parseForm11_action_p = _elm_community$parser_co
 			A2(_elm_community$parser_combinators$Combine_ops['<?>'], _user$project$Parser_Formula$parseForm2_unary, 'parseForm11_action_p'));
 	});
 var _user$project$Parser_Formula$parseForm8_announce_p = _elm_community$parser_combinators$Combine$lazy(
-	function (_p94) {
-		var _p95 = _p94;
+	function (_p98) {
+		var _p99 = _p98;
 		return A2(
 			_elm_community$parser_combinators$Combine_ops['<*>'],
 			A2(
@@ -82043,8 +82079,8 @@ var _user$project$Parser_Formula$parseForm8_announce_p = _elm_community$parser_c
 			A2(_elm_community$parser_combinators$Combine_ops['<?>'], _user$project$Parser_Formula$parseForm2_unary, 'parseForm8_announce_p'));
 	});
 var _user$project$Parser_Formula$parseForm9_announce2_p = _elm_community$parser_combinators$Combine$lazy(
-	function (_p96) {
-		var _p97 = _p96;
+	function (_p100) {
+		var _p101 = _p100;
 		var brackets2 = A2(
 			_elm_community$parser_combinators$Combine$between,
 			_elm_community$parser_combinators$Combine$string('<'),
@@ -82058,8 +82094,8 @@ var _user$project$Parser_Formula$parseForm9_announce2_p = _elm_community$parser_
 			A2(_elm_community$parser_combinators$Combine_ops['<?>'], _user$project$Parser_Formula$parseForm2_unary, 'parseForm9_announce2_p'));
 	});
 var _user$project$Parser_Formula$programFormula = _elm_community$parser_combinators$Combine$lazy(
-	function (_p98) {
-		var _p99 = _p98;
+	function (_p102) {
+		var _p103 = _p102;
 		return A2(_elm_community$parser_combinators$Combine_ops['<?>'], _user$project$Parser_Formula$parseForm7_expr, 'error in parseForm7_expression');
 	});
 var _user$project$Parser_Formula$parseFormula2 = function (s) {
@@ -82078,15 +82114,15 @@ var _user$project$Parser_Formula$test07 = _user$project$Parser_Formula$parseForm
 var _user$project$Parser_Formula$test08 = _user$project$Parser_Formula$parseFormula2('[(E,e)]#aA <->(Pre(E)(e)->&&(~(E)(a)(e,x))#a[(E,x)]A)');
 var _user$project$Parser_Formula$parseFormula = function (s) {
 	var ss = _user$project$Util$removeWhiteSpaceFromString(s);
-	var _p100 = A2(
+	var _p104 = A2(
 		_elm_community$parser_combinators$Combine$parse,
 		A2(_elm_community$parser_combinators$Combine_ops['<*'], _user$project$Parser_Formula$programFormula, _elm_community$parser_combinators$Combine$end),
 		ss);
-	if (_p100.ctor === 'Ok') {
-		return _elm_lang$core$Result$Ok(_p100._0._2);
+	if (_p104.ctor === 'Ok') {
+		return _elm_lang$core$Result$Ok(_p104._0._2);
 	} else {
 		return _elm_lang$core$Result$Err(
-			A2(_user$project$Parser_Formula$parseFormatError, _p100._0._2, _p100._0._1));
+			A2(_user$project$Parser_Formula$parseFormatError, _p104._0._2, _p104._0._1));
 	}
 };
 var _user$project$Parser_Formula$test14 = _user$project$Parser_Formula$parseFormula('[((Skip;Skip),(e1,e1))]Pre(Skip)(e1)');
@@ -82168,8 +82204,8 @@ var _user$project$Parser_Formula$testall = A2(
 		}
 	},
 	function (x) {
-		var _p101 = x;
-		if (_p101.ctor === 'Ok') {
+		var _p105 = x;
+		if (_p105.ctor === 'Ok') {
 			return true;
 		} else {
 			return false;
@@ -82179,17 +82215,17 @@ var _user$project$Parser_Formula$test111 = _user$project$Parser_Formula$parseFor
 var _user$project$Parser_Formula$test112 = _user$project$Parser_Formula$parseFormula('knows_if(a,p)');
 var _user$project$Parser_Formula$jsonPre2precondition = function (pre) {
 	return function (x) {
-		var _p102 = x;
-		if (_p102.ctor === 'Ok') {
-			return {ctor: '_Tuple2', _0: _p102._0._0, _1: _p102._0._1};
+		var _p106 = x;
+		if (_p106.ctor === 'Ok') {
+			return {ctor: '_Tuple2', _0: _p106._0._0, _1: _p106._0._1};
 		} else {
 			return _elm_lang$core$Native_Utils.crashCase(
 				'Parser_Formula',
 				{
-					start: {line: 441, column: 38},
-					end: {line: 443, column: 82}
+					start: {line: 450, column: 38},
+					end: {line: 452, column: 82}
 				},
-				_p102)('error in jsonPre2precondition');
+				_p106)('error in jsonPre2precondition');
 		}
 	}(
 		A2(

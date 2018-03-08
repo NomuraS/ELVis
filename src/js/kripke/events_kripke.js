@@ -84,7 +84,7 @@ Rx.DOM.ready().subscribe(function () {
             Kr.watchRemoveDeletefunction($data, $callback, Kr.NODES, Kr.EDGES);
         },
         addNode: function ($data, $callback) {
-            Kr.watchAddNodefunction($data, $callback, Kr.NODES, Kr.EDGES, Kr.$A1, Kr.$A2, Kr.$A3, Kr.$A4);
+            Kr.watchAddNodefunction($data, $callback, Kr.NODES, Kr.EDGES);
         },
         addEdge: function ($data, $callback) {
             Kr.watchAddEdgefunction($data, $callback, Kr.NODES, Kr.EDGES, Kr.$id_of_input_for_arrow_backup_kripke());

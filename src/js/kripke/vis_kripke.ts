@@ -3,20 +3,20 @@ import * as Util from '../lib/util';
 import * as Vis from '../lib/vis';
 import * as Ac from '../action/vis_action';
 // import * as $ from 'jquery';
-import { Either } from 'tsmonad';  
+import { Either } from 'tsmonad';
 
 // import "jquery-ui";
 // import '../lib/fnagel-jquery-ui-678127e/ui/jquery.ui.selectmenu'
 // import '../lib/fnagel-jquery-ui-678127e/ui/jquery.ui.position'
 // import '../lib/fnagel-jquery-ui-678127e/ui/jquery.ui.core'
 // import '../lib/fnagel-jquery-ui-678127e/ui/jquery.ui.widget'
-declare let $: any   
-   
+declare let $: any
+
 //------------------------------------------------------
 //------------------------------------------------------
 //------------------------------------------------------
 //type defs
-export interface Relation {   
+export interface Relation {
       agent: string,
       from: string,
       to: string
@@ -45,10 +45,10 @@ export interface AgentColor {
 // const $$NODES_COLOR_KRIPKE: string = "#BF8736 ffc966 FD8C1D "  // orange
 const $$NODES_COLOR_KRIPKE: string = "#C38728"  // blue
 export const $$BACKGROUND_COLOR: string = "#333333"
-export const $A1 = (document.getElementById('node-label_kripke') as HTMLInputElement)//.value = $data.label;
-export const $A2 = document.getElementById('saveButton_kripke')//.onclick = saveData_kripke.bind(this, $data, $callback);
-export const $A3 = document.getElementById('cancelButton_kripke')//.onclick = clearPopUp_kripke.bind(null);
-export const $A4 = document.getElementById('network-popUp_node_kripke')//.style.display = 'block';
+// export const $A1 = (document.getElementById('node-label_kripke') as HTMLInputElement)//.value = $data.label;
+// export const $A2 = document.getElementById('saveButton_kripke')//.onclick = saveData_kripke.bind(this, $data, $callback);
+// export const $A3 = document.getElementById('cancelButton_kripke')//.onclick = clearPopUp_kripke.bind(null);
+// export const $A4 = document.getElementById('network-popUp_node_kripke')//.style.display = 'block';
 export const $AGENT_LABEL = (document.getElementById('id_of_input_for_arrow_backup_kripke') as HTMLInputElement).value
 export const $CONFIG_KRIPKE = document.getElementById('config_kripke')
 export const $CONTAINER_KRIPKE = document.getElementById('network_kripke')
@@ -272,7 +272,6 @@ function change_global_NODES_EDGES_update($nodes: Vis.Node[], $edges: Vis.Edge[]
 //ここにonclickと繋がったdomain追加のevent listenerがある(saveData_kripke)
 export function $id_of_input_for_arrow_backup_kripke(): string { //impure getElementById
       const _a = (document.getElementById('id_of_input_for_arrow_backup_kripke') as HTMLInputElement)
-      console.log(_a)
       return _a.value
 }
 
@@ -297,20 +296,20 @@ export function watchRemoveDeletefunction($data: any, $callback: any, $nodes, $e
       $edges.remove(_selectedEdge)
       nodeEdge2writeTopPanel($nodes, $edges)
 }
-// watch nodes add --not pure
+// watch nodes add --not pure  
 export function watchAddNodefunction(
       $nod: Vis.Node,
       $func: any,
       $nodes: Vis.DataSet<Vis.Node>,
-      $edges: Vis.DataSet<Vis.Edge>,
-      $label_kripke,
-      $saveButton_kripke,
-      $cancelButton_kripke,
-      $popUp_node_kripke) { //impure: getElementById
+      $edges: Vis.DataSet<Vis.Edge>) { //impure: getElementById
+      const _label_kripke = (document.getElementById('node-label_kripke') as HTMLInputElement)//.value = $data.label;
+      const _saveButton_kripke = document.getElementById('saveButton_kripke')//.onclick = saveData_kripke.bind(this, $data, $callback);
+      const _cancelButton_kripke = document.getElementById('cancelButton_kripke')//.onclick = clearPopUp_kripke.bind(null);
+      const _popUp_node_kripke = document.getElementById('network-popUp_node_kripke')//.style.display = 'block';
       const clearPopUp_kripke = (): void => { //impure
-            $saveButton_kripke.onclick = null;
-            $cancelButton_kripke.onclick = null;
-            $popUp_node_kripke.style.display = 'none';
+            _saveButton_kripke.onclick = null;
+            _cancelButton_kripke.onclick = null;
+            _popUp_node_kripke.style.display = 'none';
       }
 
       const saveData_kripke = ($data: any, $callback: any): void => { // impure
@@ -329,9 +328,9 @@ export function watchAddNodefunction(
             }
       }
       Util.writeDOM_value('#node-label_kripke')($nod.label)
-      $saveButton_kripke.onclick = saveData_kripke.bind(this, $nod, $func);
-      $cancelButton_kripke.onclick = clearPopUp_kripke.bind(null);
-      $popUp_node_kripke.style.display = 'block';
+      _saveButton_kripke.onclick = saveData_kripke.bind(this, $nod, $func);
+      _cancelButton_kripke.onclick = clearPopUp_kripke.bind(null);
+      _popUp_node_kripke.style.display = 'block';
 }
 // watch edges --not pure
 export function watchAddEdgefunction($rel: Relation, $func: any, $nodes, $edges: Vis.DataSet<Vis.Edge>, $agent) { // impure: addEdge, alert
@@ -420,7 +419,7 @@ export function kripkeObject2string($kripkeModel: KripkeModel): string { // pure
             `<ul class="list-unstyled2">` +
             `<li class='classOfPrecondition_kripke'>Value(` +
             `<span class='color_text_panel_kripke'> x </span>) =` +
-            `\\(\\varnothing\\), &nbsp; if other x \\(\\in\\) Atom` +
+            `&empty;, &nbsp; if other x  &isin;  Atom` +
             `</li>` +
             `</ul>` +
             "</li>";

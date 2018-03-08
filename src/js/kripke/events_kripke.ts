@@ -124,7 +124,7 @@ Rx.DOM.ready().subscribe(
                 Kr.watchRemoveDeletefunction($data, $callback, Kr.NODES, Kr.EDGES)
             },
             addNode: ($data: Vis.Node, $callback: any) => {
-                Kr.watchAddNodefunction($data, $callback, Kr.NODES, Kr.EDGES, Kr.$A1, Kr.$A2, Kr.$A3, Kr.$A4)
+                Kr.watchAddNodefunction($data, $callback, Kr.NODES, Kr.EDGES)
             },
             addEdge: ($data: Kr.Relation, $callback: any) => {
                 Kr.watchAddEdgefunction($data, $callback, Kr.NODES, Kr.EDGES, Kr.$id_of_input_for_arrow_backup_kripke());
@@ -850,3 +850,11 @@ let multilineSelectmenu_action = $.widget("ui.multilineSelectmenu_action", $.ui.
         }
     }
 });
+
+
+// // vis-button vis-add
+// $(".vis-label").on('click', function () {
+//     console.log("eo")
+//     // $(document).on('click',function(){
+//     $('#node-label_kripke').val("aoe")
+// })

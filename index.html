@@ -442,7 +442,7 @@
                         <span class="select_logic_for_labelled">EL</span>
                     </h3>
                     <!-- DEL system -->
-                    <dt class="square_btn">Prove Formula</dt>
+                    <dt class="square_btn">Input Formula</dt>
                     <dd class=" ">
                         <h4>Epistemic Logic</h4>
 
@@ -606,58 +606,73 @@
                             <h5>Axioms of Hilbert-system</h5>
                             <ul>
                                 <li class="example_formula">(K)
-                                    <a>#a(p -&gt; q) -&gt; (#ap -&gt; #aq)</a>
+                                    <a>#(A -&gt; B) -&gt; (#A -&gt; #B)</a>
                                 </li>
                                 <li class="example_formula">(T)
-                                    <a>#ap -&gt; p</a>
+                                    <a>#A -&gt; A</a>
                                 </li>
                                 <li class="example_formula">(D)
-                                    <a>#ap -&gt; $ap</a>
+                                    <a>#A -&gt; $A</a>
                                 </li>
                                 <li class="example_formula">(B)
-                                    <a>p -&gt; #a$ap</a>
+                                    <a>A -&gt; #$A</a>
                                 </li>
                                 <li class="example_formula">(4)
-                                    <a>#ap -&gt; #a#ap</a>
+                                    <a>#A -&gt; ##A</a>
                                 </li>
                                 <li class="example_formula">(5)
-                                    <a>~#ap -&gt; #a~#ap</a>
+                                    <!-- <a>~#A -&gt; #~#A</a> -->
+                                    <a>$A -&gt; #$A</a>
                                 </li>
                             </ul>
-                            <!-- 
-                            <h5>Others</h5>
+
+                            <h5>Other candidate axioms</h5>
                             <ul>
+                                <li class="example_formula">(U)
+                                    <a>#(#A -> A)</a>
+                                </li>
                                 <li class="example_formula">(.2)
-                                    <a>$a#ap -&gt; #a$ap</a>
+                                    <a>$#A -&gt; #$A</a>
                                 </li>
                                 <li class="example_formula">(M)
-                                    <a>#a$ap -&gt; $a#ap</a>
+                                    <a>#$A -&gt; $#A</a>
                                 </li>
-                                <li class="example_formula">(W5)
-                                    <a>$a#ap -&gt; (p -&gt; #ap)</a>
-                                </li>
+
                                 <li class="example_formula">(.3)
-                                    <a>#a(#ap -> #aq) v #a(#aq -> #ap)</a>
-                                     ($ap & $aq) -&gt; ($a(p & $aq) v $a(p & q) v $a(q & $ap)) 
+                                    <a>#(#A & A -> B) v #(#B -> A)</a>
+                                    <!-- <li class="example_formula">(W5)
+                                    <a>$a#ap -&gt; (p -&gt; #ap)</a>
+                                </li> -->
+                                    <!-- <a>#(#A -> #B) v #(#B -> #A)</a> -->
+                                    <!-- <a>($ap & $aq) -&gt; ($a(p & $aq) v $a(p & q) v $a(q & $ap)) </a>  -->
                                 </li>
+                                <li class="example_formula">(.2.3/F)
+                                    <a>#(#A -> B) v ($#B -> A)</a>
+                                    </li>
                                 <li class="example_formula">(.4)
-                                    <a>p -> ($a#ap->#ap)</a>
+                                    <a>$A -> (A v #$A)</a>
                                 </li>
-                                <li class="example_formula">(Dm)
+                                <li class="example_formula">(Ver)
+                                    <a>#bot</a>
+                                </li>
+                                <li class="example_formula">(End)
+                                    <a>#bot v $#bot</a>
+                                </li>
+                                <li class="example_formula">(W/L&ouml;b)
+                                    <a>#(#A -&gt; A) -&gt; #A</a>
+                                </li>
+                                <!-- <li class="example_formula">(Dm)
                                     <a>#a(#a(p -&gt; p) -&gt; p) -&gt; ($a#ap -&gt; p)</a>
-                                </li>
-                                <li class="example_formula">(Grz)
+                                </li> -->
+                                <!-- <li class="example_formula">(Grz)
                                     <a>#a(#a(p -&gt; #ap) -&gt; p) -&gt; p</a>
-                                </li>
-                                <li class="example_formula">(L&ouml;b)
-                                    <a>#a(#ap -&gt; p) -&gt; #ap</a>
-                                </li>
-                                <li class="example_formula">(H)
+                                </li> -->
+                                <!-- <li class="example_formula">(H)
                                     <a>p -&gt; #a($ap -&gt; p) </a>
                                     <a>#a$a #a(p0 -#ap1)</a> 
-                                </li>
+                                </li> -->
                             </ul>
- -->
+
 
                             <h5>Others</h5>
                             <ul>
@@ -831,6 +846,27 @@
                     <dd class="close_panel ">
                         <ul id="history" class="list-unstyled3">
                         </ul>
+                    </dd>
+                    <!-- Random -->
+                    <dt id="latex_ouput" class="square_btn">LaTeX output</dt>
+                    <dd class="close_panel ">
+                        <h4>select package</h4>
+                        <form name="form4connective" class="form_position">
+                            <input type="radio" name="proofdownload" value="proof_sty" checked="checked"> proof.sty
+                            <br>
+                            <input type="radio" name="proofdownload" value="ebproof_sty"> ebproof.sty
+                        </form>
+                        <h4>LaTeX text</h4>
+                        <p>
+                            Click the below button to appear the text of 
+                            the proof figure in the right panel.
+                        </p>
+                        <p>
+                            <button id="modalbutton1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#latexModal">
+                                see LaTeX text
+                            </button>
+                        </p>
+
                     </dd>
                     <!-- option -->
                     <dt class="square_btn ">Figure Configuration</dt>
@@ -1240,6 +1276,9 @@
                         <header class="entry-header">
                             <h1 class="entry-title">Changelog</h1>
                             <dl style="margin-left:10%;">
+                                <dt>v.1.0.1 (2018-03-08)</dt>
+                                <dd>fixes some glitches.
+                                    <br> add option "LaTeX output" to the sections of "Labelled Sequent Calculus". </dd>
                                 <dt>v.1.0.0 (2018-03-05)</dt>
                                 <dd>Initial release. </dd>
                             </dl>
@@ -1353,6 +1392,8 @@
                         </p>
                         <div class="indent_tenn_persent color_text_panel">
                             <ul class="list-unstyled ">
+                                <li>#A := #aA </li>
+                                <li>$A := $aA </li>
                                 <li>knows(a,A) := #aA </li>
                                 <li>knows_if(a,A) := #aA v ~#aA </li>
                             </ul>
@@ -1369,12 +1410,12 @@
                                     <h5>Modal axioms</h5>
                                     <p>
                                         (Taut) all tautologies of propositional tautologies
-                                        <br>(K) #a(A -&gt; B) -&gt; (#aA -&gt; #aB)
-                                        <br>(T) #aA -&gt; A
-                                        <br>(B) A -&gt; #a$aA
-                                        <br>(D) #aA -&gt; $aA
-                                        <br>(4) #aA -&gt; #a#aA
-                                        <br>(5) $aA -&gt; #a$aA
+                                        <br>(K) #(A -&gt; B) -&gt; (#A -&gt; #B)
+                                        <br>(T) #A -&gt; A
+                                        <br>(B) A -&gt; #$A
+                                        <br>(D) #A -&gt; $A
+                                        <br>(4) #A -&gt; ##A
+                                        <br>(5) $A -&gt; #$A
                                     </p>
 
                                 </li>
@@ -1493,6 +1534,8 @@
                         </p>
                         <div class="indent_tenn_persent color_text_panel">
                             <ul class="list-unstyled ">
+                                <li>#A := #aA </li>
+                                <li>$A := $aA </li>
                                 <li>knows(a,A) := #aA </li>
                                 <li>knows_if(a,A) := #aA v ~#aA </li>
                             </ul>
@@ -1668,6 +1711,8 @@
                         </p>
                         <div class="indent_tenn_persent color_text_panel">
                             <ul class="list-unstyled ">
+                                <li>#A := #aA </li>
+                                <li>$A := $aA </li>
                                 <li>knows(a,A) := #aA </li>
                                 <li>knows_if(a,A) := #aA v ~#aA </li>
                             </ul>
@@ -1770,7 +1815,7 @@
                             <tr>
                                 <td>label</td>
                                 <td>
-                                    <input id="node-label_action" value="new value" />
+                                    <input id="node-label_action" value="new value" style="width:100%" />
                                 </td>
                             </tr>
                         </table>
@@ -1890,7 +1935,25 @@
             <!-- ---------------------------------------- -->
         </div>
     </div>
-
+    <!-- Modal window 1 for latex text of proof figure-->
+    <div class="modal fade" id="latexModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" 　role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">proof_figure.tex</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="latexOutput"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="./public/js/lib/navigation.js"></script>
 <script src="./public/js/others/open_close_left_panel.js"></script>
