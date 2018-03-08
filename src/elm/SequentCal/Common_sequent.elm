@@ -1119,7 +1119,7 @@ drawTexSequent seq =
   in
     if forDEL ==[]
     then (words2 <| leftForm++leftRel)++"\\Rightarrow " ++ (words2 <| rightForm++rightRel)
-    else   (words2 <| leftForm++leftRel)++"\\Rightarrow " ++ (words2 <| rightForm++rightRel) ++"||"++"here4"
+    else   (words2 <| leftForm++leftRel)++"\\Rightarrow " ++ (words2 <| rightForm++rightRel) ++"\\mid "++"here4"
 
 
 words2 : List String -> String
@@ -1132,11 +1132,16 @@ drawTexLabelForm : LabelForm -> String
 drawTexLabelForm l = 
   let
    forml fs = List.map (\f-> drawTexFormula 1 f) fs
-              |> \x-> words2 x
+              |> words2
+   gg x = case x of 
+    Left a -> drawTexFormula 0 a
+    Right a -> Sy.outputAction a
   in 
     case l of 
-            LabelForm ([], w, list,f) -> (Util.show w )++ "{:}^{}"++ (drawTexFormula 1 f)
-            LabelForm (annf, w, list, f) -> (Util.show w )++ "{:}^{" ++"here1"++"}"++ (drawTexFormula 1 f) --++ (forml (List.reverse annf) )
+            --LabelForm ([], w, list,f) -> (Util.show w )++ "{:}^{" ++ (ff list)++"}"++ (drawTexFormula 1 f)
+            LabelForm (hist, w, annf, f) -> (Util.show w )++ "{:}^{" ++ (List.map gg annf |> words2)++"}"++ (drawTexFormula 1 f) --++ (forml (List.reverse annf) ) here1
+
+--type alias FormOrAct = Either Formula Action
 
 --type alias LabelAct = (Label, List Action)
 showla : LabelAct -> String
@@ -1149,12 +1154,19 @@ showla (a,li) =
           li -> "("++Util.show a++","++ ff++")"
 
 drawTexLabelForm2 : RelAtom -> String
-drawTexLabelForm2 r = case r of 
-            RelAtom (ag, [], w1,w2) -> showla w1 ++ "\\mathsf{R}^{}_"++ag++ showla w2 --(forml annf )++ 
-            RelAtom (ag, annf, w1,w2) -> showla w1 ++ "\\mathsf{R}^{"++"here2"++ "}_"++ag++ showla w2 --(forml annf )++ 
-            RelAtom_int (w1,w2) -> (Util.show w1)++++"here3"++++ (Util.show w2)
+drawTexLabelForm2 r = 
+  let
+   gg a =  drawTexFormula 0 a
+  in
+   case r of 
+            RelAtom (ag, [], w1,w2) -> showla w1 ++ "\\mathsf{R}^{}_{"++ag++"}"++ showla w2 --(forml annf )++ 
+            RelAtom (ag, annf, w1,w2) -> showla w1 ++ "\\mathsf{R}^{"++(List.map gg annf |> words2)++ "}_{"++ag++"}"++ showla w2 --(forml annf )++ 
+            RelAtom_int (w1,w2) -> (Util.show w1)++++"\\leq"++++ (Util.show w2)
 
+--type       RelAtom   =   RelAtom (Agent,List Formula,LabelAct,LabelAct)
+--                       | RelAtom_int (Label,Label)
 
+drawTexFormula : Int-> Formula -> String
 drawTexFormula n f =
   let 
      kakko k s = if n > k then "(" ++ s ++ ")" else s
@@ -1169,26 +1181,26 @@ drawTexFormula n f =
     Dia ag  a          -> "\\lozenge_{" ++ag++ "}" ++ drawTexFormula 3 a
     Announce a b    -> kakko 3 ("["  ++drawTexFormula 3 a ++ "]"  ++ drawTexFormula 3 b)
     Announce2 a b   -> kakko 3 ("\\langle "  ++drawTexFormula 3 a ++ "\\rangle "  ++ drawTexFormula 3 b)
-    And a b        -> kakko 2 ("("++drawTexFormula 3 a ++++ "\\wedge"  ++++ drawTexFormula 3 b++")")
-    Or a b        -> kakko 2 ("("++drawTexFormula 3 a ++++ "\\vee"  ++++ drawTexFormula 3 b++")")
+    And a b        -> kakko 2 (drawTexFormula 3 a ++++ "\\wedge"  ++++ drawTexFormula 3 b)
+    Or a b        -> kakko 2 (drawTexFormula 3 a ++++ "\\vee"  ++++ drawTexFormula 3 b)
     Imply a b        -> kakko 1 (drawTexFormula 2 a ++++ "\\to" ++++ drawTexFormula 2 b)
     Imply2 a b        -> kakko 1 (drawTexFormula 2 b ++++ "\\to" ++++ drawTexFormula 2 a)
     Iff a b        -> kakko 1 (drawTexFormula 2 a ++++ "\\leftrightarrow" ++++ drawTexFormula 2 b)
     Bigwedge sts (am,(ag,s1,s2)) f1-> "\\bigwedge_{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++"}" ++++ (drawTexFormula 1 f1)
     Bigvee   sts (am,(ag,s1,s2)) f1-> "\\bigvee{"++s1++"\\sim_"++ag++"^"++am.am_name++++s2++++"}" ++++ (drawTexFormula 1 f1)
-    BoxAction act f-> "["++Sy.outputAction act++"]" ++++ (drawTexFormula 1 f)
-    DiaAction act f1 -> "\\langle"++++Sy.outputAction act++++"\\rangle" ++++ (drawTexFormula 1 f)
-    Precon am st -> "pre("++++ am.am_name ++++")("++++ st ++++")("
+    BoxAction act f-> "["++Sy.outputAction act++"]" ++++ (drawTexFormula 3 f)
+    DiaAction act f1 -> "\\langle"++++Sy.outputAction act++++"\\rangle" ++++ (drawTexFormula 3 f)
+    Precon am st -> "pre^{"++++ am.am_name ++++"}("++++ st ++++")"
 
 drawTexProof : List Proof -> String
 drawTexProof q = 
   case q of 
     [Proof sq rule next] -> 
       case next of  
-        [] -> "\\infer[\\mbox{($" ++ (texRule rule) ++"$)}]{"++ drawTexSequent sq ++"}{}"
-        [(Proof sq2 rule2 pr2)] -> "\\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++"}"
-        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexProof [(Proof sq3 rule3 pr3)] ++"}"
-        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "&"++ drawTexProof [(Proof sq3 rule3 pr3)]++ "&"++ drawTexProof [(Proof sq4 rule4 pr4)] ++"}"
+        [] -> "\n \\infer[\\mbox{($" ++ (texRule rule) ++"$)}]{"++ drawTexSequent sq ++"}{}"
+        [(Proof sq2 rule2 pr2)] -> "\n \\infer[\\mbox{($" ++  (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3)] -> "\n \\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "\n &"++ drawTexProof [(Proof sq3 rule3 pr3)] ++"}"
+        [(Proof sq2 rule2 pr2),(Proof sq3 rule3 pr3),(Proof sq4 rule4 pr4)] -> "\n \\infer[\\mbox{($" ++ (texRule rule)  ++"$)}]{"++ drawTexSequent sq ++"}"++ "{"++ drawTexProof [(Proof sq2 rule2 pr2)] ++ "\n &"++ drawTexProof [(Proof sq3 rule3 pr3)]++ "\n &"++ drawTexProof [(Proof sq4 rule4 pr4)] ++"}"
         _->"error in drawTexProof (1)"
     _->"error in drawTexProof (2)"
 
@@ -1205,15 +1217,24 @@ texRule r = case   r of
        "Rv" -> "R\\vee "
        "Lv" -> "L\\vee "
        "R->" -> "R\\to "
+       "R->2" -> "R\\to "
        "L->"  -> "L\\to "
        "R<->" -> "R\\leftrightarrow "
        "L<->" -> "L\\leftrightarrow "
        "R<.>" -> "L\\langle . \\rangle "
        "L<.>" -> "R\\langle . \\rangle "
        "R#" -> "R\\Box "
+       "R#1" -> "R\\Box1 "
+       "R#2" -> "R\\Box2 "
        "L#" -> "L\\Box "
+       "L#1" -> "L\\Box1 "
+       "L#2" -> "L\\Box2 "
        "R$" -> "R\\lozenge "
        "L$" -> "L\\lozenge "
+       "Bot" -> "L\\bot "
+       "Top" -> "R\\top "
+       "R&&" -> "R\\wedge'  "
+       "L&&" -> "L\\wedge' "
        x -> x
 
 
