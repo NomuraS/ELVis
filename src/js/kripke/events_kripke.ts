@@ -852,9 +852,3 @@ let multilineSelectmenu_action = $.widget("ui.multilineSelectmenu_action", $.ui.
 });
 
 
-// // vis-button vis-add
-// $(".vis-label").on('click', function () {
-//     console.log("eo")
-//     // $(document).on('click',function(){
-//     $('#node-label_kripke').val("aoe")
-// })
