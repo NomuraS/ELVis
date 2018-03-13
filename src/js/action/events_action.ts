@@ -440,7 +440,7 @@ $INPUT_CHECK_ACTION2.addEventListener('change', function () {
     if (CHECK_INVISIBLE_ARROWS) {
         _.chain(Ac.EDGES.get())
             .filter((x: Vis.Edge) => { if (x.from === x.to) { return true } else { return false } })
-            .forEach((y: Vis.Edge) => Ac.EDGES.update({ id: y.id, color: Ac.$$BACKGROUND_COLOR, font: { color: Ac.$$BACKGROUND_COLOR } }))
+            .forEach((y: Vis.Edge) => Ac.EDGES.update({ id: y.id, color: Ac.$BACKGROUND_COLOR, font: { color: Ac.$BACKGROUND_COLOR } }))
             .value()
     } else {
         _.chain(Ac.EDGES.get())
@@ -577,6 +577,122 @@ Rx.Observable.fromEvent($FILE_ACTION, 'change')
 
 
 
+//------------------------------------------------------------
+//// undo redo
+//------------------------------------------------------------
+$(document).ready(function () {
+    // event on
+    Ac.NODES.on("add", Ac.change_history_back_action);
+    Ac.NODES.on("remove", Ac.change_history_back_action);
+    Ac.EDGES.on("add", Ac.change_history_back_action);
+    Ac.EDGES.on("remove", Ac.change_history_back_action);
+    // initial data
+    Ac.history_list_back_action.push({
+        nodes_his: Ac.NODES.get(Ac.NODES.getIds()),
+        edges_his: Ac.EDGES.get(Ac.EDGES.getIds())
+    });
+    // apply css
+    Ac.css_for_undo_redo_chnage_action();
+})
 
 
+$("#button_undo_action").on("click", function () {
+    if (Ac.history_list_back_action.length > 1) {
+        const current_nodes = Ac.NODES.get(Ac.NODES.getIds());
+        const current_edges = Ac.EDGES.get(Ac.EDGES.getIds());
+        const previous_nodes = Ac.history_list_back_action[1].nodes_his;
+        const previous_edges = Ac.history_list_back_action[1].edges_his;
+        // event off
+        Ac.NODES.off("add", Ac.change_history_back_action);
+        Ac.NODES.off("remove", Ac.change_history_back_action);
+        Ac.EDGES.off("add", Ac.change_history_back_action);
+        Ac.EDGES.off("remove", Ac.change_history_back_action);
+        // undo without events
+        if (current_nodes.length > previous_nodes.length) {
+            const previous_nodes_diff = _.differenceBy(
+                current_nodes,
+                previous_nodes,
+                "id"
+            );
+            Ac.NODES.remove(previous_nodes_diff);
+        } else {
+            Ac.NODES.update(previous_nodes);
+        }
 
+        if (current_edges.length > previous_edges.length) {
+            const previous_edges_diff = _.differenceBy(
+                current_edges,
+                previous_edges,
+                "id"
+            );
+            Ac.EDGES.remove(previous_edges_diff);
+        } else {
+            Ac.EDGES.update(previous_edges);
+        }
+        // recover event on
+        Ac.NODES.on("add", Ac.change_history_back_action);
+        Ac.NODES.on("remove", Ac.change_history_back_action);
+        Ac.EDGES.on("add", Ac.change_history_back_action);
+        Ac.EDGES.on("remove", Ac.change_history_back_action);
+
+        Ac.history_list_forward_action.unshift({
+            nodes_his: Ac.history_list_back_action[0].nodes_his,
+            edges_his: Ac.history_list_back_action[0].edges_his
+        });
+        Ac.history_list_back_action.shift();
+        // apply css
+        Ac.css_for_undo_redo_chnage_action();
+        // reflect graph to panel
+        Ac.nodeEdge2writeTopPanel(Ac.NODES, Ac.EDGES)
+    }
+});
+
+$("#button_redo_action").on("click", function () {
+    if (Ac.history_list_forward_action.length > 0) {
+        const current_nodes = Ac.NODES.get(Ac.NODES.getIds());
+        const current_edges = Ac.EDGES.get(Ac.EDGES.getIds());
+        const forward_nodes = Ac.history_list_forward_action[0].nodes_his;
+        const forward_edges = Ac.history_list_forward_action[0].edges_his;
+        // event off
+        Ac.NODES.off("add", Ac.change_history_back_action);
+        Ac.NODES.off("remove", Ac.change_history_back_action);
+        Ac.EDGES.off("add", Ac.change_history_back_action);
+        Ac.EDGES.off("remove", Ac.change_history_back_action);
+        // redo without events
+        if (current_nodes.length > forward_nodes.length) {
+            const forward_nodes_diff = _.differenceBy(
+                current_nodes,
+                forward_nodes,
+                "id"
+            );
+            Ac.NODES.remove(forward_nodes_diff);
+        } else {
+            Ac.NODES.update(forward_nodes);
+        }
+        if (current_edges.length > forward_edges.length) {
+            const forward_edges_diff = _.differenceBy(
+                current_edges,
+                forward_edges,
+                "id"
+            );
+            Ac.EDGES.remove(forward_edges_diff);
+        } else {
+            Ac.EDGES.update(forward_edges);
+        }
+        // recover event on
+        Ac.NODES.on("add", Ac.change_history_back_action);
+        Ac.NODES.on("remove", Ac.change_history_back_action);
+        Ac.EDGES.on("add", Ac.change_history_back_action);
+        Ac.EDGES.on("remove", Ac.change_history_back_action);
+        Ac.history_list_back_action.unshift({
+            nodes_his: Ac.history_list_forward_action[0].nodes_his,
+            edges_his: Ac.history_list_forward_action[0].edges_his
+        });
+        // history_list_forward_action
+        Ac.history_list_forward_action.shift();
+        // apply css
+        Ac.css_for_undo_redo_chnage_action();
+        // reflect graph to panel
+        Ac.nodeEdge2writeTopPanel(Ac.NODES, Ac.EDGES)
+    }
+});

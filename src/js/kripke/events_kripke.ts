@@ -19,7 +19,7 @@ declare let $: any
 // event listners 
 //----------------------------------------------  
 // keyup event 
-const $$FORM2_KRIPKE: HTMLInputElement | null = document.querySelector('#form2_kripke') as HTMLInputElement
+const $FORM2_KRIPKE: HTMLInputElement | null = document.querySelector('#form2_kripke') as HTMLInputElement
 // click events 
 const $BUTTON_CHECK_FRAME_PROPERTIES: Element | null = document.querySelector('#button_check_frame_properties_kripke')
 const $BUTTON_MAKEITREFLEXIVE: Element | null = document.querySelector('#button_makeItReflexive_kripke')
@@ -64,12 +64,12 @@ const $ELM_TRUTHcHECKER = Elm_truthChecker.ElmFunctions_truthChecker.embed(docum
 
 // constants 
 //----------------------------------------------
-const $$INITIAL_NODES: Vis.Node[] = [
+const $INITIAL_NODES: Vis.Node[] = [
     { label: "w0", id: "w0", font: { multi: true } },
     { label: "w1", id: "w1" },
     { label: "w2", id: "w2" }
 ]
-const $$INITIAL_EDGES: Vis.Edge[] = [
+const $INITIAL_EDGES: Vis.Edge[] = [
     { from: "w1", to: "w1", label: "a", id: "w1_w1_a", color: Ac.agColor("a", Kr.AGENT_COLOR_K) },
     { from: "w0", to: "w1", label: "a", id: "w0_w1_a", color: Ac.agColor("a", Kr.AGENT_COLOR_K) },
     { from: "w0", to: "w2", label: "b", id: "w0_w2_b", color: Ac.agColor("b", Kr.AGENT_COLOR_K) },
@@ -99,18 +99,17 @@ export function change_global_NUM_OF_RANDOMKM() {
     NUM_OF_RANDOMKM = NUM_OF_RANDOMKM + 1
 }
 
-
 //----------------------------------------------
 // initials
 //----------------------------------------------
 Rx.DOM.ready().subscribe(
     () => {
         // variable settngs
-        const _name_kripke: string = $$FORM2_KRIPKE.value.toString();
+        const _name_kripke: string = $FORM2_KRIPKE.value.toString();
         // setting for the initial graph
         document.getElementById('network-popUp_edge_kripke').style.display = 'none';
-        Kr.NODES.add($$INITIAL_NODES);
-        Kr.EDGES.add($$INITIAL_EDGES);
+        Kr.NODES.add($INITIAL_NODES);
+        Kr.EDGES.add($INITIAL_EDGES);
         // Kr.NODES.add([]);
         // Kr.EDGES.add([]);
         const _change_valuation_in_topPanel = true
@@ -157,13 +156,10 @@ Rx.DOM.ready().subscribe(
 //------------------------------------------------------------
 //button for modifying KM by a formula (PAL)
 //------------------------------------------------------------
-
 Rx.Observable.fromEvent($BUTTON_COMPOSITION_KRIPKE_PAL, 'click')
     .subscribe(
         () => {
             const _km: string = $SELECT_COMPOSITION_KRIPKE1_PAL.value.toString()
-            // const _km2 = _km.replace(/\%/g, "") 
-            // console.log(_km)
             const _model: Kr.KripkeModel = Kr.kmName2km(_km, Kr.KRIPKE_DATA)
             const _formula = $INPUT_TEXT_FOR_MODIFYKM_PAL.value
             const _sendingModel = {
@@ -198,13 +194,6 @@ $ELM_TRUTHcHECKER.ports.output2_modifyKM_PAL.subscribe($output => { //
     }
 })
 
-// { 
-//     name: string,
-//     domain: string[],
-//     relation: Relation[],
-//     valuation: Valuation[],
-//     comment: string
-// }
 //------------------------------------------------------------
 //button for modifying KM by a formula (DEL)
 //------------------------------------------------------------
@@ -222,14 +211,12 @@ Rx.Observable.fromEvent($BUTTON_COMPOSITION_KRIPKE_DEL, 'click')
                 formula: "",
                 actionList: Ac.ACTION_DATA
             }
-            // console.log(_sendingModel) 
             $ELM_TRUTHcHECKER.ports.input3_modifyKM_DEL.send(_sendingModel)
         },
         (error: Error) => console.log(error),
         () => console.log('draw and write new graph, completed'),
 );
 $ELM_TRUTHcHECKER.ports.output3_modifyKM_DEL.subscribe($output => {
-    // console.log($output)
     const _km: Kr.KripkeModel = _.head($output.modifiedKM)
     if ($output.modifiedKM === undefined) {
         alert($output.error)
@@ -243,13 +230,12 @@ $ELM_TRUTHcHECKER.ports.output3_modifyKM_DEL.subscribe($output => {
         $("#kripke_list").append(Kr.kripkeObject2string(_km));
         // 5. kripke listにevent割当   
         Kr.addEvent2kripkeList(_km, Kr.NODES, Kr.EDGES, true);
-        //9 mathjax
+        // 9 mathjax
         MathJax.Hub.Typeset();
-
     } else {
         alert(`The name "${_km.name}" already exists in the list. Change the name.`)
     }
-})
+});
 // ----------------------------------------------------  
 // button_add_kripke
 //------------------------------------------------------------
@@ -284,7 +270,6 @@ Rx.Observable.fromEvent($BUTTON_ADD_KRIPKE, 'click')
             } else {
                 alert(`The name "${_km.name}" already exists in the list. Change the name.`)
             }
-            // }) 
         },
         (error: Error) => console.log(error),
         () => console.log('draw and write new graph, completed'),
@@ -292,7 +277,6 @@ Rx.Observable.fromEvent($BUTTON_ADD_KRIPKE, 'click')
 //------------------------------------------------------------
 // BUTTON_TRUTH_CHECK 
 //------------------------------------------------------------
-
 Rx.Observable.fromEvent($BUTTON_TRUTH_CHECK_PAL, 'click')
     .subscribe(
         () => {
@@ -307,7 +291,6 @@ Rx.Observable.fromEvent($BUTTON_TRUTH_CHECK_PAL, 'click')
                 formula: _formula,
                 actionList: []
             }
-            console.log(_sendingModel)
             $ELM_TRUTHcHECKER.ports.input1_truthCheck_PAL.send(_sendingModel)
         },
         (error: Error) => console.log(error),
@@ -373,27 +356,13 @@ $SELECT_KRIPKE_FOR_TRUTHCHECKER.addEventListener('change', function () {
     })
 })
 
-
-
 //------------------------------------------------------------
 // button_add_atom
 //------------------------------------------------------------
 
-// let NUM_OF_ATOM: number = 1
-
-// export function change_global_NUM_OF_ATOM() {
-//     NUM_OF_ATOM = NUM_OF_ATOM + 1
-// }
-
-
 Rx.Observable.fromEvent($BUTTON_ADD_ATOM, 'click')
     .subscribe(
         () => {
-            // let elements:string[]=[]
-            // const addedAtomsList = $('.color_text_panel')
-            // for (let i = 0; i < addedAtomsList.length; i++) {
-            //     elements[i] = _.trim(addedAtomsList[i].innerHTML);
-            // }
             const atom: number = $('#kripke_valuation')[0].childElementCount
             const h =
                 `<li class='classOfPrecondition'>Value(` +
@@ -407,6 +376,7 @@ Rx.Observable.fromEvent($BUTTON_ADD_ATOM, 'click')
 );
 //------------------------------------------------------------
 // button for frme properties
+///aaaaaaaa
 //------------------------------------------------------------
 
 function checkFrameProperty($edges, $nodes) {
@@ -528,15 +498,12 @@ $ELM_FRAME.ports.output1.subscribe(model => { //result from Elm
         }
     }
     const _addingEdges = _.map(model.resultProperty, ff)
-    const _kmName = $$FORM2_KRIPKE.value.toString();
+    const _kmName = $FORM2_KRIPKE.value.toString();
     Kr.EDGES.update(_addingEdges)
     const _kmobject = Kr.graph2kripkeObject(_kmName, Kr.NODES, Kr.EDGES)
     Kr.kripkeObject2writeTopPanel(_kmobject, false)
     checkFrameProperty(Kr.EDGES, Kr.NODES);
 })
-
-
-
 //------------------------------------------------------------
 // composition
 //------------------------------------------------------------
@@ -598,11 +565,6 @@ $ELM_FRAME.ports.output1.subscribe(model => { //result from Elm
 
 //------------------------------------------------------------------------------------
 // add kripke (random)
-//------------------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------------------
-// add action (random)
 //------------------------------------------------------------------------------------
 const $ELM_RANDOM_KM = Elm_randomKM.ElmFunctions_randomAM.embed(document.getElementById('elm_randomAM'));
 
@@ -689,7 +651,6 @@ $('#checkbox_hierarchical_kripke_auto').on("change", function (): void {
     reflect_checkbox()
 })
 
-
 $('#checkbox_physics_kripke').on("change", function (): void {
     CHECK_PHYSICS_ENABLE = $('#checkbox_physics_kripke').prop('checked');
     NETWORK_KRIPKE.setOptions({ physics: { enabled: CHECK_PHYSICS_ENABLE } })
@@ -744,8 +705,8 @@ function reflect_checkbox() {
 // keyup 
 //----------------------------------------------------------------------------------------
 // setting (write figure's title) 
-$$FORM2_KRIPKE.addEventListener('keyup', function () {
-    const _name_kripke: string = $$FORM2_KRIPKE.value.toString()
+$FORM2_KRIPKE.addEventListener('keyup', function () {
+    const _name_kripke: string = $FORM2_KRIPKE.value.toString()
     Util.writeDOM_html('#kripkeNameOnGraph')(_name_kripke)
 })
 
@@ -767,6 +728,7 @@ Rx.Observable.fromEvent($EXPORT_KRIPKE_MODELS, 'click')
 
 //------------------------------------------------------------
 // kripke_sample1
+//------------------------------------------------------------
 $KRIPKE_SAMPLE1.addEventListener('click', function (): void {
     Kr.ajax_output('./files/KModels/MuddyChildren.json');
 });
@@ -793,13 +755,9 @@ Rx.Observable.fromEvent($FILE_KRIPKE, 'change')
         () => console.log('load completed'),
 );
 
-
-
-
 ////////////////////////////////////////////////////// 
 //// multilineSelectmenu
 ////////////////////////////////////////////////////// 
-
 
 function chosenKM_for_select_world_for_truthChecker() {
     const _chosenKripke: string = (document.querySelector('#select_kripke_for_truthChecker') as HTMLInputElement).value.toString()
@@ -851,4 +809,125 @@ let multilineSelectmenu_action = $.widget("ui.multilineSelectmenu_action", $.ui.
     }
 });
 
+//------------------------------------------------------------
+//// undo redo
+//------------------------------------------------------------
+
+$(document).ready(function () {
+    // event on
+    Kr.NODES.on("add", Kr.change_history_back_kripke);
+    Kr.NODES.on("remove", Kr.change_history_back_kripke);
+    Kr.EDGES.on("add", Kr.change_history_back_kripke);
+    Kr.EDGES.on("remove", Kr.change_history_back_kripke);
+    // initial data
+    Kr.history_list_back_kripke.push({
+        nodes_his: Kr.NODES.get(Kr.NODES.getIds()),
+        edges_his: Kr.EDGES.get(Kr.EDGES.getIds())
+    });
+    // apply css
+    Kr.css_for_undo_redo_chnage_kripke();
+})
+
+
+$("#button_undo_kripke").on("click", function () {
+    if (Kr.history_list_back_kripke.length > 1) {
+        const current_nodes = Kr.NODES.get(Kr.NODES.getIds());
+        const current_edges = Kr.EDGES.get(Kr.EDGES.getIds());
+        const previous_nodes = Kr.history_list_back_kripke[1].nodes_his;
+        const previous_edges = Kr.history_list_back_kripke[1].edges_his;
+        // event off
+        Kr.NODES.off("add", Kr.change_history_back_kripke);
+        Kr.NODES.off("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.off("add", Kr.change_history_back_kripke);
+        Kr.EDGES.off("remove", Kr.change_history_back_kripke);
+        // undo without events
+        if (current_nodes.length > previous_nodes.length) {
+            const previous_nodes_diff = _.differenceBy(
+                current_nodes,
+                previous_nodes,
+                "id"
+            );
+            Kr.NODES.remove(previous_nodes_diff);
+        } else {
+            Kr.NODES.update(previous_nodes);
+        }
+
+        if (current_edges.length > previous_edges.length) {
+            const previous_edges_diff = _.differenceBy(
+                current_edges,
+                previous_edges,
+                "id"
+            );
+            Kr.EDGES.remove(previous_edges_diff);
+        } else {
+            Kr.EDGES.update(previous_edges);
+        }
+        // recover event on
+        Kr.NODES.on("add", Kr.change_history_back_kripke);
+        Kr.NODES.on("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.on("add", Kr.change_history_back_kripke);
+        Kr.EDGES.on("remove", Kr.change_history_back_kripke);
+
+        Kr.history_list_forward_kripke.unshift({
+            nodes_his: Kr.history_list_back_kripke[0].nodes_his,
+            edges_his: Kr.history_list_back_kripke[0].edges_his
+        });
+        Kr.history_list_back_kripke.shift();
+        // apply css
+        Kr.css_for_undo_redo_chnage_kripke();
+        // reflect graph to panel
+        Kr.nodeEdge2writeTopPanel(Kr.NODES, Kr.EDGES)
+    }
+});
+
+
+$("#button_redo_kripke").on("click", function () {
+    if (Kr.history_list_forward_kripke.length > 0) {
+        const current_nodes = Kr.NODES.get(Kr.NODES.getIds());
+        const current_edges = Kr.EDGES.get(Kr.EDGES.getIds());
+        const forward_nodes = Kr.history_list_forward_kripke[0].nodes_his;
+        const forward_edges = Kr.history_list_forward_kripke[0].edges_his;
+        // event off
+        Kr.NODES.off("add", Kr.change_history_back_kripke);
+        Kr.NODES.off("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.off("add", Kr.change_history_back_kripke);
+        Kr.EDGES.off("remove", Kr.change_history_back_kripke);
+        // redo without events
+        if (current_nodes.length > forward_nodes.length) {
+            const forward_nodes_diff = _.differenceBy(
+                current_nodes,
+                forward_nodes,
+                "id"
+            );
+            Kr.NODES.remove(forward_nodes_diff);
+        } else {
+            Kr.NODES.update(forward_nodes);
+        }
+        if (current_edges.length > forward_edges.length) {
+            const forward_edges_diff = _.differenceBy(
+                current_edges,
+                forward_edges,
+                "id"
+            );
+            Kr.EDGES.remove(forward_edges_diff);
+        } else {
+            Kr.EDGES.update(forward_edges);
+        }
+        // recover event on
+        Kr.NODES.on("add", Kr.change_history_back_kripke);
+        Kr.NODES.on("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.on("add", Kr.change_history_back_kripke);
+        Kr.EDGES.on("remove", Kr.change_history_back_kripke);
+        Kr.history_list_back_kripke.unshift({
+            nodes_his: Kr.history_list_forward_kripke[0].nodes_his,
+            edges_his: Kr.history_list_forward_kripke[0].edges_his
+        });
+        // history_list_forward_kripke
+        Kr.history_list_forward_kripke.shift();
+        // apply css
+        Kr.css_for_undo_redo_chnage_kripke();
+        // reflect graph to panel
+        Kr.nodeEdge2writeTopPanel(Kr.NODES, Kr.EDGES)
+    }
+});
 

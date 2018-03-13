@@ -9,7 +9,7 @@ var Elm_frame = require("../frame/elmFunctions_frame");
 var Elm_randomKM = require("../action/elmFunctions_randomAM");
 var Elm_truthChecker = require("./elmFunctions_truthChecker");
 var Ac = require("../action/vis_action");
-var $$FORM2_KRIPKE = document.querySelector('#form2_kripke');
+var $FORM2_KRIPKE = document.querySelector('#form2_kripke');
 var $BUTTON_CHECK_FRAME_PROPERTIES = document.querySelector('#button_check_frame_properties_kripke');
 var $BUTTON_MAKEITREFLEXIVE = document.querySelector('#button_makeItReflexive_kripke');
 var $BUTTON_MAKEITTRANSITIVE = document.querySelector('#button_makeItTransitive_kripke');
@@ -38,12 +38,12 @@ var $INPUT_NODETYPE_CHECK_KRIPKE = $('input[name="nodeType_check_kripke"]:radio'
 var $FILE_KRIPKE = document.querySelector("#file_kripke");
 var $ELM_FRAME = Elm_frame.ElmFunctions_frame.embed(document.getElementById('elm_frame'));
 var $ELM_TRUTHcHECKER = Elm_truthChecker.ElmFunctions_truthChecker.embed(document.getElementById('elm_truthChecker'));
-var $$INITIAL_NODES = [
+var $INITIAL_NODES = [
     { label: "w0", id: "w0", font: { multi: true } },
     { label: "w1", id: "w1" },
     { label: "w2", id: "w2" }
 ];
-var $$INITIAL_EDGES = [
+var $INITIAL_EDGES = [
     { from: "w1", to: "w1", label: "a", id: "w1_w1_a", color: Ac.agColor("a", Kr.AGENT_COLOR_K) },
     { from: "w0", to: "w1", label: "a", id: "w0_w1_a", color: Ac.agColor("a", Kr.AGENT_COLOR_K) },
     { from: "w0", to: "w2", label: "b", id: "w0_w2_b", color: Ac.agColor("b", Kr.AGENT_COLOR_K) },
@@ -69,10 +69,10 @@ function change_global_NUM_OF_RANDOMKM() {
 }
 exports.change_global_NUM_OF_RANDOMKM = change_global_NUM_OF_RANDOMKM;
 Rx.DOM.ready().subscribe(function () {
-    var _name_kripke = $$FORM2_KRIPKE.value.toString();
+    var _name_kripke = $FORM2_KRIPKE.value.toString();
     document.getElementById('network-popUp_edge_kripke').style.display = 'none';
-    Kr.NODES.add($$INITIAL_NODES);
-    Kr.EDGES.add($$INITIAL_EDGES);
+    Kr.NODES.add($INITIAL_NODES);
+    Kr.EDGES.add($INITIAL_EDGES);
     var _change_valuation_in_topPanel = true;
     var _initialAM = Kr.graph2kripkeObject(_name_kripke, Kr.NODES, Kr.EDGES);
     Kr.OPTION_KRIPKE.manipulation = {
@@ -198,7 +198,6 @@ Rx.Observable.fromEvent($BUTTON_TRUTH_CHECK_PAL, 'click')
         formula: _formula,
         actionList: []
     };
-    console.log(_sendingModel);
     $ELM_TRUTHcHECKER.ports.input1_truthCheck_PAL.send(_sendingModel);
 }, function (error) { return console.log(error); }, function () { return console.log('draw and write new graph, completed'); });
 $ELM_TRUTHcHECKER.ports.output1_truthCheck_PAL.subscribe(function (model) {
@@ -360,7 +359,7 @@ $ELM_FRAME.ports.output1.subscribe(function (model) {
         };
     };
     var _addingEdges = _.map(model.resultProperty, ff);
-    var _kmName = $$FORM2_KRIPKE.value.toString();
+    var _kmName = $FORM2_KRIPKE.value.toString();
     Kr.EDGES.update(_addingEdges);
     var _kmobject = Kr.graph2kripkeObject(_kmName, Kr.NODES, Kr.EDGES);
     Kr.kripkeObject2writeTopPanel(_kmobject, false);
@@ -486,8 +485,8 @@ function reflect_checkbox() {
     CHECK_PHYSICS_ENABLE = $('#checkbox_physics_kripke').prop('checked');
     NETWORK_KRIPKE.setOptions({ physics: { enabled: CHECK_PHYSICS_ENABLE } });
 }
-$$FORM2_KRIPKE.addEventListener('keyup', function () {
-    var _name_kripke = $$FORM2_KRIPKE.value.toString();
+$FORM2_KRIPKE.addEventListener('keyup', function () {
+    var _name_kripke = $FORM2_KRIPKE.value.toString();
     Util.writeDOM_html('#kripkeNameOnGraph')(_name_kripke);
 });
 Rx.Observable.fromEvent($EXPORT_KRIPKE_MODELS, 'click')
@@ -561,5 +560,90 @@ var multilineSelectmenu_action = $.widget("ui.multilineSelectmenu_action", $.ui.
         else {
             element.html("&#160;");
         }
+    }
+});
+$(document).ready(function () {
+    Kr.NODES.on("add", Kr.change_history_back_kripke);
+    Kr.NODES.on("remove", Kr.change_history_back_kripke);
+    Kr.EDGES.on("add", Kr.change_history_back_kripke);
+    Kr.EDGES.on("remove", Kr.change_history_back_kripke);
+    Kr.history_list_back_kripke.push({
+        nodes_his: Kr.NODES.get(Kr.NODES.getIds()),
+        edges_his: Kr.EDGES.get(Kr.EDGES.getIds())
+    });
+    Kr.css_for_undo_redo_chnage_kripke();
+});
+$("#button_undo_kripke").on("click", function () {
+    if (Kr.history_list_back_kripke.length > 1) {
+        var current_nodes = Kr.NODES.get(Kr.NODES.getIds());
+        var current_edges = Kr.EDGES.get(Kr.EDGES.getIds());
+        var previous_nodes = Kr.history_list_back_kripke[1].nodes_his;
+        var previous_edges = Kr.history_list_back_kripke[1].edges_his;
+        Kr.NODES.off("add", Kr.change_history_back_kripke);
+        Kr.NODES.off("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.off("add", Kr.change_history_back_kripke);
+        Kr.EDGES.off("remove", Kr.change_history_back_kripke);
+        if (current_nodes.length > previous_nodes.length) {
+            var previous_nodes_diff = _.differenceBy(current_nodes, previous_nodes, "id");
+            Kr.NODES.remove(previous_nodes_diff);
+        }
+        else {
+            Kr.NODES.update(previous_nodes);
+        }
+        if (current_edges.length > previous_edges.length) {
+            var previous_edges_diff = _.differenceBy(current_edges, previous_edges, "id");
+            Kr.EDGES.remove(previous_edges_diff);
+        }
+        else {
+            Kr.EDGES.update(previous_edges);
+        }
+        Kr.NODES.on("add", Kr.change_history_back_kripke);
+        Kr.NODES.on("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.on("add", Kr.change_history_back_kripke);
+        Kr.EDGES.on("remove", Kr.change_history_back_kripke);
+        Kr.history_list_forward_kripke.unshift({
+            nodes_his: Kr.history_list_back_kripke[0].nodes_his,
+            edges_his: Kr.history_list_back_kripke[0].edges_his
+        });
+        Kr.history_list_back_kripke.shift();
+        Kr.css_for_undo_redo_chnage_kripke();
+        Kr.nodeEdge2writeTopPanel(Kr.NODES, Kr.EDGES);
+    }
+});
+$("#button_redo_kripke").on("click", function () {
+    if (Kr.history_list_forward_kripke.length > 0) {
+        var current_nodes = Kr.NODES.get(Kr.NODES.getIds());
+        var current_edges = Kr.EDGES.get(Kr.EDGES.getIds());
+        var forward_nodes = Kr.history_list_forward_kripke[0].nodes_his;
+        var forward_edges = Kr.history_list_forward_kripke[0].edges_his;
+        Kr.NODES.off("add", Kr.change_history_back_kripke);
+        Kr.NODES.off("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.off("add", Kr.change_history_back_kripke);
+        Kr.EDGES.off("remove", Kr.change_history_back_kripke);
+        if (current_nodes.length > forward_nodes.length) {
+            var forward_nodes_diff = _.differenceBy(current_nodes, forward_nodes, "id");
+            Kr.NODES.remove(forward_nodes_diff);
+        }
+        else {
+            Kr.NODES.update(forward_nodes);
+        }
+        if (current_edges.length > forward_edges.length) {
+            var forward_edges_diff = _.differenceBy(current_edges, forward_edges, "id");
+            Kr.EDGES.remove(forward_edges_diff);
+        }
+        else {
+            Kr.EDGES.update(forward_edges);
+        }
+        Kr.NODES.on("add", Kr.change_history_back_kripke);
+        Kr.NODES.on("remove", Kr.change_history_back_kripke);
+        Kr.EDGES.on("add", Kr.change_history_back_kripke);
+        Kr.EDGES.on("remove", Kr.change_history_back_kripke);
+        Kr.history_list_back_kripke.unshift({
+            nodes_his: Kr.history_list_forward_kripke[0].nodes_his,
+            edges_his: Kr.history_list_forward_kripke[0].edges_his
+        });
+        Kr.history_list_forward_kripke.shift();
+        Kr.css_for_undo_redo_chnage_kripke();
+        Kr.nodeEdge2writeTopPanel(Kr.NODES, Kr.EDGES);
     }
 });

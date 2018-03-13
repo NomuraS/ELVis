@@ -67,6 +67,7 @@
                     <li class="page_item ">
                         <a class="link_content0">Top</a>
                     </li>
+                    <div class="dividing_line_menu"></div>
                     <li class="page_item page_item_has_children">
                         <a>EL</a>
                         <ul class="children">
@@ -631,12 +632,13 @@
                                 <li class="example_formula">(U)
                                     <a>#(#A -> A)</a>
                                 </li>
+                                <li class="example_formula">(.1/M)
+                                    <a>#$A -&gt; $#A</a>
+                                </li>
                                 <li class="example_formula">(.2)
                                     <a>$#A -&gt; #$A</a>
                                 </li>
-                                <li class="example_formula">(M)
-                                    <a>#$A -&gt; $#A</a>
-                                </li>
+
 
                                 <li class="example_formula">(.3)
                                     <a>#(#A & A -> B) v #(#B -> A)</a>
@@ -648,7 +650,7 @@
                                 </li>
                                 <li class="example_formula">(.2.3/F)
                                     <a>#(#A -> B) v ($#B -> A)</a>
-                                    </li>
+                                </li>
                                 <li class="example_formula">(.4)
                                     <a>$A -> (A v #$A)</a>
                                 </li>
@@ -851,15 +853,14 @@
                     <dt id="latex_ouput" class="square_btn">LaTeX output</dt>
                     <dd class="close_panel ">
                         <h4>select package</h4>
-                        <form  class="form_position">
+                        <form class="form_position">
                             <input type="radio" name="proofdownload" value="proof_sty" checked="checked"> proof.sty
                             <br>
                             <input type="radio" name="proofdownload" value="ebproof_sty"> ebproof.sty
                         </form>
                         <h4>LaTeX text</h4>
                         <p>
-                            Click the below button to appear the text of 
-                            the proof figure in the right panel.
+                            Click the below button to appear the text of the proof figure in the right panel.
                         </p>
                         <p>
                             <button id="modalbutton1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#latexModal">
@@ -1188,7 +1189,7 @@
                         <header class="entry-header" style="display: inline-block">
                             <h1 class="entry-title">About</h1>
                         </header>
-                        &ensp; (ELVis v.1.1.0 beta)
+                        &ensp; (ELVis v.1.0.2.0 beta)
                         <div>
                             <p> Epistemic logic is a general name for logics each of which is a variant of modal logic and aims
                                 at formally representing one's reasoning about knowledge.
@@ -1276,10 +1277,13 @@
                         <header class="entry-header">
                             <h1 class="entry-title">Changelog</h1>
                             <dl style="margin-left:10%;">
-                                <dt>v.1.1.0 (2018-03-08)</dt>
-                                <dd>fixes some glitches.
-                                    <br> added option "LaTeX output" to the sections of "Labelled Sequent Calculus". </dd>
-                                <dt>v.1.0.0 (2018-03-05)</dt>
+                                <dt>v.1.0.2.0 (2018-03-14)</dt>
+                                <dd>Added: functions of "undo/redo" to the Kripke/Action model editors. </dd>
+
+                                <dt>v.1.0.1.0 (2018-03-08)</dt>
+                                <dd>Fix: some glitches.
+                                    <br> Added: option "LaTeX output" to the sections of "Labelled Sequent Calculus". </dd>
+                                <dt>v.1.0.0.0 (2018-03-05)</dt>
                                 <dd>Initial release. </dd>
                             </dl>
                         </header>
@@ -1341,9 +1345,9 @@
                         </header>
                         <p>
                             Epistemic Logic (EL) was developed in the late 50s and 60s, and has become the basic and origin of all other epistemic logics.
-                            This is basically the same as the (normal) modal logic S5 (=KT5=KTB4) if the logic deals with
-                            the concept of knowledge (in the case belief, it is usually based on modal logic KD45). If the
-                            logic aims at the formal representation of knowledge of not only a single agent but multi-agents,
+                            This is basically the same as the (normal) modal logic S5 (KT5,KT45,KTB4) if the logic deals
+                            with the concept of knowledge (in the case of belief, it is usually based on modal logic KD45).
+                            If the logic aims at the formal representation of knowledge of not only a single agent but multi-agents,
                             its syntax has a plural number of modalities (#a, #b, etc) corresponding to each agent's knowledge,
                             i.e, in such a case, the logic is based on muti-modal logic S5.
                         </p>
@@ -1417,6 +1421,19 @@
                                         <br>(4) #A -&gt; ##A
                                         <br>(5) $A -&gt; #$A
                                     </p>
+                                    <!-- <h5>Other candidate axioms</h5>
+                            <p>
+                                    <br>(U) #(#A -> A)
+                                    <br>(.1/M) #$A -&gt; $#A
+                                    <br>(.2) $#A -&gt; #$A
+                                    <br>(.3) #(#A & A -> B) v #(#B -> A)
+                                    <br>(.2.3/F) #(#A -> B) v ($#B -> A)
+                                    <br>(.4) $A -> (A v #$A)
+                                    <br>(Ver) #bot
+                                    <br>(End) #bot v $#bot
+                                    <br>(W/L&ouml;) #(#A -&gt; A) -&gt; #A
+                           </p> -->
+
 
                                 </li>
                                 <li>
@@ -1767,10 +1784,20 @@
                     <h2 class="titleOfModel">
                         <div id="actionNameOnGraph"></div>
                     </h2>
+                    <div class="undo_redo">
+                        <div id="button_undo_action">undo
+                            <i class="fas fa-arrow-left "></i>
+                        </div>
+                        <div class="dividing_line"></div>
+                        <div id="button_redo_action">redo
+                            <i class="fas fa-arrow-right  "></i>
+                        </div>
+                    </div>
                     <div id="network_action"></div>
                     <!-- frame property Editor  -->
                     <div class="frame_property_on_the_graph">
-                        <input type="button" id="button_check_frame_properties" value="Check Frame Properties" class="btn btn-info btn-info-overwrite button_for_frameProperty">
+                        <!-- <a id="button_check_frame_properties" class="aaa">Check Frame Properties</a> -->
+                        <input type="button" id="button_check_frame_properties" value="Check Frame Prop." class="btn btn-info btn-info-overwrite button_for_frameProperty">
                         <table class="table1">
                             <tr id="result_isReflexive">
                                 <td>Reflexive</td>
@@ -1857,10 +1884,20 @@
                         <div id="kripkeNameOnGraph"></div>
                     </h2>
                     <div>
+                        <div class="undo_redo">
+                            <div id="button_undo_kripke">undo
+                                <i class="fas fa-arrow-left "></i>
+                            </div>
+                            <div class="dividing_line"></div>
+                            <div id="button_redo_kripke">redo
+                                <i class="fas fa-arrow-right  "></i>
+                            </div>
+                        </div>
+
                         <div id="network_kripke"></div>
                         <!-- frame property Editor  -->
                         <div class="frame_property_on_the_graph">
-                            <input type="button" id="button_check_frame_properties_kripke" value="Check Frame Properties" class="btn  button_for_frameProperty">
+                            <input type="button" id="button_check_frame_properties_kripke" value="Check Frame Prop." class="btn  btn-info button_for_frameProperty">
                             <table class="table1">
                                 <tr id="result_isReflexive_kripke">
                                     <td>Reflexive</td>
@@ -1956,6 +1993,7 @@
     </div>
 </body>
 <script src="./public/js/lib/navigation.js"></script>
+<!-- <script src="/Users/nomura/Dropbox/Code/ELVis/versions/v9_sagyo/src/js/lib/undo_redo_vis.js"></script> -->
 <script src="./public/js/others/open_close_left_panel.js"></script>
 <script src="./public/js/bundle/vendor.bundle.js"></script>
 <script src="./public/js/bundle/kripke.bundle.js"></script>

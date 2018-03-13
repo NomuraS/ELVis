@@ -5,8 +5,8 @@ var Util = require("../lib/util");
 var Vis = require("../lib/vis");
 var tsmonad_1 = require("tsmonad");
 var util_1 = require("../lib/util");
-var $$NODES_COLOR = "mediumturquoise";
-exports.$$BACKGROUND_COLOR = "whitesmoke";
+var $NODES_COLOR = "mediumturquoise";
+exports.$BACKGROUND_COLOR = "whitesmoke";
 exports.$A1 = document.getElementById('node-label_action');
 exports.$A2 = document.getElementById('saveButton_action');
 exports.$A3 = document.getElementById('cancelButton_action');
@@ -142,8 +142,8 @@ exports.OPTION_ACTION = {
             editNode: 'Edit State',
             editEdge: 'Edit Arrow',
             addDescription: 'Click in an empty space to place a new state.',
-            edgeDescription: 'Click on a state and drag the arrow to another state to connect them.',
-            editEdgeDescription: 'Click on the control points and drag them to a state to connect to it.',
+            edgeDescription: 'Click on a state and drag the arrow to another state.',
+            editEdgeDescription: 'Click on the control points and drag them to a state.',
             createEdgeError: 'Cannot link arrows to a cluster.',
             deleteClusterError: 'Clusters cannot be deleted.',
             editClusterError: 'Clusters cannot be edited.'
@@ -152,7 +152,7 @@ exports.OPTION_ACTION = {
     nodes: {
         shape: 'ellipse',
         size: 15,
-        color: $$NODES_COLOR,
+        color: $NODES_COLOR,
         font: {
             face: 'Comic Sans MS',
         },
@@ -571,3 +571,65 @@ function json2actionData($json) {
     $('.close_panel').hide();
 }
 exports.json2actionData = json2actionData;
+exports.history_list_back_action = [];
+exports.history_list_forward_action = [];
+function change_history_back_action() {
+    exports.history_list_back_action.unshift({
+        nodes_his: exports.NODES.get(exports.NODES.getIds()),
+        edges_his: exports.EDGES.get(exports.EDGES.getIds())
+    });
+    exports.history_list_forward_action = [];
+    css_for_undo_redo_chnage_action();
+    console.log(exports.EDGES);
+}
+exports.change_history_back_action = change_history_back_action;
+function redo_css_active_action() {
+    $("#button_undo_action").css({
+        color: "#878787",
+        cursor: "pointer"
+    });
+}
+exports.redo_css_active_action = redo_css_active_action;
+;
+function undo_css_active_action() {
+    $("#button_redo_action").css({
+        color: "#878787",
+        cursor: "pointer"
+    });
+}
+exports.undo_css_active_action = undo_css_active_action;
+;
+function redo_css_inactive_action() {
+    $("#button_undo_action").css({
+        color: "#EBEBEB",
+        cursor: "default"
+    });
+}
+exports.redo_css_inactive_action = redo_css_inactive_action;
+;
+function undo_css_inactive_action() {
+    $("#button_redo_action").css({
+        color: "#EBEBEB",
+        cursor: "default"
+    });
+}
+exports.undo_css_inactive_action = undo_css_inactive_action;
+;
+function css_for_undo_redo_chnage_action() {
+    if (exports.history_list_back_action.length === 1) {
+        redo_css_inactive_action();
+    }
+    else {
+        redo_css_active_action();
+    }
+    ;
+    if (exports.history_list_forward_action.length === 0) {
+        undo_css_inactive_action();
+    }
+    else {
+        undo_css_active_action();
+    }
+    ;
+}
+exports.css_for_undo_redo_chnage_action = css_for_undo_redo_chnage_action;
+;

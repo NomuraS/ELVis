@@ -248,7 +248,7 @@ elm_main_sequent.ports.output4randomFormula_provable.subscribe(function ($model)
 			send_info2elm_proof_draw();
 		}
 	}, false);
-})
+});
 
 function json4elm(): any {
 	const _random_number: number = Date.now(); //Math.floor(Math.random() * 10000);//

@@ -65,7 +65,6 @@ export let AGENT_COLOR_K: AgentColor[] = [
 export let NODES = new Vis.DataSet();
 export let EDGES = new Vis.DataSet();
 
-
 function makeRefl($agt: string[], $listWorld: string[]): Relation[] {
       return _.chain(Util.cartesianProduct([$agt, $listWorld]))
             .map((pair: string[]) => { return { "agent": _.nth(pair, 0), "from": _.nth(pair, 1), "to": _.nth(pair, 1) } })
@@ -209,13 +208,13 @@ export let OPTION_KRIPKE: Vis.Options = {
                   edit: 'Edit',
                   del: 'Delete selected',
                   back: 'Back',
-                  addNode: 'Add State',
+                  addNode: 'Add World',
                   addEdge: 'Add Arrow of&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ',
-                  editNode: 'Edit State',
+                  editNode: 'Edit World',
                   editEdge: 'Edit Arrow',
-                  addDescription: 'Click in an empty space to place a new state.',
-                  edgeDescription: 'Click on a state and drag the arrow to another state to connect them.',
-                  editEdgeDescription: 'Click on the control points and drag them to a state to connect to it.',
+                  addDescription: 'Click in an empty space to place a new world.',
+                  edgeDescription: 'Click on a world and drag the arrow to another world.',
+                  editEdgeDescription: 'Click on the control points and drag them to a world to connect to it.',
                   createEdgeError: 'Cannot link arrows to a cluster.',
                   deleteClusterError: 'Clusters cannot be deleted.',
                   editClusterError: 'Clusters cannot be edited.'
@@ -306,13 +305,13 @@ export function watchAddNodefunction(
       const _saveButton_kripke = document.getElementById('saveButton_kripke')//.onclick = saveData_kripke.bind(this, $data, $callback);
       const _cancelButton_kripke = document.getElementById('cancelButton_kripke')//.onclick = clearPopUp_kripke.bind(null);
       const _popUp_node_kripke = document.getElementById('network-popUp_node_kripke')//.style.display = 'block';
-      const clearPopUp_kripke = (): void => { //impure
+      const _clearPopUp_kripke = (): void => { //impure
             _saveButton_kripke.onclick = null;
             _cancelButton_kripke.onclick = null;
             _popUp_node_kripke.style.display = 'none';
       }
 
-      const saveData_kripke = ($data: any, $callback: any): void => { // impure
+      const _saveData_kripke = ($data: any, $callback: any): void => { // impure
             $data.label = (document.getElementById('node-label_kripke') as HTMLInputElement).value
             const _domain2: string[] = _.map($nodes.get(), (x: Vis.Node) => x.label)
             $data.id = $data.label
@@ -321,36 +320,36 @@ export function watchAddNodefunction(
                   //htmlのpanelに反映する
                   nodeEdge2writeTopPanel($nodes, $edges)
                   //figureに反映する
-                  clearPopUp_kripke();
+                  _clearPopUp_kripke();
                   $callback($data);
             } else {
                   alert(`The world '${$data.label}' already exists. Change the name.`)
             }
       }
       Util.writeDOM_value('#node-label_kripke')($nod.label)
-      _saveButton_kripke.onclick = saveData_kripke.bind(this, $nod, $func);
-      _cancelButton_kripke.onclick = clearPopUp_kripke.bind(null);
+      _saveButton_kripke.onclick = _saveData_kripke.bind(this, $nod, $func);
+      _cancelButton_kripke.onclick = _clearPopUp_kripke.bind(null);
       _popUp_node_kripke.style.display = 'block';
 }
 // watch edges --not pure
 export function watchAddEdgefunction($rel: Relation, $func: any, $nodes, $edges: Vis.DataSet<Vis.Edge>, $agent) { // impure: addEdge, alert
-      const agtInput = $agent//= $id_of_input_for_arrow_backup()
-      const addingArrow = `${$rel.from}_${$rel.to}_${agtInput}`
-      const addEdge_checked = () => {
+      const _agtInput = $agent//= $id_of_input_for_arrow_backup()
+      const _addingArrow = `${$rel.from}_${$rel.to}_${_agtInput}`
+      const _addEdge_checked = () => {
             $edges.add({
                   from: $rel.from,
                   to: $rel.to,
-                  label: agtInput,
-                  color: Ac.agColor(agtInput, AGENT_COLOR_K),
-                  id: addingArrow
+                  label: _agtInput,
+                  color: Ac.agColor(_agtInput, AGENT_COLOR_K),
+                  id: _addingArrow
             })
       };
-      if (!_.includes($edges.getIds(), addingArrow)) {
-            addEdge_checked()
+      if (!_.includes($edges.getIds(), _addingArrow)) {
+            _addEdge_checked()
             nodeEdge2writeTopPanel($nodes, $edges)
             $func($rel);
       } else {
-            alert(`The arrow of 'agent ${agtInput} from ${$rel.from} to ${$rel.to}' already exists. Change the name.`)
+            alert(`The arrow of 'agent ${_agtInput} from ${$rel.from} to ${$rel.to}' already exists. Change the name.`)
       }
 }
 
@@ -358,29 +357,27 @@ export function watchAddEdgefunction($rel: Relation, $func: any, $nodes, $edges:
 // kripke editor
 //---------------------------------------------------------------------------------------
 export function rel2anotherRel($rel: Relation[]): Relation2[] { // pure
-      const customizer = (x: any[], y: any[]) => {
+      const _customizer = (x: any[], y: any[]) => {
             if (_.isArray(x)) { return _.uniq(x.concat(y)) }
             else { return undefined }
       }
-      const ff = (r: Relation) => {
+      const _ff = (r: Relation) => {
             return {
                   agent: r.agent,
                   relation: ["(" + r.from + "," + r.to + ")"]
             }
       }
-      const bundleRel = (x: Relation2[]): Relation2 => {
-            const gg = (z: any, w: any) => _.mergeWith(z, w, customizer)
+      const _bundleRel = (x: Relation2[]): Relation2 => {
+            const gg = (z: any, w: any) => _.mergeWith(z, w, _customizer)
             return _.reduce(x, gg, {})
       }
       return _.chain($rel)
-            .map(ff)
+            .map(_ff)
             .groupBy('agent')
             .sortBy('agent')
-            .map(bundleRel)
+            .map(_bundleRel)
             .value()
 }
-
-
 
 // export function kripkeObject2string_withoutBar($kripkeModel: KripkeModel): string { // pure 
 export function kripkeObject2string($kripkeModel: KripkeModel): string { // pure 
@@ -554,12 +551,8 @@ export function graph2kripkeObject($name: string, $nodes: Vis.DataSet<Vis.Node>,
       }
 }
 
-
-// console.log(string2number("p&p")) 
-
 export function addEvent2kripkeList($km: KripkeModel, $nodes, $edges, $change_val: boolean): void {
 
-      // const modifyName = (str) => str.replace(/\&|\(|\)|\<|\>|\;|\||\*| |\~/g, "")
       const modifyName = (str) => Util.string2number(str)
       const _kmname = modifyName($km.name)
 
@@ -743,3 +736,75 @@ export function json2kripkeData($json: any) {
             .value()
       $('.close_panel').hide();
 }
+
+//------------------------------------------------------------
+// undo redo
+//------------------------------------------------------------
+//history
+export let history_list_back_kripke = [];
+export let history_list_forward_kripke = [];
+
+export function change_history_back_kripke() {
+      history_list_back_kripke.unshift({
+            nodes_his: NODES.get(NODES.getIds()),
+            edges_his: EDGES.get(EDGES.getIds())
+      });
+      //reset forward history
+      history_list_forward_kripke = [];
+      // apply css
+      css_for_undo_redo_chnage_kripke();
+}
+export function redo_css_active_kripke() {
+      $("#button_undo_kripke").css({
+            color: "#878787",
+            cursor: "pointer"
+      });
+};
+export function undo_css_active_kripke() {
+      $("#button_redo_kripke").css({
+            color: "#878787",
+            cursor: "pointer"
+      });
+};
+
+export function redo_css_inactive_kripke() {
+      $("#button_undo_kripke").css({
+            color: "#EBEBEB",
+            cursor: "default"
+      });
+};
+
+export function undo_css_inactive_kripke() {
+      $("#button_redo_kripke").css({
+            color: "#EBEBEB",
+            cursor: "default"
+      });
+};
+
+export function css_for_undo_redo_chnage_kripke() {
+      if (history_list_back_kripke.length === 1) {
+            redo_css_inactive_kripke();
+      } else {
+            redo_css_active_kripke();
+      };
+      if (history_list_forward_kripke.length === 0) {
+            undo_css_inactive_kripke();
+      } else {
+            undo_css_active_kripke();
+      };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

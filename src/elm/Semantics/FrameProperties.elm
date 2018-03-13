@@ -8,6 +8,19 @@ type alias Domain = List String
 type alias Agents = List Agent
 type alias Relation = List (Agent,String,String)
 
+--Admissibility of Logical Inference Rules, p171
+--4.1
+--\forall x \exists y(xRy & yRy & \forall(yRz \to z=y))
+--4.2
+--\forall x,y,z(xRy & xRy \to \exists (yRw & xRw))
+--4.3
+--weekly connected
+--\forall x,y,z(xRy & xRz\to yRz v zRy)
+--(connected)
+--\forall x,y(xRy & xRz)
+
+
+
 -----------------------------------------------------------------
   -- functions for action relations
 -----------------------------------------------------------------

@@ -73,7 +73,8 @@ select {
 
 .button_for_frameProperty {
     width: 100%;
-    position: relative;
+        min-width: 152px;
+    /*position: relative;*/
     /*right: 10px;*/
     /* width: 200px; */
 }
@@ -308,7 +309,7 @@ div.name_of_action p {
 #id_of_input_for_arrow_kripke,
 #id_of_input_for_arrow {
 	/*margin-bottom: 3px;*/
-	/*margin-top: 3px;*/
+	margin-top: 3px;
 	width: 40px;
 }
 

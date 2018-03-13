@@ -39,8 +39,8 @@ export interface AgentColor {
 }
 
 // constant symbols
-const $$NODES_COLOR: string = "mediumturquoise"
-export const $$BACKGROUND_COLOR: string = "whitesmoke"
+const $NODES_COLOR: string = "mediumturquoise"
+export const $BACKGROUND_COLOR: string = "whitesmoke"
 export const $A1 = (document.getElementById('node-label_action') as HTMLInputElement)//.value = $data.label;
 export const $A2 = document.getElementById('saveButton_action')//.onclick = saveData_action.bind(this, $data, $callback);
 export const $A3 = document.getElementById('cancelButton_action')//.onclick = clearPopUp_action.bind(null);
@@ -206,8 +206,8 @@ export let OPTION_ACTION: Vis.Options = {
                   editNode: 'Edit State',
                   editEdge: 'Edit Arrow',
                   addDescription: 'Click in an empty space to place a new state.',
-                  edgeDescription: 'Click on a state and drag the arrow to another state to connect them.',
-                  editEdgeDescription: 'Click on the control points and drag them to a state to connect to it.',
+                  edgeDescription: 'Click on a state and drag the arrow to another state.',
+                  editEdgeDescription: 'Click on the control points and drag them to a state.',
                   createEdgeError: 'Cannot link arrows to a cluster.',
                   deleteClusterError: 'Clusters cannot be deleted.',
                   editClusterError: 'Clusters cannot be edited.'
@@ -216,7 +216,7 @@ export let OPTION_ACTION: Vis.Options = {
       nodes: {
             shape: 'ellipse',
             size: 15,
-            color: $$NODES_COLOR,
+            color: $NODES_COLOR,
             font: {
                   // color:'#cae6fc',
                   // strokeWidth:2,
@@ -683,3 +683,76 @@ export function json2actionData($json: any) {
             .value()
       $('.close_panel').hide();
 }
+
+
+//------------------------------------------------------------
+// undo redo
+//------------------------------------------------------------
+//history
+export let history_list_back_action = [];
+export let history_list_forward_action = [];
+
+export function change_history_back_action() {
+      history_list_back_action.unshift({
+            nodes_his: NODES.get(NODES.getIds()),
+            edges_his: EDGES.get(EDGES.getIds())
+      });
+      //reset forward history
+      history_list_forward_action = [];
+      // apply css
+      css_for_undo_redo_chnage_action();
+      console.log(EDGES)//aaa
+}
+export function redo_css_active_action() {
+      $("#button_undo_action").css({
+            color: "#878787",
+            cursor: "pointer"
+      });
+};
+export function undo_css_active_action() {
+      $("#button_redo_action").css({
+            color: "#878787",
+            cursor: "pointer"
+      });
+};
+
+export function redo_css_inactive_action() {
+      $("#button_undo_action").css({
+            color: "#EBEBEB",
+            cursor: "default"
+      });
+};
+
+export function undo_css_inactive_action() {
+      $("#button_redo_action").css({
+            color: "#EBEBEB",
+            cursor: "default"
+      });
+};
+
+export function css_for_undo_redo_chnage_action() {
+      if (history_list_back_action.length === 1) {
+            redo_css_inactive_action();
+      } else {
+            redo_css_active_action();
+      };
+      if (history_list_forward_action.length === 0) {
+            undo_css_inactive_action();
+      } else {
+            undo_css_active_action();
+      };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+

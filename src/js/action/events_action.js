@@ -279,7 +279,7 @@ $INPUT_CHECK_ACTION2.addEventListener('change', function () {
         else {
             return false;
         } })
-            .forEach(function (y) { return Ac.EDGES.update({ id: y.id, color: Ac.$$BACKGROUND_COLOR, font: { color: Ac.$$BACKGROUND_COLOR } }); })
+            .forEach(function (y) { return Ac.EDGES.update({ id: y.id, color: Ac.$BACKGROUND_COLOR, font: { color: Ac.$BACKGROUND_COLOR } }); })
             .value();
     }
     else {
@@ -384,3 +384,88 @@ Rx.Observable.fromEvent($FILE_ACTION, 'change')
         alert("load succeeded. See Action Model List.");
     }
 }, function (error) { return console.log(error); }, function () { return console.log('load completed'); });
+$(document).ready(function () {
+    Ac.NODES.on("add", Ac.change_history_back_action);
+    Ac.NODES.on("remove", Ac.change_history_back_action);
+    Ac.EDGES.on("add", Ac.change_history_back_action);
+    Ac.EDGES.on("remove", Ac.change_history_back_action);
+    Ac.history_list_back_action.push({
+        nodes_his: Ac.NODES.get(Ac.NODES.getIds()),
+        edges_his: Ac.EDGES.get(Ac.EDGES.getIds())
+    });
+    Ac.css_for_undo_redo_chnage_action();
+});
+$("#button_undo_action").on("click", function () {
+    if (Ac.history_list_back_action.length > 1) {
+        var current_nodes = Ac.NODES.get(Ac.NODES.getIds());
+        var current_edges = Ac.EDGES.get(Ac.EDGES.getIds());
+        var previous_nodes = Ac.history_list_back_action[1].nodes_his;
+        var previous_edges = Ac.history_list_back_action[1].edges_his;
+        Ac.NODES.off("add", Ac.change_history_back_action);
+        Ac.NODES.off("remove", Ac.change_history_back_action);
+        Ac.EDGES.off("add", Ac.change_history_back_action);
+        Ac.EDGES.off("remove", Ac.change_history_back_action);
+        if (current_nodes.length > previous_nodes.length) {
+            var previous_nodes_diff = _.differenceBy(current_nodes, previous_nodes, "id");
+            Ac.NODES.remove(previous_nodes_diff);
+        }
+        else {
+            Ac.NODES.update(previous_nodes);
+        }
+        if (current_edges.length > previous_edges.length) {
+            var previous_edges_diff = _.differenceBy(current_edges, previous_edges, "id");
+            Ac.EDGES.remove(previous_edges_diff);
+        }
+        else {
+            Ac.EDGES.update(previous_edges);
+        }
+        Ac.NODES.on("add", Ac.change_history_back_action);
+        Ac.NODES.on("remove", Ac.change_history_back_action);
+        Ac.EDGES.on("add", Ac.change_history_back_action);
+        Ac.EDGES.on("remove", Ac.change_history_back_action);
+        Ac.history_list_forward_action.unshift({
+            nodes_his: Ac.history_list_back_action[0].nodes_his,
+            edges_his: Ac.history_list_back_action[0].edges_his
+        });
+        Ac.history_list_back_action.shift();
+        Ac.css_for_undo_redo_chnage_action();
+        Ac.nodeEdge2writeTopPanel(Ac.NODES, Ac.EDGES);
+    }
+});
+$("#button_redo_action").on("click", function () {
+    if (Ac.history_list_forward_action.length > 0) {
+        var current_nodes = Ac.NODES.get(Ac.NODES.getIds());
+        var current_edges = Ac.EDGES.get(Ac.EDGES.getIds());
+        var forward_nodes = Ac.history_list_forward_action[0].nodes_his;
+        var forward_edges = Ac.history_list_forward_action[0].edges_his;
+        Ac.NODES.off("add", Ac.change_history_back_action);
+        Ac.NODES.off("remove", Ac.change_history_back_action);
+        Ac.EDGES.off("add", Ac.change_history_back_action);
+        Ac.EDGES.off("remove", Ac.change_history_back_action);
+        if (current_nodes.length > forward_nodes.length) {
+            var forward_nodes_diff = _.differenceBy(current_nodes, forward_nodes, "id");
+            Ac.NODES.remove(forward_nodes_diff);
+        }
+        else {
+            Ac.NODES.update(forward_nodes);
+        }
+        if (current_edges.length > forward_edges.length) {
+            var forward_edges_diff = _.differenceBy(current_edges, forward_edges, "id");
+            Ac.EDGES.remove(forward_edges_diff);
+        }
+        else {
+            Ac.EDGES.update(forward_edges);
+        }
+        Ac.NODES.on("add", Ac.change_history_back_action);
+        Ac.NODES.on("remove", Ac.change_history_back_action);
+        Ac.EDGES.on("add", Ac.change_history_back_action);
+        Ac.EDGES.on("remove", Ac.change_history_back_action);
+        Ac.history_list_back_action.unshift({
+            nodes_his: Ac.history_list_forward_action[0].nodes_his,
+            edges_his: Ac.history_list_forward_action[0].edges_his
+        });
+        Ac.history_list_forward_action.shift();
+        Ac.css_for_undo_redo_chnage_action();
+        Ac.nodeEdge2writeTopPanel(Ac.NODES, Ac.EDGES);
+    }
+});

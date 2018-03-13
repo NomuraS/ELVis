@@ -139,13 +139,13 @@ exports.OPTION_KRIPKE = {
             edit: 'Edit',
             del: 'Delete selected',
             back: 'Back',
-            addNode: 'Add State',
+            addNode: 'Add World',
             addEdge: 'Add Arrow of&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ',
-            editNode: 'Edit State',
+            editNode: 'Edit World',
             editEdge: 'Edit Arrow',
-            addDescription: 'Click in an empty space to place a new state.',
-            edgeDescription: 'Click on a state and drag the arrow to another state to connect them.',
-            editEdgeDescription: 'Click on the control points and drag them to a state to connect to it.',
+            addDescription: 'Click in an empty space to place a new world.',
+            edgeDescription: 'Click on a world and drag the arrow to another world.',
+            editEdgeDescription: 'Click on the control points and drag them to a world to connect to it.',
             createEdgeError: 'Cannot link arrows to a cluster.',
             deleteClusterError: 'Clusters cannot be deleted.',
             editClusterError: 'Clusters cannot be edited.'
@@ -204,19 +204,19 @@ function watchAddNodefunction($nod, $func, $nodes, $edges) {
     var _saveButton_kripke = document.getElementById('saveButton_kripke');
     var _cancelButton_kripke = document.getElementById('cancelButton_kripke');
     var _popUp_node_kripke = document.getElementById('network-popUp_node_kripke');
-    var clearPopUp_kripke = function () {
+    var _clearPopUp_kripke = function () {
         _saveButton_kripke.onclick = null;
         _cancelButton_kripke.onclick = null;
         _popUp_node_kripke.style.display = 'none';
     };
-    var saveData_kripke = function ($data, $callback) {
+    var _saveData_kripke = function ($data, $callback) {
         $data.label = document.getElementById('node-label_kripke').value;
         var _domain2 = _.map($nodes.get(), function (x) { return x.label; });
         $data.id = $data.label;
         if (_domain2.indexOf($data.label) === -1) {
             $nodes.add($data);
             nodeEdge2writeTopPanel($nodes, $edges);
-            clearPopUp_kripke();
+            _clearPopUp_kripke();
             $callback($data);
         }
         else {
@@ -224,35 +224,35 @@ function watchAddNodefunction($nod, $func, $nodes, $edges) {
         }
     };
     Util.writeDOM_value('#node-label_kripke')($nod.label);
-    _saveButton_kripke.onclick = saveData_kripke.bind(this, $nod, $func);
-    _cancelButton_kripke.onclick = clearPopUp_kripke.bind(null);
+    _saveButton_kripke.onclick = _saveData_kripke.bind(this, $nod, $func);
+    _cancelButton_kripke.onclick = _clearPopUp_kripke.bind(null);
     _popUp_node_kripke.style.display = 'block';
 }
 exports.watchAddNodefunction = watchAddNodefunction;
 function watchAddEdgefunction($rel, $func, $nodes, $edges, $agent) {
-    var agtInput = $agent;
-    var addingArrow = $rel.from + "_" + $rel.to + "_" + agtInput;
-    var addEdge_checked = function () {
+    var _agtInput = $agent;
+    var _addingArrow = $rel.from + "_" + $rel.to + "_" + _agtInput;
+    var _addEdge_checked = function () {
         $edges.add({
             from: $rel.from,
             to: $rel.to,
-            label: agtInput,
-            color: Ac.agColor(agtInput, exports.AGENT_COLOR_K),
-            id: addingArrow
+            label: _agtInput,
+            color: Ac.agColor(_agtInput, exports.AGENT_COLOR_K),
+            id: _addingArrow
         });
     };
-    if (!_.includes($edges.getIds(), addingArrow)) {
-        addEdge_checked();
+    if (!_.includes($edges.getIds(), _addingArrow)) {
+        _addEdge_checked();
         nodeEdge2writeTopPanel($nodes, $edges);
         $func($rel);
     }
     else {
-        alert("The arrow of 'agent " + agtInput + " from " + $rel.from + " to " + $rel.to + "' already exists. Change the name.");
+        alert("The arrow of 'agent " + _agtInput + " from " + $rel.from + " to " + $rel.to + "' already exists. Change the name.");
     }
 }
 exports.watchAddEdgefunction = watchAddEdgefunction;
 function rel2anotherRel($rel) {
-    var customizer = function (x, y) {
+    var _customizer = function (x, y) {
         if (_.isArray(x)) {
             return _.uniq(x.concat(y));
         }
@@ -260,21 +260,21 @@ function rel2anotherRel($rel) {
             return undefined;
         }
     };
-    var ff = function (r) {
+    var _ff = function (r) {
         return {
             agent: r.agent,
             relation: ["(" + r.from + "," + r.to + ")"]
         };
     };
-    var bundleRel = function (x) {
-        var gg = function (z, w) { return _.mergeWith(z, w, customizer); };
+    var _bundleRel = function (x) {
+        var gg = function (z, w) { return _.mergeWith(z, w, _customizer); };
         return _.reduce(x, gg, {});
     };
     return _.chain($rel)
-        .map(ff)
+        .map(_ff)
         .groupBy('agent')
         .sortBy('agent')
-        .map(bundleRel)
+        .map(_bundleRel)
         .value();
 }
 exports.rel2anotherRel = rel2anotherRel;
@@ -571,3 +571,64 @@ function json2kripkeData($json) {
     $('.close_panel').hide();
 }
 exports.json2kripkeData = json2kripkeData;
+exports.history_list_back_kripke = [];
+exports.history_list_forward_kripke = [];
+function change_history_back_kripke() {
+    exports.history_list_back_kripke.unshift({
+        nodes_his: exports.NODES.get(exports.NODES.getIds()),
+        edges_his: exports.EDGES.get(exports.EDGES.getIds())
+    });
+    exports.history_list_forward_kripke = [];
+    css_for_undo_redo_chnage_kripke();
+}
+exports.change_history_back_kripke = change_history_back_kripke;
+function redo_css_active_kripke() {
+    $("#button_undo_kripke").css({
+        color: "#878787",
+        cursor: "pointer"
+    });
+}
+exports.redo_css_active_kripke = redo_css_active_kripke;
+;
+function undo_css_active_kripke() {
+    $("#button_redo_kripke").css({
+        color: "#878787",
+        cursor: "pointer"
+    });
+}
+exports.undo_css_active_kripke = undo_css_active_kripke;
+;
+function redo_css_inactive_kripke() {
+    $("#button_undo_kripke").css({
+        color: "#EBEBEB",
+        cursor: "default"
+    });
+}
+exports.redo_css_inactive_kripke = redo_css_inactive_kripke;
+;
+function undo_css_inactive_kripke() {
+    $("#button_redo_kripke").css({
+        color: "#EBEBEB",
+        cursor: "default"
+    });
+}
+exports.undo_css_inactive_kripke = undo_css_inactive_kripke;
+;
+function css_for_undo_redo_chnage_kripke() {
+    if (exports.history_list_back_kripke.length === 1) {
+        redo_css_inactive_kripke();
+    }
+    else {
+        redo_css_active_kripke();
+    }
+    ;
+    if (exports.history_list_forward_kripke.length === 0) {
+        undo_css_inactive_kripke();
+    }
+    else {
+        undo_css_active_kripke();
+    }
+    ;
+}
+exports.css_for_undo_redo_chnage_kripke = css_for_undo_redo_chnage_kripke;
+;
