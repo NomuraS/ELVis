@@ -113,29 +113,29 @@ var _user$project$PAL_sequent$ruleGPAL = {
 								_0: _elm_lang$core$Native_Utils.update(
 									seq,
 									{
-										leftForm: A2(
+										leftForm: _p6,
+										rightForm: A2(
 											_elm_lang$core$Basics_ops['++'],
 											{
 												ctor: '::',
-												_0: add1,
+												_0: add2,
 												_1: {ctor: '[]'}
 											},
-											_p6)
+											seq.rightForm)
 									}),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$core$Native_Utils.update(
 										seq,
 										{
-											leftForm: _p6,
-											rightForm: A2(
+											leftForm: A2(
 												_elm_lang$core$Basics_ops['++'],
 												{
 													ctor: '::',
-													_0: add2,
+													_0: add1,
 													_1: {ctor: '[]'}
 												},
-												seq.rightForm)
+												_p6)
 										}),
 									_1: {ctor: '[]'}
 								}
@@ -541,8 +541,6 @@ var _user$project$PAL_sequent$ruleGPAL = {
 												if (((_p36.ctor === 'Left') && (_p36._0.ctor === 'And')) && (_p36._0._1.ctor === 'Announce')) {
 													var _p37 = _p36._0._0;
 													if (_elm_lang$core$Native_Utils.eq(_p37, _p36._0._1._0)) {
-														return _elm_lang$core$Maybe$Nothing;
-													} else {
 														var add1 = _user$project$Common_sequent$LabelForm(
 															{
 																ctor: '_Tuple4',
@@ -579,6 +577,8 @@ var _user$project$PAL_sequent$ruleGPAL = {
 																	}),
 																_1: {ctor: '[]'}
 															});
+													} else {
+														return _elm_lang$core$Maybe$Nothing;
 													}
 												} else {
 													return _elm_lang$core$Maybe$Nothing;
@@ -601,8 +601,6 @@ var _user$project$PAL_sequent$ruleGPAL = {
 													if (((_p39.ctor === 'Left') && (_p39._0.ctor === 'And')) && (_p39._0._1.ctor === 'Announce')) {
 														var _p40 = _p39._0._0;
 														if (_elm_lang$core$Native_Utils.eq(_p40, _p39._0._1._0)) {
-															return _elm_lang$core$Maybe$Nothing;
-														} else {
 															var add1 = _user$project$Common_sequent$LabelForm(
 																{
 																	ctor: '_Tuple4',
@@ -639,6 +637,8 @@ var _user$project$PAL_sequent$ruleGPAL = {
 																		}),
 																	_1: {ctor: '[]'}
 																});
+														} else {
+															return _elm_lang$core$Maybe$Nothing;
 														}
 													} else {
 														return _elm_lang$core$Maybe$Nothing;
@@ -659,196 +659,6 @@ var _user$project$PAL_sequent$ruleGPAL = {
 		}
 	}
 };
-var _user$project$PAL_sequent$prop425 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$And,
-			_user$project$Common_sequent$aa,
-			_user$project$Common_syntax$Not(
-				A2(_user$project$Common_syntax$Announce2, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb))),
-		A2(
-			_user$project$Common_syntax$Announce2,
-			_user$project$Common_sequent$aa,
-			_user$project$Common_syntax$Not(_user$project$Common_sequent$bb))));
-var _user$project$PAL_sequent$prop421 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Announce2,
-		A2(
-			_user$project$Common_syntax$And,
-			_user$project$Common_sequent$aa,
-			_user$project$Common_syntax$Not(
-				A2(_user$project$Common_syntax$Box, 'b', _user$project$Common_sequent$aa))),
-		A2(
-			_user$project$Common_syntax$Dia,
-			'a',
-			A2(
-				_user$project$Common_syntax$Dia,
-				'b',
-				_user$project$Common_syntax$Not(_user$project$Common_sequent$aa)))));
-var _user$project$PAL_sequent$prop419c = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce2,
-			_user$project$Common_sequent$aa,
-			A2(_user$project$Common_syntax$Dia, 'a', _user$project$Common_sequent$bb)),
-		A2(
-			_user$project$Common_syntax$And,
-			_user$project$Common_sequent$aa,
-			A2(
-				_user$project$Common_syntax$Dia,
-				'a',
-				A2(_user$project$Common_syntax$Announce2, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb)))));
-var _user$project$PAL_sequent$prop419b = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce2,
-			_user$project$Common_sequent$aa,
-			A2(_user$project$Common_syntax$Box, 'a', _user$project$Common_sequent$bb)),
-		A2(
-			_user$project$Common_syntax$And,
-			_user$project$Common_sequent$aa,
-			A2(
-				_user$project$Common_syntax$Box,
-				'a',
-				A2(
-					_user$project$Common_syntax$Imply,
-					_user$project$Common_sequent$aa,
-					A2(_user$project$Common_syntax$Announce2, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb))))));
-var _user$project$PAL_sequent$prop419a = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			_user$project$Common_sequent$aa,
-			A2(_user$project$Common_syntax$Box, 'a', _user$project$Common_sequent$bb)),
-		A2(
-			_user$project$Common_syntax$Imply,
-			_user$project$Common_sequent$aa,
-			A2(
-				_user$project$Common_syntax$Box,
-				'a',
-				A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb)))));
-var _user$project$PAL_sequent$prop3 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb),
-		_user$project$Common_syntax$Not(
-			A2(
-				_user$project$Common_syntax$Announce2,
-				_user$project$Common_sequent$aa,
-				_user$project$Common_syntax$Not(_user$project$Common_sequent$bb)))));
-var _user$project$PAL_sequent$prop2 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			_user$project$Common_sequent$aa,
-			A2(
-				_user$project$Common_syntax$Announce,
-				_user$project$Common_sequent$bb,
-				A2(
-					_user$project$Common_syntax$And,
-					A2(_user$project$Common_syntax$Box, 'a', _user$project$Common_sequent$cc),
-					_user$project$Common_sequent$dd))),
-		A2(
-			_user$project$Common_syntax$Announce,
-			A2(
-				_user$project$Common_syntax$And,
-				_user$project$Common_sequent$aa,
-				A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb)),
-			A2(
-				_user$project$Common_syntax$And,
-				A2(_user$project$Common_syntax$Box, 'a', _user$project$Common_sequent$cc),
-				_user$project$Common_sequent$dd))));
-var _user$project$PAL_sequent$prop1p = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			A2(_user$project$Common_syntax$And, _user$project$Common_sequent$p1, _user$project$Common_sequent$p1),
-			_user$project$Common_sequent$p2),
-		A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$p1, _user$project$Common_sequent$p2)));
-var _user$project$PAL_sequent$prop1 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			A2(_user$project$Common_syntax$And, _user$project$Common_sequent$aa, _user$project$Common_sequent$aa),
-			_user$project$Common_sequent$bb),
-		A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb)));
-var _user$project$PAL_sequent$ra5p = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			_user$project$Common_sequent$p1,
-			A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$p2, _user$project$Common_sequent$p3)),
-		A2(
-			_user$project$Common_syntax$Announce,
-			A2(
-				_user$project$Common_syntax$And,
-				_user$project$Common_sequent$p1,
-				A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$p1, _user$project$Common_sequent$p2)),
-			_user$project$Common_sequent$p3)));
-var _user$project$PAL_sequent$ra5 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			_user$project$Common_sequent$aa,
-			A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$bb, _user$project$Common_sequent$cc)),
-		A2(
-			_user$project$Common_syntax$Announce,
-			A2(
-				_user$project$Common_syntax$And,
-				_user$project$Common_sequent$aa,
-				A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb)),
-			_user$project$Common_sequent$cc)));
-var _user$project$PAL_sequent$ra4 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			_user$project$Common_sequent$aa,
-			A2(_user$project$Common_syntax$Box, 'a', _user$project$Common_sequent$bb)),
-		A2(
-			_user$project$Common_syntax$Imply,
-			_user$project$Common_sequent$aa,
-			A2(
-				_user$project$Common_syntax$Box,
-				'a',
-				A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb)))));
-var _user$project$PAL_sequent$ra3 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			_user$project$Common_sequent$aa,
-			_user$project$Common_syntax$Not(_user$project$Common_sequent$bb)),
-		A2(
-			_user$project$Common_syntax$Imply,
-			_user$project$Common_sequent$aa,
-			_user$project$Common_syntax$Not(
-				A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb)))));
-var _user$project$PAL_sequent$ra2 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(
-			_user$project$Common_syntax$Announce,
-			_user$project$Common_sequent$aa,
-			A2(_user$project$Common_syntax$Imply, _user$project$Common_sequent$bb, _user$project$Common_sequent$cc)),
-		A2(
-			_user$project$Common_syntax$Imply,
-			A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$bb),
-			A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$cc))));
-var _user$project$PAL_sequent$ra1 = _user$project$Common_sequent$formula2seq(
-	A2(
-		_user$project$Common_syntax$Iff,
-		A2(_user$project$Common_syntax$Announce, _user$project$Common_sequent$aa, _user$project$Common_sequent$p2),
-		A2(_user$project$Common_syntax$Imply, _user$project$Common_sequent$aa, _user$project$Common_sequent$p2)));
 var _user$project$PAL_sequent$isPALformula = function (f) {
 	isPALformula:
 	while (true) {
@@ -893,3 +703,200 @@ var _user$project$PAL_sequent$isPALformula = function (f) {
 		}
 	}
 };
+var _user$project$PAL_sequent$p3 = _user$project$Common_sequent$p3;
+var _user$project$PAL_sequent$p2 = _user$project$Common_sequent$p2;
+var _user$project$PAL_sequent$p1 = _user$project$Common_sequent$p1;
+var _user$project$PAL_sequent$ra5p = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			_user$project$PAL_sequent$p1,
+			A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$p2, _user$project$PAL_sequent$p3)),
+		A2(
+			_user$project$Common_syntax$Announce,
+			A2(
+				_user$project$Common_syntax$And,
+				_user$project$PAL_sequent$p1,
+				A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$p1, _user$project$PAL_sequent$p2)),
+			_user$project$PAL_sequent$p3)));
+var _user$project$PAL_sequent$prop1p = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			A2(_user$project$Common_syntax$And, _user$project$PAL_sequent$p1, _user$project$PAL_sequent$p1),
+			_user$project$PAL_sequent$p2),
+		A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$p1, _user$project$PAL_sequent$p2)));
+var _user$project$PAL_sequent$dd = _user$project$Common_sequent$dd;
+var _user$project$PAL_sequent$cc = _user$project$Common_sequent$cc;
+var _user$project$PAL_sequent$bb = _user$project$Common_sequent$bb;
+var _user$project$PAL_sequent$aa = _user$project$Common_sequent$aa;
+var _user$project$PAL_sequent$ra1 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$p2),
+		A2(_user$project$Common_syntax$Imply, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$p2)));
+var _user$project$PAL_sequent$ra2 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			_user$project$PAL_sequent$aa,
+			A2(_user$project$Common_syntax$Imply, _user$project$PAL_sequent$bb, _user$project$PAL_sequent$cc)),
+		A2(
+			_user$project$Common_syntax$Imply,
+			A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb),
+			A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$cc))));
+var _user$project$PAL_sequent$ra3 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			_user$project$PAL_sequent$aa,
+			_user$project$Common_syntax$Not(_user$project$PAL_sequent$bb)),
+		A2(
+			_user$project$Common_syntax$Imply,
+			_user$project$PAL_sequent$aa,
+			_user$project$Common_syntax$Not(
+				A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb)))));
+var _user$project$PAL_sequent$ra4 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			_user$project$PAL_sequent$aa,
+			A2(_user$project$Common_syntax$Box, 'a', _user$project$PAL_sequent$bb)),
+		A2(
+			_user$project$Common_syntax$Imply,
+			_user$project$PAL_sequent$aa,
+			A2(
+				_user$project$Common_syntax$Box,
+				'a',
+				A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb)))));
+var _user$project$PAL_sequent$ra5 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			_user$project$PAL_sequent$aa,
+			A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$bb, _user$project$PAL_sequent$cc)),
+		A2(
+			_user$project$Common_syntax$Announce,
+			A2(
+				_user$project$Common_syntax$And,
+				_user$project$PAL_sequent$aa,
+				A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb)),
+			_user$project$PAL_sequent$cc)));
+var _user$project$PAL_sequent$prop1 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			A2(_user$project$Common_syntax$And, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$aa),
+			_user$project$PAL_sequent$bb),
+		A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb)));
+var _user$project$PAL_sequent$prop2 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			_user$project$PAL_sequent$aa,
+			A2(
+				_user$project$Common_syntax$Announce,
+				_user$project$PAL_sequent$bb,
+				A2(
+					_user$project$Common_syntax$And,
+					A2(_user$project$Common_syntax$Box, 'a', _user$project$PAL_sequent$cc),
+					_user$project$PAL_sequent$dd))),
+		A2(
+			_user$project$Common_syntax$Announce,
+			A2(
+				_user$project$Common_syntax$And,
+				_user$project$PAL_sequent$aa,
+				A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb)),
+			A2(
+				_user$project$Common_syntax$And,
+				A2(_user$project$Common_syntax$Box, 'a', _user$project$PAL_sequent$cc),
+				_user$project$PAL_sequent$dd))));
+var _user$project$PAL_sequent$prop3 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb),
+		_user$project$Common_syntax$Not(
+			A2(
+				_user$project$Common_syntax$Announce2,
+				_user$project$PAL_sequent$aa,
+				_user$project$Common_syntax$Not(_user$project$PAL_sequent$bb)))));
+var _user$project$PAL_sequent$prop419a = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce,
+			_user$project$PAL_sequent$aa,
+			A2(_user$project$Common_syntax$Box, 'a', _user$project$PAL_sequent$bb)),
+		A2(
+			_user$project$Common_syntax$Imply,
+			_user$project$PAL_sequent$aa,
+			A2(
+				_user$project$Common_syntax$Box,
+				'a',
+				A2(_user$project$Common_syntax$Announce, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb)))));
+var _user$project$PAL_sequent$prop419b = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce2,
+			_user$project$PAL_sequent$aa,
+			A2(_user$project$Common_syntax$Box, 'a', _user$project$PAL_sequent$bb)),
+		A2(
+			_user$project$Common_syntax$And,
+			_user$project$PAL_sequent$aa,
+			A2(
+				_user$project$Common_syntax$Box,
+				'a',
+				A2(
+					_user$project$Common_syntax$Imply,
+					_user$project$PAL_sequent$aa,
+					A2(_user$project$Common_syntax$Announce2, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb))))));
+var _user$project$PAL_sequent$prop419c = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$Announce2,
+			_user$project$PAL_sequent$aa,
+			A2(_user$project$Common_syntax$Dia, 'a', _user$project$PAL_sequent$bb)),
+		A2(
+			_user$project$Common_syntax$And,
+			_user$project$PAL_sequent$aa,
+			A2(
+				_user$project$Common_syntax$Dia,
+				'a',
+				A2(_user$project$Common_syntax$Announce2, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb)))));
+var _user$project$PAL_sequent$prop421 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Announce2,
+		A2(
+			_user$project$Common_syntax$And,
+			_user$project$PAL_sequent$aa,
+			_user$project$Common_syntax$Not(
+				A2(_user$project$Common_syntax$Box, 'b', _user$project$PAL_sequent$aa))),
+		A2(
+			_user$project$Common_syntax$Dia,
+			'a',
+			A2(
+				_user$project$Common_syntax$Dia,
+				'b',
+				_user$project$Common_syntax$Not(_user$project$PAL_sequent$aa)))));
+var _user$project$PAL_sequent$prop425 = _user$project$Common_sequent$formula2seq(
+	A2(
+		_user$project$Common_syntax$Iff,
+		A2(
+			_user$project$Common_syntax$And,
+			_user$project$PAL_sequent$aa,
+			_user$project$Common_syntax$Not(
+				A2(_user$project$Common_syntax$Announce2, _user$project$PAL_sequent$aa, _user$project$PAL_sequent$bb))),
+		A2(
+			_user$project$Common_syntax$Announce2,
+			_user$project$PAL_sequent$aa,
+			_user$project$Common_syntax$Not(_user$project$PAL_sequent$bb))));

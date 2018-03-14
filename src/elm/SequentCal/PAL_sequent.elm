@@ -1,12 +1,17 @@
 module PAL_sequent exposing (..)
 
-import Common_syntax exposing (..)
-import Common_sequent exposing (..)
-import Random_formula exposing (createRandomFormula)
-import Random exposing (initialSeed)
-import List exposing (..)
-import Maybe exposing (withDefault)
-import Either exposing (Either(..))
+import Common_syntax exposing (Formula(..))
+import Common_sequent as CommonSeq exposing (Rule,LabelForm(..),RuleCategory(..),RelAtom(..))
+import List 
+import Either exposing (Either(..)) 
+
+aa = CommonSeq.aa
+bb = CommonSeq.bb
+cc = CommonSeq.cc
+dd = CommonSeq.dd
+p1 = CommonSeq.p1
+p2 = CommonSeq.p2
+p3 = CommonSeq.p3
 
 isPALformula : Formula -> Bool
 isPALformula f = case f of
@@ -29,22 +34,22 @@ isPALformula f = case f of
 -- PAL formulas
 -------------------------------------------------------------------------------------
 --ra1 : Formula
-ra1          =  formula2seq <| Iff (Announce aa p2) (Imply aa p2)
-ra2          =  formula2seq <| Iff (Announce aa (Imply bb cc)) (Imply (Announce aa bb) (Announce aa cc))
-ra3          =  formula2seq <| Iff (Announce aa (Not bb)) (Imply aa (Not (Announce aa bb)))
-ra4          =  formula2seq <| Iff (Announce aa (Box "a"  bb)) (Imply aa (Box "a"  (Announce aa bb)))
-ra5 {-x-}    =  formula2seq <| Iff (Announce aa (Announce bb cc)) (Announce (And aa (Announce aa bb)) cc)
-ra5p         =  formula2seq <| Iff (Announce p1 (Announce p2 p3)) (Announce (And p1 (Announce p1 p2)) p3)
+ra1          =  CommonSeq.formula2seq <| Iff (Announce aa p2) (Imply aa p2)
+ra2          =  CommonSeq.formula2seq <| Iff (Announce aa (Imply bb cc)) (Imply (Announce aa bb) (Announce aa cc))
+ra3          =  CommonSeq.formula2seq <| Iff (Announce aa (Not bb)) (Imply aa (Not (Announce aa bb)))
+ra4          =  CommonSeq.formula2seq <| Iff (Announce aa (Box "a"  bb)) (Imply aa (Box "a"  (Announce aa bb)))
+ra5 {-x-}    =  CommonSeq.formula2seq <| Iff (Announce aa (Announce bb cc)) (Announce (And aa (Announce aa bb)) cc)
+ra5p         =  CommonSeq.formula2seq <| Iff (Announce p1 (Announce p2 p3)) (Announce (And p1 (Announce p1 p2)) p3)
 
-prop1 {-x-}  =  formula2seq <| Iff (Announce (And aa aa) bb) (Announce aa bb)
-prop1p       =  formula2seq <| Iff (Announce (And p1 p1) p2) (Announce p1 p2)
-prop2        =  formula2seq <| Iff (Announce aa (Announce bb (And (Box "a"  cc) dd))) (Announce (And aa (Announce aa bb)) (And (Box "a"  cc) dd))
-prop3        =  formula2seq <| Iff (Announce aa bb) (Not (Announce2 aa (Not bb)))
-prop419a     =  formula2seq <| Iff (Announce aa (Box "a"  bb)) (Imply aa (Box "a"  (Announce aa bb)))
-prop419b     =  formula2seq <| Iff (Announce2 aa (Box "a"  bb)) (And aa (Box "a"  (Imply aa (Announce2 aa bb))))
-prop419c     =  formula2seq <| Iff (Announce2 aa (Dia "a" bb)) (And aa (Dia "a" (Announce2 aa bb)))
-prop421 {-x-}=  formula2seq <| Announce2 (And aa (Not (Box "b"  aa))) (Dia "a" (Dia "b"  (Not aa)))
-prop425      =  formula2seq <| Iff (And aa (Not (Announce2 aa bb))) (Announce2 aa (Not bb))
+prop1 {-x-}  =  CommonSeq.formula2seq <| Iff (Announce (And aa aa) bb) (Announce aa bb)
+prop1p       =  CommonSeq.formula2seq <| Iff (Announce (And p1 p1) p2) (Announce p1 p2)
+prop2        =  CommonSeq.formula2seq <| Iff (Announce aa (Announce bb (And (Box "a"  cc) dd))) (Announce (And aa (Announce aa bb)) (And (Box "a"  cc) dd))
+prop3        =  CommonSeq.formula2seq <| Iff (Announce aa bb) (Not (Announce2 aa (Not bb)))
+prop419a     =  CommonSeq.formula2seq <| Iff (Announce aa (Box "a"  bb)) (Imply aa (Box "a"  (Announce aa bb)))
+prop419b     =  CommonSeq.formula2seq <| Iff (Announce2 aa (Box "a"  bb)) (And aa (Box "a"  (Imply aa (Announce2 aa bb))))
+prop419c     =  CommonSeq.formula2seq <| Iff (Announce2 aa (Dia "a" bb)) (And aa (Dia "a" (Announce2 aa bb)))
+prop421 {-x-}=  CommonSeq.formula2seq <| Announce2 (And aa (Not (Box "b"  aa))) (Dia "a" (Dia "b"  (Not aa)))
+prop425      =  CommonSeq.formula2seq <| Iff (And aa (Not (Announce2 aa bb))) (Announce2 aa (Not bb))
 
 -------------------------------------------------------------------------------------
 -- GPAL rules
@@ -52,7 +57,7 @@ prop425      =  formula2seq <| Iff (And aa (Not (Announce2 aa bb))) (Announce2 a
 
 ruleGPAL  : List Rule
 ruleGPAL =[
-   { priority=atLN
+   { priority=CommonSeq.atLN
     ,category=Rule4LeftFormula
     ,rulename="Lat"
     ,rule = \seq  -> case seq.leftForm of
@@ -63,7 +68,7 @@ ruleGPAL =[
                    ]
                   otherwise -> Nothing }
 
-  ,{ priority=atRN
+  ,{ priority=CommonSeq.atRN
     ,category=Rule4RightFormula
     ,rulename="Rat"
     ,rule = \seq -> case seq.rightForm of
@@ -79,7 +84,7 @@ ruleGPAL =[
                             ]
                    otherwise -> Nothing}
 
-  ,{ priority=annLN
+  ,{ priority=CommonSeq.annLN
     ,category=Rule4LeftFormula
     ,rulename="L[.]"
     ,rule = \seq  -> case seq.leftForm of
@@ -88,13 +93,14 @@ ruleGPAL =[
                      add1 =LabelForm(boxhis,la,annf++[Left p],q)
                      add2 =LabelForm(boxhis,la,annf,p)
                     in
-                      Just [  {seq | leftForm =[add1]++leftt}
-                             ,{seq | leftForm =leftt
-                                    ,rightForm=[add2]++seq.rightForm}
+                      Just [
+                             {seq | leftForm =leftt
+                                    ,rightForm=[add2]++seq.rightForm},
+                             {seq | leftForm =[add1]++leftt}
                            ]
                 otherwise -> Nothing}
 
-  ,{ priority=annRN
+  ,{ priority=CommonSeq.annRN
     ,category=Rule4RightFormula
     ,rulename="R[.]"
     ,rule = \seq  -> case seq.rightForm of
@@ -103,13 +109,14 @@ ruleGPAL =[
                      add1 =LabelForm(boxhis,la,annf,p)
                      add2 =LabelForm(boxhis,la,annf++[Left p],q)
                     in
-                       Just [{seq |   leftForm =[add1]++seq.leftForm
-                                     ,rightForm=[add2]++rightt
+                       Just [
+                              {seq |   leftForm =[add1]++seq.leftForm
+                                      ,rightForm=[add2]++rightt
                            }
                           ]
                 otherwise -> Nothing}
 
-  ,{ priority=ann2LN
+  ,{ priority=CommonSeq.ann2LN
     ,category=Rule4LeftFormula
     ,rulename="L<.>"
     ,rule = \seq  -> case seq.leftForm of
@@ -128,7 +135,7 @@ ruleGPAL =[
                       --      )]
                 otherwise -> Nothing}
 
-  ,{ priority=ann2RN
+  ,{ priority=CommonSeq.ann2RN
     ,category=Rule4RightFormula
     ,rulename="R<.>"
     ,rule = \seq  -> case seq.rightForm of
@@ -151,34 +158,29 @@ ruleGPAL =[
                       --      )]
                 otherwise -> Nothing}
 
-  ,{ priority=relLN
+  ,{ priority=CommonSeq.relLN
     ,category=Rule4LeftRel
     ,rulename="Lrel"
     ,rule = \seq -> case seq.leftRel of
                 RelAtom (ag,(f::annf),(w1,[]),(w2,[]))::lee ->
                     let
                      add1 =RelAtom (ag, annf, (w1,[]), (w2,[]))
-                     add2 =LabelForm ([],w1,map (\x->Left x) annf, f)
-                     add3 =LabelForm ([],w2,map (\x->Left x) annf, f)
+                     add2 =LabelForm ([],w1,List.map (\x->Left x) annf, f)
+                     add3 =LabelForm ([],w2,List.map (\x->Left x) annf, f)
                     in
                       Just [{seq | leftRel=[add1]++lee
                                   ,leftForm=[add2,add3]++seq.leftForm
                       }]
-                      --(
-                      --      {-1-} ([add1]++lee,[add2,add3]++left),
-                      --      {-2-} rights,
-                      --      {-3-} forDEL
-                      --      )]
                 otherwise -> Nothing}
 
-  ,{ priority=relRN
+  ,{ priority=CommonSeq.relRN
     ,category=Rule4RightRel
     ,rulename="Rrel"
     ,rule = \seq -> case seq.rightRel of
                 RelAtom (ag, (f::annf),(w1,[]),(w2,[]))::rii  ->
                     let
-                     add1=LabelForm ([],w1,map (\x->Left x) annf, f)
-                     add2=LabelForm ([],w2,map (\x->Left x) annf, f)
+                     add1=LabelForm ([],w1,List.map (\x->Left x) annf, f)
+                     add2=LabelForm ([],w2,List.map (\x->Left x) annf, f)
                      add3=RelAtom (ag, annf, (w1,[]),(w2,[]))
                     in
                       Just [   {seq | rightRel=rii,rightForm=[add1]++seq.rightForm}
@@ -200,43 +202,36 @@ ruleGPAL =[
                       --      )]
                 otherwise -> Nothing}
 
-  ,{ priority=cmpLN
+  ,{ priority=CommonSeq.cmpLN
     ,category=Rule4LeftFormula
     ,rulename="Lcmp"
     ,rule = \seq  -> case seq.leftForm of
                LabelForm(boxhis,w,x::annf,f)::leftt -> case x of
                 Left (And p (Announce p1 q)) ->
                    if p == p1
-                   then Nothing else
+                   then 
                     let
                      add1 =LabelForm([],w,(annf++[Left p,Left q]), f)
                     in
                       Just [{seq| leftForm=[add1]++leftt}]
-                      --(
-                      --      {-1-} (le,[add1]++leftt),
-                      --      {-2-} rights,
-                      --      {-3-} forDEL
-                      --      )]
+                   else Nothing 
+
                 otherwise -> Nothing
                otherwise -> Nothing}
 
-  ,{ priority=cmpRN
+  ,{ priority=CommonSeq.cmpRN
     ,category=Rule4RightFormula
     ,rulename="Rcmp"
     ,rule = \seq  -> case seq.rightForm of
                 LabelForm(boxhis,w,x::annf,f)::rightt -> case x of
                  Left (And p (Announce p1 q))->
                     if p == p1
-                    then Nothing else
+                    then
                      let
                       add1 =LabelForm([], w,annf++[Left p,Left q],f)
                      in
                       Just [{seq | rightForm=[add1]++rightt}]
-                      --(
-                      --      {-1-} lefts,
-                      --      {-2-} (ri,[add1]++rightt),
-                      --      {-3-} forDEL
-                      --      )]
+                    else Nothing 
                  otherwise -> Nothing
                 otherwise -> Nothing}]
 
