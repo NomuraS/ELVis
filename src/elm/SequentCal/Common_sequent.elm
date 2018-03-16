@@ -10,8 +10,8 @@ import Char
 import List.Extra 
 import Maybe.Extra
 import String.Extra 
-import Compare
-
+import Compare 
+ 
 p1 =(Atom "p1")
 p2 =(Atom "p2")
 p3 =(Atom "p3")
@@ -68,12 +68,151 @@ type alias Branch = {
              causeSequent:Sequent
             ,appliedRule:Rule
             ,resultSequents:List Sequent
-           }
+           } 
 
 type       Tree = Tree String (List Tree)
 
+type alias StateA = Proof
+-- type alias RuleEx = Proof->Proof
+type alias MoveA = Branch 
+type alias PathA = (List MoveA, StateA)
+type alias FrontierA = List PathA
+
+-- ~#a#b#b~#b~(p1 v p1)
+
+-- moves x =  []
+-- moves   : StateA -> List MoveA
+moves   : Proof -> List Branch
+moves pr =  
+  let 
+    edges = lookProofEdge pr []
+    edgesSeqs = List.map (\(Proof x y z)-> x) edges
+  in 
+    List.map (makeProofBranch 10 (axiomRule++ruleClassic)) edgesSeqs
+    
+-- move    : StateA -> MoveA -> StateA
+move : Proof -> Branch -> Proof
+move pr bran = --(seq1 rule resultseq) =
+      -- Proof (Sequent [] [] [] [] []) "" ([])
+ let
+    edges = lookProofEdge pr []
+ in
+  pr
+  --  List.map (\x-> if x == seq1 then ) edges
+  -- (Proof seq rule.name )
+
+
+-- type       Proof =  Proof Sequent RuleName (List Proof)
+-- type alias Rule = {   
+--              priority:Int
+--             ,category:RuleCategory
+--             ,rulename:String
+--             ,rule:Sequent -> Maybe (List Sequent)
+--            }
+-- type alias Branch = { 
+--              causeSequent:Sequent
+--             ,appliedRule:Rule
+--             ,resultSequents:List Sequent
+--            } 
+
+-- stable
+-- moves   : Proof -> List Rule
+-- makeProofBranch :MaxNumberOfExpressionsInANode-> List Rule->  Sequent -> Branch
+-- moves : MaxNumberOfExpressionsInANode -> List Rule -> 
+--         Proof -> List Rule
+-- moves maxNum ruleSet pr =
+--   let
+--   -- lookProofEdge:Proof->List Proof->List Proof
+--     edges = lookProofEdge pr []
+--     applyrule s = List.filterMap
+--                   (\r->seq2branch s r)
+--                   ruleSet
+--     leftSeqs1  = List.map (\x-> {seq | leftRel=x}) (Util.rotate seq.leftRel)
+--     leftSeqs2  = List.map (\x-> {seq | leftForm=x}) (Util.rotate seq.leftForm)
+--     rightSeqs1 = List.map (\x-> {seq | rightRel=x}) (Util.rotate seq.rightRel)
+--     rightSeqs2 = List.map (\x-> {seq | rightForm=x})  (Util.rotate seq.rightForm)
+--     forDEL1    = List.map (\x-> {seq | forDEL=x})  (Util.rotate seq.forDEL)
+--     rules = 
+--     branches   = List.concat [leftSeqs1,leftSeqs2,rightSeqs1,rightSeqs2,forDEL1] 
+--                 |> Util.nub 
+--                 |> List.concatMap applyrule 
+--                 |> Util.nub 
+--     branchesSorted = List.sortBy (.priority << .appliedRule) branches
+--     limitBranch = {causeSequent=seq,appliedRule=ruleLimit,resultSequents=[]}
+--     endBranch   = {causeSequent=seq,appliedRule=ruleEnd,  resultSequents=[]}
+--     stopBranch  = {causeSequent=seq,appliedRule=ruleStop, resultSequents=[]}
+--   in
+--      if List.length (seq.leftRel++seq.rightRel) +List.length (seq.leftForm++seq.rightForm)> maxNum
+--      then limitBranch
+--      else case  branchesSorted of 
+--             [] -> if  anyFormulaCheck seq
+--                   then stopBranch
+--                   else endBranch
+--             (a::xs) -> case initCheck branchesSorted of
+--                Just b -> sortSeqOfBranch b
+--                Nothing->  sortSeqOfBranch a 
+
+-- solved  : Proof -> Bool
+solved  : StateA -> Bool
+solved pr = 
+  let 
+    names = lookProofEdgeRules pr
+  in
+    if List.member "end" names 
+    then True 
+    else if List.all (\x-> x=="init" || x=="limit" || x=="stop") names
+    then True 
+    else False
+
+
+lookProofEdge:Proof->List Proof->List Proof
+lookProofEdge (Proof seq name li) results = 
+    case li of  
+        [] -> (Proof seq name [])::results
+        li -> List.concatMap (\a->lookProofEdge a results) li
+
+
+lookProofEdgeRules : Proof -> List RuleName
+lookProofEdgeRules pr = 
+    let
+     edgePrs =  lookProofEdge pr []
+    in 
+     List.map (\(Proof x name li)-> name) edgePrs
+
+-- lookProofEdgeRules:Proof->List RuleName->List RuleName
+-- lookProofEdgeRules (Proof seq name li) results = 
+--     case li of  
+--         [] -> name::results
+--         li -> List.concatMap (\a->lookProofEdgeRules a results) li
+
+-- solved: StateA -> Bool 
+-- solved pr =  
+--   let
+--     gg (Proof seq rulename rest) = [rulename ]++  (List.concatMap gg rest)
+--     ruleList = gg pr
+--   in
+--     if List.member "end" ruleList  then True
+--     else if List.member "stop" ruleList then 9
+--     else if List.member "limit" ruleList then 2
+--     else 1
+
+
+
+  
+bfsearch : List StateA -> FrontierA-> Maybe (List MoveA)
+bfsearch qs a = case a of 
+     [] -> Nothing
+     (ms,q)::ps -> if (solved q)
+                   then Just ms
+                   else if (List.member q  qs)
+                   then bfsearch qs ps
+                   else bfsearch (q::qs) (ps ++ succs (ms,q))
+ 
+succs :  PathA -> List PathA
+succs (ms,q) =  List.map (\m->(ms++[m], move q m)) (moves q)
+
 type alias RandomSeed =
-    { randomNumber : Int
+    { randomNumber : Int 
     , maxLengthOfRandomFormula : Int
     }
 
@@ -234,7 +373,7 @@ ruleEnd =
     ,rulename="end"
     ,rule = \x -> Just []}
 
-ruleLimit : Rule
+ruleLimit : Rule 
 ruleLimit =
   {  priority=initN
     ,category=Rule4Other
@@ -803,17 +942,18 @@ makeProofBranch maxNum ruleSet seq =
   let
     applyrule = \s-> List.filterMap
                   (\r->seq2branch s r)
-                  (ruleSet)
+                  ruleSet
     leftSeqs1  = List.map (\x-> {seq | leftRel=x}) (Util.rotate seq.leftRel)
     leftSeqs2  = List.map (\x-> {seq | leftForm=x}) (Util.rotate seq.leftForm)
     rightSeqs1 = List.map (\x-> {seq | rightRel=x}) (Util.rotate seq.rightRel)
     rightSeqs2 = List.map (\x-> {seq | rightForm=x})  (Util.rotate seq.rightForm)
     forDEL1    = List.map (\x-> {seq | forDEL=x})  (Util.rotate seq.forDEL)
-    branches   =  List.concat [leftSeqs1,leftSeqs2,rightSeqs1,rightSeqs2,forDEL1] 
+    branches   = List.concat [leftSeqs1,leftSeqs2,rightSeqs1,rightSeqs2,forDEL1] 
                 |> Util.nub 
                 |> List.concatMap applyrule 
                 |> Util.nub 
     branchesSorted = List.sortBy (.priority << .appliedRule) branches
+    -- aaa = Debug.log "common_seq 817" branchesSorted 
     limitBranch = {causeSequent=seq,appliedRule=ruleLimit,resultSequents=[]}
     endBranch   = {causeSequent=seq,appliedRule=ruleEnd,  resultSequents=[]}
     stopBranch  = {causeSequent=seq,appliedRule=ruleStop, resultSequents=[]}
@@ -826,9 +966,35 @@ makeProofBranch maxNum ruleSet seq =
                   else endBranch
             (a::xs) -> case initCheck branchesSorted of
                Just b -> sortSeqOfBranch b
-               Nothing-> sortSeqOfBranch a
+               Nothing->  sortSeqOfBranch a 
+              --  Nothing-> 
+              --    let ff = if List.any (\x->noApplicableRule ruleSet x) (Debug.log "aaeaea" a.resultSequents)
+              --             then  {a |resultSequents=[]}--a.resultSequents}
+              --             else sortSeqOfBranch a
+              --    in case a.appliedRule.rulename of
+              --       "R&" ->ff              
+              --       "Lv" ->ff 
+              --       "L#" ->ff 
+              --       "R$" ->ff 
+              --       otherwise -> sortSeqOfBranch a
 
-
+-- noApplicableRule : List Rule->   Sequent -> Bool
+-- noApplicableRule ruleSet seq =
+--   let
+--     applyrule = \s-> List.filterMap
+--                   (\r->seq2branch s r)
+--                   ruleSet
+--     leftSeqs1  = List.map (\x-> {seq | leftRel=x}) (Util.rotate seq.leftRel)
+--     leftSeqs2  = List.map (\x-> {seq | leftForm=x}) (Util.rotate seq.leftForm)
+--     rightSeqs1 = List.map (\x-> {seq | rightRel=x}) (Util.rotate seq.rightRel)
+--     rightSeqs2 = List.map (\x-> {seq | rightForm=x})  (Util.rotate seq.rightForm)
+--     forDEL1    = List.map (\x-> {seq | forDEL=x})  (Util.rotate seq.forDEL)
+--     branches   = List.concat [leftSeqs1,leftSeqs2,rightSeqs1,rightSeqs2,forDEL1] 
+--                 |> Util.nub 
+--                 |> List.concatMap applyrule 
+--                 |> Util.nub 
+--   in
+--     branches == []
 -- faster?
 --makeProofBranch :MaxNumberOfExpressionsInANode-> List Rule->  Sequent -> Branch
 --makeProofBranch maxNum ruleSet seq =
@@ -859,7 +1025,6 @@ makeProofBranch maxNum ruleSet seq =
 
 initCheck : List Branch -> Maybe Branch
 initCheck li = case li of
-
   [] -> Nothing
   a::lii ->
           if  Util.forall axiomRule (\x-> 
@@ -878,20 +1043,20 @@ seq2branch seq  rule =
                 appliedRule=rule,
                 resultSequents=x}
 
-divideRules: List Rule
-    -> (List Rule,List Rule,List Rule,List Rule,List Rule,List Rule)
-    -> (List Rule,List Rule,List Rule,List Rule,List Rule,List Rule)
-divideRules listrule (lrel,lform,rrel,rform,rdel,other)= 
-  case listrule of 
-    x::xs ->  case x.category of 
-        Rule4LeftFormula ->  divideRules xs (lrel,x::lform,rrel,rform,rdel,other)
-        Rule4LeftRel ->      divideRules xs (x::lrel,lform,rrel,rform,rdel,other)
-        Rule4RightFormula -> divideRules xs (lrel,lform,rrel,x::rform,rdel,other)
-        Rule4RightRel ->     divideRules xs (lrel,lform,x::rrel,rform,rdel,other)
-        Rule4DEL ->          divideRules xs (lrel,lform,rrel,rform,x::rdel,other)
-        Rule4Other ->        divideRules xs (lrel,lform,rrel,rform,rdel,x::other)
+-- divideRules: List Rule
+--     -> (List Rule,List Rule,List Rule,List Rule,List Rule,List Rule)
+--     -> (List Rule,List Rule,List Rule,List Rule,List Rule,List Rule)
+-- divideRules listrule (lrel,lform,rrel,rform,rdel,other)= 
+--   case listrule of 
+--     x::xs ->  case x.category of 
+--         Rule4LeftFormula ->  divideRules xs (lrel,x::lform,rrel,rform,rdel,other)
+--         Rule4LeftRel ->      divideRules xs (x::lrel,lform,rrel,rform,rdel,other)
+--         Rule4RightFormula -> divideRules xs (lrel,lform,rrel,x::rform,rdel,other)
+--         Rule4RightRel ->     divideRules xs (lrel,lform,x::rrel,rform,rdel,other)
+--         Rule4DEL ->          divideRules xs (lrel,lform,rrel,rform,x::rdel,other)
+--         Rule4Other ->        divideRules xs (lrel,lform,rrel,rform,rdel,x::other)
 
-    [] -> (lrel,lform,rrel,rform,rdel,other)
+--     [] -> (lrel,lform,rrel,rform,rdel,other)
 
 --------------------------------------------------------------------------------------------
 -- output (labelled expression)
@@ -1077,8 +1242,6 @@ drawNodeElm string = -- 0 end, 1 init top bot, 2 limit, 3 not end node, 9 stop
           "(stop)" -> {id=(FNV.hashString string),label=string,color=9}
           otherwise -> {id=(FNV.hashString string),label=stringCut2,color=3}
 
-
-
 drawEdgeElm : ( String, String ) -> (List Node, List Edge) 
 drawEdgeElm ( string, string1 ) =
     let
@@ -1108,10 +1271,6 @@ list2pairElm xs provable =
                     , edges=[]
                     , provable=provable
                     }
-
-
-
-
 
 --------------------------------------------------------------------------------------------
 -- Parser(output/ TeX)
@@ -1172,9 +1331,6 @@ drawTexLabelForm2 r =
             RelAtom (ag, [], w1,w2) -> showla w1 ++ "\\mathsf{R}^{}_{"++ag++"}"++ showla w2 --(forml annf )++ 
             RelAtom (ag, annf, w1,w2) -> showla w1 ++ "\\mathsf{R}^{"++(List.map gg annf |> words)++ "}_{"++ag++"}"++ showla w2 --(forml annf )++ 
             RelAtom_int (w1,w2) -> (Util.show w1)++++"\\leq"++++ (Util.show w2)
-
---type       RelAtom   =   RelAtom (Agent,List Formula,LabelAct,LabelAct)
---                       | RelAtom_int (Label,Label)
 
 drawTexFormula : Int-> Formula -> String
 drawTexFormula n f =

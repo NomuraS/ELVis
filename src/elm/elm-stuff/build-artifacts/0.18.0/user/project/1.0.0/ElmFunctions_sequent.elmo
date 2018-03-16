@@ -450,8 +450,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 314, column: 28},
-								end: {line: 316, column: 88}
+								start: {line: 315, column: 28},
+								end: {line: 317, column: 88}
 							},
 							_p15)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (2):', _p15._0));
@@ -493,8 +493,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 328, column: 28},
-								end: {line: 330, column: 88}
+								start: {line: 329, column: 28},
+								end: {line: 331, column: 88}
 							},
 							_p18)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (3):', _p18._0));
@@ -536,8 +536,8 @@ var _user$project$ElmFunctions_sequent$update = F2(
 						return _elm_lang$core$Native_Utils.crashCase(
 							'ElmFunctions_sequent',
 							{
-								start: {line: 342, column: 28},
-								end: {line: 344, column: 88}
+								start: {line: 343, column: 28},
+								end: {line: 345, column: 88}
 							},
 							_p21)(
 							A2(_elm_lang$core$Basics_ops['++'], 'error in update (4):', _p21._0));

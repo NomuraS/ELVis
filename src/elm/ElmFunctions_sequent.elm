@@ -290,8 +290,9 @@ update message model =
                   Nothing -> {model | nodes=[],edges=[]}
                   Just f ->
                     let 
-                      bottom_sequent = CSeq.formula2seq f
+                      bottom_sequent = CSeq.formula2seq f 
                       proof = CSeq.makeProofTree limitNum (modal_system++el_system)  bottom_sequent 
+                    --   aaa = Debug.log "rulenames"  (CSeq.lookProofEdgeRules proof [])
                       graph =  CSeq.drawProof proof
                       tex_ = {
                               proofsty = CSeq.drawTexProof_proofsty [proof],

@@ -172,18 +172,18 @@ var _user$project$Int_sequent$ruleK_int = {
 		category: _user$project$Common_sequent$Rule4RightFormula,
 		rulename: 'R#',
 		rule: function (seq) {
-			var _p16 = seq.rightForm;
-			if ((((_p16.ctor === '::') && (_p16._0._0.ctor === '_Tuple4')) && (_p16._0._0._3.ctor === 'Box')) && (_p16._1.ctor === '[]')) {
-				var _p17 = _p16._0._0._2;
+			var _p16 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+			if ((((((_p16.ctor === '_Tuple2') && (_p16._0.ctor === '::')) && (_p16._0._0._0.ctor === '_Tuple4')) && (_p16._0._0._0._3.ctor === 'Box')) && (_p16._0._1.ctor === '[]')) && (_p16._1.ctor === '[]')) {
+				var _p17 = _p16._0._0._0._2;
 				var $new = _user$project$Common_sequent$freshLabel(seq);
 				var add1 = _user$project$Common_sequent$RelAtom(
 					{
 						ctor: '_Tuple4',
-						_0: _p16._0._0._3._0,
+						_0: _p16._0._0._0._3._0,
 						_1: _toastal$either$Either$lefts(_p17),
 						_2: {
 							ctor: '_Tuple2',
-							_0: _p16._0._0._1,
+							_0: _p16._0._0._0._1,
 							_1: {ctor: '[]'}
 						},
 						_3: {
@@ -193,7 +193,7 @@ var _user$project$Int_sequent$ruleK_int = {
 						}
 					});
 				var add2 = _user$project$Common_sequent$LabelForm(
-					{ctor: '_Tuple4', _0: _p16._0._0._0, _1: $new, _2: _p17, _3: _p16._0._0._3._1});
+					{ctor: '_Tuple4', _0: _p16._0._0._0._0, _1: $new, _2: _p17, _3: _p16._0._0._0._3._1});
 				return _elm_lang$core$Maybe$Just(
 					{
 						ctor: '::',
@@ -346,13 +346,13 @@ var _user$project$Int_sequent$ruleK_int = {
 				category: _user$project$Common_sequent$Rule4RightFormula,
 				rulename: 'R$_int',
 				rule: function (seq) {
-					var _p31 = seq.rightForm;
-					if ((((_p31.ctor === '::') && (_p31._0._0.ctor === '_Tuple4')) && (_p31._0._0._3.ctor === 'Dia')) && (_p31._1.ctor === '[]')) {
-						var _p42 = _p31._0._0._1;
-						var _p41 = _p31._0._0._3._1;
-						var _p40 = _p31._0._0._0;
-						var _p39 = _p31._0._0._2;
-						var _p38 = _p31._0._0._3._0;
+					var _p31 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+					if ((((((_p31.ctor === '_Tuple2') && (_p31._0.ctor === '::')) && (_p31._0._0._0.ctor === '_Tuple4')) && (_p31._0._0._0._3.ctor === 'Dia')) && (_p31._0._1.ctor === '[]')) && (_p31._1.ctor === '[]')) {
+						var _p42 = _p31._0._0._0._1;
+						var _p41 = _p31._0._0._0._3._1;
+						var _p40 = _p31._0._0._0._0;
+						var _p39 = _p31._0._0._0._2;
+						var _p38 = _p31._0._0._0._3._0;
 						var orig = function (_p32) {
 							var _p33 = _p32;
 							return _user$project$Common_sequent$LabelForm(
@@ -537,14 +537,12 @@ var _user$project$Int_sequent$ruleInt = {
 							seq,
 							{
 								leftForm: _p45._1,
-								rightForm: A2(
-									_elm_lang$core$Basics_ops['++'],
-									{
-										ctor: '::',
-										_0: add1,
-										_1: {ctor: '[]'}
-									},
-									{ctor: '[]'})
+								rightForm: {
+									ctor: '::',
+									_0: add1,
+									_1: {ctor: '[]'}
+								},
+								rightRel: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}
 					});
@@ -560,10 +558,10 @@ var _user$project$Int_sequent$ruleInt = {
 			category: _user$project$Common_sequent$Rule4RightFormula,
 			rulename: 'R~',
 			rule: function (seq) {
-				var _p46 = seq.rightForm;
-				if ((((_p46.ctor === '::') && (_p46._0._0.ctor === '_Tuple4')) && (_p46._0._0._3.ctor === 'Not')) && (_p46._1.ctor === '[]')) {
+				var _p46 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+				if ((((((_p46.ctor === '_Tuple2') && (_p46._0.ctor === '::')) && (_p46._0._0._0.ctor === '_Tuple4')) && (_p46._0._0._0._3.ctor === 'Not')) && (_p46._0._1.ctor === '[]')) && (_p46._1.ctor === '[]')) {
 					var add1 = _user$project$Common_sequent$LabelForm(
-						{ctor: '_Tuple4', _0: _p46._0._0._0, _1: _p46._0._0._1, _2: _p46._0._0._2, _3: _p46._0._0._3._0});
+						{ctor: '_Tuple4', _0: _p46._0._0._0._0, _1: _p46._0._0._0._1, _2: _p46._0._0._0._2, _3: _p46._0._0._0._3._0});
 					return _elm_lang$core$Maybe$Just(
 						{
 							ctor: '::',
@@ -636,15 +634,15 @@ var _user$project$Int_sequent$ruleInt = {
 					category: _user$project$Common_sequent$Rule4RightFormula,
 					rulename: 'R&',
 					rule: function (seq) {
-						var _p51 = seq.rightForm;
-						if ((((_p51.ctor === '::') && (_p51._0._0.ctor === '_Tuple4')) && (_p51._0._0._3.ctor === 'And')) && (_p51._1.ctor === '[]')) {
-							var _p54 = _p51._0._0._2;
-							var _p53 = _p51._0._0._0;
-							var _p52 = _p51._0._0._1;
+						var _p51 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+						if ((((((_p51.ctor === '_Tuple2') && (_p51._0.ctor === '::')) && (_p51._0._0._0.ctor === '_Tuple4')) && (_p51._0._0._0._3.ctor === 'And')) && (_p51._0._1.ctor === '[]')) && (_p51._1.ctor === '[]')) {
+							var _p54 = _p51._0._0._0._2;
+							var _p53 = _p51._0._0._0._0;
+							var _p52 = _p51._0._0._0._1;
 							var f2 = _user$project$Common_sequent$LabelForm(
-								{ctor: '_Tuple4', _0: _p53, _1: _p52, _2: _p54, _3: _p51._0._0._3._1});
+								{ctor: '_Tuple4', _0: _p53, _1: _p52, _2: _p54, _3: _p51._0._0._0._3._1});
 							var f1 = _user$project$Common_sequent$LabelForm(
-								{ctor: '_Tuple4', _0: _p53, _1: _p52, _2: _p54, _3: _p51._0._0._3._0});
+								{ctor: '_Tuple4', _0: _p53, _1: _p52, _2: _p54, _3: _p51._0._0._0._3._0});
 							return _elm_lang$core$Maybe$Just(
 								{
 									ctor: '::',
@@ -743,15 +741,15 @@ var _user$project$Int_sequent$ruleInt = {
 							category: _user$project$Common_sequent$Rule4RightFormula,
 							rulename: 'Rv_int',
 							rule: function (seq) {
-								var _p60 = seq.rightForm;
-								if ((((_p60.ctor === '::') && (_p60._0._0.ctor === '_Tuple4')) && (_p60._0._0._3.ctor === 'Or')) && (_p60._1.ctor === '[]')) {
-									var _p63 = _p60._0._0._2;
-									var _p62 = _p60._0._0._0;
-									var _p61 = _p60._0._0._1;
+								var _p60 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+								if ((((((_p60.ctor === '_Tuple2') && (_p60._0.ctor === '::')) && (_p60._0._0._0.ctor === '_Tuple4')) && (_p60._0._0._0._3.ctor === 'Or')) && (_p60._0._1.ctor === '[]')) && (_p60._1.ctor === '[]')) {
+									var _p63 = _p60._0._0._0._2;
+									var _p62 = _p60._0._0._0._0;
+									var _p61 = _p60._0._0._0._1;
 									var add2 = _user$project$Common_sequent$LabelForm(
-										{ctor: '_Tuple4', _0: _p62, _1: _p61, _2: _p63, _3: _p60._0._0._3._1});
+										{ctor: '_Tuple4', _0: _p62, _1: _p61, _2: _p63, _3: _p60._0._0._0._3._1});
 									var add1 = _user$project$Common_sequent$LabelForm(
-										{ctor: '_Tuple4', _0: _p62, _1: _p61, _2: _p63, _3: _p60._0._0._3._0});
+										{ctor: '_Tuple4', _0: _p62, _1: _p61, _2: _p63, _3: _p60._0._0._0._3._0});
 									return _elm_lang$core$Maybe$Just(
 										{
 											ctor: '::',
@@ -817,7 +815,8 @@ var _user$project$Int_sequent$ruleInt = {
 															ctor: '::',
 															_0: add1,
 															_1: {ctor: '[]'}
-														}
+														},
+														rightRel: {ctor: '[]'}
 													}),
 												_1: {
 													ctor: '::',
@@ -848,15 +847,15 @@ var _user$project$Int_sequent$ruleInt = {
 									category: _user$project$Common_sequent$Rule4RightFormula,
 									rulename: 'R->',
 									rule: function (seq) {
-										var _p69 = seq.rightForm;
-										if ((((_p69.ctor === '::') && (_p69._0._0.ctor === '_Tuple4')) && (_p69._0._0._3.ctor === 'Imply')) && (_p69._1.ctor === '[]')) {
-											var _p72 = _p69._0._0._2;
-											var _p71 = _p69._0._0._0;
-											var _p70 = _p69._0._0._1;
+										var _p69 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+										if ((((((_p69.ctor === '_Tuple2') && (_p69._0.ctor === '::')) && (_p69._0._0._0.ctor === '_Tuple4')) && (_p69._0._0._0._3.ctor === 'Imply')) && (_p69._0._1.ctor === '[]')) && (_p69._1.ctor === '[]')) {
+											var _p72 = _p69._0._0._0._1;
+											var _p71 = _p69._0._0._0._0;
+											var _p70 = _p69._0._0._0._2;
 											var add2 = _user$project$Common_sequent$LabelForm(
-												{ctor: '_Tuple4', _0: _p71, _1: _p70, _2: _p72, _3: _p69._0._0._3._1});
+												{ctor: '_Tuple4', _0: _p71, _1: _p72, _2: _p70, _3: _p69._0._0._0._3._1});
 											var add1 = _user$project$Common_sequent$LabelForm(
-												{ctor: '_Tuple4', _0: _p71, _1: _p70, _2: _p72, _3: _p69._0._0._3._0});
+												{ctor: '_Tuple4', _0: _p71, _1: _p72, _2: _p70, _3: _p69._0._0._0._3._0});
 											return _elm_lang$core$Maybe$Just(
 												{
 													ctor: '::',
@@ -890,7 +889,7 @@ var _user$project$Int_sequent$ruleInt = {
 								_1: {
 									ctor: '::',
 									_0: {
-										priority: _user$project$Common_sequent$impl2LN,
+										priority: 99,
 										category: _user$project$Common_sequent$Rule4LeftFormula,
 										rulename: 'L->2',
 										rule: function (seq) {
@@ -910,29 +909,27 @@ var _user$project$Int_sequent$ruleInt = {
 														_0: _elm_lang$core$Native_Utils.update(
 															seq,
 															{
-																leftForm: A2(
-																	_elm_lang$core$Basics_ops['++'],
-																	{
-																		ctor: '::',
-																		_0: add2,
-																		_1: {ctor: '[]'}
-																	},
-																	_p77)
+																leftForm: _p77,
+																rightForm: {
+																	ctor: '::',
+																	_0: add1,
+																	_1: {ctor: '[]'}
+																},
+																rightRel: {ctor: '[]'}
 															}),
 														_1: {
 															ctor: '::',
 															_0: _elm_lang$core$Native_Utils.update(
 																seq,
 																{
-																	leftForm: _p77,
-																	rightForm: A2(
+																	leftForm: A2(
 																		_elm_lang$core$Basics_ops['++'],
 																		{
 																			ctor: '::',
-																			_0: add1,
+																			_0: add2,
 																			_1: {ctor: '[]'}
 																		},
-																		{ctor: '[]'})
+																		_p77)
 																}),
 															_1: {ctor: '[]'}
 														}
@@ -945,19 +942,19 @@ var _user$project$Int_sequent$ruleInt = {
 									_1: {
 										ctor: '::',
 										_0: {
-											priority: _user$project$Common_sequent$impl2RN,
+											priority: _user$project$Common_sequent$implRN,
 											category: _user$project$Common_sequent$Rule4RightFormula,
 											rulename: 'R->2',
 											rule: function (seq) {
-												var _p78 = seq.rightForm;
-												if ((((_p78.ctor === '::') && (_p78._0._0.ctor === '_Tuple4')) && (_p78._0._0._3.ctor === 'Imply2')) && (_p78._1.ctor === '[]')) {
-													var _p81 = _p78._0._0._2;
-													var _p80 = _p78._0._0._0;
-													var _p79 = _p78._0._0._1;
+												var _p78 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+												if ((((((_p78.ctor === '_Tuple2') && (_p78._0.ctor === '::')) && (_p78._0._0._0.ctor === '_Tuple4')) && (_p78._0._0._0._3.ctor === 'Imply2')) && (_p78._0._1.ctor === '[]')) && (_p78._1.ctor === '[]')) {
+													var _p81 = _p78._0._0._0._1;
+													var _p80 = _p78._0._0._0._0;
+													var _p79 = _p78._0._0._0._2;
 													var add2 = _user$project$Common_sequent$LabelForm(
-														{ctor: '_Tuple4', _0: _p80, _1: _p79, _2: _p81, _3: _p78._0._0._3._1});
+														{ctor: '_Tuple4', _0: _p80, _1: _p81, _2: _p79, _3: _p78._0._0._0._3._0});
 													var add1 = _user$project$Common_sequent$LabelForm(
-														{ctor: '_Tuple4', _0: _p80, _1: _p79, _2: _p81, _3: _p78._0._0._3._0});
+														{ctor: '_Tuple4', _0: _p80, _1: _p81, _2: _p79, _3: _p78._0._0._0._3._1});
 													return _elm_lang$core$Maybe$Just(
 														{
 															ctor: '::',
@@ -968,7 +965,7 @@ var _user$project$Int_sequent$ruleInt = {
 																		_elm_lang$core$Basics_ops['++'],
 																		{
 																			ctor: '::',
-																			_0: add2,
+																			_0: add1,
 																			_1: {ctor: '[]'}
 																		},
 																		seq.leftForm),
@@ -976,7 +973,7 @@ var _user$project$Int_sequent$ruleInt = {
 																		_elm_lang$core$Basics_ops['++'],
 																		{
 																			ctor: '::',
-																			_0: add1,
+																			_0: add2,
 																			_1: {ctor: '[]'}
 																		},
 																		{ctor: '[]'})
@@ -1039,16 +1036,16 @@ var _user$project$Int_sequent$ruleInt = {
 													category: _user$project$Common_sequent$Rule4RightFormula,
 													rulename: 'R<->',
 													rule: function (seq) {
-														var _p85 = seq.rightForm;
-														if ((((_p85.ctor === '::') && (_p85._0._0.ctor === '_Tuple4')) && (_p85._0._0._3.ctor === 'Iff')) && (_p85._1.ctor === '[]')) {
-															var _p87 = _p85._0._0._3._1;
-															var _p86 = _p85._0._0._3._0;
+														var _p85 = {ctor: '_Tuple2', _0: seq.rightForm, _1: seq.rightRel};
+														if ((((((_p85.ctor === '_Tuple2') && (_p85._0.ctor === '::')) && (_p85._0._0._0.ctor === '_Tuple4')) && (_p85._0._0._0._3.ctor === 'Iff')) && (_p85._0._1.ctor === '[]')) && (_p85._1.ctor === '[]')) {
+															var _p87 = _p85._0._0._0._3._1;
+															var _p86 = _p85._0._0._0._3._0;
 															var add1 = _user$project$Common_sequent$LabelForm(
 																{
 																	ctor: '_Tuple4',
-																	_0: _p85._0._0._0,
-																	_1: _p85._0._0._1,
-																	_2: _p85._0._0._2,
+																	_0: _p85._0._0._0._0,
+																	_1: _p85._0._0._0._1,
+																	_2: _p85._0._0._0._2,
 																	_3: A2(
 																		_user$project$Common_syntax$And,
 																		A2(_user$project$Common_syntax$Imply, _p86, _p87),

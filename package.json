@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "author": "Shoshih Nomura",
-    "license": "MIT", 
+    "license": "MIT",
     "main": "bundle.js",
     "devDependencies": {
         "@types/elm": "^0.12.29",
