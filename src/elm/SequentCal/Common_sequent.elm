@@ -216,7 +216,7 @@ type alias RandomSeed =
     , maxLengthOfRandomFormula : Int
     }
 
-formula2seq : Formula ->Sequent
+formula2seq : Formula ->Sequent 
 formula2seq f = {  leftRel=[]
                   ,leftForm=[]
                   ,rightRel=[]
