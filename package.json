@@ -23,7 +23,8 @@
         "webpack": "^3.10.0"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "webpack-dev-server"
     },
     "dependencies": {
         "@reactivex/rxjs": "^5.5.5",
